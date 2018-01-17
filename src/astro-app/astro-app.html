@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/polymer-rux-button.html">
+<link rel="import" href="../astro-components/rux-global-status-bar.html">
 
 <dom-module id="astro-app">
   <template>
@@ -7,10 +8,23 @@
       :host {
         display: block;
       }
+
+      
+
     </style>
 
-    <polymer-rux-button
+
+    <rux-global-status-bar
+      name="Astro App"
+      version="v1.022a"
+      master=false>   
+    </rux-global-status-bar>
+
+
+    <!-- <polymer-rux-button
       on-click="_polymerClickEvent">Polymer Button</polymer-rux-button>
+    
+      <rux-button>Component Button</rux-button> -->
 
   </template>
 
@@ -30,6 +44,25 @@
         };
       }
 
+
+      constructor() {
+          super();
+        }
+
+        ready() {
+          super.ready();
+
+          this.addEventListener('click', function(e) {
+            console.log('test');
+          })
+        }
+
+      
+
+
+      clicked() {
+        console.log('Dispatched Event from Web Component in asto-app.html',payload);
+      }
 
       _polymerClickEvent() {
         console.log('Click Event is handled in the astro-app component')

@@ -1,0 +1,108 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<dom-module id="rux-global-status-bar">
+	<template>
+		<style>
+			:host {
+					display: block;
+					position: sticky;
+					
+					top: 0;
+					left: 0;
+
+					width: 100%;
+
+					box-sizing: border-box;
+					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}	
+
+			header {
+				
+				display: flex;
+
+        height: 6.2rem;
+				width: 100%;
+				
+				padding: 0 1em 0 1em;
+
+				align-items: center;
+  			justify-content: space-between;
+
+        
+			}
+			
+			.app-meta {
+				padding: 0;
+				margin: 0;
+				display: flex;
+				
+				align-items: baseline;
+			}
+
+
+			.app-meta h1 {
+				font-size: 2rem;
+				font-weight: 100;
+				color: rgba(255, 255, 255, 0.298039);
+
+				margin-right: 0.5em;
+			}
+
+			.app-meta h2 {
+				font-size: 1.1875rem;
+				font-weight: 100;
+				color: rgba(255, 255, 255, 0.298039);
+			}
+
+			</style>
+
+
+			<header>
+				<div class="app-meta">
+					<h1>[[name]]</h1>
+					<h2>[[version]]</h2>
+				</div>
+
+				<slot></slot>
+
+				<rux-button
+					type="large"
+					icon="caution"
+					disabled>Master Off</rux-button>
+			</header>
+				
+
+	</template>
+
+	<script>
+		class RuxGlobalStatusBar extends Polymer.Element {
+				
+				static get is() { return 'rux-global-status-bar'; }
+				static get properties() {
+					return {
+						name: String,
+						version: String,
+						master: Boolean
+					}
+				}
+				constructor() {
+					console.log('Astro Global Status Bar has loaded … ')
+        	super();
+				}
+
+				ready() {
+					super.ready();
+
+					
+				}
+		}
+
+		customElements.define(RuxGlobalStatusBar.is, RuxGlobalStatusBar);
+	</script>
+</dom-module>
