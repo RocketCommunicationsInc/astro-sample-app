@@ -13,6 +13,12 @@
 					width: 100%;
 
 					box-sizing: border-box;
+
+					-webkit-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
+					
 					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
 			}
 
@@ -50,14 +56,14 @@
 				font-size: 2rem;
 				font-weight: 100;
 				color: rgba(255, 255, 255, 0.298039);
-
-				margin-right: 0.5em;
 			}
 
-			.app-meta h2 {
+			.app-version {
 				font-size: 1.1875rem;
 				font-weight: 100;
 				color: rgba(255, 255, 255, 0.298039);
+
+				margin-left: 0.5em;
 			}
 
 			</style>
@@ -65,8 +71,7 @@
 
 			<header>
 				<div class="app-meta">
-					<h1>[[name]]</h1>
-					<h2>[[version]]</h2>
+					<h1>[[name]]<span class="app-version">[[version]]</span></h1>
 				</div>
 
 				<slot></slot>
