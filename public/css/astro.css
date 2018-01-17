@@ -9,15 +9,7 @@ html {
 		box-sizing: border-box;
 }
 
-
-
-
-
-/*
-**
-**
-**
-*/*,
+*,
 *:before,
 *:after {
 	  box-sizing: inherit;
@@ -43,4 +35,22 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+
+
+
+
+/*
+** Disable user selection of input labels and navigation elements
+*/
+button {
+	--disable-selection: none !important;
+}
+
+
+
+/* Fallback support for non-browsers*/
+@supports ( -css: variables) {
+
 }

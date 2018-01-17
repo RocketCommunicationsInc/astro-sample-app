@@ -1,38 +1,35 @@
+@import url("_dark-theme.css");
+@import url("_light-theme.css");
+
+
+
 :root {
-	
-	/* Dark Theme Settings */
-  --dark-font-color: #fff;
-  --dark-background-start: #061C2A;
-  --dark-background-end: #29425C;
-  --dark-background: linear-gradient(to bottom, var(--dark-background-start) 0%, var(--dark-background-end) 100%);
-	
-	/* Light Theme Settings */
-  --light-font-color: rgb(85, 84, 89);
-  --light-background-start: rgb(227, 227, 227);
-  --light-background-end: rgb(237, 236, 235);
-  --light-background: linear-gradient(to bottom, var(--light-background-start) 0%, var(--light-background-end) 100%);
 	
 	
 	/* Initial Settings */
-  --background: var(--dark-background);
+  --background: var(--background);
   
-  --sample-color: var(--dark-sample);
+  
+  
+  
+  /* Typography */
+	--font-family: 'Open Sans', sans-serif;
+	--font-size: 1em;
+  --font-color: var(font-color);
+  
+
+  /* Colors */
+  
+  
   --status-emergency: rgba(244, 18, 46, 1);
   --status-error: rgba(190, 88, 73, 1);
   --status-caution: rgba(247, 229, 59, 1);
   --status-ok: rgba(129, 209, 53, 1);
   --status-standby: rgba(163, 220, 249, 1);
   --status-off: rgba(198, 204, 209, 1);
+
+
+
   
   
-	--font-family: 'Open Sans', sans-serif;
-	--font-size: 1em;
-  --font-color: var(--dark-font-color);
-  
-
-	--debug: 1px solid red;
-	
-
-	--dark-button-background: #005a8f;
-
 }

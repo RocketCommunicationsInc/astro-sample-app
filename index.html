@@ -16,8 +16,23 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="/src/astro-app/astro-app.html">
+
+    <!-- Polymer Based Web Component //-->
+    <link rel="import" href="src/astro-components/polymer-rux-button.html">
+
+    <!-- Vanilla Based Web Component //-->
+    <script type="module" src="src/astro-components/rux-button.js"></script>
+    <script>
+      
+      addEventListener('clicked', function(payload) {
+	      console.log('Dispatched Event from Web Component',payload);
+      });
+
+    </script>
+
   </head>
-  <body>
+  <body class="dark-theme">
+    <rux-button>Component Button</rux-button>
     <astro-app></astro-app>
   </body>
 </html>
