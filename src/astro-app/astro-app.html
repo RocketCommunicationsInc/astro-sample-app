@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/polymer-rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
+<link rel="import" href="../astro-components/rux-status-icon.html">
 
 <dom-module id="astro-app">
   <template>
@@ -9,14 +10,90 @@
         display: block;
       }
 
-      
+      .rux-status-bar-group {
+        display: flex;
+
+        list-style: none;
+
+        outline: 1px solid red;
+      }
+
+      .rux-tool-bar-group {
+        display: flex;
+
+        list-style: none;
+
+        outline: 1px solid green;
+      }
+
+      .rux-navigation-tabs ul {
+        display: flex;
+
+        list-style: none;
+
+        outline: 1px solid blue;
+      }
+
+
 
     </style>
 
 
     <rux-global-status-bar
-      name="Astro App"
-      version="v1.022a">   
+      appname="Astro App"
+      version="v1.022a">
+
+
+
+
+      <!-- for tabbed navigation //-->
+      <rux-navigation-tabs class="rux-navigation-tabs" slot="tabs">
+        <ul>
+          <li>Modems</li>
+          <li>Pass Plans</li>
+          <li>Telemetry</li>
+        </ul>
+      </rux-navigation-tabs>
+
+
+
+
+
+      <!-- status icons //-->
+      <ul class="rux-status-bar-group" slot="status-bar">
+        <li>
+          <rux-status-icon
+            icon="mission"
+            status="ok"
+            notifications="10"><span slot="label">Altitude &amp; Telemetry</span></rux-status-icon></li>
+        <li>
+          <rux-status-icon
+              icon="antenna"
+              status="standby"
+              notifications=""><span slot="label">Payload</span></rux-status-icon></li>
+      </ul>
+
+
+      <!-- toolbar items //-->
+      <ul class="rux-tool-bar-group" slot="tool-bar">
+        <li>
+          <rux-button
+            type="icon"
+            icon="Settings">Settings</rux-button>
+        </li>
+        <li>
+            <rux-user
+              user="[[]]"></rux-user>
+        </li>
+        <li>
+          <rux-button
+					  type="large"
+					  icon="caution"
+            disabled>Master Off</rux-button>
+          </li>
+      </ul>
+
+
     </rux-global-status-bar>
 
 
@@ -45,8 +122,10 @@
 
 
       constructor() {
-          super();
-        }
+        super();
+
+        
+      }
 
         ready() {
           super.ready();

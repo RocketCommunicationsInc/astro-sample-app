@@ -21,6 +21,9 @@
 					
 					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
 			}
+			:host[hidden] {
+				display: none !important;
+			}
 
 			*,
 			*:before,
@@ -39,17 +42,26 @@
 
 				align-items: center;
   			justify-content: space-between;
-
-        
 			}
 			
+
+
+			/* 
+				Polymer for some reason doesn’t observe the “hidden” property
+				Needs an assits from CSS.
+			*/
+			/* .app-meta[hidden] {
+				display: none !important;
+			} */
+
 			.app-meta {
+				outline: 1px solid red;
 				padding: 0;
 				margin: 0;
-				display: flex;
-				
-				align-items: baseline;
 			}
+
+
+			
 
 
 			.app-meta h1 {
@@ -70,16 +82,18 @@
 
 
 			<header>
-				<div class="app-meta">
-					<h1>[[name]]<span class="app-version">[[version]]</span></h1>
+				<div class="app-meta" hidden="[[!appname]]">
+					<h1>[[appname]]<span class="app-version">[[version]]</span></h1>
 				</div>
 
-				<slot></slot>
+				<!-- optional for tabbed based UIs //-->
+				<slot name="tabs"></slot>
 
-				<rux-button
-					type="large"
-					icon="caution"
-					disabled>Master Off</rux-button>
+				<!-- optional for status icons //-->
+				<slot name="status-bar"></slot>
+
+				<!-- optional for toolbars //-->
+				<slot name="tool-bar"></slot>
 			</header>
 				
 
@@ -91,20 +105,32 @@
 				static get is() { return 'rux-global-status-bar'; }
 				static get properties() {
 					return {
-						name: String,
-						version: String,
-						master: Boolean
+						appname: String,
+						version: String
 					}
 				}
 				constructor() {
-					console.log('Astro Global Status Bar has loaded … ')
         	super();
+
+					console.log('Astro Global Status Bar has loaded … ')
+
+					console.log('name',this.appname);
+				}
+
+
+				connectedCallback() {
+      		super.connectedCallback();
+					
+					// if the user hasn’t defined an appname then explicitly
+					// set the appname property to false to hide the app-meta
+					// section from being included in the flex DOM
+					if(!this.appname) this.appname = false;
+				
+					
 				}
 
 				ready() {
 					super.ready();
-
-					
 				}
 		}
 
