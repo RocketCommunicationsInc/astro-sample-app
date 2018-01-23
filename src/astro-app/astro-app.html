@@ -1,14 +1,25 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../astro-components/polymer-rux-button.html">
+<link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
-<link rel="import" href="../astro-components/rux-status-icon.html">
+<link rel="import" href="../astro-components/rux-advanced-status.html">
+<link rel="import" href="../astro-components/rux-icons-svg.html">
+
 
 <dom-module id="astro-app">
   <template>
     <style>
       :host {
         display: block;
+        /* box-sizing: border-box; */
       }
+
+
+      
+			/* :host:before,
+			:host:after {
+				box-sizing: border-box;
+			}	 */
+
 
       .rux-status-bar-group {
         display: flex;
@@ -22,6 +33,7 @@
         display: flex;
 
         list-style: none;
+        height: 100px;
 
         outline: 1px solid green;
       }
@@ -38,6 +50,8 @@
 
     </style>
 
+
+    
 
     <rux-global-status-bar
       appname="Astro App"
@@ -61,6 +75,14 @@
 
       <!-- status icons //-->
       <ul class="rux-status-bar-group" slot="status-bar">
+        <li>
+          <rux-advanced-status
+            status="ok"
+            notifications="10">
+            <rux-icon icon="rux-icons:mission"></rux-icon>
+            
+          </rux-advanced-status>
+        </li>
         <li>
           <rux-status-icon
             icon="mission"
@@ -92,15 +114,42 @@
             disabled>Master Off</rux-button>
           </li>
       </ul>
-
-
+      
     </rux-global-status-bar>
 
 
-    <!-- <polymer-rux-button
-      on-click="_polymerClickEvent">Polymer Button</polymer-rux-button>
+    <rux-icon icon="rux-icons:thermal">Test</rux-icon>
+
+    <rux-button>Button</rux-button>
+
+    <rux-button
+      type="compact">Compact</rux-button>
+
+    <rux-button
+      type="narrow">Narrow</rux-button>
+
+    <rux-button
+      default>Default</rux-button>
+
+    <rux-button
+      disabled>disabled</rux-button>
+
+    <rux-button
+      type="large">Large</rux-button>
+
+    <rux-button
+      type="large">Large Icon</rux-button>
+
+    <rux-button
+      type="small">Small</rux-button>
+
+    <rux-button
+      icon="caution">Icon Button</rux-button>
+
     
-      <rux-button>Component Button</rux-button> -->
+
+
+
 
   </template>
 

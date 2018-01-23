@@ -1,6 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 
-<dom-module id="rux-status-icon">
+<dom-module id="rux-advanced-status">
 	<template>
 		<style>
 			:host {
@@ -24,36 +24,36 @@
 
 			</style>
 
-			<div>
-				<slot name="label"></slot>
+			<div class="rux-advanced-status">
+				<slot class="rux-advanced-status__icon" name="icon"></slot>
+				<div class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__sub-label">[[sublabel]]</span></div>
+				<div class="rux-advanced-status__badge">[[count]]</div>
 			</div>
 				
 
 	</template>
 
 	<script>
-		class RuxStatusIcon extends Polymer.Element {
+		class RuxAdvancedStatus extends Polymer.Element {
 				
-				static get is() { return 'rux-status-icon'; }
+				static get is() { return 'rux-advanced-status'; }
 				static get properties() {
 					return {
-						name: String,
-						version: String,
-						master: Boolean
+						label: String,
+						sublabel: String,
+						count: Number
 					}
 				}
 				constructor() {
-					console.log('Astro Status Icon has loaded … ')
+					console.log('Astro Advanced Status has loaded … ')
         	super();
 				}
 
 				ready() {
 					super.ready();
-
-					
 				}
 		}
 
-		customElements.define(RuxStatusIcon.is, RuxStatusIcon);
+		customElements.define(RuxAdvancedStatus.is, RuxAdvancedStatus);
 	</script>
 </dom-module>

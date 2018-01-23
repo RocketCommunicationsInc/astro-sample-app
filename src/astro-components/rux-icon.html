@@ -1,0 +1,88 @@
+<!--
+
+	How this works - in theory	
+
+	The WC has a library:icon property that defines the library to select from
+	and the specific icon. For Astro I think it makes sense right now to have
+	the following libraries:
+		1) Status - the standard 7 shape/color combos
+		2) Advanced Status - the more complex status icons
+		3) Astro Standard Elements - Close, settings, user, etc …
+
+	The icon code parses the <rux-icon> looking for the library and icon
+	Then the code looks inside the SVG document for a corresponding library and icon
+	Then the code strips out that SVG and pushes that in to the Polymer App
+
+		
+
+	Where I’m stuck
+
+//-->
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<dom-module id="rux-icon">
+	<template>
+		<style>
+			:host {
+				display: inline-block;
+				contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+			}	
+		</style>
+
+		<svg>
+			<use href="advanced-status:thermal"></use>
+		</svg>
+
+		<slot></slot>
+	</template>
+
+
+
+	<script>
+		class RuxIcon extends Polymer.Element {
+			static get is() { return 'rux-icon'; }
+			static get properties() {
+				return {
+					icon: {
+						type: String,
+						observer: '_iconChanged'
+					}, 
+					src: String
+				}
+			}
+
+			constructor() {
+				super();
+				console.log('this',this);
+			}
+
+			_iconChanged(newIcon, oldIcon) {
+				console.log('Icon Changed or Inited', newIcon);
+
+				let parts = newIcon.split(':');
+				// console.log(parts);
+				this._iconName = parts.pop();
+				this._iconSet = parts.pop();
+				this._updateIcon();
+
+			}
+
+			_updateIcon() {
+				console.log('updated icon');
+
+				
+			}
+
+
+			ready() {
+				super.ready();
+				console.log('Astro Icon has loaded … ');
+			}
+		}
+
+		customElements.define(RuxIcon.is, RuxIcon);
+	</script>
+
+</dom-module>

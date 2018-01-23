@@ -1,0 +1,97 @@
+
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<script>
+
+	Polymer({
+		is: 'rux-icon-library',
+
+		properties: {
+			icon: String,
+
+			name: {
+				type: String
+			}
+		},
+
+		created: function() {
+			console.log('created icon');
+			console.log(this);
+			
+			// let icons = Object.create(null);
+			// this.querySelectorAll('[id]')
+			// 	.forEach(function(icon) {
+			// 		icons[icon.id] = icon;
+			// 		console.log('icon', icon);
+			// 	});
+			
+			// Polymer.dom(this).querySelectorAll('[id]')
+			// 	.forEach(function(icon) {
+			// 		console.log('--icon',icon);
+			// 	})
+		},
+
+		attached: function() {
+			console.log('icon library');
+		},
+
+
+		setIcon: function(element, iconName) {
+			console.log('element',element);
+			this.removeIcon(element);
+
+			let svg = this._getIcon(iconName);
+			if(svg) {
+				
+			}
+		},
+
+
+		_createIconMap: function() {
+			let icons = Object.create(null);
+			this.querySelectorAll('[id]')
+				.forEach(function(icon) {
+					icons[icon.id] = icon;
+					console.log('icon', icon);
+				});
+			return icons;
+		},
+
+
+
+		_getIcon: function(id) {
+			this._icons = this_icons || this._createIconMap();
+			return this._getIconData(this._icons[id]);
+		},
+
+		_getIconData: function(source) {
+			if(source) {
+				let content = svg.cloneNode(true);
+				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+				let viewBox = content.getAttribute('viewBox');
+				
+				svg.setAttribute('viewBox',viewBox);
+				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.setAttribute('focusable', 'false');
+				svg.appendChild(content).removeAttributes('id');
+				console.log('svg',svg);
+				return svg;
+			}
+		}
+
+		
+	})
+
+
+
+</script>
