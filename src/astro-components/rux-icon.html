@@ -57,12 +57,12 @@
 			constructor() {
 				super();
 
-				let _iconlibrary = document.querySelector('rux-icon-library');
-				let _iconset = this._createIconMap(_iconlibrary);
 				
-				console.log('Rux Icon Loaded …');
-				console.log('_iconlibrary',_iconlibrary);
-				console.log('_iconset',_iconset);
+				
+				// console.log('Rux Icon Loaded …');
+				// console.log('_iconlibrary',_iconlibrary);
+				// console.log('_iconset',_iconset);
+				// console.log('---- thermal icon',_iconset['thermal']);
 				
 				
 			}
@@ -98,10 +98,18 @@
 				
 
 				let parts = newIcon.split(':');
-				// console.log(parts);
+				console.log(parts);
 				this._iconName = parts.pop();
 				this._iconSetName = parts.pop();
 				this._updateIcon();
+
+
+				let _iconlibrary = document.querySelector(`rux-icon-library[name="${this._iconSetName}"]`);
+				console.log('_iconlibrary',_iconlibrary);
+				let _iconset = this._createIconMap(_iconlibrary);
+				console.log('_iconset',_iconset);
+
+				
 
 				// console.log('Icon Changed or Inited', newIcon);
 				// console.log(this);
@@ -118,7 +126,8 @@
 			}
 
 			_updateIcon() {
-
+				console.log('updateIcon');
+				
 			}
 
 
