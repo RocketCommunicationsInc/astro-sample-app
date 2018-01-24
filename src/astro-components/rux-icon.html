@@ -27,14 +27,37 @@
 	<template>
 		<style>
 			:host {
-				display: inline-block;
-				contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
-			}	
+				/* display: inline-block; */
+				
+				
+				/* height: var(--advanced-status-icon-height, 114px);
+				width: var(--advanced-status-icon-width, 114px); */
+
+				/* background-color: green; */
+
+				/* contain: content; This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+			}
+
+
+			:host {
+				display: block;
+				outline: 1px solid red;
+				height: 44px;
+				width: 44px;
+			}
+
+			:host svg {
+				display: block;
+				/* width: 50%; */
+			}
+			
 		</style>
 
+		<div class="icon-container">
+			
+		</div>
 
-
-		<slot></slot>
+		
 	</template>
 
 
@@ -113,15 +136,35 @@
 				
 				let content = _iconsrc.cloneNode(true);
 				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-				let viewBox = content.getAttribute('viewBox');
+
+				let viewBox;
+				switch(_iconSetName) {
+					case 'advanced-status': {
+						viewBox = '0 0 44 44';
+						break;
+					}
+					case 'status': {
+						viewBox = '0 0 16 16';
+						break;
+					}
+					default : {
+						viewBox = '0 0 44 44';
+						break;
+					}
+				}
+
 				
-				svg.setAttribute('viewBox',viewBox);
+				console.log('viewBox',viewBox);
+				svg.setAttribute('viewBox','0 0 114 114');
+				// svg.setAttribute('width','44');
+				// svg.setAttribute('height','44');
+				// svg.setAttribute('class','rux-icon');
 				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         svg.setAttribute('focusable', 'false');
 				svg.appendChild(content);
 				console.log('svg',svg);
 
-				this.insertBefore(svg, null);
+				this.root.insertBefore(svg, null);
 
 				// console.log('Icon Changed or Inited', newIcon);
 				// console.log(this);

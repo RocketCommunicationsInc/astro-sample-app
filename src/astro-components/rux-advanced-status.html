@@ -25,6 +25,7 @@
 			</style>
 
 			<div class="rux-advanced-status">
+				<rux-icon icon="advanced-status:thermal"></rux-icon>
 				<slot class="rux-advanced-status__icon" name="icon"></slot>
 				<div class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__sub-label">[[sublabel]]</span></div>
 				<div class="rux-advanced-status__badge">[[count]]</div>
@@ -41,7 +42,8 @@
 					return {
 						label: String,
 						sublabel: String,
-						count: Number
+						count: Number,
+						icon: String
 					}
 				}
 				constructor() {

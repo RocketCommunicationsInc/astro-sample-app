@@ -48,12 +48,23 @@
       }
 
 
+      .test {
+        border: 1px solid red;
+        width: 64px;
+        height: 64px;
+      }
+
+      .test svg {
+        width: 100%;
+        height: 100%;
+      }
+   
 
     </style>
 
 
     
-
+    <!--
     <rux-global-status-bar
       appname="Astro App"
       version="v1.022a">
@@ -61,7 +72,7 @@
 
 
 
-      <!-- for tabbed navigation //-->
+      <!-- for tabbed navigation // - ->
       <rux-navigation-tabs class="rux-navigation-tabs" slot="tabs">
         <ul>
           <li>Modems</li>
@@ -74,21 +85,23 @@
 
 
 
-      <!-- status icons //-->
+      <!-- status icons //- ->
       <ul class="rux-status-bar-group" slot="status-bar">
         <li>
           <rux-advanced-status
             status="ok"
             notifications="10">
-            <rux-icon icon="advanced-status:netcom"></rux-icon>
+            <rux-icon icon="advanced-status:thermal"></rux-icon>
             
           </rux-advanced-status>
         </li>
         <li>
-          <rux-status-icon
-            icon="advanced-status:netcom"
+          <rux-advanced-status
             status="ok"
-            notifications="10"><span slot="label">Altitude &amp; Telemetry</span></rux-status-icon></li>
+            notifications="10">
+            <rux-icon icon="advanced-status:thermal"></rux-icon>
+            <span slot="label">Altitude &amp; Telemetry</span></rux-advanced-status>
+        </li>
         <li>
           <rux-status-icon
               icon="antenna"
@@ -97,7 +110,7 @@
       </ul>
 
 
-      <!-- toolbar items //-->
+      <!-- toolbar items //- ->
       <ul class="rux-tool-bar-group" slot="tool-bar">
         <li>
           <rux-button
@@ -117,10 +130,72 @@
       </ul>
       
     </rux-global-status-bar>
+    //-->
 
 
-    <rux-icon icon="advanced-status:thermal">Thermal</rux-icon>
-    <rux-icon icon="status:emergency">Emergency</rux-icon>
+    <rux-icon icon="advanced-status:propulsion-power"></rux-icon>
+    <rux-icon icon="advanced-status:thermal"></rux-icon>
+    <rux-icon icon="advanced-status:netcom"></rux-icon>
+
+
+    <svg viewBox="0 0 44 44" width="44px" height="44px" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <g id="netcom" fill="#B4BBC2">
+				<path d="M36.976 69.715a22.698 22.698 0 0 1-4.039-12.962c0-12.593 10.21-22.802 22.803-22.802 2.618 0 5.132.44 7.474 1.253l4.817-11.35a12.666 12.666 0 0 1-6.717-11.186C61.314 5.672 66.986 0 73.982 0 80.978 0 86.65 5.672 86.65 12.668c0 6.997-5.672 12.668-12.668 12.668-1.088 0-2.145-.137-3.153-.395l-4.852 11.431c7.453 3.75 12.566 11.469 12.566 20.381 0 .836-.045 1.662-.133 2.475l9.801 2.443c1.582-5.193 6.41-8.971 12.12-8.971 6.998 0 12.669 5.67 12.669 12.668 0 6.996-5.672 12.668-12.668 12.668-6.997 0-12.668-5.672-12.668-12.668 0-.247.007-.493.02-.736L77.89 62.19a22.831 22.831 0 0 1-9.293 13.398l5.404 12.732a12.654 12.654 0 0 1 4.035-.656c6.996 0 12.668 5.671 12.668 12.668 0 6.996-5.672 12.668-12.668 12.668-6.997 0-12.668-5.672-12.668-12.668a12.66 12.66 0 0 1 5.921-10.724l-5.298-12.48a22.707 22.707 0 0 1-10.251 2.428c-6.7 0-12.726-2.89-16.898-7.491L23.416 85.009a12.609 12.609 0 0 1 1.92 6.708c0 6.997-5.671 12.669-12.668 12.669C5.672 104.386 0 98.714 0 91.717 0 84.721 5.672 79.05 12.668 79.05c3.453 0 6.583 1.382 8.868 3.622l15.44-12.956z"></path>
+      </g>
+    </svg>
+    <div class="test">
+    <svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+      <title>Netcom</title>
+      <desc>Created with Sketch.</desc>
+      <defs></defs>
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Netcom">
+              <path d="M28.4745963,6.10776012 L23.0428221,18.9042183" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+              <path d="M28.4745963,22.2871326 L23.0428221,35.0835908" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square" transform="translate(25.758709, 28.685362) scale(-1, 1) rotate(-180.000000) translate(-25.758709, -28.685362) "></path>
+              <path d="M6.03051341,34.9290231 L16.6797301,25.9932693" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+              <path d="M38.4223064,25.6314819 L24.9336771,22.2683889" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+              <circle id="Oval-10" fill="#B4BBC2" fill-rule="nonzero" cx="28.8071749" cy="4.93273541" r="4.93273541"></circle>
+              <circle id="Oval-10" fill="#B4BBC2" fill-rule="nonzero" cx="39.0672647" cy="25.4529148" r="4.93273541"></circle>
+              <circle id="Oval-10" fill="#B4BBC2" fill-rule="nonzero" cx="30.3856502" cy="39.0672647" r="4.93273541"></circle>
+              <circle id="Oval-10" fill="#B4BBC2" fill-rule="nonzero" cx="4.93273541" cy="35.7130045" r="4.93273541"></circle>
+              <circle id="Oval-10" fill="#B4BBC2" fill-rule="nonzero" cx="21.7040359" cy="22.0986547" r="8.87892377"></circle>
+          </g>
+      </g>
+  </svg>
+</div>
+<div class="test">
+    <svg width="114px" height="114px" viewBox="0 0 114 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Netcom">
+              <g id="netcom">
+                  <path d="M73.1279406,15.6858385 L59.1781568,48.5494698" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+                  <path d="M73.1279406,57.237408 L59.1781568,90.1010393" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square" transform="translate(66.153049, 73.669224) scale(1, -1) translate(-66.153049, -73.669224) "></path>
+                  <path d="M15.4874549,89.704082 L42.8365797,66.7554415" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+                  <path d="M98.6754687,65.8263058 L64.0342162,57.1892715" id="Line" stroke="#B4BBC2" stroke-width="3" stroke-linecap="square"></path>
+                  <circle id="Oval-10" fill="#B4BBC2" cx="73.9820628" cy="12.6681614" r="12.6681614"></circle>
+                  <circle id="Oval-10" fill="#B4BBC2" cx="100.331839" cy="65.367713" r="12.6681614"></circle>
+                  <circle id="Oval-10" fill="#B4BBC2" cx="78.0358744" cy="100.331839" r="12.6681614"></circle>
+                  <circle id="Oval-10" fill="#B4BBC2" cx="12.6681614" cy="91.7174888" r="12.6681614"></circle>
+                  <circle id="Oval-10" fill="#B4BBC2" cx="55.7399103" cy="56.7533632" r="22.8026906"></circle>
+              </g>
+          </g>
+      </g>
+  </svg>
+  </div>
+    <!-- <rux-icon icon="status:emergency"></rux-icon> -->
+
+  
+
+    <!-- <rux-advanced-status
+      status="ok"
+      label="Testing me"
+      notifications="10"
+      icon="advanced-status:thermal">
+    </rux-advanced-status>
+
+    </rux-advanced-status>
 
     <rux-button>Button</rux-button>
 
@@ -146,7 +221,7 @@
       type="small">Small</rux-button>
 
     <rux-button
-      icon="caution">Icon Button</rux-button>
+      icon="caution">Icon Button</rux-button> -->
 
     
 
