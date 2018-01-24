@@ -69,7 +69,7 @@
 
 
 			_createIconMap(lib) {
-				console.log(lib);
+				// console.log(lib);
 				let icons = Object.create(null);
 				lib.querySelectorAll('[id]')
 					.forEach(function(icon) {
@@ -81,7 +81,7 @@
 
 
 
-			connectedCallback() {
+			/* connectedCallback() {
 				console.log('Rux Icon Connected');
 				super.connectedCallback();
 			}
@@ -91,23 +91,26 @@
 			disconnectedCallback() {
 				console.log('Rux Icon Disconnected');
 				super.disconnectedCallback();
-			}
+			} */
 
 
 			_iconChanged(newIcon, oldIcon) {
 				
 
 				let parts = newIcon.split(':');
-				console.log(parts);
-				this._iconName = parts.pop();
-				this._iconSetName = parts.pop();
-				this._updateIcon();
+				console.log('icon parts',parts);
+				let _iconName = parts.pop();
+				console.log('icon parts',parts);
+				let _iconSetName = parts.pop();
+				// this._updateIcon();
 
 
-				let _iconlibrary = document.querySelector(`rux-icon-library[name="${this._iconSetName}"]`);
+				let _iconlibrary = document.querySelector(`rux-icon-library[name="${_iconSetName}"]`);
 				console.log('_iconlibrary',_iconlibrary);
 				let _iconset = this._createIconMap(_iconlibrary);
 				console.log('_iconset',_iconset);
+				console.log('_iconName',_iconName);
+				console.log('icon',_iconset[_iconName]);
 
 				
 
@@ -126,7 +129,7 @@
 			}
 
 			_updateIcon() {
-				console.log('updateIcon');
+				// console.log('updateIcon');
 				
 			}
 
