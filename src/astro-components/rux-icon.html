@@ -19,8 +19,9 @@
 
 //-->
 
+
 <link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
 
 <dom-module id="rux-icon">
 	<template>
@@ -55,17 +56,31 @@
 
 			constructor() {
 				super();
-				console.log('this',this);
+				console.log('Rux Icon Loaded …');
 			}
 
+
+
 			_iconChanged(newIcon, oldIcon) {
-				console.log('Icon Changed or Inited', newIcon);
+				
 
 				let parts = newIcon.split(':');
 				// console.log(parts);
 				this._iconName = parts.pop();
 				this._iconSet = parts.pop();
 				this._updateIcon();
+
+				console.log('Icon Changed or Inited', newIcon);
+				console.log(this);
+				
+
+				// this is from the iron icon set. What I think is happening here
+				// is the “meta” thing is grabbing the icon set by name.
+				// this._meta.byKey(this._iconsetName));
+				
+				// this['advanced-status'].setIcon(this, this._iconName);
+
+
 
 			}
 
@@ -78,7 +93,7 @@
 
 			ready() {
 				super.ready();
-				console.log('Astro Icon has loaded … ');
+				// console.log('Rux Icon is ready');
 			}
 		}
 
