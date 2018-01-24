@@ -56,9 +56,42 @@
 
 			constructor() {
 				super();
+
+				let _iconlibrary = document.querySelector('rux-icon-library');
+				let _iconset = this._createIconMap(_iconlibrary);
+				
 				console.log('Rux Icon Loaded …');
+				console.log('_iconlibrary',_iconlibrary);
+				console.log('_iconset',_iconset);
+				
+				
 			}
 
+
+			_createIconMap(lib) {
+				console.log(lib);
+				let icons = Object.create(null);
+				lib.querySelectorAll('[id]')
+					.forEach(function(icon) {
+						icons[icon.id] = icon;
+					});
+				return icons;
+			}
+
+
+
+
+			connectedCallback() {
+				console.log('Rux Icon Connected');
+				super.connectedCallback();
+			}
+
+
+
+			disconnectedCallback() {
+				console.log('Rux Icon Disconnected');
+				super.disconnectedCallback();
+			}
 
 
 			_iconChanged(newIcon, oldIcon) {
@@ -67,11 +100,11 @@
 				let parts = newIcon.split(':');
 				// console.log(parts);
 				this._iconName = parts.pop();
-				this._iconSet = parts.pop();
+				this._iconSetName = parts.pop();
 				this._updateIcon();
 
-				console.log('Icon Changed or Inited', newIcon);
-				console.log(this);
+				// console.log('Icon Changed or Inited', newIcon);
+				// console.log(this);
 				
 
 				// this is from the iron icon set. What I think is happening here
@@ -85,9 +118,7 @@
 			}
 
 			_updateIcon() {
-				console.log('updated icon');
 
-				
 			}
 
 
