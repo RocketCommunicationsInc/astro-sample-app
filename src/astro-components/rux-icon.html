@@ -32,9 +32,7 @@
 			}	
 		</style>
 
-		<svg>
-			<use href="advanced-status:thermal"></use>
-		</svg>
+
 
 		<slot></slot>
 	</template>
@@ -110,9 +108,20 @@
 				let _iconset = this._createIconMap(_iconlibrary);
 				console.log('_iconset',_iconset);
 				console.log('_iconName',_iconName);
-				console.log('icon',_iconset[_iconName]);
-
+				let _iconsrc = _iconset[_iconName];
+				console.log('_iconsrc',_iconsrc);
 				
+				let content = _iconsrc.cloneNode(true);
+				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+				let viewBox = content.getAttribute('viewBox');
+				
+				svg.setAttribute('viewBox',viewBox);
+				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.setAttribute('focusable', 'false');
+				svg.appendChild(content);
+				console.log('svg',svg);
+
+				this.insertBefore(svg, null);
 
 				// console.log('Icon Changed or Inited', newIcon);
 				// console.log(this);
