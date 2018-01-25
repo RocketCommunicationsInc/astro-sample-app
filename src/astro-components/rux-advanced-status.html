@@ -4,13 +4,15 @@
 	<template>
 		<style>
 			:host {
-					display: block;
+					display: inline-block;
 				
 					-webkit-user-select: none;
 					-moz-user-select: none;
 					-ms-user-select: none;
 					user-select: none;
 					
+					outline: 1px solid red;
+
 					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
 			}
 
@@ -20,15 +22,63 @@
 				box-sizing: border-box;
 			}	
 
+			.rux-advanced-status {
+				position: relative;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+		
+			.rux-advanced-status__icon {
+				position: relative;
+			}
+
+
+		.rux-advanced-status__label:not(:empty) {
+				font-family: 'Open Sans Condensed', sans-serif;
+				text-align: center;
+				color: #fff;
+				font-size: 0.875rem; 
+				line-height: 1.2;
+				margin-top: 0.25em;
+			}
+
+			.rux-advanced-status__label__sub-label:not(:empty) {
+				font-family: open_sansregular;
+				font-size: 0.65em;
+				color: rgba(255,255,255,.6);
+				display: block;
+			}
+
+			.rux-advanced-status__badge:not(:empty) {
+				position: absolute;
+
+				bottom: -0.3125rem;
+				right: -0.625rem;
+
+				border: 1px solid rgba(255, 255, 255, 0.6);
+				border-radius: 3px;
+
+				padding: 0.1rem 0.25rem;
+				font-size: 0.9rem;
+
+				text-align: center;
+				color: #fff;
+				background-color: #000;	
+			}
+
 
 
 			</style>
 
 			<div class="rux-advanced-status">
-				<rux-icon icon="advanced-status:thermal"></rux-icon>
-				<slot class="rux-advanced-status__icon" name="icon"></slot>
-				<div class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__sub-label">[[sublabel]]</span></div>
-				<div class="rux-advanced-status__badge">[[count]]</div>
+				<div class="rux-advanced-status__icon">
+					<rux-icon icon="advanced-status:thermal"></rux-icon>
+					<div class="rux-advanced-status__badge">[[notifications]]</div>
+				</div>
+				<div class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
 			</div>
 				
 
@@ -42,8 +92,9 @@
 					return {
 						label: String,
 						sublabel: String,
-						count: Number,
-						icon: String
+						notifications: Number,
+						icon: String,
+						status: String
 					}
 				}
 				constructor() {
@@ -59,3 +110,12 @@
 		customElements.define(RuxAdvancedStatus.is, RuxAdvancedStatus);
 	</script>
 </dom-module>
+
+`<rux-status
+	type="simple | advanced"
+	status="off | ok | standby | error | caution | alert"
+	icon="advanced-status:mission"
+	count="INT"
+	label="STRING"
+	sub-label="STRING"></rux-status>`
+	

@@ -1,23 +1,6 @@
 <!--
 
-	How this works - in theory	
-
-	The WC has a library:icon property that defines the library to select from
-	and the specific icon. For Astro I think it makes sense right now to have
-	the following libraries:
-		1) Status - the standard 7 shape/color combos
-		2) Advanced Status - the more complex status icons
-		3) Astro Standard Elements - Close, settings, user, etc …
-
-	The icon code parses the <rux-icon> looking for the library and icon
-	Then the code looks inside the SVG document for a corresponding library and icon
-	Then the code strips out that SVG and pushes that in to the Polymer App
-
-		
-
-	Where I’m stuck
-
-//-->
+	//-->
 
 
 <link rel="import" href="/bower_components/polymer/polymer.html">
@@ -30,8 +13,7 @@
 				/* display: inline-block; */
 				
 				
-				/* height: var(--advanced-status-icon-height, 114px);
-				width: var(--advanced-status-icon-width, 114px); */
+				
 
 				/* background-color: green; */
 
@@ -40,22 +22,25 @@
 
 
 			:host {
-				display: block;
-				outline: 1px solid red;
-				height: 44px;
-				width: 44px;
+				display: inline-block;
+				
+				height: var(--advanced-status-icon-height, 38px);
+				width: var(--advanced-status-icon-width, 38px);
+
+				fill: var(--status-off);
 			}
 
 			:host svg {
 				display: block;
 				/* width: 50%; */
 			}
+
+
+
 			
 		</style>
 
-		<div class="icon-container">
-			
-		</div>
+		
 
 		
 	</template>
@@ -69,8 +54,14 @@
 				return {
 					icon: {
 						type: String,
-						observer: '_iconChanged'
-					}, 
+						observer: '_updateIcon'
+						// observer: '_iconChanged'
+
+					},
+					color: {
+						type: String,
+						observer: '_colorChanged'
+					},
 					src: String
 				}
 			}
@@ -78,8 +69,9 @@
 			constructor() {
 				super();
 
+				// this._iconListener = this._iconChangeListener.bind(this);
 				
-				
+				// console.log(this);
 				// console.log('Rux Icon Loaded …');
 				// console.log('_iconlibrary',_iconlibrary);
 				// console.log('_iconset',_iconset);
@@ -88,6 +80,15 @@
 				
 			}
 
+			connectedCallback() {
+				console.log('rux-icon connected');
+
+				// window.addEventListener('iconChanged', this._iconListener);
+			}
+
+			_iconChangeListener() {
+				console.log('_iconChangeListener')
+			}
 
 			_createIconMap(lib) {
 				// console.log(lib);
@@ -115,24 +116,29 @@
 			} */
 
 
+			_colorChanged(newColor, oldColor) {
+				// console.log('_colorChanged',newColor);
+			}
+
 			_iconChanged(newIcon, oldIcon) {
 				
 
 				let parts = newIcon.split(':');
-				console.log('icon parts',parts);
+				// console.log('icon parts',parts);
 				let _iconName = parts.pop();
-				console.log('icon parts',parts);
+				// console.log('icon parts',parts);
 				let _iconSetName = parts.pop();
 				// this._updateIcon();
 
 
 				let _iconlibrary = document.querySelector(`rux-icon-library[name="${_iconSetName}"]`);
+				
 				console.log('_iconlibrary',_iconlibrary);
 				let _iconset = this._createIconMap(_iconlibrary);
-				console.log('_iconset',_iconset);
-				console.log('_iconName',_iconName);
+				// console.log('_iconset',_iconset);
+				// console.log('_iconName',_iconName);
 				let _iconsrc = _iconset[_iconName];
-				console.log('_iconsrc',_iconsrc);
+				// console.log('_iconsrc',_iconsrc);
 				
 				let content = _iconsrc.cloneNode(true);
 				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -154,15 +160,17 @@
 				}
 
 				
-				console.log('viewBox',viewBox);
+				
+				// console.log('viewBox',viewBox);
 				svg.setAttribute('viewBox','0 0 114 114');
-				// svg.setAttribute('width','44');
+				// svg.setAttribute('fill',svgColor);
+				// // svg.setAttribute('width','44');
 				// svg.setAttribute('height','44');
 				// svg.setAttribute('class','rux-icon');
 				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         svg.setAttribute('focusable', 'false');
 				svg.appendChild(content);
-				console.log('svg',svg);
+				// console.log('svg',svg);
 
 				this.root.insertBefore(svg, null);
 
@@ -186,9 +194,15 @@
 			}
 
 
+			_bladerunner() {
+				console.log('Blade Runner')
+			}
+
 			ready() {
 				super.ready();
 				// console.log('Rux Icon is ready');
+
+				this.addEventListener('bladerunner', this._bladerunner());
 			}
 		}
 

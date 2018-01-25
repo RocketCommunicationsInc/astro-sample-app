@@ -22,6 +22,25 @@
 		connectedCallback() {
 			console.log('Rux Icon Library Connected');
 			super.connectedCallback();
+			let icons = Object.create(null);
+			this.querySelectorAll('[id]')
+				.forEach(function(icon) {
+					icons[icon.id] = icon;
+			});
+			console.log('icons',icons);
+
+			this.dispatchEvent(new CustomEvent('bladerunner', {
+				detail: { 
+					something: 'else'
+				}
+			}));
+			/*
+			this.dispatchEvent(new CustomEvent('clicked', {
+				detail: {
+					test: 'wonders'
+				},
+				bubbles: true // bubbles up the DOM
+			}));*/
 		}
 
 
