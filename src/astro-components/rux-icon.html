@@ -77,13 +77,14 @@
 				// console.log('_iconset',_iconset);
 				// console.log('---- thermal icon',_iconset['thermal']);
 				
+				this._bladerunnerListen = this._bladerunner.bind(this);
 				
 			}
 
 			connectedCallback() {
 				console.log('rux-icon connected');
-
-				// window.addEventListener('iconChanged', this._iconListener);
+				super.connectedCallback();
+				window.addEventListener('bladerunnerDispatch', this._bladerunnerListen);
 			}
 
 			_iconChangeListener() {
@@ -194,15 +195,16 @@
 			}
 
 
-			_bladerunner() {
-				console.log('Blade Runner')
+			_bladerunner(e) {
+				console.log('Blade Runner');
+				console.log('e',e);
 			}
 
 			ready() {
 				super.ready();
 				// console.log('Rux Icon is ready');
 
-				this.addEventListener('bladerunner', this._bladerunner());
+				this.addEventListener('bladerunnerDispatch', (e) => this._bladerunner(e));
 			}
 		}
 

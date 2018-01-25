@@ -29,10 +29,12 @@
 			});
 			console.log('icons',icons);
 
-			this.dispatchEvent(new CustomEvent('bladerunner', {
+			this.dispatchEvent(new CustomEvent('bladerunnerDispatch', {
 				detail: { 
 					something: 'else'
-				}
+				},
+				bubbles: true,
+				composed: true
 			}));
 			/*
 			this.dispatchEvent(new CustomEvent('clicked', {
