@@ -1,94 +1,70 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
-<script>
-
-	class RuxIconLibrary extends Polymer.Element {
-		static get is() { return 'rux-icon-library'; }
-		static get properties() {
-			return {
-				icon: String
+<dom-module id="rux-icon-library">
+	<template>
+		<style>
+			:host {
+				outline: 1px solid blue;
 			}
-		}
+		</style>
+
+		<button on-click="firePrimaryEvent"></button>
+
+	</template>
+
+
+	<script>
+
+		class RuxIconLibrary extends Polymer.Element {
+			static get is() { return 'rux-icon-library'; }
+			static get properties() {
+				return {
+					name: {
+						type: String,
+						observer: '_nameChanged'
+					}
+				}
+			}
 
 
 		constructor() {
 			super();
-			// this._iconlibrary = this._createIconMap();
-			console.log('Rux Icon Library Loaded …');
-			// console.log('icon library',this._iconlibrary);
+
+			// this.addEventListener('fire-primary-event', this.fireEvent());
+			
 		}
 
 
 		connectedCallback() {
-			console.log('Rux Icon Library Connected');
-			super.connectedCallback();
-			let icons = Object.create(null);
-			this.querySelectorAll('[id]')
-				.forEach(function(icon) {
-					icons[icon.id] = icon;
-			});
-			console.log('icons',icons);
-
-			this.dispatchEvent(new CustomEvent('bladerunnerDispatch', {
-				detail: { 
-					something: 'else'
-				},
-				bubbles: true,
-				composed: true
-			}));
-			/*
-			this.dispatchEvent(new CustomEvent('clicked', {
-				detail: {
-					test: 'wonders'
-				},
-				bubbles: true // bubbles up the DOM
-			}));*/
+				super.connectedCallback();
 		}
 
 
-
 		disconnectedCallback() {
-			console.log('Rux Icon Library Disconnected');
 			super.disconnectedCallback();
 		}
 
 
 
-		_createIconMap() {
-			let icons = Object.create(null);
-			this.querySelectorAll('[id]')
-				.forEach(function(icon) {
-					icons[icon.id] = icon;
-				});
-			return icons;
-		}
-
-		_getIcon(id) {
-			this._icons = this._icons || this._createIconMap();
-			return this._getIconData(this._icons[id]);
-		}
-
-
-		_getIconData(source) {
-			if(source) {
-				let content = svg.cloneNode(true);
-				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-				let viewBox = content.getAttribute('viewBox');
-				
-				svg.setAttribute('viewBox',viewBox);
-				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svg.setAttribute('focusable', 'false');
-				svg.appendChild(content).removeAttributes('id');
-				console.log('svg',svg);
-				return svg;
-			}
-		}
-
-
 		ready() {
 			super.ready();
+		}
+
+		firePrimaryEvent() {
+			console.log('fireEvent');
+			window.dispatchEvent(new CustomEvent('icon-library-added', 
+				{ detail : 
+					{ message: 'hello world' }
+				}
+			));
+		}
+
+		_nameChanged() {
+			console.info('Icon Library Name Changed');
+			
 		}
 	}
 
 		customElements.define(RuxIconLibrary.is, RuxIconLibrary);
-</script>
+	</script>
+</dom-module>

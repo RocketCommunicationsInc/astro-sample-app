@@ -1,8 +1,3 @@
-<!--
-
-	//-->
-
-
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
 
@@ -10,42 +5,15 @@
 	<template>
 		<style>
 			:host {
-				/* display: inline-block; */
-				
-				
-				
-
-				/* background-color: green; */
-
-				/* contain: content; This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
-			}
-
-
-			:host {
 				display: inline-block;
 				
 				height: var(--advanced-status-icon-height, 38px);
 				width: var(--advanced-status-icon-width, 38px);
 
-				fill: var(--status-off);
+				outline: 1px solid red;
 			}
-
-			:host svg {
-				display: block;
-				/* width: 50%; */
-			}
-
-
-
-			
 		</style>
-
-		
-
-		
 	</template>
-
-
 
 	<script>
 		class RuxIcon extends Polymer.Element {
@@ -55,156 +23,47 @@
 					icon: {
 						type: String,
 						observer: '_updateIcon'
-						// observer: '_iconChanged'
-
-					},
-					color: {
-						type: String,
-						observer: '_colorChanged'
-					},
-					src: String
+					}
 				}
 			}
 
 			constructor() {
 				super();
-
-				// this._iconListener = this._iconChangeListener.bind(this);
-				
-				// console.log(this);
-				// console.log('Rux Icon Loaded …');
-				// console.log('_iconlibrary',_iconlibrary);
-				// console.log('_iconset',_iconset);
-				// console.log('---- thermal icon',_iconset['thermal']);
-				
-				this._bladerunnerListen = this._bladerunner.bind(this);
+				console.log('Icon Constructor');
+			
+				this._listenEvent = this._test.bind(this);
 				
 			}
 
 			connectedCallback() {
-				console.log('rux-icon connected');
 				super.connectedCallback();
-				window.addEventListener('bladerunnerDispatch', this._bladerunnerListen);
+				console.log('Icon Connected');
+				window.addEventListener('icon-library-added', this._listenEvent);
 			}
-
-			_iconChangeListener() {
-				console.log('_iconChangeListener')
-			}
-
-			_createIconMap(lib) {
-				// console.log(lib);
-				let icons = Object.create(null);
-				lib.querySelectorAll('[id]')
-					.forEach(function(icon) {
-						icons[icon.id] = icon;
-					});
-				return icons;
-			}
-
-
-
-
-			/* connectedCallback() {
-				console.log('Rux Icon Connected');
-				super.connectedCallback();
-			}
-
-
 
 			disconnectedCallback() {
-				console.log('Rux Icon Disconnected');
 				super.disconnectedCallback();
-			} */
-
-
-			_colorChanged(newColor, oldColor) {
-				// console.log('_colorChanged',newColor);
-			}
-
-			_iconChanged(newIcon, oldIcon) {
-				
-
-				let parts = newIcon.split(':');
-				// console.log('icon parts',parts);
-				let _iconName = parts.pop();
-				// console.log('icon parts',parts);
-				let _iconSetName = parts.pop();
-				// this._updateIcon();
-
-
-				let _iconlibrary = document.querySelector(`rux-icon-library[name="${_iconSetName}"]`);
-				
-				console.log('_iconlibrary',_iconlibrary);
-				let _iconset = this._createIconMap(_iconlibrary);
-				// console.log('_iconset',_iconset);
-				// console.log('_iconName',_iconName);
-				let _iconsrc = _iconset[_iconName];
-				// console.log('_iconsrc',_iconsrc);
-				
-				let content = _iconsrc.cloneNode(true);
-				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-				let viewBox;
-				switch(_iconSetName) {
-					case 'advanced-status': {
-						viewBox = '0 0 44 44';
-						break;
-					}
-					case 'status': {
-						viewBox = '0 0 16 16';
-						break;
-					}
-					default : {
-						viewBox = '0 0 44 44';
-						break;
-					}
-				}
-
-				
-				
-				// console.log('viewBox',viewBox);
-				svg.setAttribute('viewBox','0 0 114 114');
-				// svg.setAttribute('fill',svgColor);
-				// // svg.setAttribute('width','44');
-				// svg.setAttribute('height','44');
-				// svg.setAttribute('class','rux-icon');
-				svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svg.setAttribute('focusable', 'false');
-				svg.appendChild(content);
-				// console.log('svg',svg);
-
-				this.root.insertBefore(svg, null);
-
-				// console.log('Icon Changed or Inited', newIcon);
-				// console.log(this);
-				
-
-				// this is from the iron icon set. What I think is happening here
-				// is the “meta” thing is grabbing the icon set by name.
-				// this._meta.byKey(this._iconsetName));
-				
-				// this['advanced-status'].setIcon(this, this._iconName);
-
-
-
-			}
-
-			_updateIcon() {
-				// console.log('updateIcon');
-				
-			}
-
-
-			_bladerunner(e) {
-				console.log('Blade Runner');
-				console.log('e',e);
+				window.removeEventListener('icon-library-added', this._listenEvent);
 			}
 
 			ready() {
 				super.ready();
-				// console.log('Rux Icon is ready');
+				console.log('Icon Ready');
+			}
 
-				this.addEventListener('bladerunnerDispatch', (e) => this._bladerunner(e));
+			_test(e) {
+				console.warn('Testttttt', e);
+			}
+
+			_listenEvent(e) {
+				console.log('listen event', e);
+			}
+
+			_updateIcon() {
+				console.info('Updating Icon');
+
+				// listen for an event on the library element
+				
 			}
 		}
 

@@ -3,6 +3,7 @@
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
 <link rel="import" href="../astro-components/rux-advanced-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
+<link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html">
 
 
@@ -121,10 +122,11 @@
     </rux-global-status-bar>
     //-->
 
-
+    
     <rux-icon icon="advanced-status:propulsion-power" color="blue"></rux-icon>
-    <rux-icon icon="advanced-status:thermal"></rux-icon>
-    <rux-icon icon="advanced-status:netcom"></rux-icon>
+    <rux-icon-library></rux-icon-library>
+    <!-- <rux-icon icon="advanced-status:thermal"></rux-icon>
+    <rux-icon icon="advanced-status:netcom"></rux-icon> -->
 
 
     
@@ -132,18 +134,18 @@
     <!-- <rux-icon icon="status:emergency"></rux-icon> -->
 
   
-
+<!-- 
     <rux-advanced-status
       status="ok"
       label="Testing me"
       sublabel="Ok"
       notifications="10"
       icon="advanced-status:thermal">
-    </rux-advanced-status>
+    </rux-advanced-status> -->
 
-    </rux-advanced-status>
+    
 
-    <rux-button>Button</rux-button>
+    <!-- <rux-button>Button</rux-button>
 
     <rux-button
       type="compact">Compact</rux-button>
@@ -167,7 +169,7 @@
       type="small">Small</rux-button>
 
     <rux-button
-      icon="caution">Icon Button</rux-button>
+      icon="caution">Icon Button</rux-button> -->
     
 
 
@@ -195,16 +197,21 @@
       constructor() {
         super();
 
+        // console.log(customElements.get('parent-element'));
         
       }
 
-        ready() {
-          super.ready();
+      ready() {
+        super.ready();
+        
+        // this.addEventListener('click', function(e) {
+        //   console.log('test');
+        // })
 
-          this.addEventListener('click', function(e) {
-            console.log('test');
-          })
-        }
+        // this.addEventListener('fromIcon', function(e) {
+        //   console.log('event from icon');
+        // })
+      }
 
       
 
