@@ -30,18 +30,18 @@
 			constructor() {
 				super();
 			
-				this._iconData = this._test.bind(this);
+				this._listenEvent = this._test.bind(this);
 				
 			}
 
 			connectedCallback() {
 				super.connectedCallback();
-				window.addEventListener('icon-library-added', this._iconData);
+				window.addEventListener('icon-library-added', this._listenEvent);
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
-				window.removeEventListener('icon-library-added', this._iconData);
+				window.removeEventListener('icon-library-added', this._listenEvent);
 			}
 
 			ready() {
@@ -65,6 +65,7 @@
 
 				window.dispatchEvent(new CustomEvent('set-icon', 
 					{ detail : {
+						el: this,
 						icon: this._iconName,
 						library: this._iconLibrary
 					} }

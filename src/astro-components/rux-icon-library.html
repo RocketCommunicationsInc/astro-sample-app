@@ -1,6 +1,18 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
-	<script>
+<dom-module id="rux-icon-library">
+		<template>
+			<style>
+				:host {
+					outline: 1px solid blue;
+				}
+			</style>
+	
+			<button on-click="firePrimaryEvent"></button>
+	
+		</template>	
+		
+		<script>
 
 		class RuxIconLibrary extends Polymer.Element {
 			static get is() { return 'rux-icon-library'; }
@@ -41,8 +53,16 @@
 		ready() {
 			super.ready();
 
-			this.firePrimaryEvent();
+			// this.firePrimaryEvent();
 			
+		}
+
+		_updateIcon(svg) {
+			window.dispatchEvent(new CustomEvent('icon-library-added'), {
+					detail: {
+						icon: svg
+					}
+				})
 		}
 
 		_setIcon(e) {
@@ -62,13 +82,7 @@
 						svg.setAttribute('focusable', 'false');
 						svg.appendChild(content);
 
-						
-				window.dispatchEvent(new CustomEvent('icon-library-added'), {
-					detail: {
-						icon: svg
-					}
-				})
-				console.log('svg',svg);
+			e.detail.el.root.insertBefore(svg, null);
 
 
 			}
@@ -76,13 +90,15 @@
 
 		}
 
-		firePrimaryEvent() {
+		firePrimaryEvent(svg) {
 			console.log('fireEvent');
+			if(svg) {
 			window.dispatchEvent(new CustomEvent('icon-library-added', 
 				{ detail : 
-					{ message: 'hello world' }
+					{ message: svg }
 				}
 			));
+			}
 			
 		}
 
@@ -93,3 +109,4 @@
 
 		customElements.define(RuxIconLibrary.is, RuxIconLibrary);
 	</script>
+</dom-module>
