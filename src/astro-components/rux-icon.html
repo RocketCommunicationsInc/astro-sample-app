@@ -29,38 +29,50 @@
 
 			constructor() {
 				super();
-				console.log('Icon Constructor');
 			
-				this._listenEvent = this._test.bind(this);
+				this._iconData = this._test.bind(this);
 				
 			}
 
 			connectedCallback() {
 				super.connectedCallback();
-				console.log('Icon Connected');
-				window.addEventListener('icon-library-added', this._listenEvent);
+				window.addEventListener('icon-library-added', this._iconData);
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
-				window.removeEventListener('icon-library-added', this._listenEvent);
+				window.removeEventListener('icon-library-added', this._iconData);
 			}
 
 			ready() {
 				super.ready();
-				console.log('Icon Ready');
 			}
 
 			_test(e) {
-				console.warn('Testttttt', e);
+				console.log('======================== ', e);
 			}
 
 			_listenEvent(e) {
-				console.log('listen event', e);
+				console.log('======================== listen event', e);
 			}
 
-			_updateIcon() {
+			_updateIcon(icon) {
 				console.info('Updating Icon');
+				const parts = icon.split(':');
+				this._iconName = parts.pop();
+				this._iconLibrary = parts.pop();
+
+
+				window.dispatchEvent(new CustomEvent('set-icon', 
+					{ detail : {
+						icon: this._iconName,
+						library: this._iconLibrary
+					} }
+				));
+				
+
+				
+
 
 				// listen for an event on the library element
 				

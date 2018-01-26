@@ -1,18 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
-<dom-module id="rux-icon-library">
-	<template>
-		<style>
-			:host {
-				outline: 1px solid blue;
-			}
-		</style>
-
-		<button on-click="firePrimaryEvent"></button>
-
-	</template>
-
-
 	<script>
 
 		class RuxIconLibrary extends Polymer.Element {
@@ -31,40 +18,74 @@
 			super();
 
 			// this.addEventListener('fire-primary-event', this.fireEvent());
+			this._updateIconListener = this._setIcon.bind(this);
 			
 		}
 
 
 		connectedCallback() {
 				super.connectedCallback();
+				window.addEventListener('set-icon', this._updateIconListener);
 		}
 
 
 		disconnectedCallback() {
 			super.disconnectedCallback();
+			window.removeEventListener('set-icon', this._updateIconListener);
 		}
 
 
 
 		ready() {
 			super.ready();
+
+			window.dispatchEvent(new CustomEvent('icon-library-added', 
+				{ detail : {
+					icon: 'blue'
+				} }
+			)); 
+		}
+
+		_setIcon(e) {
+			// console.log(e);
+			console.log('detail',e.detail);
+			console.log('library',e.detail.library);
+			console.log('icon',e.detail.icon);
+			console.log(this.querySelectorAll(`#${e.detail.icon}`));
+
+			
+			let sourceSvg = this.querySelectorAll(`#${e.detail.icon}`)[0];
+			if(sourceSvg) {
+				let content = sourceSvg.cloneNode(true);
+				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+						svg.setAttribute('viewBox','0 0 114 114');
+						svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+						svg.setAttribute('focusable', 'false');
+						svg.appendChild(content);
+
+						
+				window.dispatchEvent(new CustomEvent('icon-library-added'), {
+					detail: {
+						icon: svg
+					}
+				})
+				console.log('svg',svg);
+
+
+			}
+			// let _iconSvg = this.querySelector(`rux-icon-library[name=${e.detail.library}]);
+
 		}
 
 		firePrimaryEvent() {
 			console.log('fireEvent');
-			window.dispatchEvent(new CustomEvent('icon-library-added', 
-				{ detail : 
-					{ message: 'hello world' }
-				}
-			));
+			
 		}
 
 		_nameChanged() {
-			console.info('Icon Library Name Changed');
-			
+			console.info('Icon Library Name Changed:',this.name);
 		}
 	}
 
 		customElements.define(RuxIconLibrary.is, RuxIconLibrary);
 	</script>
-</dom-module>
