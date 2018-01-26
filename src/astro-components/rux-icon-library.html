@@ -19,6 +19,8 @@
 
 			// this.addEventListener('fire-primary-event', this.fireEvent());
 			this._updateIconListener = this._setIcon.bind(this);
+
+			
 			
 		}
 
@@ -39,11 +41,8 @@
 		ready() {
 			super.ready();
 
-			window.dispatchEvent(new CustomEvent('icon-library-added', 
-				{ detail : {
-					icon: 'blue'
-				} }
-			)); 
+			this.firePrimaryEvent();
+			
 		}
 
 		_setIcon(e) {
@@ -79,6 +78,11 @@
 
 		firePrimaryEvent() {
 			console.log('fireEvent');
+			window.dispatchEvent(new CustomEvent('icon-library-added', 
+				{ detail : 
+					{ message: 'hello world' }
+				}
+			));
 			
 		}
 
