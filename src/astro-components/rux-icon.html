@@ -7,11 +7,32 @@
 			:host {
 				display: inline-block;
 				
-				height: var(--advanced-status-icon-height, 38px);
-				width: var(--advanced-status-icon-width, 38px);
+				
+				line-height: 0;
+				
 
-				outline: 1px solid red;
+				/* outline: 1px solid red; */
 			}
+
+			svg {
+				margin: 0;
+				padding: 0;
+				
+
+				height: var(--advanced-status-icon-height, 44px);
+				width: var(--advanced-status-icon-width, 44px);
+
+				fill: var(--default-icon-color, #fff);
+			}
+
+			
+
+			.rux-icon--status {
+				height: 16px;
+				width: 16px;
+			}
+
+			
 		</style>
 	</template>
 
@@ -23,60 +44,63 @@
 					icon: {
 						type: String,
 						observer: '_updateIcon'
+					},
+					size: {
+						type: String
 					}
 				}
 			}
 
 			constructor() {
 				super();
-			
-				this._listenEvent = this._test.bind(this);
-				
+				this._iconLibraryEvent = this._iconLibraryLoaded.bind(this);
 			}
 
 			connectedCallback() {
 				super.connectedCallback();
-				window.addEventListener('icon-library-added', this._listenEvent);
+				window.addEventListener('icon-library-added', this._iconLibraryEvent);
 			}
 
 			disconnectedCallback() {
 				super.disconnectedCallback();
-				window.removeEventListener('icon-library-added', this._listenEvent);
+				window.removeEventListener('icon-library-added', this._iconLibraryEvent);
 			}
 
 			ready() {
 				super.ready();
 			}
 
-			_test(e) {
-				console.log('======================== ', e);
+
+
+
+
+
+			//
+			_iconLibraryLoaded(e) {
+				
 			}
 
-			_listenEvent(e) {
-				console.log('======================== listen event', e);
-			}
 
+
+
+
+			//
 			_updateIcon(icon) {
-				console.info('Updating Icon');
+				
+				// get the icon library and icon name
 				const parts = icon.split(':');
 				this._iconName = parts.pop();
 				this._iconLibrary = parts.pop();
 
-
+				//
 				window.dispatchEvent(new CustomEvent('set-icon', 
 					{ detail : {
 						el: this,
 						icon: this._iconName,
-						library: this._iconLibrary
+						library: this._iconLibrary,
+						size: this._size
 					} }
 				));
-				
-
-				
-
-
-				// listen for an event on the library element
-				
 			}
 		}
 

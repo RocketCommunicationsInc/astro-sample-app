@@ -21,4 +21,6 @@
 	--button-border-right: 1px solid transparent;
 
 	--button-background--hover: var(--default-hover);
+
+	--default-icon-color: #fff;
 }

@@ -1,18 +1,8 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
-<dom-module id="rux-icon-library">
-		<template>
-			<style>
-				:host {
-					outline: 1px solid blue;
-				}
-			</style>
-	
-			<button on-click="firePrimaryEvent"></button>
-	
-		</template>	
-		
-		<script>
+
+
+<script>
 
 		class RuxIconLibrary extends Polymer.Element {
 			static get is() { return 'rux-icon-library'; }
@@ -21,6 +11,9 @@
 					name: {
 						type: String,
 						observer: '_nameChanged'
+					},
+					size: {
+						type: String
 					}
 				}
 			}
@@ -29,11 +22,10 @@
 		constructor() {
 			super();
 
-			// this.addEventListener('fire-primary-event', this.fireEvent());
-			this._updateIconListener = this._setIcon.bind(this);
+			this._iconSets = Object.create(null);
 
-			
-			
+			//
+			this._updateIconListener = this._setIcon.bind(this);
 		}
 
 
@@ -52,55 +44,42 @@
 
 		ready() {
 			super.ready();
-
-			// this.firePrimaryEvent();
-			
 		}
 
-		_updateIcon(svg) {
-			window.dispatchEvent(new CustomEvent('icon-library-added'), {
-					detail: {
-						icon: svg
-					}
-				})
-		}
+		
 
 		_setIcon(e) {
-			// console.log(e);
-			console.log('detail',e.detail);
-			console.log('library',e.detail.library);
-			console.log('icon',e.detail.icon);
-			console.log(this.querySelectorAll(`#${e.detail.icon}`));
-
 			
-			let sourceSvg = this.querySelectorAll(`#${e.detail.icon}`)[0];
-			if(sourceSvg) {
-				let content = sourceSvg.cloneNode(true);
-				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-						svg.setAttribute('viewBox','0 0 114 114');
-						svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-						svg.setAttribute('focusable', 'false');
-						svg.appendChild(content);
+			let _icon = e.detail;
+			
+			
+			
+			if(this.name && _icon.library && (this.name === _icon.library)) {
+				console.log(this.name);
+				console.log(this.size);
+				console.log('_icon',_icon.icon);
 
-			e.detail.el.root.insertBefore(svg, null);
+				let sourceSvg = this.querySelectorAll(`#${_icon.icon}`)[0];
+				if(sourceSvg) {
 
+					if(!this.size) this.size = "114";
 
-			}
-			// let _iconSvg = this.querySelector(`rux-icon-library[name=${e.detail.library}]);
+					let content = sourceSvg.cloneNode(true);
+					let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+							svg.setAttribute('viewBox', `0 0 ${this.size} ${this.size}`);
+							svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+							if(_icon.library === 'status') {
+								svg.setAttribute('class', 'rux-icon--status');
+							}
+							svg.setAttribute('focusable', 'false');
+							svg.appendChild(content);
 
-		}
-
-		firePrimaryEvent(svg) {
-			console.log('fireEvent');
-			if(svg) {
-			window.dispatchEvent(new CustomEvent('icon-library-added', 
-				{ detail : 
-					{ message: svg }
+					e.detail.el.root.insertBefore(svg, null);
 				}
-			));
 			}
-			
 		}
+
+		
 
 		_nameChanged() {
 			console.info('Icon Library Name Changed:',this.name);
@@ -109,4 +88,3 @@
 
 		customElements.define(RuxIconLibrary.is, RuxIconLibrary);
 	</script>
-</dom-module>

@@ -1,7 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
-<link rel="import" href="../astro-components/rux-advanced-status.html">
+<!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
+<link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html"> -->
@@ -123,10 +124,27 @@
     //-->
 
     
-    <rux-icon icon="advanced-status:propulsion-power" color="blue"></rux-icon>
+    <rux-icon icon="advanced-status:propulsion-power" size="88"></rux-icon>
     
     <rux-icon icon="advanced-status:thermal"></rux-icon>
-    <rux-icon icon="advanced-status:netcom"></rux-icon>
+
+    <rux-icon icon="status:emergency"></rux-icon>
+
+    <rux-status
+      status="ok"
+      label="Advanced Status"
+      sublabel="Ok"
+      notifications=10
+      icon="advanced-status:thermal"></rux-status>
+
+    <rux-status status="ok"></rux-status>
+      
+
+
+
+
+    <!-- <rux-status status="ok"></rux-status> -->
+    <!-- <rux-icon icon="advanced-status:emergency"></rux-icon> -->
 
     <!-- <rux-icon-library></rux-icon-library> -->
 
@@ -137,17 +155,17 @@
 
   
 
-    <rux-advanced-status
+    <!-- <rux-advanced-status
       status="ok"
       label="Testing me"
       sublabel="Ok"
       notifications="10"
       icon="advanced-status:thermal">
-    </rux-advanced-status>
+    </rux-advanced-status> -->
 
     
-
-    <!-- <rux-button>Button</rux-button>
+<!-- 
+    <rux-button>Button</rux-button>
 
     <rux-button
       type="compact">Compact</rux-button>

@@ -18,9 +18,14 @@
   --font-color: var(font-color);
   
 
-  /* Colors */
-  
-  
+  /* Default Icon Color */
+  --default-icon-color: var(--default-icon-color);
+  --default-icon-size: 44px;
+  --default-icon-size--small: 28px;
+  --default-icon-size--status: 16px;
+
+
+  /* Status Colors */
   --status-emergency: rgba(244, 18, 46, 1);
   --status-error: rgba(190, 88, 73, 1);
   --status-caution: rgba(247, 229, 59, 1);
