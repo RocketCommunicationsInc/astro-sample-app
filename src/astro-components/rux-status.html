@@ -6,13 +6,11 @@
 		<style>
 			:host {
 				display: inline-block;
-				
-				
-				
-
-				outline: 1px solid green;
+				line-height: 0; 
 			}
 
+
+			
 			
 			*,
 			*:before,
@@ -109,7 +107,9 @@
 
 			<!-- Use Standard Status Template is any property is set //-->
 			<template is="dom-if" if="[[!advanced]]">
+				<div class="container">
 				<rux-icon icon="status:{{status}}" class="rux-icon--status rux-status--[[status]]"></rux-icon>
+			</div>
 			</template>
 			
 		</div>
