@@ -55,16 +55,14 @@
 			
 			
 			if(this.name && _icon.library && (this.name === _icon.library)) {
-				console.log('name',this.name);
-				console.log('size',this.size);
-				console.log('color',this.color);
 				
-				console.log('_icon',_icon);
-
-
 				/* TODO:
 				Utilize the icon set?
 				*/
+				// console.log('library',_icon.library);
+				// console.log('icon', _icon.icon);
+				// console.log(this._iconSets[_icon.library][_icon.icon]);
+				// return;
 				let sourceSvg = this.querySelectorAll(`#${_icon.icon}`)[0];
 				if(sourceSvg) {
 
@@ -72,9 +70,9 @@
 
 					let content = sourceSvg.cloneNode(true);
 
-					// if(_icon.color) {
-					// 	content.setAttribute('fill',_icon.color);
-					// }
+					if(_icon.color) {
+						content.setAttribute('fill',_icon.color);
+					}
 							// content.setAttribute('class','rux-status--${this.color}`');
 					let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 							svg.setAttribute('viewBox', `0 0 ${this.size} ${this.size}`);
@@ -97,7 +95,20 @@
 		
 
 		_nameChanged() {
-			// console.info('Icon Library Name Changed:',this.name);
+			console.info('Icon Library Name Changed:',this.name);
+			// console.log('lib', this.innerHTML);
+			// this._iconSets[this.name] = 
+			let icon = Object.create(null);
+			this.querySelectorAll('[id]')
+				.forEach(function(icon) {
+					icon[icon.id] = icon;
+				});
+
+				console.log('test',icon)
+
+			// this._iconSets[this.name] = document.getElementsByName(this.name);
+			
+			console.log('this.icons',this._iconSets[this.name]);
 		}
 	}
 

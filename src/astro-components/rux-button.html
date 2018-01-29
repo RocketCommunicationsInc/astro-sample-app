@@ -106,6 +106,8 @@
 					padding-left: 3em;
 				}
 
+				
+
 				default {
 					border: 1px solid red;
 				}
@@ -113,7 +115,10 @@
 			</style>
 
 
-			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]"><slot></slot></button>
+			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
+				<rux-icon icon="[[icon]]" class="icon rux-icon--button"></rux-icon>
+				<slot></slot>
+			</button>
 
 	</template>
 

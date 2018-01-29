@@ -1,3 +1,8 @@
+<!--
+
+
+//-->
+
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
 
@@ -6,7 +11,9 @@
 		<style>
 			:host {
 				display: inline-block;
-				line-height: 0;				
+				line-height: 0;
+
+				fill: var(--default-icon-color);
 			}
 
 
@@ -19,14 +26,19 @@
 
 			/* small variant */
 			.rux-icon--small {
-				height: var(--small-icon-height, 32px);
-				width: var(--small-icon-width, 32px);
+				height: var(--icon-size--small, 32px);
+				width: var(--icon-size--small, 32px);
 			}
 
 			/* status symbol icon size */
 			.rux-icon--status {
-				height: var(--status-icon-height, 12px);
-				width: var(--status-icon-width, 12px);
+				height: var(--icon-size--status, 12px);
+				width: var(--icon-size--status, 12px);
+			}
+
+			.rux-icon--button {
+				height: var(--icon-size--button);
+				width: var(icon-size--button);
 			}
 
 			

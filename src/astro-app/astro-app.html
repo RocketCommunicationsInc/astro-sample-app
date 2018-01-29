@@ -124,13 +124,22 @@
     </rux-global-status-bar>
     //-->
 
-    
+    <rux-button
+      icon="default:notifications">Icon Button</rux-button>
+
+    <rux-button
+      type="large" icon="default:settings">Large Icon</rux-button>
+
+    <h1>Icons</h1>
     <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
-      <li><rux-icon icon="advanced-status:propulsion-power" color="#ff0"></rux-icon></li>
+      <li><rux-icon icon="advanced-status:propulsion-power" color="pink"></rux-icon></li>
       <li><rux-icon icon="advanced-status:thermal"></rux-icon></li>
       <li><rux-icon icon="advanced-status:netcom"></rux-icon></li>
+      <li><rux-icon icon="default:notifications"></rux-icon></li>
+      <li><rux-icon icon="default:settings"></rux-icon></li>
     </ul>
     
+    <h1>Advanced Status</h1>
     <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
       <li><rux-status
         status="ok"
@@ -143,13 +152,14 @@
         label="Advanced Status"
         notifications="1"
         icon="advanced-status:thermal"></rux-status></li>
-        <li><rux-status
-          status="standby"
-          label="Standby"
-          notifications="100000"
-          icon="advanced-status:propulsion-power"></rux-status></li>
+      <li><rux-status
+        status="standby"
+        label="Standby"
+        notifications="100000"
+        icon="advanced-status:propulsion-power"></rux-status></li>
     </ul>
 
+    <h1>Status</h1>
     <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
       <li><rux-status status="off"></rux-status></li>
       <li><rux-status status="ok"></rux-status></li>

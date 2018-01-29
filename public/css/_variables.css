@@ -5,10 +5,8 @@
 
 :root {
 	
-	
 	/* Initial Settings */
   --background: var(--background);
-  
   
   
   
@@ -16,6 +14,8 @@
 	--font-family: 'Open Sans', sans-serif;
 	--font-size: 1em;
   --font-color: var(font-color);
+
+  --font-family-condensed: 'Open Sans Condensed', sans-serif;
   
 
   /* Default Icon Color */
@@ -24,17 +24,21 @@
   --small-icon-size: 28px;
   --status-icon-size: 16px;
 
+  --icon-color: var();
+  --icon-size--default: 44px;
+  --icon-size--large: 68px;
+  --icon-size--small: 28px;
+  --icon-size--status: 12px;
+  --icon-size--button: 20px;
+  --icon-size--button-large: 28px;
+
+
 
   /* Status Colors */
-  --status-emergency: rgba(244, 18, 46, 1);
-  --status-error: rgba(190, 88, 73, 1);
-  --status-caution: rgba(247, 229, 59, 1);
-  --status-ok: rgba(129, 209, 53, 1);
-  --status-standby: rgba(163, 220, 249, 1);
-  --status-off: rgba(198, 204, 209, 1);
-
-
-
-  
-  
+  --status-emergency: #f72501;
+  --status-error: #c05846;
+  --status-caution: #f8e71c;
+  --status-ok: #7ed321;
+  --status-standby: #a1dcfb;
+  --status-off: #c6ccd1;
 }
