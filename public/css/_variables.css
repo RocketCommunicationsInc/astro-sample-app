@@ -21,8 +21,8 @@
   /* Default Icon Color */
   --default-icon-color: var(--default-icon-color);
   --default-icon-size: 44px;
-  --default-icon-size--small: 28px;
-  --default-icon-size--status: 16px;
+  --small-icon-size: 28px;
+  --status-icon-size: 16px;
 
 
   /* Status Colors */

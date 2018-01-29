@@ -1,9 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
-<!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
+
+<!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html"> -->
 
@@ -124,25 +125,48 @@
     //-->
 
     
-    <rux-icon icon="advanced-status:propulsion-power" size="88"></rux-icon>
+    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
+      <li><rux-icon icon="advanced-status:propulsion-power" color="#ff0"></rux-icon></li>
+      <li><rux-icon icon="advanced-status:thermal"></rux-icon></li>
+      <li><rux-icon icon="advanced-status:netcom"></rux-icon></li>
+    </ul>
     
-    <rux-icon icon="advanced-status:thermal"></rux-icon>
+    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
+      <li><rux-status
+        status="ok"
+        label="Netcom"
+        sublabel="Ok"
+        notifications="10"
+        icon="advanced-status:netcom"></rux-status></li>
+      <li><rux-status
+        status="emergency"
+        label="Advanced Status"
+        notifications="1"
+        icon="advanced-status:thermal"></rux-status></li>
+        <li><rux-status
+          status="standby"
+          label="Standby"
+          notifications="100000"
+          icon="advanced-status:propulsion-power"></rux-status></li>
+    </ul>
 
-    <rux-icon icon="status:emergency"></rux-icon>
+    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
+      <li><rux-status status="off"></rux-status></li>
+      <li><rux-status status="ok"></rux-status></li>
+      <li><rux-status status="standby"></rux-status></li>
+      <li><rux-status status="caution"></rux-status></li>
+      <li><rux-status status="error"></rux-status></li>
+      <li><rux-status status="emergency"></rux-status></li>
+    </ul>
 
-    <rux-status
-      status="ok"
-      label="Advanced Status"
-      sublabel="Ok"
-      notifications="10"
-      icon="advanced-status:thermal"></rux-status>
-
-      <rux-status status="off"></rux-status>
-      <rux-status status="ok"></rux-status>
-      <rux-status status="standby"></rux-status>
-      <rux-status status="caution"></rux-status>
-      <rux-status status="error"></rux-status>
-      <rux-status status="emergency"></rux-status>
+    <ul style="display: flex; flex-direction: column; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
+      <li><rux-status status="off"></rux-status></li>
+      <li><rux-status status="ok"></rux-status></li>
+      <li><rux-status status="standby"></rux-status></li>
+      <li><rux-status status="caution"></rux-status></li>
+      <li><rux-status status="error"></rux-status></li>
+      <li><rux-status status="emergency"></rux-status></li>
+    </ul>
       
 
 

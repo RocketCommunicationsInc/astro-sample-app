@@ -6,31 +6,27 @@
 		<style>
 			:host {
 				display: inline-block;
-				line-height: 0;
+				line-height: 0;				
 			}
 
 
+			/* default icon size */
+			svg {
+				height: var(--default-icon-height, 44px);
+				width: var(--default-icon-width, 44px);
+			}
 			
 
-			svg {
-				margin: 0;
-				padding: 0;
-				
-
-				height: var(--advanced-status-icon-height, 44px);
-				width: var(--advanced-status-icon-width, 44px);
-
-				fill: var(--default-icon-color, #fff);
+			/* small variant */
+			.rux-icon--small {
+				height: var(--small-icon-height, 32px);
+				width: var(--small-icon-width, 32px);
 			}
 
-
+			/* status symbol icon size */
 			.rux-icon--status {
-				height: 12px;
-				width: 12px;
-
-				
-
-
+				height: var(--status-icon-height, 12px);
+				width: var(--status-icon-width, 12px);
 			}
 
 			
@@ -50,6 +46,9 @@
 						observer: '_updateIcon'
 					},
 					size: {
+						type: String
+					},
+					color: {
 						type: String
 					}
 				}
@@ -102,7 +101,8 @@
 						el: this,
 						icon: this._iconName,
 						library: this._iconLibrary,
-						size: this._size
+						size: this.size,
+						color: this.color
 					} }
 				));
 			}
