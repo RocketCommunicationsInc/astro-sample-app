@@ -70,10 +70,15 @@
 				
 				if(_icon.size) {
 					if(parseInt(_icon.size)) {
-
+						let iconSize = _icon.size + 'px';
+						e.detail.el.setAttribute('style',`height:${iconSize}; width:${iconSize}`);
+					} else {
+						let iconSize = `rux-icon--${_icon.size}`;
+						e.detail.el.classList.add(iconSize);
 					}
-					let iconSize = `rux-icon--${_icon.size}`;
-					e.detail.el.classList.add(iconSize);
+					
+
+					
 					// console.log(iconSize);
 					// console.log(e.detail.el.classList);
 					
