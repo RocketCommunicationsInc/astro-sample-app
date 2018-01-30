@@ -11,7 +11,8 @@
 				
 
 				button {
-					display: inline-block;
+					display: flex;
+					align-items: center;
 					position: relative;
 
 					margin: 0;
@@ -34,7 +35,7 @@
 					vertical-align: middle;
   				text-align: center;
   				white-space: nowrap;
-  				line-height: 1.5;
+					line-height: 1.5;
 				
 					cursor: pointer;
 					outline: none;
@@ -96,20 +97,19 @@
 				}
 
 				.rux-button--compact {
-					min-width: 6.25rem;
+					/* min-width: 6.25rem; */
 					padding-top: 0.1rem;
 					padding-bottom: 0.1rem;
 				}
 
 				
 				.rux-button--icon {
-					display: flex;
-					align-items: center;
+					
 				}
 
 				.rux-button .rux-icon--button {
 					color: #fff;
-					margin-right: 0.5rem;
+					margin-right: calc(35px / 4);
 				}
 
 				
@@ -120,11 +120,23 @@
 
 			</style>
 
+			<template is="dom-if" if="[[!iconButton]]">
+				<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
+					<slot></slot>
+				</button>
+			</template>
 
-			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
-				<rux-icon icon="[[icon]]" class="icon rux-icon--button"></rux-icon>
-				<slot></slot>
-			</button>
+
+			<template is="dom-if" if="[[iconButton]]">
+				<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
+					<rux-icon icon="[[icon]]" class="icon rux-icon--button"></rux-icon>
+					<slot></slot>
+				</button>
+			</template>
+
+
+			
+			
 
 	</template>
 
@@ -137,7 +149,8 @@
 						type: String,
 						icon: String,
 						default: Boolean,
-						disabled: Boolean
+						disabled: Boolean,
+						iconButton: Boolean
 					}
 				}
 
@@ -147,8 +160,10 @@
 
 				ready() {
 					super.ready();
+
+					// console.log('type',this.type);
 					
-					if(this.icon) this.type = 'icon';
+					this.iconButton = this.icon ? true : false;
 
 					this.addEventListener('click', (e)=> {
 						
