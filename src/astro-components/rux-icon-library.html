@@ -63,6 +63,22 @@
 				// console.log('icon', _icon.icon);
 				// console.log(this._iconSets[_icon.library][_icon.icon]);
 				// return;
+
+				// console.log();
+				// e.detail.el.classList.add('test')
+				// console.log(e.detail.el.classList);
+				
+				if(_icon.size) {
+					if(parseInt(_icon.size)) {
+
+					}
+					let iconSize = `rux-icon--${_icon.size}`;
+					e.detail.el.classList.add(iconSize);
+					// console.log(iconSize);
+					// console.log(e.detail.el.classList);
+					
+				}
+
 				let sourceSvg = this.querySelectorAll(`#${_icon.icon}`)[0];
 				if(sourceSvg) {
 
@@ -80,14 +96,18 @@
 
 
 							
-							if(_icon.library === 'status') {
-								svg.setAttribute('class', 'rux-icon--status');
-							}
+							// if(_icon.library === 'status') {
+							// 	svg.setAttribute('class', 'rux-icon--status');
+							// }
 							
 							svg.setAttribute('focusable', 'false');
 							svg.appendChild(content);
-
+					
+					// this.classList.add('rux-icon--status')
+					// console.log(this.classList);
+					// this.classList.add('rux-icon--status');
 					e.detail.el.root.insertBefore(svg, null);
+
 				}
 			}
 		}
@@ -95,7 +115,7 @@
 		
 
 		_nameChanged() {
-			console.info('Icon Library Name Changed:',this.name);
+			// console.info('Icon Library Name Changed:',this.name);
 			// console.log('lib', this.innerHTML);
 			// this._iconSets[this.name] = 
 			let icon = Object.create(null);
@@ -104,11 +124,11 @@
 					icon[icon.id] = icon;
 				});
 
-				console.log('test',icon)
+				// console.log('test',icon)
 
 			// this._iconSets[this.name] = document.getElementsByName(this.name);
 			
-			console.log('this.icons',this._iconSets[this.name]);
+			// console.log('this.icons',this._iconSets[this.name]);
 		}
 	}
 

@@ -104,10 +104,6 @@
 			}
 
 
-			rux-icon {
-				fill: #fff;
-			}
-
 			
 
 			.rux-status--off {
@@ -136,33 +132,27 @@
 
 		</style>
 
-
-		<!-- <div class="rux-status"> -->
-
 			
-			<template is="dom-if" if="[[advanced]]">
-				
-				<!-- Use Advanced Status Template is any property is set //-->
-				<div class="rux-advanced-status rux-status--{{status}}" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label">
-					<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon {{status}}"></rux-icon>
-					<div class="rux-advanced-status__icon">
-							<rux-icon icon="{{icon}}" class$="rux-status--{{status}}"></rux-icon>
-							<div class="rux-advanced-status__badge">[[notifications]]</div>
-						</div>
-					<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
-				</div>
-			</template>
-
-
-
-			<!-- Use Standard Status Template is any property is set //-->
-			<template is="dom-if" if="[[!advanced]]">
-				<rux-icon icon="status:{{status}}"></rux-icon>
-			</template>
+		<template is="dom-if" if="[[advanced]]">
 			
-		<!-- </div> -->
+			<!-- Use Advanced Status Template is any property is set //-->
+			<div class="rux-advanced-status rux-status--{{status}}" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label">
+				<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status {{status}}"></rux-icon>
+				<div class="rux-advanced-status__icon">
+						<rux-icon icon="{{icon}}" class$="rux-status--{{status}}"></rux-icon>
+						<div class="rux-advanced-status__badge">[[notifications]]</div>
+					</div>
+				<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
+			</div>
 
+		</template>
+		<!-- Use Standard Status Template is any property is set //-->
+		
+		<template is="dom-if" if="[[!advanced]]">
+			<rux-icon icon="status:{{status}}" class="rux-icon--status"></rux-icon>
+		</template>
 
+		
 	</template>
 
 	<script>

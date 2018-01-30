@@ -14,31 +14,34 @@
 				line-height: 0;
 
 				fill: var(--default-icon-color);
-			}
 
-
-			/* default icon size */
-			svg {
 				height: var(--default-icon-height, 44px);
 				width: var(--default-icon-width, 44px);
 			}
-			
+
+
 
 			/* small variant */
-			.rux-icon--small {
+			:host(.rux-icon--small) {
 				height: var(--icon-size--small, 32px);
 				width: var(--icon-size--small, 32px);
 			}
 
 			/* status symbol icon size */
-			.rux-icon--status {
+			:host(.rux-icon--status) {
 				height: var(--icon-size--status, 12px);
 				width: var(--icon-size--status, 12px);
 			}
 
-			.rux-icon--button {
-				height: var(--icon-size--button);
-				width: var(icon-size--button);
+			:host(.rux-icon--button) {
+				height: var(--icon-size--button, 24px);
+				width: var(--icon-size--button, 24px);
+				fill: var(--icon-color--button);				
+			}
+
+			:host(.rux-icon--button--large) {
+				height: var(--icon-size--button-large, 40px);
+				width: var(--icon-size--button-large, 40px);
 			}
 
 			
