@@ -17,9 +17,8 @@
 
 			</style>
 
-			<template is="dom-if" if="[[type=navigation]]">
-				<slot></slot>
-			</template>
+			
+			<slot></slot>
 
 	</template>
 
@@ -35,10 +34,41 @@
 
 				constructor() {
         	super();
+
+					this._updateTabListener = this._setTab.bind(this);
+				}
+
+
+				connectedCallback() {
+						super.connectedCallback();
+						window.addEventListener('set-tab', this._updateTabListener);
+				}
+
+
+				disconnectedCallback() {
+					super.disconnectedCallback();
+					window.removeEventListener('set-tab', this._updateTabListener);
 				}
 
 				ready() {
 					super.ready();
+				}
+
+
+				_setTab(tab) {
+					console.log(tab.detail);
+					console.log(this);
+
+					let _tab = tab.detail.tab;
+					let _tabs = this.querySelectorAll('rux-navigation-tab');
+					
+					console.log('_tab',_tab);
+					console.log('_tabs',_tabs);
+					_tabs.forEach(function(tab) {
+						tab.selected = false;
+					})
+					_tab.selected = true;
+					
 				}
 		}
 

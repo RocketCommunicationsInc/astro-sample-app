@@ -49,6 +49,10 @@
 					/* transition: background 0.367s ease-out; */
 				}
 
+				:host([selected]) {
+					background: red;
+				}
+
 				:host[selected]::before {
 					background: red;
 				}
@@ -70,6 +74,10 @@
 				static get properties() {
 					return {
 						type: String,
+						selected: {
+							type: Boolean,
+							reflectToAttribute: true
+						}
 					}
 				}
 
@@ -84,8 +92,31 @@
 				}
 
 
+				reset() {
+					const tabs = this.querySelectorAll('rux-navigation-tab');
+					console.log('tabs',tabs);
+					console.log(this);
+				}
+
+				_selectTab(tab) {
+					// this.reset();
+
+					// // get the tab pane associated with this tab
+
+					// // throw an error if there is no associated panel
+					// this.selected = true;
+
+					// fire event
+					window.dispatchEvent(new CustomEvent('set-tab', 
+						{ detail : 
+							{ tab: tab }
+						}
+					));
+				}
+
 				_onClick(e) {
 					console.log('click', e.target);
+					this._selectTab(e.target);
 				}
 		}
 
