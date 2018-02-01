@@ -1,0 +1,47 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="rux-navigation-tab.html">
+
+<dom-module id="rux-navigation-tabs">
+	<template>
+		<style>
+			:host {
+					margin: 0;
+					padding: 0;
+					display: flex;
+					align-self: flex-start;
+					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+				}
+
+			
+				
+
+			</style>
+
+			<template is="dom-if" if="[[type=navigation]]">
+				<slot></slot>
+			</template>
+
+	</template>
+
+	<script>
+		class RuxNavigationTabs extends Polymer.Element {
+				
+				static get is() { return 'rux-navigation-tabs'; }
+				static get properties() {
+					return {
+						type: String,
+					}
+				}
+
+				constructor() {
+        	super();
+				}
+
+				ready() {
+					super.ready();
+				}
+		}
+
+		customElements.define(RuxNavigationTabs.is, RuxNavigationTabs);
+	</script>
+</dom-module>

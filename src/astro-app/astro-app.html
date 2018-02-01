@@ -3,6 +3,9 @@
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
 <link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
+<link rel="import" href="../astro-components/rux-navigation-tabs.html">
+<link rel="import" href="../astro-components/rux-navigation-tab.html">
+<link rel="import" href="../astro-components/rux-icons-svg.html">
 
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
@@ -26,11 +29,9 @@
 
 
       .rux-status-bar-group {
-        display: flex;
-
-        list-style: none;
-
-        outline: 1px solid red;
+        display: flex; 
+        flex-direction: row; 
+        list-style:none; 
       }
 
       .rux-tool-bar-group {
@@ -56,7 +57,7 @@
 
 
     
-    <!--
+    
     <rux-global-status-bar
       appname="Astro App"
       version="v1.022a">
@@ -64,47 +65,43 @@
 
 
 
-      <!-- for tabbed navigation // - ->
+      <!-- for tabbed navigation // -->
       <rux-navigation-tabs class="rux-navigation-tabs" slot="tabs">
-        <ul>
-          <li>Modems</li>
-          <li>Pass Plans</li>
-          <li>Telemetry</li>
-        </ul>
+        <rux-navigation-tab selected>Modems</rux-navigation-tab>
+        <rux-navigation-tab>Pass Plans</rux-navigation-tab>
+        <rux-navigation-tab>Telemetry</rux-navigation-tab>
       </rux-navigation-tabs>
 
 
 
 
 
-      <!-- status icons //- ->
-      <ul class="rux-status-bar-group" slot="status-bar">
-        <li>
-          <rux-advanced-status
+      <!-- status icons //-->
+      <ul class="rux-status-bar-group"
+          slot="status-bar">
+          <li><rux-status
             status="ok"
-            notifications="10">
-            <rux-icon icon="advanced-status:thermal"></rux-icon>
-            
-          </rux-advanced-status>
-        </li>
-        <li>
-          <rux-advanced-status
-            status="ok"
-            notifications="10">
-            <rux-icon icon="advanced-status:thermal"></rux-icon>
-            <span slot="label">Altitude &amp; Telemetry</span></rux-advanced-status>
-        </li>
-        <li>
-          <rux-status-icon
-              icon="antenna"
-              status="standby"
-              notifications=""><span slot="label">Payload</span></rux-status-icon></li>
+            label="Netcom"
+            sublabel="Ok"
+            notifications="10"
+            icon="advanced-status:netcom"></rux-status></li>
+          <li><rux-status
+            status="emergency"
+            label="Advanced Status"
+            notifications="1"
+            icon="advanced-status:thermal"></rux-status></li>
+          <li><rux-status
+            status="standby"
+            label="Standby"
+            notifications="100000"
+            icon="advanced-status:propulsion-power"></rux-status></li>
+        </ul>
       </ul>
 
 
-      <!-- toolbar items //- ->
+      <!-- toolbar items //-->
       <ul class="rux-tool-bar-group" slot="tool-bar">
-        <li>
+        <!-- <li>
           <rux-button
             type="icon"
             icon="rux-icons:settings">Settings</rux-button>
@@ -112,128 +109,29 @@
         <li>
             <rux-user
               user="[[]]"></rux-user>
-        </li>
+        </li> -->
         <li>
           <rux-button
 					  type="large"
-					  icon="caution"
-            disabled>Master Off</rux-button>
+					  icon="default:caution">Master Off</rux-button>
           </li>
       </ul>
       
     </rux-global-status-bar>
-    //-->
-
-    <rux-button
-      icon="default:notifications">Icon Button</rux-button>
-
-    <rux-button
-      type="large" icon="default:settings">Large Icon</rux-button>
-
-    <rux-button
-      type="large" icon="default:caution">Netcom</rux-button>
-
-    <h1>Icons</h1>
-    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
-      <li><rux-icon icon="advanced-status:propulsion-power" color="pink"></rux-icon></li>
-      <li><rux-icon icon="advanced-status:thermal" size="small"></rux-icon></li>
-      <li><rux-icon icon="advanced-status:netcom" size="button"></rux-icon></li>
-      <li><rux-icon icon="advanced-status:netcom" size="button--large"></rux-icon></li>
-      <li><rux-icon icon="default:notifications" size="status"></rux-icon></li>
-      <li><rux-icon icon="default:settings" size="large" color="#f00"></rux-icon></li>
-      <li><rux-icon icon="default:settings" size="88"></rux-icon></li>
-    </ul>
     
-    <h1>Advanced Status</h1>
-    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
-      <li><rux-status
-        status="ok"
-        label="Netcom"
-        sublabel="Ok"
-        notifications="10"
-        icon="advanced-status:netcom"></rux-status></li>
-      <li><rux-status
-        status="emergency"
-        label="Advanced Status"
-        notifications="1"
-        icon="advanced-status:thermal"></rux-status></li>
-      <li><rux-status
-        status="standby"
-        label="Standby"
-        notifications="100000"
-        icon="advanced-status:propulsion-power"></rux-status></li>
-    </ul>
+    <rux-app-view>
+      
 
-    <h1>Status</h1>
-    <ul style="display: flex; flex-direction: row; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
-      <li><rux-status status="off"></rux-status></li>
-      <li><rux-status status="ok"></rux-status></li>
-      <li><rux-status status="standby"></rux-status></li>
-      <li><rux-status status="caution"></rux-status></li>
-      <li><rux-status status="error"></rux-status></li>
-      <li><rux-status status="emergency"></rux-status></li>
-    </ul>
+    </rux-app-view>
 
-    <ul style="display: flex; flex-direction: column; list-style:none; outline: 1px solid rgba(255,255,255,.1); padding: 1em; margin: 1em;">
-      <li><rux-status status="off"></rux-status></li>
-      <li><rux-status status="ok"></rux-status></li>
-      <li><rux-status status="standby"></rux-status></li>
-      <li><rux-status status="caution"></rux-status></li>
-      <li><rux-status status="error"></rux-status></li>
-      <li><rux-status status="emergency"></rux-status></li>
-    </ul>
+
+ 
       
 
 
 
-    
-    <!-- <rux-status status="ok"></rux-status> -->
-    <!-- <rux-icon icon="advanced-status:emergency"></rux-icon> -->
-
-    <!-- <rux-icon-library></rux-icon-library> -->
-
 
     
-    
-    <!-- <rux-icon icon="status:emergency"></rux-icon> -->
-
-  
-
-    <!-- <rux-advanced-status
-      status="ok"
-      label="Testing me"
-      sublabel="Ok"
-      notifications="10"
-      icon="advanced-status:thermal">
-    </rux-advanced-status> -->
-
-    
-
-    <rux-button>Button</rux-button>
-
-    <rux-button
-      type="compact">Compact</rux-button>
-
-    <rux-button
-      type="narrow">Narrow</rux-button>
-
-    <rux-button
-      default>Default</rux-button>
-
-    <rux-button
-      disabled>disabled</rux-button>
-
-    <rux-button
-      type="large">Large</rux-button>
-
-    <rux-button
-      type="large">Large Icon</rux-button>
-
-    <rux-button
-      type="small">Small</rux-button>
-
-    <rux-button
-      icon="default:caution">Icon Button</rux-button>
     
 
 
