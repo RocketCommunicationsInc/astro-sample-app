@@ -1,6 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 
-<dom-module id="rux-navigation-tab">
+<dom-module id="rux-tab">
 	<template>
 		<style>
 			:host {
@@ -40,7 +40,7 @@
 					width: 100%;
 					top: -8px;
 					left: 0;
-					background: rgba(0, 0, 0, 0.3);
+					background-color:transparent;
 					
 					/* border-top: 1px solid #000; */
 					/* opacity: 0; */
@@ -68,15 +68,18 @@
 	</template>
 
 	<script>
-		class RuxNavigationTab extends Polymer.Element {
+		class RuxTab extends Polymer.Element {
 				
-				static get is() { return 'rux-navigation-tab'; }
+				static get is() { return 'rux-tab'; }
 				static get properties() {
 					return {
 						type: String,
 						selected: {
 							type: Boolean,
 							reflectToAttribute: true
+						},
+						pane: {
+							type: Object
 						}
 					}
 				}
@@ -93,9 +96,9 @@
 
 
 				reset() {
-					const tabs = this.querySelectorAll('rux-navigation-tab');
-					console.log('tabs',tabs);
-					console.log(this);
+					const tabs = this.querySelectorAll('rux-tab');
+					// console.log('tabs',tabs);
+					// console.log(this);
 				}
 
 				_selectTab(tab) {
@@ -115,11 +118,11 @@
 				}
 
 				_onClick(e) {
-					console.log('click', e.target);
+					// console.log('click', e.target);
 					this._selectTab(e.target);
 				}
 		}
 
-		customElements.define(RuxNavigationTab.is, RuxNavigationTab);
+		customElements.define(RuxTab.is, RuxTab);
 	</script>
 </dom-module>

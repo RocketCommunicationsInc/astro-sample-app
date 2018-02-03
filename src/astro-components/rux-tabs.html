@@ -1,0 +1,167 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="rux-tab.html">
+<link rel="import" href="rux-tab-pane.html">
+
+<dom-module id="rux-tabs">
+	<template>
+		<style>
+			:host {
+					margin: 0;
+					padding: 0;
+					display: flex;
+					align-self: flex-start;
+					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+				}
+
+			
+				
+
+			</style>
+
+			
+			<slot></slot>
+
+	</template>
+
+	<script>
+		class RuxTabs extends Polymer.Element {
+				
+				static get is() { return 'rux-tabs'; }
+				static get properties() {
+					return {
+						type: String,
+						tabGroup: String,
+						panes: {
+							type: Object,
+							notify: true,
+							observer: '_tabgroupChanged'
+						}
+					}
+				}
+
+				constructor() {
+        	super();
+
+					this._updateTabListener = this._setTab.bind(this);
+					this._registerPaneListener = this._registerPane.bind(this);
+					
+
+					
+				}
+
+
+				connectedCallback() {
+					super.connectedCallback();
+
+					
+					window.addEventListener('set-tab', this._updateTabListener);
+					window.addEventListener('register-pane', this._registerPaneListener);
+
+					this._panes = new Array();
+					
+					// this._tabs = this.registerTabs();
+
+				}
+
+				disconnectedCallback() {
+					super.disconnectedCallback();
+					window.removeEventListener('set-tab', this._updateTabListener);
+					window.removeEventListener('register-pane', this._registerPaneListener);
+				}
+
+
+
+
+				_tabGroupChanged() {
+					console.log('tab group changed');
+				}
+				
+		
+
+				ready() {
+					super.ready();
+				}
+
+
+				/*
+				**
+				** Register associated panes
+				**
+				*/
+				_registerPane(e) {
+					let _pane = e.detail.pane;
+					// console.log('_pane',_pane.getAttribute('group'))
+					if(_pane.getAttribute('group') === this.tabGroup) {
+						// this._panes[_pane.id] = _pane;
+						// this._panes.push(_pane);
+						
+						let _tabs = this.querySelectorAll('rux-tab');
+						
+						console.log('__panes',__panes);
+						_tabs.forEach(function(tab) {
+							// console.log(tab);
+							// console.log(_pane);
+							// console.log('id',tab.getAttribute('id'));
+							// console.log('aria',_pane.getAttribute('aria-labeledby'));
+							if(tab.getAttribute('id') === _pane.getAttribute('aria-labeledby')) {
+								tab['pane'] = _pane;
+							}
+							
+// 							if(tab.getAttribute('id') === _pane.getAttribute('aria-labeled-by')) {
+
+// tab = Object.assign('pane', _pane);
+// 							console.log('tab',tab);
+// 							}		
+						});
+						
+						
+						// console.log('_pane',_pane);
+
+					}
+					// console.log('panes',this._panes);
+				}
+
+
+				_setTab(e) {
+					// console.log(e.detail);
+					// console.log(e);
+
+					// console.log('panes',this._panes)
+
+					let _tab = e.detail.tab;
+					let _tabs = this.querySelectorAll('rux-tab');
+					
+					_tabs.forEach(function(tab) {
+						tab.selected = false;
+					})
+					_tab.selected = true;
+					// console.log('_tab',_tab);
+					// console.log('_tab type',typeof(_tab));
+					// console.log('_tab.id',_tab.getAttribute('id'));
+
+					// console.log(_tabs);
+					// console.log(this._panes);
+
+					this._panes
+						.forEach(function(pane) {
+							// console.log(pane);
+							// pane.addAttribute('hidden');
+					});
+
+					// this._panes[1].removeAttribute('hidden')
+					// console.log('pane',this._panes[1]);
+					// console.log('pane',this._panes[1]);
+					// console.log('pane type',typeof(this._panes[1]));
+					// console.log('pane.id',this._panes[1].getAttribute('id'))
+					// this._panes[1].setAttribute('id','batman');
+					// this._panes[1].removeAttribute('hidden');
+					// console.log('pane',this._panes[1]);
+					// this._panes[1].addAttribute('hidden');
+					// console.log('panes',this._panes[1])
+					
+				}
+		}
+
+		customElements.define(RuxTabs.is, RuxTabs);
+	</script>
+</dom-module>
