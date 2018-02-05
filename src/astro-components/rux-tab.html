@@ -86,8 +86,6 @@
 
 				constructor() {
         	super();
-
-					this.addEventListener('click', this._onClick)
 				}
 
 				ready() {
@@ -99,27 +97,6 @@
 					const tabs = this.querySelectorAll('rux-tab');
 					// console.log('tabs',tabs);
 					// console.log(this);
-				}
-
-				_selectTab(tab) {
-					// this.reset();
-
-					// // get the tab pane associated with this tab
-
-					// // throw an error if there is no associated panel
-					// this.selected = true;
-
-					// fire event
-					window.dispatchEvent(new CustomEvent('set-tab', 
-						{ detail : 
-							{ tab: tab }
-						}
-					));
-				}
-
-				_onClick(e) {
-					// console.log('click', e.target);
-					this._selectTab(e.target);
 				}
 		}
 
