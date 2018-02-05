@@ -4,7 +4,6 @@
 <link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-tabs.html">
-<link rel="import" href="../astro-components/rux-tab.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
@@ -122,32 +121,35 @@
       
     </rux-global-status-bar>
     
-    <rux-tab-panes>
-      <rux-tab-pane
+    <rux-tab-panels role="tablist">
+      <rux-tab-panel
         id="main-nav-tab-1" 
         aria-labeledby="tab-modems"
+        role="tabpanell"
         group="main-nav-tabs">
         <h1>Modems</h1>
 
-      </rux-tab-pane>
+      </rux-tab-panel>
 
-      <rux-tab-pane 
+      <rux-tab-panel 
         id="main-nav-tab-2"
         aria-labeledby="tab-pass-plans"
         group="main-nav-tabs"
+        role="tabpanell"
         hidden>
         <h1>Pass Plans</h1>
     
-      </rux-tab-pane>
+      </rux-tab-panel>
 
-      <rux-tab-pane 
+      <rux-tab-panel 
         id="main-nav-tab-3"
         aria-labeledby="tab-telemetry"
         group="main-nav-tabs"
+        role="tabpanell"
         hidden>
         <h1>Telemetry</h1>
-      </rux-tab-view>
-  </rux-tab-panes>
+      </rux-tab-panel>
+  </rux-tab-panels>
 
 
  

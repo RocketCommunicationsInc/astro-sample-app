@@ -1,7 +1,7 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 
 
-<dom-module id="rux-tab-panes">
+<dom-module id="rux-tab-panels">
 	<template>
 		<style>
 			:host {
@@ -23,9 +23,9 @@
 	</template>
 
 	<script>
-		class RuxTabPanes extends Polymer.Element {
+		class RuxTabPanels extends Polymer.Element {
 				
-				static get is() { return 'rux-tab-panes'; }
+				static get is() { return 'rux-tab-panels'; }
 				static get properties() {
 					return {
 						type: String,
@@ -40,12 +40,12 @@
 
 				connectedCallback() {
 					console.log('panes connected');
-					let _panes = this.querySelectorAll('rux-tab-pane');
+					let _panels = this.querySelectorAll('rux-tab-panel');
 					// console.log(_panes);
 
-					window.dispatchEvent(new CustomEvent('register-panes', 
+					window.dispatchEvent(new CustomEvent('register-panels', 
 						{ detail : 
-							{ panes: _panes }
+							{ panels: _panels }
 						}
 					));
 					super.connectedCallback();
@@ -61,6 +61,6 @@
 			}
 		
 
-		customElements.define(RuxTabPanes.is, RuxTabPanes);
+		customElements.define(RuxTabPanels.is, RuxTabPanels);
 	</script>
 </dom-module>

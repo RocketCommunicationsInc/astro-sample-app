@@ -1,7 +1,7 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 <link rel="import" href="rux-tab.html">
-<link rel="import" href="rux-tab-panes.html">
-<link rel="import" href="rux-tab-pane.html">
+<link rel="import" href="rux-tab-panels.html">
+<link rel="import" href="rux-tab-panel.html">
 
 <dom-module id="rux-tabs">
 	<template>
@@ -37,10 +37,10 @@
 							notify: true,
 							observer: '_tabChanged'
 						},
-						panes: {
+						panels: {
 							type: Object,
 							notify: true,
-							observer: '_paneChanged'
+							observer: '_panelChanged'
 						}
 					}
 				}
@@ -49,7 +49,7 @@
         	super();
 
 					this._updateTabListener = this._setTab.bind(this);
-					this._registerPanesListener = this._registerPanes.bind(this);
+					this._registerPanelsListener = this._registerPanels.bind(this);
 					
 
 					
@@ -60,16 +60,16 @@
 					super.connectedCallback();
 
 					this._tabs = this._registerTabs();
-					this._panes = null;
+					this._panels = null;
 
 					window.addEventListener('set-tab', this._updateTabListener);
-					window.addEventListener('register-panes', this._registerPanesListener);
+					window.addEventListener('register-panels', this._registerPanelsListener);
 				}
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
 					window.removeEventListener('set-tab', this._updateTabListener);
-					window.removeEventListener('register-panes', this._registerPanesListener);
+					window.removeEventListener('register-panels', this._registerPanelsListener);
 				}
 
 
@@ -79,8 +79,8 @@
 					console.log('tab changed',e);
 				}
 				
-				_paneChanged(e) {
-					console.log('pane changed',e);
+				_panelChanged(e) {
+					console.log('panel changed',e);
 				}
 				
 
@@ -95,11 +95,11 @@
 
 				/*
 				**
-				** Register associated panes
+				** Register associated panels
 				**
 				*/
-				_registerPanes(e) {
-					this._panes = e.detail.panes;
+				_registerPanels(e) {
+					this._panels = e.detail.panels;
 				}
 
 
@@ -113,26 +113,26 @@
 					_tab.selected = true;
 					
 
-					this._panes
-						.forEach(function(pane) {
-							pane.hidden = true;
+					this._panels
+						.forEach(function(panel) {
+							panel.hidden = true;
 
-							if(pane.getAttribute('aria-labeledby') === _tab.getAttribute('id')) {
-								pane.hidden = false;
+							if(panel.getAttribute('aria-labeledby') === _tab.getAttribute('id')) {
+								panel.hidden = false;
 							}
 					});
 					
 
-					// this._panes[1].removeAttribute('hidden')
-					// console.log('pane',this._panes[1]);
-					// console.log('pane',this._panes[1]);
-					// console.log('pane type',typeof(this._panes[1]));
-					// console.log('pane.id',this._panes[1].getAttribute('id'))
-					// this._panes[1].setAttribute('id','batman');
-					// this._panes[1].removeAttribute('hidden');
-					// console.log('pane',this._panes[1]);
-					// this._panes[1].addAttribute('hidden');
-					// console.log('panes',this._panes[1])
+					// this._panels[1].removeAttribute('hidden')
+					// console.log('panel',this._panels[1]);
+					// console.log('panel',this._panels[1]);
+					// console.log('panel type',typeof(this._panels[1]));
+					// console.log('panel.id',this._panels[1].getAttribute('id'))
+					// this._panels[1].setAttribute('id','batman');
+					// this._panels[1].removeAttribute('hidden');
+					// console.log('panel',this._panels[1]);
+					// this._panels[1].addAttribute('hidden');
+					// console.log('panels',this._panels[1])
 					
 				}
 		}

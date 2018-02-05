@@ -1,6 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 
-<dom-module id="rux-tab-pane">
+<dom-module id="rux-tab-panel">
 	<template>
 		<style>
 			
@@ -16,9 +16,9 @@
 	</template>
 
 	<script>
-		class RuxTabPane extends Polymer.Element {
+		class RuxTabPanel extends Polymer.Element {
 				
-				static get is() { return 'rux-tab-pane'; }
+				static get is() { return 'rux-tab-panel'; }
 				static get properties() {
 					return {
 						type: String,
@@ -45,6 +45,6 @@
 				}
 		}
 
-		customElements.define(RuxTabPane.is, RuxTabPane);
+		customElements.define(RuxTabPanel.is, RuxTabPanel);
 	</script>
 </dom-module>
