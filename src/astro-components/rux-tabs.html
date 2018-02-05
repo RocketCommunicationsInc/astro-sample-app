@@ -1,5 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 <link rel="import" href="rux-tab.html">
+<link rel="import" href="rux-tab-panes.html">
 <link rel="import" href="rux-tab-pane.html">
 
 <dom-module id="rux-tabs">
@@ -31,10 +32,15 @@
 					return {
 						type: String,
 						tabGroup: String,
+						tabs: {
+							type: Object,
+							notify: true,
+							observer: '_tabChanged'
+						},
 						panes: {
 							type: Object,
 							notify: true,
-							observer: '_tabgroupChanged'
+							observer: '_paneChanged'
 						}
 					}
 				}
@@ -43,7 +49,7 @@
         	super();
 
 					this._updateTabListener = this._setTab.bind(this);
-					this._registerPaneListener = this._registerPane.bind(this);
+					this._registerPanesListener = this._registerPanes.bind(this);
 					
 
 					
@@ -53,100 +59,69 @@
 				connectedCallback() {
 					super.connectedCallback();
 
-					
+					this._tabs = this._registerTabs();
+					this._panes = null;
+
 					window.addEventListener('set-tab', this._updateTabListener);
-					window.addEventListener('register-pane', this._registerPaneListener);
-
-					this._panes = new Array();
-					
-					// this._tabs = this.registerTabs();
-
+					window.addEventListener('register-panes', this._registerPanesListener);
 				}
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
 					window.removeEventListener('set-tab', this._updateTabListener);
-					window.removeEventListener('register-pane', this._registerPaneListener);
+					window.removeEventListener('register-panes', this._registerPanesListener);
 				}
 
 
 
 
-				_tabGroupChanged() {
-					console.log('tab group changed');
+				_tabChanged(e) {
+					console.log('tab changed',e);
 				}
 				
-		
+				_paneChanged(e) {
+					console.log('pane changed',e);
+				}
+				
 
 				ready() {
 					super.ready();
 				}
 
 
+				_registerTabs() {
+					return this.querySelectorAll('rux-tab');
+				}
+
 				/*
 				**
 				** Register associated panes
 				**
 				*/
-				_registerPane(e) {
-					let _pane = e.detail.pane;
-					// console.log('_pane',_pane.getAttribute('group'))
-					if(_pane.getAttribute('group') === this.tabGroup) {
-						// this._panes[_pane.id] = _pane;
-						// this._panes.push(_pane);
-						
-						let _tabs = this.querySelectorAll('rux-tab');
-						
-						console.log('__panes',__panes);
-						_tabs.forEach(function(tab) {
-							// console.log(tab);
-							// console.log(_pane);
-							// console.log('id',tab.getAttribute('id'));
-							// console.log('aria',_pane.getAttribute('aria-labeledby'));
-							if(tab.getAttribute('id') === _pane.getAttribute('aria-labeledby')) {
-								tab['pane'] = _pane;
-							}
-							
-// 							if(tab.getAttribute('id') === _pane.getAttribute('aria-labeled-by')) {
-
-// tab = Object.assign('pane', _pane);
-// 							console.log('tab',tab);
-// 							}		
-						});
-						
-						
-						// console.log('_pane',_pane);
-
-					}
-					// console.log('panes',this._panes);
+				_registerPanes(e) {
+					this._panes = e.detail.panes;
 				}
 
 
 				_setTab(e) {
-					// console.log(e.detail);
-					// console.log(e);
-
-					// console.log('panes',this._panes)
 
 					let _tab = e.detail.tab;
-					let _tabs = this.querySelectorAll('rux-tab');
 					
-					_tabs.forEach(function(tab) {
+					this._tabs.forEach(function(tab) {
 						tab.selected = false;
 					})
 					_tab.selected = true;
-					// console.log('_tab',_tab);
-					// console.log('_tab type',typeof(_tab));
-					// console.log('_tab.id',_tab.getAttribute('id'));
-
-					// console.log(_tabs);
-					// console.log(this._panes);
+					
 
 					this._panes
 						.forEach(function(pane) {
-							// console.log(pane);
-							// pane.addAttribute('hidden');
+							pane.hidden = true;
+
+							if(pane.getAttribute('aria-labeledby') === _tab.getAttribute('id')) {
+								pane.hidden = false;
+							}
 					});
+					
 
 					// this._panes[1].removeAttribute('hidden')
 					// console.log('pane',this._panes[1]);

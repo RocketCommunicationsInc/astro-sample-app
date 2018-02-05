@@ -70,7 +70,7 @@
         id="app-tabs" 
         slot="tabs" 
         tab-group="main-nav-tabs">
-        <rux-tab role="tab" id="tab-modem" aria selected>Modems</rux-tab>
+        <rux-tab role="tab" id="tab-modems" aria selected>Modems</rux-tab>
         <rux-tab role="tab" id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab role="tab" id="tab-telemetry">Telemetry</rux-tab>
       </rux-tabs>
@@ -122,31 +122,32 @@
       
     </rux-global-status-bar>
     
-    <rux-tab-pane
-      id="main-nav-tab-1" 
-      aria-labeledby="tab-mission"
-      group="main-nav-tabs"
-      hidden>
-      <h1>Modems</h1>
+    <rux-tab-panes>
+      <rux-tab-pane
+        id="main-nav-tab-1" 
+        aria-labeledby="tab-modems"
+        group="main-nav-tabs">
+        <h1>Modems</h1>
 
-    </rux-tab-pane>
+      </rux-tab-pane>
 
-    <rux-tab-pane 
-      id="main-nav-tab-2"
-      aria-labeledby="tab-pass-plans"
-      group="main-nav-tabs"
-      hidden>
-      <h1>Pass Plans</h1>
-  
-    </rux-tab-pane>
+      <rux-tab-pane 
+        id="main-nav-tab-2"
+        aria-labeledby="tab-pass-plans"
+        group="main-nav-tabs"
+        hidden>
+        <h1>Pass Plans</h1>
+    
+      </rux-tab-pane>
 
-    <rux-tab-pane 
-      id="main-nav-tab-3"
-      aria-labeledby="tab-telemetry"
-      group="main-nav-tabs"
-      hidden>
-      <h1>Telemetry</h1>
-    </rux-tab-view>
+      <rux-tab-pane 
+        id="main-nav-tab-3"
+        aria-labeledby="tab-telemetry"
+        group="main-nav-tabs"
+        hidden>
+        <h1>Telemetry</h1>
+      </rux-tab-view>
+  </rux-tab-panes>
 
 
  

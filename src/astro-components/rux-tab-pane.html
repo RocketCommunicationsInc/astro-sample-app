@@ -32,17 +32,11 @@
 
 				connectedCallback() {
 					super.connectedCallback();
-
-					window.dispatchEvent(new CustomEvent('register-pane', 
-						{ detail : 
-							{ pane: this }
-						}
-					));
 				}
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
-					window.removeEventListener('set-tab', this._updateTabListener);
+					
 				}
 
 
