@@ -66,9 +66,9 @@
 
       <!-- for tabbed navigation // -->
       <rux-tabs slot="tabs">
-        <rux-tab role="tab" id="tab-modems">Modems</rux-tab>
-        <rux-tab role="tab" id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab role="tab" id="tab-telemetry">Telemetry</rux-tab>
+        <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
+        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
       </rux-tabs>
 
 
@@ -118,35 +118,19 @@
       
     </rux-global-status-bar>
     
-    <rux-tab-panels role="tablist">
-      <rux-tab-panel
-        id="main-nav-tab-1" 
-        aria-labeledby="tab-modems"
-        role="tabpanell"
-        group="main-nav-tabs"
-        >
+    <rux-tab-panels>
+      <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
-
       </rux-tab-panel>
 
-      <rux-tab-panel 
-        id="main-nav-tab-2"
-        aria-labeledby="tab-pass-plans"
-        group="main-nav-tabs"
-        role="tabpanell"
-        hidden>
+      <rux-tab-panel aria-labeledby="tab-pass-plans">
         <h1>Pass Plans</h1>
-    
       </rux-tab-panel>
 
-      <rux-tab-panel 
-        id="main-nav-tab-3"
-        aria-labeledby="tab-telemetry"
-        group="main-nav-tabs"
-        role="tabpanell"
-        hidden>
+      <rux-tab-panel aria-labeledby="tab-telemetry">
         <h1>Telemetry</h1>
       </rux-tab-panel>
+      
   </rux-tab-panels>
 
 

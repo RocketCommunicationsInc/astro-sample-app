@@ -73,13 +73,9 @@
 				static get is() { return 'rux-tab'; }
 				static get properties() {
 					return {
-						type: String,
 						selected: {
 							type: Boolean,
 							reflectToAttribute: true
-						},
-						pane: {
-							type: Object
 						}
 					}
 				}
@@ -88,15 +84,15 @@
         	super();
 				}
 
-				ready() {
-					super.ready();
+				connectedCallback() {
+					super.connectedCallback();
+
+					// set the role to tab
+					this.setAttribute('role','tab');
 				}
 
-
-				reset() {
-					const tabs = this.querySelectorAll('rux-tab');
-					// console.log('tabs',tabs);
-					// console.log(this);
+				ready() {
+					super.ready();
 				}
 		}
 

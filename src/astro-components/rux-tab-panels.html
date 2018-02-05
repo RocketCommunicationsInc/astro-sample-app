@@ -28,8 +28,7 @@
 				static get is() { return 'rux-tab-panels'; }
 				static get properties() {
 					return {
-						type: String,
-						tabGroup: String
+						type: String
 					}
 				}
 
@@ -39,15 +38,18 @@
 
 
 				connectedCallback() {
-					console.log('panes connected');
-					let _panels = this.querySelectorAll('rux-tab-panel');
-					// console.log(_panes);
+					
+					// set the role to tab
+					this.setAttribute('role','tablist');
 
+					let _panels = this.querySelectorAll('rux-tab-panel');
+					
 					window.dispatchEvent(new CustomEvent('register-panels', 
 						{ detail : 
 							{ panels: _panels }
 						}
 					));
+					
 					super.connectedCallback();
 				}
 

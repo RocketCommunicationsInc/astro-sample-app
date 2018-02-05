@@ -21,7 +21,7 @@
 				static get is() { return 'rux-tab-panel'; }
 				static get properties() {
 					return {
-						type: String,
+						type: String
 					}
 				}
 
@@ -32,6 +32,9 @@
 
 				connectedCallback() {
 					super.connectedCallback();
+
+					// set the role to tab
+					this.setAttribute('role','tabpanel');
 				}
 
 				disconnectedCallback() {

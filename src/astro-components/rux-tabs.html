@@ -30,10 +30,9 @@
 				static get is() { return 'rux-tabs'; }
 				static get properties() {
 					return {
-						type: String,
-						tabGroup: String,
 						_tabs: {
-							type: Object
+							type: Object,
+							observer: '_registerTabs'
 						},
 						_panels: {
 							type: Object
@@ -55,7 +54,6 @@
 					this._tabs = this._registerTabs();
 					this._panels = null;
 
-					window.addEventListener('set-tab', this._updateTabListener);
 					window.addEventListener('register-panels', this._registerPanelsListener);
 
 					this.addEventListener('click', this._onClick);
@@ -63,7 +61,6 @@
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
-					window.removeEventListener('set-tab', this._updateTabListener);
 					window.removeEventListener('register-panels', this._registerPanelsListener);
 				}
 				
@@ -73,6 +70,9 @@
 				}
 
 
+
+
+
 				_onClick(e) {
 					console.log('on click',e.target);
 					if(e.target.getAttribute('role') === 'tab') {
@@ -80,46 +80,70 @@
 					}
 				}
 
+
+
+
+
 				_registerTabs() {
+					console.log('registerTabs')
 					return Array.from(this.querySelectorAll('rux-tab'));
 				}
 
-				/*
-				**
-				** Register associated panels
-				**
-				*/
-				_registerPanels(e) {
-					this._panels = e.detail.panels;
 
+
+
+
+				_registerPanels(e) {
+					this._panels = Array.from(e.detail.panels);
+
+					// if a tab isn’t selected in markup then default to first tab in the list
 					const selectedTab = this._tabs.find(tab => tab.selected || this._tabs[0]);
 
-					console.log('selectedTab',selectedTab);
 					this._setTab(selectedTab);
 				}
 
 
+
+
+
+				_reset() {
+					// hide everything
+					this._tabs.forEach(tab => tab.selected = false);
+					this._panels.forEach(panel => panel.hidden = true);
+				}
+
+
+
+
+				/*
+				**
+				** Allow for either id or aria-controls association
+				**
+				*/
+				_getAssociation() {
+					if(tab.getAttribute('id') && !tab.getAttribute('aria-controls')) {
+						return tab.getAttribute('id');
+					} else if (!tab.getAttribute('id') && tab.getAttribute('aria-controls')) {
+						return tab.getAttribute('aria-controls');
+					}
+				}
+
+
+
+
+
 				_setTab(selectedTab) {
-					// console.log('set tab',e);
-					// console.log('type',typeof(e));
-					// return;
 					
+					this._reset();
+
 					
-					this._tabs.forEach(function(tab) {
-						tab.selected = false;
-					})
+
+					// find the panel whose aria-labeldby attribute matches the tab’s id
+					const selectedPanel = this._panels.find(panel => panel.getAttribute('aria-labeledby') === selectedTab.getAttribute('id'));
+					
 					selectedTab.selected = true;
-					console.log('selectedTab',selectedTab);
+					selectedPanel.hidden = false;
 					
-
-					this._panels
-						.forEach(function(panel) {
-							panel.hidden = true;
-
-							if(panel.getAttribute('aria-labeledby') === selectedTab.getAttribute('id')) {
-								panel.hidden = false;
-							}
-					});					
 				}
 		}
 
