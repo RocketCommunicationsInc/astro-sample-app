@@ -32,15 +32,11 @@
 					return {
 						type: String,
 						tabGroup: String,
-						tabs: {
-							type: Object,
-							notify: true,
-							observer: '_tabChanged'
+						_tabs: {
+							type: Object
 						},
-						panels: {
-							type: Object,
-							notify: true,
-							observer: '_panelChanged'
+						_panels: {
+							type: Object
 						}
 					}
 				}
@@ -49,10 +45,7 @@
         	super();
 
 					this._updateTabListener = this._setTab.bind(this);
-					this._registerPanelsListener = this._registerPanels.bind(this);
-					
-
-					
+					this._registerPanelsListener = this._registerPanels.bind(this);					
 				}
 
 
@@ -64,23 +57,14 @@
 
 					window.addEventListener('set-tab', this._updateTabListener);
 					window.addEventListener('register-panels', this._registerPanelsListener);
+
+					this.addEventListener('click', this._onClick);
 				}
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
 					window.removeEventListener('set-tab', this._updateTabListener);
 					window.removeEventListener('register-panels', this._registerPanelsListener);
-				}
-
-
-
-
-				_tabChanged(e) {
-					console.log('tab changed',e);
-				}
-				
-				_panelChanged(e) {
-					console.log('panel changed',e);
 				}
 				
 
@@ -89,8 +73,15 @@
 				}
 
 
+				_onClick(e) {
+					console.log('on click',e.target);
+					if(e.target.getAttribute('role') === 'tab') {
+						this._setTab(e.target);
+					}
+				}
+
 				_registerTabs() {
-					return this.querySelectorAll('rux-tab');
+					return Array.from(this.querySelectorAll('rux-tab'));
 				}
 
 				/*
@@ -100,40 +91,35 @@
 				*/
 				_registerPanels(e) {
 					this._panels = e.detail.panels;
+
+					const selectedTab = this._tabs.find(tab => tab.selected || this._tabs[0]);
+
+					console.log('selectedTab',selectedTab);
+					this._setTab(selectedTab);
 				}
 
 
-				_setTab(e) {
-
-					let _tab = e.detail.tab;
+				_setTab(selectedTab) {
+					// console.log('set tab',e);
+					// console.log('type',typeof(e));
+					// return;
+					
 					
 					this._tabs.forEach(function(tab) {
 						tab.selected = false;
 					})
-					_tab.selected = true;
+					selectedTab.selected = true;
+					console.log('selectedTab',selectedTab);
 					
 
 					this._panels
 						.forEach(function(panel) {
 							panel.hidden = true;
 
-							if(panel.getAttribute('aria-labeledby') === _tab.getAttribute('id')) {
+							if(panel.getAttribute('aria-labeledby') === selectedTab.getAttribute('id')) {
 								panel.hidden = false;
 							}
-					});
-					
-
-					// this._panels[1].removeAttribute('hidden')
-					// console.log('panel',this._panels[1]);
-					// console.log('panel',this._panels[1]);
-					// console.log('panel type',typeof(this._panels[1]));
-					// console.log('panel.id',this._panels[1].getAttribute('id'))
-					// this._panels[1].setAttribute('id','batman');
-					// this._panels[1].removeAttribute('hidden');
-					// console.log('panel',this._panels[1]);
-					// this._panels[1].addAttribute('hidden');
-					// console.log('panels',this._panels[1])
-					
+					});					
 				}
 		}
 

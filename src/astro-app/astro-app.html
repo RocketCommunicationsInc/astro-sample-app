@@ -65,11 +65,8 @@
 
 
       <!-- for tabbed navigation // -->
-      <rux-tabs 
-        id="app-tabs" 
-        slot="tabs" 
-        tab-group="main-nav-tabs">
-        <rux-tab role="tab" id="tab-modems" aria selected>Modems</rux-tab>
+      <rux-tabs slot="tabs">
+        <rux-tab role="tab" id="tab-modems">Modems</rux-tab>
         <rux-tab role="tab" id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab role="tab" id="tab-telemetry">Telemetry</rux-tab>
       </rux-tabs>
@@ -126,7 +123,8 @@
         id="main-nav-tab-1" 
         aria-labeledby="tab-modems"
         role="tabpanell"
-        group="main-nav-tabs">
+        group="main-nav-tabs"
+        >
         <h1>Modems</h1>
 
       </rux-tab-panel>
