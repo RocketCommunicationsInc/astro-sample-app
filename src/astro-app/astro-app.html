@@ -30,16 +30,24 @@
       .rux-status-bar-group {
         display: flex; 
         flex-direction: row; 
+        justify-content: center;
+        align-items: center;
         list-style:none; 
+        padding: 0;
+        margin: 0;
       }
 
       .rux-tool-bar-group {
         display: flex;
 
-        list-style: none;
-        height: 100px;
+        justify-content: flex-end;
+        align-items: center;
 
-        outline: 1px solid green;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        /* outline: 1px solid green; */
       }
 
       .rux-navigation-tabs ul {
@@ -88,10 +96,12 @@
             status="emergency"
             label="Advanced Status"
             notifications="1"
+            sublabel="Error"
             icon="advanced-status:thermal"></rux-status></li>
           <li><rux-status
             status="standby"
             label="Standby"
+            sublabel="Standby"
             notifications="100000"
             icon="advanced-status:propulsion-power"></rux-status></li>
         </ul>
