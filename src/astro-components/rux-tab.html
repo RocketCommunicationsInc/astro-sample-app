@@ -9,21 +9,22 @@
 
 					flex-grow: 1;
 					flex-shrink: 1;
+					
 
 
 					position: relative;
 					height: 100%;
 					max-width: 12rem;
 					display: block;
-					padding: 1rem 1.5rem;
-					margin: 8px 0 0 0;
+					padding: 1.5rem 0.5rem;
+					margin: 0;
 					font-size: 1.75rem;
 					font-weight: 100;
 					text-decoration: none;
 					text-align: center;
 					color: #5CB3FF;
 
-					background: #23384e;
+					/* background: #23384e; */
 
 					border-left: 1px solid rgba(0, 0, 0, 0.5);
 					border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -48,9 +49,9 @@
 					display: block;
 					height: 8px;
 					width: 100%;
-					top: -8px;
+					top: 0;
 					left: 0;
-					background-color:transparent;
+					background-color transparent;
 					
 					/* border-top: 1px solid #000; */
 					/* opacity: 0; */
@@ -60,12 +61,23 @@
 				}
 
 				:host([selected]) {
-					background: var(--status-standby);
+					/* background: var(--status-standby); */
+					color: #fff;
 				}
 
-				:host[selected]::before {
-					background: red;
+				:host([selected])::before {
+					/* background: var(--status-standby); */
+					background-color: var(--selected-color);
 				}
+
+				:host(:hover) {
+					color: #fff;
+				}
+
+				:host(:hover)::before {
+					background-color: #fff;
+				}
+
 			</style>
 
 			<slot></slot>

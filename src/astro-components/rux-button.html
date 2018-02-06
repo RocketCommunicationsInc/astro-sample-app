@@ -104,12 +104,34 @@
 
 				
 				.rux-button--icon {
+					border: none;
+					background: none;
+					padding: 0;
+					display: flex;
+					flex-direction: column;
+					align-content: center;
+					outline: 1px solid red;
+					font-size: 0.75rem;
+				}
+
+				.rux-button--icon .rux-icon--button {
+					margin: 0;
+					height: var(--icon-size--default);
+					width: var(--icon-size--default);
+					outline: 1px solid green;
+					margin-bottom: 0.5rem;
 					
 				}
 
 				.rux-button .rux-icon--button {
 					color: #fff;
+					
 					margin-right: calc(35px / 4);
+				}
+
+				.rux-icon--button[hidden] {
+					/* outline: 1px solid red; */
+					display: none !important;
 				}
 
 				
@@ -120,19 +142,17 @@
 
 			</style>
 
-			<template is="dom-if" if="[[!iconButton]]">
-				<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
-					<slot></slot>
-				</button>
-			</template>
+			
 
 
-			<template is="dom-if" if="[[iconButton]]">
-				<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
-					<rux-icon icon="[[icon]]" class="icon rux-icon--button"></rux-icon>
-					<slot></slot>
-				</button>
-			</template>
+			
+			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
+				<rux-icon icon="[[icon]]" class="icon rux-icon--button" hidden="[[hidden]]"></rux-icon>
+				<slot></slot>
+			</button>
+			
+
+			
 
 
 			
@@ -150,7 +170,7 @@
 						icon: String,
 						default: Boolean,
 						disabled: Boolean,
-						iconButton: Boolean
+
 					}
 				}
 
@@ -161,13 +181,12 @@
 				ready() {
 					super.ready();
 
-					// console.log('type',this.type);
-					
-					this.iconButton = this.icon ? true : false;
+					// hide the icon if there is no icon
+					this.hidden = !this.icon;
 
-					this.addEventListener('click', (e)=> {
-						
-					})
+					// set type to standard if there is no type
+					this.type = this.type ? this.type : 'standard';
+					
 				}
 		}
 

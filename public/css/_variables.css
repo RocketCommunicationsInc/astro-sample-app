@@ -30,6 +30,8 @@
   --icon-color: var(--default-icon-color);
   --icon-color--button: #fff;
 
+  --selected-color: #5cb3ff;
+
 
   /* Status Colors */
   --status-emergency: #f72501;

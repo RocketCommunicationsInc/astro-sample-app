@@ -87,7 +87,7 @@
       <ul class="rux-status-bar-group"
           slot="status-bar">
           <li><rux-status
-            status="ok"
+            status="emergency"
             label="Netcom"
             sublabel="Ok"
             notifications="10"
@@ -110,19 +110,24 @@
 
       <!-- toolbar items //-->
       <ul class="rux-tool-bar-group" slot="tool-bar">
-        <!-- <li>
+        <li>
           <rux-button
             type="icon"
             icon="rux-icons:settings">Settings</rux-button>
         </li>
         <li>
+          <rux-button
+            type="icon"
+            icon="rux-icons:Notifications">Notifications</rux-button>
+        </li>
+        <li>
             <rux-user
               user="[[]]"></rux-user>
-        </li> -->
+        </li>
         <li>
           <rux-button
 					  type="large"
-					  icon="default:caution">Master Off</rux-button>
+					  icon="advanced-status:netcom">Master Off</rux-button>
           </li>
       </ul>
       
@@ -131,6 +136,19 @@
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
+        <ul style="list-style: none; padding: 0; margin: 0">
+            <li>
+              <rux-button>Settings</rux-button>
+            </li>
+            <li>
+              <rux-button
+                type="icon"
+                icon="default:notifications">Notifications</rux-button>
+            </li>
+            <li>
+              <rux-button icon="advanced-status:netcom">Master Off</rux-button>
+              </li>
+          </ul>
       </rux-tab-panel>
 
       <rux-tab-panel aria-labeledby="tab-pass-plans">
