@@ -4,18 +4,23 @@
 	<template>
 		<style>
 			:host {
-					display: inline-block;
+					/* display: inline-block; */
 					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
+
+					flex-grow: 1;
+					flex-shrink: 1;
 
 
 					position: relative;
 					height: 100%;
+					max-width: 12rem;
 					display: block;
-					padding: 1rem 2.5rem;
+					padding: 1rem 1.5rem;
 					margin: 8px 0 0 0;
-					font-size: 1.875rem;
+					font-size: 1.75rem;
 					font-weight: 100;
 					text-decoration: none;
+					text-align: center;
 					color: #5CB3FF;
 
 					background: #23384e;
@@ -30,6 +35,11 @@
 					user-select: none;
 
 					cursor: pointer;
+
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					
 				}
 
 				:host::before {
@@ -50,7 +60,7 @@
 				}
 
 				:host([selected]) {
-					background: red;
+					background: var(--status-standby);
 				}
 
 				:host[selected]::before {

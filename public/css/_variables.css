@@ -11,11 +11,12 @@
   
   
   /* Typography */
-	--font-family: 'Open Sans', sans-serif;
+  --font-family: 'Open Sans', sans-serif;
 	--font-size: 1em;
   --font-color: var(font-color);
 
   --font-family-condensed: 'Open Sans Condensed', sans-serif;
+  --font-family-light: 'Open Sans Light', sans-serif;
   
 
   
