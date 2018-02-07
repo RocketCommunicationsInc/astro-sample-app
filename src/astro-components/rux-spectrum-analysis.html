@@ -1,0 +1,145 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<script src="//d3js.org/d3.v3.js"></script>
+<dom-module id="rux-spectrum-analysis">
+  <template>
+    <style>
+      .bar {
+        fill: orange;
+      }
+
+      .bar:hover {
+        fill: steelblue;
+      }
+
+      .axis text {
+        font: 10px sans-serif;
+      }
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .x.axis path {
+        display: none;
+      }
+      </style>
+      <script>
+        class RuxSpectrumAnalysis extends Polymer.Element {
+          static get is() { return 'rux-spectrum-analysis'; }
+
+        constructor() {
+          super();
+          console.log('RuxSpectrumAnalysis in da house!');
+          var ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+
+          var margin = {top: 20, right: 30, bottom: 30, left: 40},
+              width = 960 - margin.left - margin.right, 
+            height = 500 - margin.top - margin.bottom;
+
+          var xScale = d3.scale.ordinal()
+            .rangeRoundBands([0, width], .1);
+
+          var yScale = d3.scale.linear()
+            .range([height, 0]);
+
+          var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient("bottom");
+
+          var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient("left")
+            .ticks(10, "%");
+            
+          var svg = d3.select("rux-spectrum-analysis")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .attr("class", "chart");
+
+          var chart = svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
+          yScale.domain([-.3,0]);
+
+          chart.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+          chart.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+        }
+
+        disconnectedCallback() {
+          super.disconnectedCallback();
+        }
+
+        ready() {
+          super.ready();
+        }
+
+
+
+
+          ws.addEventListener('message', function(event) {
+            result = _dataToJsonObjArray(event.data);
+            _update(result);
+          });
+
+          function _update(result) {
+            _clear();
+            _draw(result);
+          }
+
+          function _clear() {
+            chart.selectAll('.bar').remove();
+          }
+
+          function _draw(result) {
+            console.log(result);
+            for ( c = 0; c < result.length; c++ ) {
+              var d = result[c];
+              chart.selectAll(".bar")
+                .data(result)
+                .enter()
+                .append("rect")
+              .attr("class", "bar")
+              .attr("x", function(d) { return xScale(d.frequency); })
+              .attr("y", function(d) { return yScale(d.power); })
+              .attr("height", function(d) { return height - yScale(d.power); })
+              .attr("width", xScale.rangeBand());
+            }
+          }
+
+          function _dataToJsonObjArray(data) {
+            var dataArray = data.split('|');
+            var scrubbedArray = [];
+            dataArray.shift(); // data comes with an extra pipe in the front
+            for ( c = 0; c < dataArray.length; c++ ) {
+              var datum = dataArray[c];
+              var datumArray = datum.split(':');
+              var d = {};
+              d.frequency = datumArray[0];
+              d.power = datumArray[1];
+              d.value = parseInt(datumArray[0]);
+              scrubbedArray.push(d);
+            }
+            return scrubbedArray;
+          }       
+        }
+   
+        customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);
+
+    </script>
+  </template>
+</dom-module>
