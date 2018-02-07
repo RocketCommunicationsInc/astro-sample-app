@@ -18,7 +18,10 @@
   --font-family-condensed: 'Open Sans Condensed', sans-serif;
   --font-family-light: 'Open Sans Light', sans-serif;
   
+  --standard-transition-speed: 0.167s ease-in-out;
+  /* --standard-transisiton-effect: ; */
 
+  --slow-transition-speed: 0.367s ease-in-out;
   
   --icon-size--default: 44px;
   --icon-size--large: 68px;

@@ -46,7 +46,7 @@
       				-ms-user-select: none;
 									user-select: none;
 
-					transition: background 0.167s;
+					transition: background var(--standard-transition-speed);
 				}
 
 				
@@ -103,25 +103,37 @@
 					padding-bottom: 0.1rem;
 				}
 
-				
-				.rux-button--icon {
-					border: none;
-					background: none;
-					padding: 0;
-					display: flex;
-					flex-direction: column;
-					align-content: center;
+				:host {
+					border: 1px solid green;
 					
-					font-size: 0.75rem;
-
-					opacity: 0.2;
 				}
 
+				.rux-button--icon {
+					
+					padding: 0;
+					min-width: 10em;
+					
+					flex-direction: column;
+					/* align-items: center; */
+					/* align-content: center; */
+				
+					
+					font-size: 0.75rem;
+					
+					/* opacity: 0.2; */
+
+
+					transition: var(--standard-transition-speed);
+				}
+
+				
+
 				.rux-button--icon .rux-icon--button {
-					margin: 0;
+					/* margin: 0; */
 					height: var(--icon-size--default);
 					width: var(--icon-size--default);
-					margin-bottom: 0.5rem;
+					/* margin-bottom: 0.5rem; */
+					margin: 0 !important;
 					fill: #fff;
 				}
 
