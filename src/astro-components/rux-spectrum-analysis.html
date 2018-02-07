@@ -1,5 +1,7 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <script src="//d3js.org/d3.v3.js"></script>
+
+
 <dom-module id="rux-spectrum-analysis">
   <template>
     <style>
@@ -25,19 +27,43 @@
       .x.axis path {
         display: none;
       }
-      </style>
+    </style>
+  </template>
+
       <script>
         class RuxSpectrumAnalysis extends Polymer.Element {
           static get is() { return 'rux-spectrum-analysis'; }
+          static get properties() {
+            return {
+              chartData: {
+                type: Object,
+                observer: '_dataChanged'
+              },
+              height: {
+                type: Number
+              },
+              width: {
+                type: Number
+              },
+              scale: {
+                type: Array
+              }
+            }
+          }
 
         constructor() {
           super();
           console.log('RuxSpectrumAnalysis in da house!');
+          console.log(this);
+
+          
+          
+
           var ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
 
           var margin = {top: 20, right: 30, bottom: 30, left: 40},
               width = 960 - margin.left - margin.right, 
-            height = 500 - margin.top - margin.bottom;
+              height = 500 - margin.top - margin.bottom;
 
           var xScale = d3.scale.ordinal()
             .rangeRoundBands([0, width], .1);
@@ -76,8 +102,28 @@
             .call(yAxis);
         }
 
+
+
         connectedCallback() {
           super.connectedCallback();
+
+          console.log(this.height);
+          console.log(this.width);
+          console.log(this.chartData);
+          console.log(this.scale)
+
+          /* 
+          probably some logic here to see if there’s a static data-set/object or a service
+          data vs data-source. Raises an interesting question though, maybe there should be
+          a more generic rux-chart-data component that spits out an object one-way bound to
+          the charting component. Remove the logic from the display? Actually thinking out
+          loud that probably makes a lot of sense. Then data can come from a web socket, a
+          polling RESTful interface or something more exotic like GraphQL
+          */
+
+          
+
+          
         }
 
         disconnectedCallback() {
@@ -90,22 +136,22 @@
 
 
 
+          // probably need to add this in the connectedCallback method or read
+          // ws.addEventListener('message', function(event) {
+          //   result = _dataToJsonObjArray(event.data);
+          //   _update(result);
+          // });
 
-          ws.addEventListener('message', function(event) {
-            result = _dataToJsonObjArray(event.data);
-            _update(result);
-          });
-
-          function _update(result) {
+          _update(result) {
             _clear();
             _draw(result);
           }
 
-          function _clear() {
+          _clear() {
             chart.selectAll('.bar').remove();
           }
 
-          function _draw(result) {
+          _draw(result) {
             console.log(result);
             for ( c = 0; c < result.length; c++ ) {
               var d = result[c];
@@ -121,7 +167,7 @@
             }
           }
 
-          function _dataToJsonObjArray(data) {
+          _dataToJsonObjArray(data) {
             var dataArray = data.split('|');
             var scrubbedArray = [];
             dataArray.shift(); // data comes with an extra pipe in the front
@@ -141,5 +187,5 @@
         customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);
 
     </script>
-  </template>
+  
 </dom-module>
