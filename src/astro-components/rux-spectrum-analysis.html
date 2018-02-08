@@ -7,8 +7,8 @@
     <style>
       :host {
         border: 1px solid red;
-        height: 200px;
-        width: 100vw;
+        height: 100vh;
+        width: 200vw;
         display: block;
 
         contain: content;
@@ -18,6 +18,12 @@
         outline: 1px solid green;
         height: 100px;
         width: 100%;
+      }
+
+      .chart {
+        position: absolute;
+        top: 0;
+        left: 0;
       }
 
       .bar {
@@ -48,10 +54,8 @@
       }
     </style>
 
-    <div id="chart-container">Chart</div>
-    <svg id="chart" class="chart" height$="[[height]]" width$="[[width]]">
-
-    </svg>
+    
+    <!-- <svg id="chart" class="chart" height$="[[height]]" width$="[[width]]"></svg> -->
     
 
   </template>
@@ -63,7 +67,7 @@
         return {
           chartData: {
             type: Object,
-            observer: '_dataChanged'
+            observer: '_update'
           },
           height: {
             type: Number
@@ -79,8 +83,6 @@
 
     constructor() {
       super();
-      console.log('RuxSpectrumAnalysis in da house!');
-      console.log(this);
     }
 
 
@@ -88,20 +90,16 @@
     connectedCallback() {
       super.connectedCallback();
 
-      this._chart = this._registerChart();
-      
-
       let margin = {top: 20, right: 30, bottom: 30, left: 40}
-      let width = 960 - margin.left - margin.right
-      let height = 500 - margin.top - margin.bottom;
+      let width = this.width - margin.left - margin.right
+      let height = this.height - margin.top - margin.bottom;
 
       var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
-      this.xscale = xScale;
+      
 
       var yScale = d3.scale.linear()
         .range([height, 0]);
-      this.yscale = yScale;
 
       var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -112,84 +110,31 @@
         .orient("left")
         .ticks(10, "%");
         
+        xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
+        yScale.domain([-.3,0]);
       
-        var svg = d3.select(this.root.querySelector('svg'))
-                // .append("svg")
-                // .attr("width", width + margin.left + margin.right)
-                // .attr("height", height + margin.top + margin.bottom)
-                // .attr("class", "chart");
+      
+      const svg = d3.select(this.root)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("class", "chart");
         
-        // let svg = this.root.querySelector('svg');
-        console.log('svg',svg);
+      const chart = svg.append("g")
+        .attr('class','graph')
+        .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        var chart = svg.append("g")
-                .attr('class','graph')
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        chart.append("g")
+          .attr("class", "x axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
 
-          xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
-          yScale.domain([-.3,0]);
+        chart.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
 
-          chart.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
-
-          chart.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
-
-
-        console.log(this.root.querySelector('.graph'));
-      
-
-      // const abscissa = document.createElement('g')
-      //       abscissa.setAttribute('transform',`translate(0,${height}`);
-      //       abscissa.classList.add('x,axis');
-      //       chart.call(xAxis);
-
-      // const ordinate = document.createElement('g');
-      //       ordinate.classList.add('y,axis');
-      //       chart.call(yAxis);
-      //     // ordinate.call(yAxis);
-
-
-      
-            // chart.appendChild(abscissa);
-            // chart.appendChild(ordinate);
-      
-
-      // const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      //       svg.setAttribute('width', width + margin.left + margin.right);
-      //       svg.setAttribute('height',height + margin.top + margin.bottom);
-      //       svg.classList.add('chart');
-      
-      // this._chart.appendChild(svg);
-
-      // const chart = svg.append('g')
-      //       chart.setAttribute('transform',`translate(${margin.left},${margin.top})`);
-
-      // console.log('svg',svg);
-
-     
-
-      
-
-            // chart.append('g')
-            //   .attr('class','x axis')
-            //   .attr('transform',`translate(0,${height}`)
-            //   .call(xAxis);
-            // chart.append('g')
-            //   .attt('class','y axis')
-            //   .call(yAxis);
-      
-      
-      
-      // console.log(this._chart);
-      
-
-      
-      
-      
+        // reference to the graph
+        this.graph = d3.select(this.root.querySelector('.graph'));
     }
 
     disconnectedCallback() {
@@ -198,78 +143,47 @@
 
     ready() {
       super.ready();
-      
-      // this._draw();
+
     }
 
 
-    _registerChart() {
-      console.log('register chart');
-      //let test = document;
-      return this.root.querySelector('#chart-container');
-    }
-
-    _dataChanged() {
-      // console.log('data changed');
-      //// console.log(this.chartData);
-      // this._clear();
-      //console.log('chart',this.querySelectorAll('div'));
-
+    _update() {
       this._clear();
       this._draw();
     }
  
 
-    _update() {
-      //console.log('update',this._chart);
-      
+    _clear() {
+      this.graph.selectAll('.bar').remove();
     }
 
-    _clear() {
-      let graph = d3.select(this.root.querySelector('.graph'));
-          graph.selectAll('.bar').remove();
-      // this._chart.selectAll('.bar').remove();
-      // console.log(this._chart);
-    }
+
+
 
     _draw() {
-      
-      // this._chart = this._registerChart();
-      // console.log('this chart data == ',this._chart);
-      
-      let graph = d3.select(this.root.querySelector('.graph'));
-      let result = this.chartData;
-      // console.log('chart',bob);
 
-      this.chartData.forEach(function(data) {
-        console.log(data);
-        graph.selectAll('.bar')
-          .data(result)
+      // Using a forEach loop to make use of lexical this, but
+      // currently performance of forEach is substantially slower
+      // than a standard for().
+      this.chartData.forEach((data) => {
+        this.graph.selectAll('.bar')
+          .data(this.chartData)
           .enter()
           .append('rect')
             .attr('class','bar')
             .attr('x',      (data) => { return data.frequency; })
             .attr('y',      (data) => { return data.power; })
-            .attr('height', (data) => { return 100 - data.power; })
+            .attr('height', (data) => { return this.height - data.power; })
             .attr('width', 10);
-      })
 
-      // return;
-      // for ( let c = 0; c < result.length; c++ ) {
-      //   let d = result[c];
-      //   bob.selectAllChildren(".bar")
-      //     .data(result)
-      //     .enter()
-      //     .append("rect")
-      //   .attr("class", "bar")
-      //   .attr("x", function(d) { return xScale(d.frequency); })
-      //   .attr("y", function(d) { return yScale(d.power); })
-      //   .attr("height", function(d) { return height - yScale(d.power); })
-      //   .attr("width", xScale.rangeBand());
-      // }
+
+          /*
+          .attr("x", function(d) { return xScale(d.frequency); })
+              .attr("y", function(d) { return yScale(d.power); })
+              .attr("height", function(d) { return height - yScale(d.power); })
+            */
+      });
     }
-
-       
   }
 
     customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);

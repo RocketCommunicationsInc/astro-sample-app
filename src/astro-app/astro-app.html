@@ -170,7 +170,7 @@
   <rux-spectrum-analysis
           chart-data="[[chartData]]"
           height="500"
-          width="960"
+          width="1960"
           scale="[[scale]]">
         </rux-spectrum-analysis>
       
@@ -228,6 +228,7 @@
       // This should probably exist in a separate component outside of
         // astro-app and outside of rux-spectrum-analysis
       _dataToJsonObjArray(data) {
+        
         let dataArray = data.split('|');
         let scrubbedArray = [];
         dataArray.shift(); // data comes with an extra pipe in the front
