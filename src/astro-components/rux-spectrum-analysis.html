@@ -5,6 +5,21 @@
 <dom-module id="rux-spectrum-analysis">
   <template>
     <style>
+      :host {
+        border: 1px solid red;
+        height: 200px;
+        width: 100vw;
+        display: block;
+
+        contain: content;
+      }
+
+      #chart-container {
+        outline: 1px solid green;
+        height: 100px;
+        width: 100%;
+      }
+
       .bar {
         fill: orange;
       }
@@ -33,7 +48,9 @@
       }
     </style>
 
-    <div class="test">Graph goes here</div>
+    <div id="chart-container">Chart</div>
+    <p class="text">[[chartData]]</p>
+    
 
   </template>
 
@@ -62,11 +79,6 @@
       super();
       console.log('RuxSpectrumAnalysis in da house!');
       console.log(this);
-
-      
-      
-
-      
     }
 
 
@@ -74,72 +86,100 @@
     connectedCallback() {
       super.connectedCallback();
 
-      console.log(this.height);
-      console.log(this.width);
-      console.log(this.chartData);
-      console.log(this.scale)
+      this._chart = this._registerChart();
+      console.log('root',this.root)
+      console.log('chart',this._chart);
 
-      const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+      let margin = {top: 20, right: 30, bottom: 30, left: 40}
+      let width = 960 - margin.left - margin.right
+      let height = 500 - margin.top - margin.bottom;
 
-      const margin = {top: 20, right: 30, bottom: 30, left: 40},
-          width = 960 - margin.left - margin.right, 
-          height = 500 - margin.top - margin.bottom;
-
-      const xScale = d3.scale.ordinal()
+      var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
 
-
-      
-      const yScale = d3.scale.linear()
+      var yScale = d3.scale.linear()
         .range([height, 0]);
 
-      const xAxis = d3.svg.axis()
+      var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom");
 
-      const yAxis = d3.svg.axis()
+      var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
         .ticks(10, "%");
         
-      const svg = d3.selectAll("div")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .attr("class", "chart");
-
-
       
-      
-      console.log('svg',svg);
+        var svg = d3.select("div")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .attr("class", "chart");
+        console.log('svg',svg)
+          var chart = svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      let chart = svg.append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
+          yScale.domain([-.3,0]);
 
-      xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
-      yScale.domain([-.3,0]);
+          chart.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
 
-      chart.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-
-      chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-
-      /* 
-      probably some logic here to see if there’s a static data-set/object or a service
-      data vs data-source. Raises an interesting question though, maybe there should be
-      a more generic rux-chart-data component that spits out an object one-way bound to
-      the charting component. Remove the logic from the display? Actually thinking out
-      loud that probably makes a lot of sense. Then data can come from a web socket, a
-      polling RESTful interface or something more exotic like GraphQL
-      */
+          chart.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
 
       
 
+      // const abscissa = document.createElement('g')
+      //       abscissa.setAttribute('transform',`translate(0,${height}`);
+      //       abscissa.classList.add('x,axis');
+      //       chart.call(xAxis);
+
+      // const ordinate = document.createElement('g');
+      //       ordinate.classList.add('y,axis');
+      //       chart.call(yAxis);
+      //     // ordinate.call(yAxis);
+
+
+      
+            // chart.appendChild(abscissa);
+            // chart.appendChild(ordinate);
+      
+
+      // const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      //       svg.setAttribute('width', width + margin.left + margin.right);
+      //       svg.setAttribute('height',height + margin.top + margin.bottom);
+      //       svg.classList.add('chart');
+      
+      // this._chart.appendChild(svg);
+
+      // const chart = svg.append('g')
+      //       chart.setAttribute('transform',`translate(${margin.left},${margin.top})`);
+
+      // console.log('svg',svg);
+
+     
+
+      
+
+            // chart.append('g')
+            //   .attr('class','x axis')
+            //   .attr('transform',`translate(0,${height}`)
+            //   .call(xAxis);
+            // chart.append('g')
+            //   .attt('class','y axis')
+            //   .call(yAxis);
+      
+      
+      
+      // console.log(this._chart);
+      
+
+      
+      
       
     }
 
@@ -149,57 +189,59 @@
 
     ready() {
       super.ready();
+      
+      // this._draw();
     }
 
 
-
-      // probably need to add this in the connectedCallback method or read
-      // ws.addEventListener('message', function(event) {
-      //   result = _dataToJsonObjArray(event.data);
-      //   _update(result);
-      // });
-
-      _update(result) {
-        _clear();
-        _draw(result);
-      }
-
-      _clear() {
-        chart.selectAll('.bar').remove();
-      }
-
-      _draw(result) {
-        console.log(result);
-        for ( c = 0; c < result.length; c++ ) {
-          var d = result[c];
-          chart.selectAll(".bar")
-            .data(result)
-            .enter()
-            .append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return xScale(d.frequency); })
-          .attr("y", function(d) { return yScale(d.power); })
-          .attr("height", function(d) { return height - yScale(d.power); })
-          .attr("width", xScale.rangeBand());
-        }
-      }
-
-      _dataToJsonObjArray(data) {
-        var dataArray = data.split('|');
-        var scrubbedArray = [];
-        dataArray.shift(); // data comes with an extra pipe in the front
-        for ( c = 0; c < dataArray.length; c++ ) {
-          var datum = dataArray[c];
-          var datumArray = datum.split(':');
-          var d = {};
-          d.frequency = datumArray[0];
-          d.power = datumArray[1];
-          d.value = parseInt(datumArray[0]);
-          scrubbedArray.push(d);
-        }
-        return scrubbedArray;
-      }       
+    _registerChart() {
+      console.log('register chart');
+      //let test = document;
+      return this.root.querySelector('#chart-container');
     }
+
+    _dataChanged() {
+      // console.log('data changed');
+      //// console.log(this.chartData);
+      // this._clear();
+      //console.log('chart',this.querySelectorAll('div'));
+
+      this._clear();
+      // this._draw();
+    }
+ 
+
+    _update() {
+      //console.log('update',this._chart);
+      
+    }
+
+    _clear() {
+      // this._chart.selectAll('.bar').remove();
+      // console.log(this._chart);
+    }
+
+    _draw() {
+      
+      // this._chart = this._registerChart();
+      console.log('this chart data == ',this._chart);
+      let result = this.chartData;
+      for ( let c = 0; c < result.length; c++ ) {
+        let d = result[c];
+        this._chart.selectAll(".bar")
+          .data(result)
+          .enter()
+          .append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return xScale(d.frequency); })
+        .attr("y", function(d) { return yScale(d.power); })
+        .attr("height", function(d) { return height - yScale(d.power); })
+        .attr("width", xScale.rangeBand());
+      }
+    }
+
+       
+  }
 
     customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);
 

@@ -121,8 +121,7 @@
             icon="default:notifications">Notifications</rux-button>
         </li>
         <li>
-            <rux-user
-              user="[[]]"></rux-user>
+            <rux-user></rux-user>
         </li>
         <li>
           <rux-button
@@ -139,7 +138,7 @@
         
         
           <rux-button>Cancel</rux-button>
-          <rux-button default>Ok</rux-button>
+          <rux-button on-click="graph" default>Ok</rux-button>
         
             
         <rux-button
@@ -169,7 +168,7 @@
 
   
   <rux-spectrum-analysis
-          chart-data="[[object]]"
+          chart-data="[[chartData]]"
           height="500"
           width="960"
           scale="[[scale]]">
@@ -207,32 +206,44 @@
       constructor() {
         super();
 
-        // console.log(customElements.get('parent-element'));
-        
-      }
+        // This should probably exist in a separate component outside of
+        // astro-app and outside of rux-spectrum-analysis
+        const _astro = this;
+        const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+            ws.addEventListener('message', (event) => {
+
+              // assign the data to a property on the rux-spectrum-analysis component
+              _astro.chartData = _astro._dataToJsonObjArray(event.data);
+            });
+        }
+
+
 
       ready() {
         super.ready();
-        
-        // this.addEventListener('click', function(e) {
-        //   console.log('test');
-        // })
-
-        // this.addEventListener('fromIcon', function(e) {
-        //   console.log('event from icon');
-        // })
       }
+
+
+
+      // This should probably exist in a separate component outside of
+        // astro-app and outside of rux-spectrum-analysis
+      _dataToJsonObjArray(data) {
+        let dataArray = data.split('|');
+        let scrubbedArray = [];
+        dataArray.shift(); // data comes with an extra pipe in the front
+        for (let c = 0; c < dataArray.length; c++ ) {
+          let datum = dataArray[c];
+          let datumArray = datum.split(':');
+          let d = {};
+          d.frequency = datumArray[0];
+          d.power = datumArray[1];
+          d.value = parseInt(datumArray[0]);
+          scrubbedArray.push(d);
+        }
+        return scrubbedArray;
+      }    
 
       
-
-
-      clicked() {
-        console.log('Dispatched Event from Web Component in asto-app.html',payload);
-      }
-
-      _polymerClickEvent() {
-        console.log('Click Event is handled in the astro-app component')
-      }
     }
 
     window.customElements.define(AstroApp.is, AstroApp);
