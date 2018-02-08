@@ -85,31 +85,32 @@
           width = 960 - margin.left - margin.right, 
           height = 500 - margin.top - margin.bottom;
 
-      let xScale = d3.scale.ordinal()
+      const xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
 
 
       
-      let yScale = d3.scale.linear()
+      const yScale = d3.scale.linear()
         .range([height, 0]);
 
-      let xAxis = d3.svg.axis()
+      const xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom");
 
-      let yAxis = d3.svg.axis()
+      const yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
         .ticks(10, "%");
         
-      let svg = d3.selectAll("test")
-      console.log(svg);
+      const svg = d3.selectAll("div")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("class", "chart");
 
 
-            // .append("svg")
-            // .attr("width", width + margin.left + margin.right)
-            // .attr("height", height + margin.top + margin.bottom)
-            // .attr("class", "chart");
+      
+      
       console.log('svg',svg);
 
       let chart = svg.append("g")
