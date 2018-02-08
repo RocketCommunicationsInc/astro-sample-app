@@ -69,14 +69,14 @@
             type: Object,
             observer: '_update'
           },
+          chartLegend: {
+            type: Object
+          },
           height: {
             type: Number
           },
           width: {
             type: Number
-          },
-          scale: {
-            type: Array
           }
         }
       }
@@ -93,6 +93,7 @@
       let margin = {top: 20, right: 30, bottom: 30, left: 40}
       let width = this.width - margin.left - margin.right
       let height = this.height - margin.top - margin.bottom;
+      
 
       var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -110,8 +111,10 @@
         .orient("left")
         .ticks(10, "%");
         
-        xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300]);
-        yScale.domain([-.3,0]);
+        xScale.domain(this.chartLegend.xscale);
+        yScale.domain(this.chartLegend.yscale);
+
+        
       
       
       const svg = d3.select(this.root)
@@ -177,11 +180,16 @@
             .attr('width', 10);
 
 
+          // this is the original x/y/height data with the xScale/yScale applied
+          // couldn’t get thsoe functions to return.
+          //
+          // Side note, not knowing anything about d3, but rather than replacing
+          // the bars is it possible to transition them?
           /*
           .attr("x", function(d) { return xScale(d.frequency); })
-              .attr("y", function(d) { return yScale(d.power); })
-              .attr("height", function(d) { return height - yScale(d.power); })
-            */
+          .attr("y", function(d) { return yScale(d.power); })
+          .attr("height", function(d) { return height - yScale(d.power); })
+          */
       });
     }
   }
