@@ -8,30 +8,36 @@
 					contain: content; /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
 				}
 
-				
-
 				.rux-button {
-					display: flex;
+					display: inline-block;
 					position: relative;
-
-					align-items: center;
-					justify-content: center;
 					
-					width: auto;
-					margin: 0;
-					padding: 0;
-  				
-					background: none;
-					border: none;
-					
-					color: #fff;
+					color: var(--button-color);
 					font-family: var(--font-family);
 					font-size: 0.875rem;
+					text-align: center;
 					vertical-align: middle;
-  				text-align: center;
+
+					min-width: 4rem;
+					/* max-width: 15rem; */
+					height: 2.25rem; 
+					margin: 0;
+					padding: 0 0.8rem;
+	
+					background-color: var(--button-background);
+
+					border-top: var(--button-border-top);
+					border-left: var(--button-border-left);
+					border-bottom: var(--button-border-bottom);
+					border-right: var(--button-border-right);
+					
+					text-overflow: ellipsis;
+					overflow: hidden;
   				white-space: nowrap;
-					line-height: 1.5;
 				
+					transition: background var(--standard-transition-speed);
+
+
 					cursor: pointer;
 					outline: none;
 
@@ -39,33 +45,59 @@
      				 -moz-user-select: none;
       				-ms-user-select: none;
 									user-select: none;
-
-					transition: background var(--standard-transition-speed);
-
-					
 				}
+
+				
 				
 				/*
 				**
-				** Styles that apply to all buttons except icon buttons
+				**
 				**
 				*/
-				.rux-button:not(button.rux-button--icon) {
-					outline: 1px solid red;
-					min-width: 5rem;
+				.rux-button--icon {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
 
-					margin: 0;
-					padding: 0.375rem 0.8rem;
+					border: none;
+					background: none;
 
-					background-color: var(--button-background);
+					height: auto;					
+					padding: 0;
 
-					border-top: var(--button-border-top);
-					border-left: var(--button-border-left);
-					border-bottom: var(--button-border-bottom);
-					border-right: var(--button-border-right);
-					color: var(--button-color);
+					font-size: 0.75rem;
+
+					opacity: 0.2;
+					
+					transition: opacity var(--standard-transition-speed);
 				}
 
+
+				/* 
+				debug for icon. Shows a 50% horizontal line
+				.rux-button--icon::after {
+					content: '';
+					display: block;
+					
+					position: absolute;
+					top: 0;
+					left: 50%;
+					background-color: #fff;
+					height: 100%;
+					width: 1px;					
+				} */
+
+				.rux-button--icon .rux-icon--button {
+					height: 43px;
+					width: 43px;
+					margin: 0;
+					margin-bottom: 0.5em;
+				}
+
+				.rux-button--icon:hover {
+					opacity: 1;
+				}
+		
 
 				.rux-button:hover:not([disabled]):not(.rux-button--icon) {
 					background-color: var(--button-background--hover)
@@ -94,7 +126,7 @@
 
 				.rux-button--large {
 					font-size: 1.125rem;
-  				padding: 0.6125em 1.25em;
+					height: 3.25rem;
 				}
 
 				.rux-button--small {
@@ -111,59 +143,31 @@
 				}
 
 				.rux-button--compact {
-					/* min-width: 6.25rem; */
 					padding-top: 0.1rem;
 					padding-bottom: 0.1rem;
 				}
 
 				
-
-
-
-
-				.rux-button--icon {
-					
-					padding: 0;
-					/* min-width: 10em; */
-					
-					flex-direction: column;
-					/* align-items: center; */
-					/* align-content: center; */
-				
-					outline: 1px solid green;
-					
-					font-size: 0.75rem;
-					
-					opacity: 0.2;
-
-
-					transition: var(--standard-transition-speed);
+				.rux-button--large .rux-icon--button {
+					height: 28px;
+					width: 28px;					
+				}
+				.rux-icon--button {
+					vertical-align: top;
+					margin-right: 0.25rem;
 				}
 
-				
-
-				.rux-button--icon .rux-icon--button {
-					/* margin: 0; */
-					height: var(--icon-size--default);
-					width: var(--icon-size--default);
-					margin-bottom: 0.5rem;
-					/* margin: 0 !important; */
-					fill: #fff;
-				}
-
-				.rux-button--icon:hover:not([disabled]) {
-					opacity: 1;
-				}
-
-				.rux-button .rux-icon--button {
-					color: #fff;
-					
-					margin-right: calc(35px / 4);
-				}
-
+				/*
+					disable buttons below a certain size from
+					having icons
+				*/
+				.rux-button--small .rux-icon--button,
+				.rux-button--narrow .rux-icon--button,
+				.rux-button--compact .rux-icon--button,
 				.rux-icon--button[hidden] {
 					display: none !important;
 				}
+
 
 				
 
@@ -175,7 +179,7 @@
 
 			
 			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
-				<rux-icon icon="[[icon]]" class="icon rux-icon--button" hidden="[[hidden]]"></rux-icon>
+				<rux-icon icon="[[icon]]" class="rux-icon rux-icon--button" hidden="[[hidden]]"></rux-icon>
 				<slot></slot>
 			</button>
 			
@@ -211,10 +215,11 @@
 
 					// hide the icon if there is no icon
 					this.hidden = !this.icon;
-
+					
 					// set type to standard if there is no type
 					this.type = this.type ? this.type : 'standard';
-					
+
+
 				}
 		}
 
