@@ -6,7 +6,6 @@
   <template>
     <style>
       :host {
-        border: 1px solid red;
         height: 100vh;
         width: 200vw;
         display: block;
@@ -25,23 +24,22 @@
         top: 0;
         left: 0;
       }
-
       .bar {
-        fill: orange;
+        fill: lightblue;
       }
 
       .bar:hover {
-        fill: steelblue;
+        fill: orange;
       }
 
-      .axis text {
+      .axis text, .text-anchor, .axis-label  {
         font: 10px sans-serif;
       }
 
       .axis path,
       .axis line {
         fill: none;
-        stroke: #000;
+        stroke: lightblue;
         shape-rendering: crispEdges;
       }
 
@@ -49,9 +47,12 @@
         display: none;
       }
 
-      .test {
-        border: 1px solid red;
+      .axis text, .axis-label {
+        fill: lightblue;
       }
+
+
+}
     </style>
 
     
@@ -90,15 +91,16 @@
     connectedCallback() {
       super.connectedCallback();
 
-      let margin = {top: 20, right: 30, bottom: 30, left: 40}
+      let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+
+      let margin = {top: 20, right: 30, bottom: 50, left: 90}
       let width = this.width - margin.left - margin.right
       let height = this.height - margin.top - margin.bottom;
-      
+
 
       var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
       
-
       var yScale = d3.scale.linear()
         .range([height, 0]);
 
@@ -109,13 +111,10 @@
       var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
-        .ticks(10, "%");
-        
-        xScale.domain(this.chartLegend.xscale);
-        yScale.domain(this.chartLegend.yscale);
+        .ticks(10);
 
-        
-      
+      xScale.domain([750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500]);
+      yScale.domain([-30,0]);        
       
       const svg = d3.select(this.root)
         .append("svg")
@@ -123,21 +122,78 @@
         .attr("height", height + margin.top + margin.bottom)
         .attr("class", "chart");
         
+       // text label for the x axis
+      svg.append("text")             
+          .attr("transform",
+                "translate(" + (width/2 + margin.left/2) + " ," + 
+                               (height + margin.top + 35) + ")")
+          .attr("class","y axis-label")
+          .text("Frequency (mHz)");
+
+      // text label for the y axis
+      svg.append("text")
+          .attr("y", 100)
+          .attr("x", 0)
+          .attr("class","axis-label")
+          .text("Power (dBm)");  
+
+
       const chart = svg.append("g")
         .attr('class','graph')
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        chart.append("g")
-          .attr("class", "x axis")
-          .attr("transform", `translate(0,${height})`)
-          .call(xAxis);
+      chart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis);
 
-        chart.append("g")
-          .attr("class", "y axis")
-          .call(yAxis);
+      chart.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
-        // reference to the graph
-        this.graph = d3.select(this.root.querySelector('.graph'));
+      ws.addEventListener('message', function(event) {
+        var dataArray = event.data.split('|');
+        var result = [];
+        dataArray.shift(); // data comes with an extra pipe in the front
+        for ( var c = 0; c < dataArray.length; c++ ) {
+          var datum = dataArray[c];
+          var datumArray = datum.split(':');
+          var d = {};
+          d.frequency = datumArray[0];
+          d.power = datumArray[1];
+          d.value = parseInt(datumArray[0]);
+          result.push(d);
+        }
+        console.log(result);
+        d3.selectAll('.bar').remove();
+
+        for ( c = 0; c < result.length; c++ ) {
+          var d = result[c];
+          d3.selectAll(".bar")
+            .data(result)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return xScale(d.frequency); })
+            .attr("y", function(d) { return yScale(d.power); })
+            .attr("height", function(d) { return height - yScale(d.power); })
+            .attr("width", xScale.rangeBand());
+        }
+      });
+
+      // clean up the labeling of the x-axis
+      var ticks = svg.selectAll(".x .tick text");
+      ticks.attr("class", function(d,i){
+          if(i === 0 || i % 4 != 0) {
+            d3.select(this).remove();
+          }
+      });
+
+      // reference to the graph
+      this.graph = d3.select(this.root.querySelector('.graph'));
+
+
+
     }
 
     disconnectedCallback() {
