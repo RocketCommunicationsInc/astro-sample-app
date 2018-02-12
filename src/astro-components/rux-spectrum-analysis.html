@@ -13,12 +13,6 @@
         contain: content;
       }
 
-      #chart-container {
-        outline: 1px solid green;
-        height: 100px;
-        width: 100%;
-      }
-
       .chart {
         position: absolute;
         top: 0;
@@ -26,6 +20,7 @@
       }
       .bar {
         fill: lightblue;
+        border: 1px solid red;
       }
 
       .bar:hover {
@@ -91,12 +86,11 @@
     connectedCallback() {
       super.connectedCallback();
 
-      let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+      // let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
 
       let margin = {top: 20, right: 30, bottom: 50, left: 90}
       let width = this.width - margin.left - margin.right
       let height = this.height - margin.top - margin.bottom;
-
 
       var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -137,7 +131,6 @@
           .attr("class","axis-label")
           .text("Power (dBm)");  
 
-
       const chart = svg.append("g")
         .attr('class','graph')
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -151,37 +144,37 @@
         .attr("class", "y axis")
         .call(yAxis);
 
-      ws.addEventListener('message', function(event) {
-        var dataArray = event.data.split('|');
-        var result = [];
-        dataArray.shift(); // data comes with an extra pipe in the front
-        for ( var c = 0; c < dataArray.length; c++ ) {
-          var datum = dataArray[c];
-          var datumArray = datum.split(':');
-          var d = {};
-          d.frequency = datumArray[0];
-          d.power = datumArray[1];
-          d.value = parseInt(datumArray[0]);
-          result.push(d);
-        }
-        console.log(result);
-        d3.selectAll('.bar').remove();
+      // ws.addEventListener('message', function(event) {
+      //   var dataArray = event.data.split('|');
+      //   var result = [];
+      //   dataArray.shift(); // data comes with an extra pipe in the front
+      //   for ( var c = 0; c < dataArray.length; c++ ) {
+      //     var datum = dataArray[c];
+      //     var datumArray = datum.split(':');
+      //     var d = {};
+      //     d.frequency = datumArray[0];
+      //     d.power = datumArray[1];
+      //     d.value = parseInt(datumArray[0]);
+      //     result.push(d);
+      //   }
+      //   console.log(result);
+      //   d3.selectAll('.bar').remove();
 
-        for ( c = 0; c < result.length; c++ ) {
-          var d = result[c];
-          d3.selectAll(".bar")
-            .data(result)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return xScale(d.frequency); })
-            .attr("y", function(d) { return yScale(d.power); })
-            .attr("height", function(d) { return height - yScale(d.power); })
-            .attr("width", xScale.rangeBand());
-        }
-      });
+      //   for ( c = 0; c < result.length; c++ ) {
+      //     var d = result[c];
+      //     d3.selectAll(".bar")
+      //       .data(result)
+      //       .enter()
+      //       .append("rect")
+      //       .attr("class", "bar")
+      //       .attr("x", function(d) { return xScale(d.frequency); })
+      //       .attr("y", function(d) { return yScale(d.power); })
+      //       .attr("height", function(d) { return height - yScale(d.power); })
+      //       .attr("width", xScale.rangeBand());
+      //   }
+      // });
 
-      // clean up the labeling of the x-axis
+      // // clean up the labeling of the x-axis
       var ticks = svg.selectAll(".x .tick text");
       ticks.attr("class", function(d,i){
           if(i === 0 || i % 4 != 0) {
@@ -190,9 +183,7 @@
       });
 
       // reference to the graph
-      this.graph = d3.select(this.root.querySelector('.graph'));
-
-
+//      this.graph = d3.select(this.root.querySelector('.graph'));
 
     }
 
@@ -206,9 +197,9 @@
     }
 
 
-    _update() {
+    _update(data) {
       this._clear();
-      this._draw();
+      this._draw(data);
     }
  
 
@@ -217,14 +208,13 @@
     }
 
 
-
-
-    _draw() {
+    _draw(data) {
 
       // Using a forEach loop to make use of lexical this, but
       // currently performance of forEach is substantially slower
       // than a standard for().
       this.chartData.forEach((data) => {
+        console.log(data);
         this.graph.selectAll('.bar')
           .data(this.chartData)
           .enter()
