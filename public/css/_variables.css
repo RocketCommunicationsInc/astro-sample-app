@@ -27,8 +27,8 @@
   --icon-size--large: 68px;
   --icon-size--small: 28px;
   --icon-size--status: 12px;
-  --icon-size--button: 20px;
-  --icon-size--button-large: 28px;
+  --icon-size--button: 19px; /* was 24px */
+  --icon-size--button-large: 24px; /* was 28px */
 
   --icon-color: var(--default-icon-color);
   --icon-color--button: #fff;

@@ -121,14 +121,18 @@
             icon="default:notifications">Notifications</rux-button>
         </li>
         <li>
-            <rux-user
-              user="[[]]"></rux-user>
+            <!-- <rux-user
+              user="[[]]"></rux-user> -->
+        </li>
+        <li>
+          <rux-button
+					  type="large">Large</rux-button>
         </li>
         <li>
           <rux-button
 					  type="large"
 					  icon="default:caution">Master Off</rux-button>
-          </li>
+        </li>
       </ul>
       
     </rux-global-status-bar>
@@ -140,7 +144,7 @@
           <rux-button disabled>Cancel</rux-button>
           <rux-button>Cancel</rux-button>
           <rux-button type="compact" icon="default:caution">Narrow</rux-button>
-          <rux-button default>Ok</rux-button>
+          <rux-button type="default">Ok</rux-button>
           <rux-button icon="advanced-status:netcom">Master Off</rux-button>
         
             
@@ -151,7 +155,11 @@
           type="icon"
           icon="default:settings">Settings</rux-button>
             
-        
+        <rux-button
+          type="large"
+          icon="default:caution">Master Off</rux-button>
+        <rux-button
+          type="large">Master Off</rux-button>
               
       </rux-tab-panel>
 

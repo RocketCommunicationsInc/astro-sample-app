@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="rux-icon.html">
 
 <dom-module id="rux-button">
 	<template>
@@ -191,8 +192,9 @@
 				
 								
 				.rux-button--large .rux-icon--button {
-					height: 28px;
-					width: 28px;					
+					height: var(--icon-size--button-large, 24px);
+					width: var(--icon-size--button-large, 24px);
+					
 				}
 
 				
@@ -230,7 +232,7 @@
 
 
 			
-			<button class$="rux-button rux-button--[[type]]" default$="[[default]]" disabled$="[[disabled]]">
+			<button class$="rux-button rux-button--[[type]]" disabled$="[[disabled]]">
 				<rux-icon icon="[[icon]]" class="rux-icon rux-icon--button" hidden="[[hidden]]"></rux-icon>
 				<slot></slot>
 			</button>
@@ -252,9 +254,7 @@
 					return {
 						type: String,
 						icon: String,
-						default: Boolean,
-						disabled: Boolean,
-
+						disabled: Boolean
 					}
 				}
 
@@ -265,6 +265,7 @@
 				ready() {
 					super.ready();
 
+					this.test = this.default;
 					// hide the icon if there is no icon
 					this.hidden = !this.icon;
 					
