@@ -182,8 +182,8 @@
           }
       });
 
-      // reference to the graph
-//      this.graph = d3.select(this.root.querySelector('.graph'));
+//      reference to the graph
+     this.graph = d3.select(this.root.querySelector('.graph'));
 
     }
 
@@ -214,7 +214,6 @@
       // currently performance of forEach is substantially slower
       // than a standard for().
       this.chartData.forEach((data) => {
-        console.log(data);
         this.graph.selectAll('.bar')
           .data(this.chartData)
           .enter()
