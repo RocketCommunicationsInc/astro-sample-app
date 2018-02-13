@@ -125,9 +125,7 @@
               user="[[]]"></rux-user> -->
         </li>
         <li>
-          <rux-button
-					  type="large"
-					  icon="default:caution">Master Off</rux-button>
+          
         </li>
       </ul>
       
@@ -143,7 +141,7 @@
           <rux-button type="narrow">Narrow</rux-button>
           <rux-button type="short">Short</rux-button>
           <rux-button>Cancel</rux-button>
-          <rux-button default="true" icon="default:caution">Default Icon</rux-button>
+          <rux-button on-click="_someFunction" default="true" icon="default:caution">Default Icon</rux-button>
           <rux-button default="true">Ok</rux-button>
           <rux-button icon="advanced-status:netcom">Master Off</rux-button>
         
@@ -214,6 +212,18 @@
         
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+
+        window.addEventListener('master-off', this._masterOff);
+      }
+
+      disconnectedCallback() {
+        suer.disconnectedCallback();
+
+        window.removeEventListener('master-off', this._masterOff);
+      }
+
       ready() {
         super.ready();
         
@@ -229,12 +239,12 @@
       
 
 
-      clicked() {
-        console.log('Dispatched Event from Web Component in asto-app.html',payload);
-      }
+      _masterOff() {
+				console.log('master off from Astro App')
+			}
 
-      _polymerClickEvent() {
-        console.log('Click Event is handled in the astro-app component')
+      _someFunction() {
+        alert('Click Event is handled in the astro-app component')
       }
     }
 
