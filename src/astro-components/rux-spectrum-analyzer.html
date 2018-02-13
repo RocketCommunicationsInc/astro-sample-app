@@ -2,7 +2,7 @@
 <script src="//d3js.org/d3.v3.js"></script>
 
 
-<dom-module id="rux-spectrum-analysis">
+<dom-module id="rux-spectrum-analyzer">
   <template>
     <style>
       :host {
@@ -14,44 +14,32 @@
         contain: content;
       }
 
-      #chart-container {
-        outline: 1px solid green;
-        height: 100px;
-        width: 100%;
-      }
+.bar {
+  fill: lightblue;
+}
 
-      .chart {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
+.bar:hover {
+  fill: orange;
+}
 
-      .bar {
-        fill: orange;
-      }
+.axis text {
+  font: 10px sans-serif;
+}
 
-      .bar:hover {
-        fill: steelblue;
-      }
+.axis path,
+.axis line {
+  fill: none;
+  stroke: lightblue;
+  shape-rendering: crispEdges;
+}
 
-      .axis text {
-        font: 10px sans-serif;
-      }
+.x.axis path {
+  display: none;
+}
 
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
-      .x.axis path {
-        display: none;
-      }
-
-      .test {
-        border: 1px solid red;
-      }
+.axis text {
+  fill: lightblue;
+}
     </style>
 
     
