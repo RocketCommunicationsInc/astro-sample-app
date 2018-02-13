@@ -135,7 +135,7 @@
 				
 				
 				
-				.rux-button[default] {
+				.rux-button--default:not(.rux-button--icon) {
 					border: 1px solid rgba(255, 255, 255, 0.6);
 				}
 
@@ -162,8 +162,9 @@
 				
 				.rux-button--small {
 					min-width: 2rem;
+					height: 1.5rem;
 					
-					padding: 0.25rem 0.5rem;
+					/* padding: 0.25rem 0.5rem; */
 					
 					font-size: 0.775rem;
 					line-height: 1.25;
@@ -174,7 +175,7 @@
 				
 				
 				.rux-button--narrow {
-					min-width: 3.125rem;
+					min-width: 1.125rem;
 
   				padding-left: 0.3125rem;
   				padding-right: 0.3125rem;
@@ -183,9 +184,10 @@
 				
 				
 				
-				.rux-button--compact {
-					padding-top: 0.1rem;
-					padding-bottom: 0.1rem;
+				.rux-button--narrow {
+					outline: 1px solid red !important;
+					padding-top: 0.1rem !important;
+					padding-bottom: 0.1rem !important;
 				}
 				
 				
@@ -232,7 +234,7 @@
 
 
 			
-			<button class$="rux-button rux-button--[[type]]" disabled$="[[disabled]]">
+			<button class$="rux-button rux-button--[[type]] [[default]]" disabled$="[[disabled]]">
 				<rux-icon icon="[[icon]]" class="rux-icon rux-icon--button" hidden="[[hidden]]"></rux-icon>
 				<slot></slot>
 			</button>
@@ -254,6 +256,7 @@
 					return {
 						type: String,
 						icon: String,
+						default: Boolean,
 						disabled: Boolean
 					}
 				}
@@ -265,7 +268,9 @@
 				ready() {
 					super.ready();
 
-					this.test = this.default;
+					// set default
+					this.default = this.default ? 'rux-button--default' : '';
+
 					// hide the icon if there is no icon
 					this.hidden = !this.icon;
 					

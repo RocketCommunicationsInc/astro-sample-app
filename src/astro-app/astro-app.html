@@ -126,10 +126,6 @@
         </li>
         <li>
           <rux-button
-					  type="large">Large</rux-button>
-        </li>
-        <li>
-          <rux-button
 					  type="large"
 					  icon="default:caution">Master Off</rux-button>
         </li>
@@ -141,10 +137,14 @@
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
         
-          <rux-button disabled>Cancel</rux-button>
+          <rux-button type="small">Small</rux-button>
+          <rux-button default="true" type="small">Small</rux-button>
+          <rux-button disabled>Disabled</rux-button>
+          <rux-button type="narrow">Narrow</rux-button>
+          <rux-button type="short">Short</rux-button>
           <rux-button>Cancel</rux-button>
-          <rux-button type="compact" icon="default:caution">Narrow</rux-button>
-          <rux-button type="default">Ok</rux-button>
+          <rux-button default="true" icon="default:caution">Default Icon</rux-button>
+          <rux-button default="true">Ok</rux-button>
           <rux-button icon="advanced-status:netcom">Master Off</rux-button>
         
             
@@ -153,12 +153,14 @@
           icon="default:notifications">Notifications</rux-button>
         <rux-button
           type="icon"
+          default="true"
           icon="default:settings">Settings</rux-button>
             
         <rux-button
           type="large"
           icon="default:caution">Master Off</rux-button>
         <rux-button
+          deafult="true"
           type="large">Master Off</rux-button>
               
       </rux-tab-panel>
