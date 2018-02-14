@@ -49,7 +49,7 @@
 
 }
     </style>    
-    <div class="rux-spectrum-analysis"></div>
+    
   </template>
 
   <script>
@@ -153,11 +153,13 @@
           d.value = parseInt(datumArray[0]);
           result.push(d);
         }
-//        d3.selectAll('.bar').remove();
+        chart.selectAll('.bar').remove();
 
+        
         for ( var c = 0; c < result.length; c++ ) {
           var d = result[c];
-          d3.selectAll(".bar")
+          console.log(d);
+          chart.selectAll(".bar")
             .data(result)
             .enter()
             .append("rect")
@@ -208,6 +210,8 @@
       // Using a forEach loop to make use of lexical this, but
       // currently performance of forEach is substantially slower
       // than a standard for().
+      console.log('draw',data);
+
       this.chartData.forEach((data) => {
         this.graph.selectAll('.bar')
           .data(this.chartData)
