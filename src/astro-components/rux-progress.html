@@ -21,7 +21,8 @@
 					return {
 						min: String,
 						max: String,
-						value: String
+						value: String,
+						text: String
 					}
 				}
 
@@ -30,9 +31,9 @@
 					<link rel="stylesheet" href="src/astro-components/rux-progress.css">
 
 					<div class="rux-progress">
-						<progress value="[[value]]" min=[[min]] max=[[max]]>[[value]]</progress>
-					</div>`
-					
+						<progress value="[[value]]" min=[[min]] max=[[max]]></progress>
+						<div hidden="[[hidden]]">[[value]]</div>
+					</div>`	
 				}
 
 
@@ -53,6 +54,8 @@
 
 				ready() {
 					super.ready();
+
+					this.hidden = !this.text;
 				}
 		}
 
