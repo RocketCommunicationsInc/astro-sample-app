@@ -171,19 +171,6 @@
       
   </rux-tab-panels>
 
-  
-      
-      
-
-
-
-
-    
-    
-
-
-
-
   </template>
 
   <script>
@@ -208,17 +195,17 @@
 
         // This should probably exist in a separate component outside of
         // astro-app and outside of rux-spectrum-analysis
-        const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
-            ws.addEventListener('message', (event) => {
-              // assign the data to a property on the rux-spectrum-analysis component
-              this.chartData = this._dataToJsonObjArray(event.data);
-            });
+        // const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+        //     ws.addEventListener('message', (event) => {
+        //       // assign the data to a property on the rux-spectrum-analysis component
+        //       this.chartData = this._dataToJsonObjArray(event.data);
+        //     });
         
-        // legend for the chart
-        this.chartLegend = {
-          xscale: [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300],
-          yscale: [-.3,0]
-        }
+        // // legend for the chart
+        // this.chartLegend = {
+        //   xscale: [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300],
+        //   yscale: [-.3,0]
+        // }
       }
 
 
