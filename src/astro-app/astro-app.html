@@ -7,6 +7,7 @@
 <link rel="import" href="../astro-components/rux-tabs.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-progress.html">
+<link rel="import" href="../astro-components/rux-segmented-button.html">
 
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
@@ -136,7 +137,12 @@
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
-          <rux-component></rux-component>
+
+          <rux-segmented-button
+            buttons='[{ "label": "button 1", "icon": "default:caution" },
+                      { "label": "button 2", "icon": "default:settings" },
+                      { "label": "button 3", "icon": "default:notifications" }]'></rux-segmented-button>
+
           <rux-progress
             min="0"
             max="100"
@@ -253,6 +259,10 @@
       }
 
       
+      _segmentedButton(e) {
+        console.log('segmented button',e);
+        console.log('segmented button',e.target);
+      }
 
 
       _masterOff() {

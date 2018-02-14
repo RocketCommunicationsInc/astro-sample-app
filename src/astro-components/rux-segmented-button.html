@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<script>
+class RuxSegmentedButton extends Polymer.Element {
+		
+		static get is() { return 'rux-segmented-button'; }
+		static get properties() {
+			return {
+				buttons: Array
+			}
+		}
+
+		static get template() {
+			return Polymer.html`
+			<link rel="stylesheet" href="src/astro-components/rux-segmented-button.css">
+
+				<ul class="rux-segmented-buttons">
+					<dom-repeat items="{{buttons}}">
+						<template>
+							<li class="rux-segmented-button">
+								<input type="radio" name="rux-group" id="[[item.label]]" />
+								<label for$="[[item.label]]">[[item.label]]</label>
+							</li>
+						</template>
+					</dom-repeat>
+				</ul>
+			`;	
+		}
+
+
+		constructor() {
+			super();
+		}
+
+
+		connectedCallback() {
+			super.connectedCallback();
+		}
+
+
+		disconnectedCallback() {
+			super.disconnectedCallback();
+		}
+
+
+		ready() {
+			super.ready();
+		}
+}
+
+customElements.define(RuxSegmentedButton.is, RuxSegmentedButton);
+</script>
