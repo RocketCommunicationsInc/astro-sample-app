@@ -6,6 +6,9 @@ wss.on('connection', function (ws) {
     console.log('received: %s', message)
   })
 
+  ws.on('close', function() {
+    console.log('Connection closed');
+  });
 
   setInterval(
     function() {
@@ -15,15 +18,26 @@ wss.on('connection', function (ws) {
         var data = '';
 
         for ( var f = minFrequency; f < maxFrequency; f = f + step ) {
-            var power = getPower();
+            var power = getPower(f);
             var record = f + ':' + power;
             data += '|' + record;
         }
-        ws.send(data);
+
+        // this is not the most elegant way of handling a disconnect, but beats the server crashing
+        try {
+          ws.send(data);
+        } catch (err) {
+          console.log('Client not connected');
+        }
     },
     100
   )
-    function getPower() {
-        return (Math.floor(Math.random() * 15) * -1);
-    }
-})
+
+  
+  function getPower(f) {
+    var multiplier = 15;
+    return (Math.floor(Math.random() * multiplier) * -1);
+  }
+});
+
+

@@ -5,7 +5,7 @@
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-tabs.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
-<link rel="import" href="../astro-components/rux-spectrum-analysis.html">
+<link rel="import" href="../astro-components/rux-spectrum-analyzer.html">
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html"> -->
@@ -159,7 +159,8 @@
         <h2>Spectrum Analysis</h2>
         <rux-spectrum-analysis
           chart-data="[[chartData]]"
-          chart-legend="[[chartLegend]]"
+          chart-legend-x="Frequency (mHz)"
+          chart-legend-y="Power (dBm)"
           height="250"
           width="480">
         </rux-spectrum-analysis>
