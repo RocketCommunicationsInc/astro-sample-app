@@ -1,0 +1,268 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<script src="//d3js.org/d3.v3.js"></script>
+
+
+<dom-module id="rux-spectrum-analysis">
+  <template>
+    <style>
+      :host {
+        height: 100vh;
+        width: 200vw;
+        display: block;
+
+        contain: content;
+      }
+
+      .chart {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .bar {
+        fill: lightblue;
+        border: 1px solid red;
+      }
+
+      .bar:hover {
+        fill: orange;
+      }
+
+      .axis text, .text-anchor, .axis-label  {
+        font: 10px sans-serif;
+      }
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: lightblue;
+        shape-rendering: crispEdges;
+      }
+
+      .x.axis path {
+        display: none;
+      }
+
+      .axis text, .axis-label {
+        fill: lightblue;
+      }
+
+
+}
+    </style>    
+    
+  </template>
+
+  <script>
+    class RuxSpectrumAnalysis extends Polymer.Element {
+      static get is() { return 'rux-spectrum-analysis'; }
+      static get properties() {
+        return {
+        //   chartData: {
+        //     type: Object,
+        //     observer: '_update'
+        //   },
+          chartLegendX: {
+            type: String
+          },
+          chartLegendY: {
+            type: String
+          },
+          xScaleMin: {
+            type: Number
+          },
+          xScaleMax: {
+            type: Number
+          },
+          xScaleStep: {
+            type: Number
+          },
+          yScaleMin: {
+            type: Number
+          },
+          yScaleMax: {
+            type: Number
+          },
+          height: {
+            type: Number
+          },
+          width: {
+            type: Number
+          }
+        }
+      }
+
+    constructor() {
+      super();
+    }
+
+
+
+    connectedCallback() {
+      super.connectedCallback();
+
+      let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+
+      let margin = {top: 20, right: 30, bottom: 50, left: 90}
+      let width = this.width - margin.left - margin.right
+      let height = this.height - margin.top - margin.bottom;
+
+      var xScale = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
+      
+      var yScale = d3.scale.linear()
+        .range([height, 0]);
+
+      var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom");
+
+      var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left")
+        .ticks(10);
+
+      var xScaleDomain = this._buildXDomain(this.xScaleMin,this.xScaleMax,this.xScaleStep);
+
+      xScale.domain(xScaleDomain);
+      yScale.domain([this.yScaleMin,this.yScaleMax]);        
+      
+      const svg = d3.select(this.root)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("class", "chart");
+        
+       // text label for the x axis
+      svg.append("text")             
+          .attr("transform",
+                "translate(" + (width/2 + margin.left/2) + " ," + 
+                               (height + margin.top + 35) + ")")
+          .attr("class","y axis-label")
+          .text(this.chartLegendX);
+
+      // text label for the y axis
+      svg.append("text")
+          .attr("y", 100)
+          .attr("x", 0)
+          .attr("class","axis-label")
+          .text(this.chartLegendY);  
+
+      const chart = svg.append("g")
+        .attr('class','graph')
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      chart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis);
+
+      chart.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+      ws.addEventListener('message', function(event) {
+        var dataArray = event.data.split('|');
+        var result = [];
+        dataArray.shift(); // data comes with an extra pipe in the front
+        for ( var c = 0; c < dataArray.length; c++ ) {
+          var datum = dataArray[c];
+          var datumArray = datum.split(':');
+          var d = {};
+          d.frequency = datumArray[0];
+          d.power = datumArray[1];
+          d.value = parseInt(datumArray[0]);
+          result.push(d);
+        }
+        chart.selectAll('.bar').remove();
+
+        
+        for ( var c = 0; c < result.length; c++ ) {
+          var d = result[c];
+          chart.selectAll(".bar")
+            .data(result)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return xScale(d.frequency); })
+            .attr("y", function(d) { return yScale(d.power); })
+            .attr("height", function(d) { return height - yScale(d.power); })
+            .attr("width", xScale.rangeBand());
+        }
+      });
+
+      // // clean up the labeling of the x-axis
+      var ticks = svg.selectAll(".x .tick text");
+      ticks.attr("class", function(d,i){
+          if(i === 0 || i % 4 != 0) {
+            d3.select(this).remove();
+          }
+      });
+
+//      reference to the graph
+     this.graph = d3.select(this.root.querySelector('.graph'));
+
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+    }
+
+    ready() {
+      super.ready();
+
+    }
+
+
+    _update(data) {
+      //this._clear();
+      this._draw();
+    }
+
+    _draw() {
+
+      // Using a forEach loop to make use of lexical this, but
+      // currently performance of forEach is substantially slower
+      // than a standard for().
+      //console.log('draw',data);
+
+      this.chartData.forEach((data) => {
+        this.graph.selectAll('.bar')
+          .data(this.chartData)
+          .enter()
+          .append('rect')
+            .attr('class','bar')
+            .attr('x',      (data) => { return data.frequency; })
+            .attr('y',      (data) => { return data.power; })
+            .attr('height', (data) => { return this.height - data.power; })
+            .attr('width', 10);
+
+
+          // this is the original x/y/height data with the xScale/yScale applied
+          // couldn’t get thsoe functions to return.
+          //
+          // Side note, not knowing anything about d3, but rather than replacing
+          // the bars is it possible to transition them?
+          /*
+          .attr("x", function(d) { return xScale(d.frequency); })
+          .attr("y", function(d) { return yScale(d.power); })
+          .attr("height", function(d) { return height - yScale(d.power); })
+          */
+      });
+    }
+    
+    _buildXDomain(min, max, step) {
+      var xDomain = [];
+      for ( var c = min; c < max; c = c + step ) {
+        xDomain.push(c);
+      }
+      return xDomain;    
+    }
+
+  }
+
+
+    customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);
+
+  </script>
+  
+</dom-module>
