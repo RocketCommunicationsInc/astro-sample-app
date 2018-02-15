@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/lib/elements/array-selector.html">
 
 
 <script>
@@ -7,7 +8,11 @@ class RuxSegmentedButton extends Polymer.Element {
 		static get is() { return 'rux-segmented-button'; }
 		static get properties() {
 			return {
-				buttons: Array
+				buttons: {
+					type: Array,
+					// observer: "_selectSegment",
+					reflectToAttributes: true
+				}
 			}
 		}
 
@@ -16,16 +21,35 @@ class RuxSegmentedButton extends Polymer.Element {
 			<link rel="stylesheet" href="src/astro-components/rux-segmented-button.css">
 
 				<ul class="rux-segmented-buttons">
-					<dom-repeat items="{{buttons}}">
+					<dom-repeat id="batman" items="{{buttons}}">
 						<template>
 							<li class="rux-segmented-button">
-								<input type="radio" name="rux-group" id="[[item.label]]" />
-								<label for$="[[item.label]]">[[item.label]]</label>
+								<!-- <input type="radio" name="rux-group" id="[[item.label]]" on-click="_selectSegment" />
+								 <label for$="[[item.label]]">[[item.label]]</label> //-->
+								<button on-click="toggleSelection">[[item.label]]</button>
 							</li>
 						</template>
 					</dom-repeat>
 				</ul>
+
+				<array-selector id="selector" items="{{buttons}}" selected="{{selected}}" multi toggle></array-selector>
+
+				<dom-repeat items="{{selected}}">
+					<template>
+						<div>First name: <span>{{item.label}}</span></div>
+					</template>
+				</dom-repeat>
 			`;	
+		}
+
+		toggleSelection(e) {
+			console.log(e.target);
+			console.log(this.buttons);
+			console.log(this.$.selector.select(e.target));
+			let item = this.$.batman.itemForElement(e.target);
+			this.$.selector.select(item);
+			console.log(item);
+			
 		}
 
 
@@ -36,6 +60,10 @@ class RuxSegmentedButton extends Polymer.Element {
 
 		connectedCallback() {
 			super.connectedCallback();
+
+			// const selectedButton = this._tabs.find(tab => tab.selected || this._tabs[0]);
+
+			// this.addEventListener('on-click', this._selectSegment);
 		}
 
 
@@ -47,6 +75,28 @@ class RuxSegmentedButton extends Polymer.Element {
 		ready() {
 			super.ready();
 		}
+
+
+		_selectSegment(e) {
+			// console.log('asdfas')
+			// console.log(e.target);
+			// console.log(e.target.getAttribute('id'));
+			
+			const _selected = this.buttons.find(button => button.label === e.target.getAttribute('id') || this.buttons[0]);
+			// console.log('_selected',_selected);
+			// _selected.checked = true;
+			console.log(e.target);
+			var item = this.$.buttons.itemForElement(_selected);
+      this.$.selector.select(item);
+
+			console.log('item',item);
+
+		}
+
+		_onClick(e) {
+			console.log('on click',e.target);
+		}
+
 }
 
 customElements.define(RuxSegmentedButton.is, RuxSegmentedButton);

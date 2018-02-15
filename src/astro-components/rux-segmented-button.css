@@ -1,68 +1,61 @@
-
 .rux-segmented-buttons {
 	display: flex;
-	clear:both;
-	overflow:auto;
-	line-height: 1;
-	list-style: none;
+	
+  overflow: auto;
+	
 	padding: 0;
-	/* margin: 0; */
-}
 	
-	.rux-segmented-button label {
-		
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-		background: #005a8f;
-		/* line-height: 0; */
-	    border: none;
-		border-top: 1px solid rgba(255,255,255,.1);
-		border-bottom: 1px solid rgba(0,0,0,.15);
-		border-right: 1px solid #15057a;
-		color: #fff;
-		font-size: 0.875rem;
-		text-align: center;
-		vertical-align: middle;
-		width: auto;
-		min-width: 75px;
-		height: 25px;
-		cursor: pointer;
-}
-		
-	
-	.rux-segmented-button input{
-			display:none;
-		}
-		
-	.rux-segmented-button label{
-			-webkit-touch-callout: none;
-			-webkit-user-select: none;
-			-khtml-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-		}
-
-
-		.rux-segmented-button input:checked + label {
-			background: red;
-		}
-		
-	
-	
-	
-	.rux-segmented-button:active,
-	.rux-segmented-button:default:active,
-	.rux-segmented-button.selected {
-		background: #0182ce;
-		outline: none;
-	}
-	
-	.rux-segmented-button:hover{
-		background: #0182ce;
-		outline: none;
-	}
+  list-style: none;
 }
 
+.rux-segmented-button label {
+  display: flex;
+  justify-content: center;
+	align-items: center;
+	
+	width: auto;
+	height: 1.5rem;
+	
+	padding: 0 0.75rem;
+  
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 1px solid #15057a;
+	
+	color: #fff;
+	background-color: var(--button-background);
+
+  font-size: 0.875rem;
+  
+	cursor: pointer;
+}
+
+.rux-segmented-button input {
+  display: none;
+}
+
+.rux-segmented-button label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.rux-segmented-button input:checked + label {
+  background-color: var(--button-background--hover);
+}
+
+.rux-segmented-button:active,
+.rux-segmented-button:default:active,
+.rux-segmented-button.selected {
+  background: #0182ce;
+  outline: none;
+}
+
+.rux-segmented-button label:hover {
+  background: var(--button-background--hover);
+  outline: none;
+}

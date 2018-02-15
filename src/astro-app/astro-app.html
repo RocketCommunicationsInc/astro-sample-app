@@ -139,9 +139,20 @@
         <h1>Modems</h1>
 
           <rux-segmented-button
-            buttons='[{ "label": "button 1", "icon": "default:caution" },
-                      { "label": "button 2", "icon": "default:settings" },
-                      { "label": "button 3", "icon": "default:notifications" }]'></rux-segmented-button>
+            buttons='[{ "label": "Track"},
+                      { "label": "List" }]'></rux-segmented-button>
+          <rux-segmented-button
+            buttons={{timeSelector}}></rux-segmented-button>
+          <rux-segmented-button
+            buttons='[{ "label": "Icon Hour", "icon": "default:caution" },
+                      { "label": "Icon Day", "icon": "default:settings"},
+                      { "label": "Icon Week Long Title" }]'></rux-segmented-button>
+
+          
+          <div>
+            The time showing is: <array-selector id="selector" items="{{timeSelector}}" selected="{{selected}}" multi toggle></array-selector>
+          </div>
+
 
           <rux-progress
             min="0"
@@ -231,6 +242,12 @@
         super();
 
         // console.log(customElements.get('parent-element'));
+
+        this.timeSelector = [{ "label": "Hour" },
+                             { "label": "Day" },
+                             { "label": "Week" }];
+
+        
         
       }
 
