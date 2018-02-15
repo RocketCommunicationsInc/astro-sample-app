@@ -1,0 +1,15 @@
+{
+  "name": "rocket-websocket-server",
+  "version": "1.0.0",
+  "description": "Demo websocket server for websocket app",
+  "main": "ws.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Ken Riley <ken@rocketcom.com>",
+  "license": "ISC",
+  "dependencies": {
+    "nodejs-websocket": "^1.7.1",
+    "ws": "^4.0.0"
+  }
+}
