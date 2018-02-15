@@ -139,22 +139,20 @@
         <h1>Modems</h1>
 
           <rux-segmented-button
-            buttons='[{ "label": "Track"},
-                      { "label": "List" }]'></rux-segmented-button>
+            data="{{ viewPicker }}"></rux-segmented-button>
+
           <rux-segmented-button
-            buttons={{timeSelector}}></rux-segmented-button>
+            data="{{ timeSelector }}"></rux-segmented-button>
+
           <rux-segmented-button
-            buttons='[{ "label": "Icon Hour", "icon": "default:caution" },
-                      { "label": "Icon Day", "icon": "default:settings"},
-                      { "label": "Icon Week Long Title" }]'></rux-segmented-button>
+            buttons='[{ "label": "Manual" },
+                      { "label": "Manual Two" },
+                      { "label": "Manual Three" }]'></rux-segmented-button>
 
           
           <div>
-            
-              The times are: [[ _stringIt(timeSelector) ]]<br>
-            
-              The time showing is: {{ _stringIt(timeSelector.selected) }}
-            
+            view format: [[ viewPicker.selected.label ]]<br>
+            time format: [[ timeSelector.selected.label ]]
           </div>
 
 
@@ -249,12 +247,17 @@
 
         // console.log(customElements.get('parent-element'));
 
-        let buttonOptions = [ { "label": "Hour" },
-                              { "label": "Day" },
-                              { "label": "Week" }];
+        this.viewPicker = {
+          buttons: [ 
+            { "label": "Track" },
+            { "label": "List" }]
+        }
+        
         this.timeSelector = {
-          buttons: buttonOptions,
-          selected: 'apple'
+          buttons: [ 
+            { "label": "Hour" },
+            { "label": "Day" },
+            { "label": "Week" }]
         }
       }
 
