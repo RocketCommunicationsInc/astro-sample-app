@@ -1,4 +1,4 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 
 <dom-module id="rux-status">
@@ -18,7 +18,9 @@
 			}
 
 
-			
+			*[hidden] {
+				display: none !important;
+			}
 			
 			*,
 			*:before,
@@ -133,26 +135,37 @@
 		</style>
 
 			
-		<template is="dom-if" if="[[advanced]]">
-			
-			<!-- Use Advanced Status Template is any property is set //-->
-			<div class="rux-advanced-status rux-status--{{status}}" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label">
-				<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status {{status}}"></rux-icon>
-				<div class="rux-advanced-status__icon">
-						<rux-icon icon="{{icon}}" class$="rux-status--{{status}}"></rux-icon>
-						<div class="rux-advanced-status__badge">[[notifications]]</div>
-					</div>
-				<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
+		
+		<!-- 
+		
+			TODO: I think it would be possible to refactor this to not have two instances of rux-icon--status something like
+
+			<div class="rux-status rux-status--[[status/color]] [[advanced]]">
+				<rux-icon> Just the symbol
+				<rux-advanced-status>
+					<rux-icon> the fancy icon
+					<label>
+					</rux-advanced-status>
 			</div>
+			
+		//-->
 
-		</template>
-		<!-- Use Standard Status Template is any property is set //-->
-		
-		<template is="dom-if" if="[[!advanced]]">
-			<rux-icon icon="status:{{status}}" class="rux-icon--status"></rux-icon>
-		</template>
+		<!-- Use Advanced Status Template is any property is set //-->
+		<div class="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
+			
+			<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status [[status]]"></rux-icon>
+			
+			<div class="rux-advanced-status__icon">
+				<rux-icon icon="[[icon]]" class$="rux-status--[[status]]"></rux-icon>
+				<div class="rux-advanced-status__badge">[[notifications]]</div>
+			</div>
+			
+			<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
+		</div>
 
-		
+		<!-- Use simple status if no other properties are set //-->
+		<rux-icon icon="status:[[status]]" class="rux-icon--status" hidden=[[advanced]]></rux-icon>	
+
 	</template>
 
 	<script>
@@ -174,8 +187,12 @@
 					},
 					icon: {
 						type: String
-					}
+					},
+					advanced: {
+						type: Boolean,
+						default: false
 
+					}
 				}
 			}
 
