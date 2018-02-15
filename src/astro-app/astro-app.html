@@ -1,13 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../astro-components/rux-component.html">
 <link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
 <link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-tabs.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
-<link rel="import" href="../astro-components/rux-progress.html">
-<link rel="import" href="../astro-components/rux-dialog.html">
+<link rel="import" href="../astro-components/rux-spectrum-analyzer.html">
+<!-- <link rel="import" href="../astro-components/rux-dialog.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html"> -->
@@ -65,7 +64,7 @@
     </style>
 
 
-    
+
     
     <rux-global-status-bar
       appname="Astro App"
@@ -123,12 +122,13 @@
             icon="default:notifications">Notifications</rux-button>
         </li>
         <li>
-            <!-- <rux-user
-              user="[[]]"></rux-user> -->
+            <rux-user></rux-user>
         </li>
         <li>
-          
-        </li>
+          <rux-button
+					  type="large"
+					  icon="advanced-status:netcom">Master Off</rux-button>
+          </li>
       </ul>
       
     </rux-global-status-bar>
@@ -136,30 +136,8 @@
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
-          <rux-component></rux-component>
-          <rux-progress
-            min="0"
-            max="100"
-            value="10"
-            step="1"></rux-progress>
-          <br>
-          <rux-progress
-            min="0"
-            max="100"
-            value="99"
-            text="false"></rux-progress>
-          <br>
-          <rux-progress></rux-progress>
-        
-          <rux-button type="small">Small</rux-button>
-          <rux-button default="true" type="small">Small</rux-button>
-          <rux-button disabled>Disabled</rux-button>
-          <rux-button type="narrow">Narrow</rux-button>
-          <rux-button type="short">Short</rux-button>
           <rux-button>Cancel</rux-button>
-          <rux-button on-click="_someFunction" default="true" icon="default:caution">Default Icon</rux-button>
-          <rux-button default="true">Ok</rux-button>
-          <rux-button icon="advanced-status:netcom">Master Off</rux-button>
+          <rux-button on-click="graph" default>Ok</rux-button>
         
             
         <rux-button
@@ -167,20 +145,9 @@
           icon="default:notifications">Notifications</rux-button>
         <rux-button
           type="icon"
-          default="true"
           icon="default:settings">Settings</rux-button>
             
-        <rux-button
-          type="large"
-          icon="default:caution">Master Off</rux-button>
-        <rux-button
-          deafult="true"
-          type="large">Master Off</rux-button>
-
-        <rux-dialog
-          button1Text="Ok"
-          button2Text="Cancel">
-        </rux-dialog>
+        <rux-button icon="advanced-status:netcom">Master Off</rux-button>
               
       </rux-tab-panel>
 
@@ -190,22 +157,25 @@
 
       <rux-tab-panel aria-labeledby="tab-telemetry">
         <h1>Telemetry</h1>
+        <h2>Spectrum Analyzer</h2>
+        <!--  -->
+        <rux-spectrum-analysis
+          chart-data="[[chartData]]"
+          chart-legend-x="Frequency (mHz)"
+          chart-legend-y="Power (dBm)"
+          x-scale-min = 900
+          x-scale-max = 2350
+          x-scale-step = 50
+          y-scale-min = -30
+          y-scale-max = 0
+          height="250"
+          width="480">
+        </rux-spectrum-analysis>
+        
+        
       </rux-tab-panel>
       
   </rux-tab-panels>
-
-
- 
-      
-
-
-
-
-    
-    
-
-
-
 
   </template>
 
@@ -229,44 +199,44 @@
       constructor() {
         super();
 
-        // console.log(customElements.get('parent-element'));
+        // This should probably exist in a separate component outside of
+        // astro-app and outside of rux-spectrum-analysis
+        const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+            ws.addEventListener('message', (event) => {
+              // assign the data to a property on the rux-spectrum-analysis component
+              this.chartData = this._dataToJsonObjArray(event.data);
+            });
         
       }
 
-      connectedCallback() {
-        super.connectedCallback();
 
-        window.addEventListener('master-off', this._masterOff);
-      }
-
-      disconnectedCallback() {
-        suer.disconnectedCallback();
-
-        window.removeEventListener('master-off', this._masterOff);
-      }
 
       ready() {
         super.ready();
-        
-        // this.addEventListener('click', function(e) {
-        //   console.log('test');
-        // })
-
-        // this.addEventListener('fromIcon', function(e) {
-        //   console.log('event from icon');
-        // })
       }
+
+
+
+      // This should probably exist in a separate component outside of
+        // astro-app and outside of rux-spectrum-analysis
+      _dataToJsonObjArray(data) {
+        
+        let dataArray = data.split('|');
+        let scrubbedArray = [];
+        dataArray.shift(); // data comes with an extra pipe in the front
+        for (let c = 0; c < dataArray.length; c++ ) {
+          let datum = dataArray[c];
+          let datumArray = datum.split(':');
+          let d = {};
+          d.frequency = datumArray[0];
+          d.power = datumArray[1];
+          d.value = parseInt(datumArray[0]);
+          scrubbedArray.push(d);
+        }
+        return scrubbedArray;
+      }    
 
       
-
-
-      _masterOff() {
-				console.log('master off from Astro App')
-			}
-
-      _someFunction() {
-        alert('Click Event is handled in the astro-app component')
-      }
     }
 
     window.customElements.define(AstroApp.is, AstroApp);
