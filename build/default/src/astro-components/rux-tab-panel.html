@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<dom-module id="rux-tab-panel">
+	<template>
+		<style>
+			
+			</style>
+
+			<slot></slot>
+		
+
+
+			
+			
+
+	</template>
+
+	<script>
+		class RuxTabPanel extends Polymer.Element {
+				
+				static get is() { return 'rux-tab-panel'; }
+				static get properties() {
+					return {
+						type: String
+					}
+				}
+
+				constructor() {
+        	super();
+				}
+
+
+				connectedCallback() {
+					super.connectedCallback();
+
+					// set the role to tab
+					this.setAttribute('role','tabpanel');
+				}
+
+				disconnectedCallback() {
+					super.disconnectedCallback();
+					
+				}
+
+
+				ready() {
+					super.ready();
+				}
+		}
+
+		customElements.define(RuxTabPanel.is, RuxTabPanel);
+	</script>
+</dom-module>

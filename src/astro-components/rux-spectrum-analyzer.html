@@ -57,10 +57,10 @@
       static get is() { return 'rux-spectrum-analysis'; }
       static get properties() {
         return {
-          chartData: {
-            type: Object,
-            observer: '_update'
-          },
+        //   chartData: {
+        //     type: Object,
+        //     observer: '_update'
+        //   },
           chartLegendX: {
             type: String
           },
@@ -100,7 +100,7 @@
     connectedCallback() {
       super.connectedCallback();
 
-      // let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
+      let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
 
       let margin = {top: 20, right: 30, bottom: 50, left: 90}
       let width = this.width - margin.left - margin.right
@@ -160,35 +160,35 @@
         .attr("class", "y axis")
         .call(yAxis);
 
-      // ws.addEventListener('message', function(event) {
-      //   var dataArray = event.data.split('|');
-      //   var result = [];
-      //   dataArray.shift(); // data comes with an extra pipe in the front
-      //   for ( var c = 0; c < dataArray.length; c++ ) {
-      //     var datum = dataArray[c];
-      //     var datumArray = datum.split(':');
-      //     var d = {};
-      //     d.frequency = datumArray[0];
-      //     d.power = datumArray[1];
-      //     d.value = parseInt(datumArray[0]);
-      //     result.push(d);
-      //   }
-      //   chart.selectAll('.bar').remove();
+      ws.addEventListener('message', function(event) {
+        var dataArray = event.data.split('|');
+        var result = [];
+        dataArray.shift(); // data comes with an extra pipe in the front
+        for ( var c = 0; c < dataArray.length; c++ ) {
+          var datum = dataArray[c];
+          var datumArray = datum.split(':');
+          var d = {};
+          d.frequency = datumArray[0];
+          d.power = datumArray[1];
+          d.value = parseInt(datumArray[0]);
+          result.push(d);
+        }
+        chart.selectAll('.bar').remove();
 
         
-      //   for ( var c = 0; c < result.length; c++ ) {
-      //     var d = result[c];
-      //     chart.selectAll(".bar")
-      //       .data(result)
-      //       .enter()
-      //       .append("rect")
-      //       .attr("class", "bar")
-      //       .attr("x", function(d) { return xScale(d.frequency); })
-      //       .attr("y", function(d) { return yScale(d.power); })
-      //       .attr("height", function(d) { return height - yScale(d.power); })
-      //       .attr("width", xScale.rangeBand());
-      //   }
-      // });
+        for ( var c = 0; c < result.length; c++ ) {
+          var d = result[c];
+          chart.selectAll(".bar")
+            .data(result)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return xScale(d.frequency); })
+            .attr("y", function(d) { return yScale(d.power); })
+            .attr("height", function(d) { return height - yScale(d.power); })
+            .attr("width", xScale.rangeBand());
+        }
+      });
 
       // // clean up the labeling of the x-axis
       var ticks = svg.selectAll(".x .tick text");
