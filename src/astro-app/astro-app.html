@@ -150,7 +150,11 @@
 
           
           <div>
-            The time showing is: <array-selector id="selector" items="{{timeSelector}}" selected="{{selected}}" multi toggle></array-selector>
+            
+              The times are: [[ _stringIt(timeSelector) ]]<br>
+            
+              The time showing is: {{ _stringIt(timeSelector.selected) }}
+            
           </div>
 
 
@@ -222,6 +226,8 @@
   </template>
 
   <script>
+
+    
     /**
      * @customElement
      * @polymer
@@ -243,12 +249,17 @@
 
         // console.log(customElements.get('parent-element'));
 
-        this.timeSelector = [{ "label": "Hour" },
-                             { "label": "Day" },
-                             { "label": "Week" }];
+        let buttonOptions = [ { "label": "Hour" },
+                              { "label": "Day" },
+                              { "label": "Week" }];
+        this.timeSelector = {
+          buttons: buttonOptions,
+          selected: 'apple'
+        }
+      }
 
-        
-        
+      _stringIt(obj) {
+        return JSON.stringify(obj);
       }
 
       connectedCallback() {
