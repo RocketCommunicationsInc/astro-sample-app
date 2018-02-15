@@ -67,6 +67,21 @@
           chartLegendY: {
             type: String
           },
+          xScaleMin: {
+            type: Number
+          },
+          xScaleMax: {
+            type: Number
+          },
+          xScaleStep: {
+            type: Number
+          },
+          yScaleMin: {
+            type: Number
+          },
+          yScaleMax: {
+            type: Number
+          },
           height: {
             type: Number
           },
@@ -106,8 +121,10 @@
         .orient("left")
         .ticks(10);
 
-      xScale.domain([900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350]);
-      yScale.domain([-30,0]);        
+      var xScaleDomain = this._buildXDomain(this.xScaleMin,this.xScaleMax,this.xScaleStep);
+
+      xScale.domain(xScaleDomain);
+      yScale.domain([this.yScaleMin,this.yScaleMax]);        
       
       const svg = d3.select(this.root)
         .append("svg")
@@ -161,7 +178,6 @@
         
         for ( var c = 0; c < result.length; c++ ) {
           var d = result[c];
-          console.log(d);
           chart.selectAll(".bar")
             .data(result)
             .enter()
@@ -239,7 +255,17 @@
           */
       });
     }
+    
+    _buildXDomain(min, max, step) {
+      var xDomain = [];
+      for ( var c = min; c < max; c = c + step ) {
+        xDomain.push(c);
+      }
+      return xDomain;    
+    }
+
   }
+
 
     customElements.define(RuxSpectrumAnalysis.is, RuxSpectrumAnalysis);
 
