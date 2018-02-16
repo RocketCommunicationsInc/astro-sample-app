@@ -8,6 +8,7 @@
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-progress.html">
 <link rel="import" href="../astro-components/rux-segmented-button.html">
+<link rel="import" href="../astro-components/rux-pop-up-menu.html">
 
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
@@ -132,7 +133,9 @@
               notifications="1,939,234,567,000"
               icon="advanced-status:propulsion-power"></rux-status></li>
         </ul>
-      </ul>
+
+        
+      
 
 
       <!-- toolbar items //-->
@@ -161,6 +164,10 @@
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
+
+          <rux-pop-up-menu
+            orientation="bottom">
+          </rux-pop-up-menu>
 
           <rux-segmented-button
             data="{{ viewPicker }}"></rux-segmented-button>

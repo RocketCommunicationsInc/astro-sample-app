@@ -1,0 +1,47 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<script>
+	class RuxPopUpMenu extends Polymer.Element {
+		static get is() { return 'rux-pop-up-menu'; }
+		
+		static get properties() {
+			return {
+				orientation: {
+					type: String
+				}
+			}
+		}
+
+		static get template() {
+			return Polymer.html`
+				<link rel="stylesheet" href="src/astro-components/rux-pop-up-menu.css">
+				<div class$="rux-pop-up rux-pop-up--[[orientation]]">
+					<ul>
+						<li><a href>Option One</a></li>
+						<li><a href>Option Two</a></li>
+						<li><a href>Option Three</a></li>
+						<li><a href>Option Four</a></li>
+					</ul>
+				</div>
+			`;
+		}
+
+		constructor() {
+			super();
+		}
+
+		connectedCallback() {
+			super.connectedCallback();
+		}
+
+		disconnectedCallback() {
+			super.disconnectedCallback();
+		}
+
+		ready() {
+			super.ready();
+		}
+	}
+
+	customElements.define(RuxPopUpMenu.is, RuxPopUpMenu);
+</script>
