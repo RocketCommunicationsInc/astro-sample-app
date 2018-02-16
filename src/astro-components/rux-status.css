@@ -89,13 +89,13 @@
 	font-size: 0.775rem;
 	text-align: center;
 	color: #fff;
-	letter-spacing: -1px;
+	
 
 	background-color: #000;
 
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 70%;
+	/* max-width: 72%; */
 	white-space: nowrap;
 }
 
