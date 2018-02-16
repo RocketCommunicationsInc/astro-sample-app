@@ -90,23 +90,47 @@
       <ul class="rux-status-bar-group"
           slot="status-bar">
           <li><rux-status
+            on-click="_showStatus"
             status="emergency"
             label="Netcom"
             sublabel="Ok"
-            notifications="10"
+            notifications="999"
             icon="advanced-status:netcom"></rux-status></li>
           <li><rux-status
+            on-click="_showStatus"
             status="emergency"
             label="Advanced Status"
-            notifications="1"
+            notifications="12,345"
             sublabel="Error"
             icon="advanced-status:thermal"></rux-status></li>
           <li><rux-status
+            on-click="_showStatus"
             status="standby"
             label="Standby"
             sublabel="Standby"
-            notifications="100000"
+            notifications="923456"
             icon="advanced-status:propulsion-power"></rux-status></li>
+          <li><rux-status
+              on-click="_showStatus"
+              status="standby"
+              label="Standby"
+              sublabel="Standby"
+              notifications="1,534,567"
+              icon="advanced-status:propulsion-power"></rux-status></li>
+          <li><rux-status
+            on-click="_showStatus"
+            status="standby"
+            label="Standby"
+            sublabel="Standby"
+            notifications="9,234,567,000"
+            icon="advanced-status:propulsion-power"></rux-status></li>
+            <li><rux-status
+              on-click="_showStatus"
+              status="standby"
+              label="Standby"
+              sublabel="Standby"
+              notifications="1,939,234,567,000"
+              icon="advanced-status:propulsion-power"></rux-status></li>
         </ul>
       </ul>
 
@@ -275,18 +299,11 @@
         suer.disconnectedCallback();
 
         window.removeEventListener('master-off', this._masterOff);
+        super();        
       }
 
       ready() {
         super.ready();
-        
-        // this.addEventListener('click', function(e) {
-        //   console.log('test');
-        // })
-
-        // this.addEventListener('fromIcon', function(e) {
-        //   console.log('event from icon');
-        // })
       }
 
       
@@ -303,6 +320,11 @@
       _someFunction() {
         alert('Click Event is handled in the astro-app component')
       }
+
+      _showStatus() {
+        console.log('showing status')
+      }
+
     }
 
     window.customElements.define(AstroApp.is, AstroApp);
