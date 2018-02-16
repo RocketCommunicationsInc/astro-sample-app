@@ -1,229 +1,78 @@
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 
-<dom-module id="rux-status">
-	<template>
-		<style>
-			:host {
-				display: inline-block;
-				line-height: 0; 
+<script>
+	class RuxStatus extends Polymer.Element {
+		static get is() { return 'rux-status'; }
+		static get properties() {
+			return {
+				status: {
+					type: String
+				},
+				label: {
+					type: String
+				},
+				sublabel: {
+					type: String
+				},
+				notifications: {
+					type: String
+				},
+				icon: {
+					type: String
+				},
+				advanced: {
+					type: Boolean,
+					default: false
 
-				max-width: 64px;
-				margin: 0 0.75rem;
-
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-			}
-
-
-			*[hidden] {
-				display: none !important;
-			}
-			
-			*,
-			*:before,
-			*:after {
-				box-sizing: border-box;
-			}	
-
-			.rux-advanced-status {
-				position: relative;
-				z-index: 0;
-
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-
-				overflow: hidden;
-				
-			}
-
-		
-			.rux-advanced-status__icon {
-				position: relative;
-				display: flex;
-				justify-content: center;
-	
-			}
-
-			.rux-advanced-status__status-icon {
-				position: absolute;
-				z-index: 1;
-			}
-
-
-			.rux-advanced-status__label {
-				
-				text-align: center;
-				color: var(--font-color);
-				font-size: 0.875rem;
-				font-stretch: condensed;
-				line-height: 1.2;
-				margin-top: 0.75rem;
-
-				overflow: hidden;
-				text-overflow: ellipsis;
-				width: 100%;
-				white-space: nowrap;
-			}
-
-			.rux-advanced-status__label__sub-label {
-				font-size: 0.65em;
-				color: rgba(255,255,255,.6);
-				display: block;
-			}
-
-			.rux-advanced-status__badge:empty {
-				display: none;
-			}
-
-			.rux-advanced-status__badge {
-				display: block;
-				position: absolute;
-				z-index: 2;
-
-				bottom: -0.3125rem;
-				right: -0.625rem;
-
-				border: 1px solid rgba(255, 255, 255, 0.6);
-				border-radius: 3px;
-
-				padding: 0.65rem 0.25rem;
-
-				font-size: 0.775rem;
-				text-align: center;
-				color: #fff;
-				letter-spacing: -1px;
-
-				background-color: #000;
-
-				overflow: hidden;
-				text-overflow: ellipsis;
-				max-width: 70%;
-				white-space: nowrap;
-			}
-
-
-			
-
-			.rux-status--off {
-				fill: var(--status-off);
-			}
-
-			.rux-status--standby {
-				fill: var(--status-standby);
-			}
-
-			.rux-status--ok {
-				fill: var(--status-ok);
-			}
-
-			.rux-status--caution {
-				fill: var(--status-caution);
-			}
-
-			.rux-status--error {
-				fill: var(--status-error);
-			}
-
-			.rux-status--emergency {
-				fill: var(--status-emergency);
-			}
-
-		</style>
-
-			
-		
-		<!-- 
-		
-			TODO: I think it would be possible to refactor this to not have two instances of rux-icon--status something like
-
-			<div class="rux-status rux-status--[[status/color]] [[advanced]]">
-				<rux-icon> Just the symbol
-				<rux-advanced-status>
-					<rux-icon> the fancy icon
-					<label>
-					</rux-advanced-status>
-			</div>
-			
-			
-		//-->
-
-		<!-- Use Advanced Status Template is any property is set //-->
-		<div class="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
-			
-			<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status [[status]]"></rux-icon>
-			
-			<div class="rux-advanced-status__icon">
-				<rux-icon icon="[[icon]]" class$="rux-status--[[status]]"></rux-icon>
-				<div class="rux-advanced-status__badge">[[notifications]]</div>
-			</div>
-			
-			<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
-		</div>
-
-		<!-- Use simple status if no other properties are set //-->
-		<rux-icon icon="status:[[status]]" class="rux-icon--status" hidden=[[advanced]]></rux-icon>	
-
-	</template>
-
-	<script>
-		class RuxStatus extends Polymer.Element {
-			static get is() { return 'rux-status'; }
-			static get properties() {
-				return {
-					status: {
-						type: String
-					},
-					label: {
-						type: String
-					},
-					sublabel: {
-						type: String
-					},
-					notifications: {
-						type: String
-					},
-					icon: {
-						type: String
-					},
-					advanced: {
-						type: Boolean,
-						default: false
-
-					}
 				}
 			}
+		}
 
-			constructor() {
-				super();
-			}
+		static get template() {
+			return Polymer.html`
+				<link rel="stylesheet" href="src/astro-components/rux-status.css">
 
-			connectedCallback() {
-				super.connectedCallback();
-			}
+				<!-- Use Advanced Status Template is any property is set //-->
+				<div class="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
+					
+					<rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status [[status]]"></rux-icon>
+					
+					<div class="rux-advanced-status__icon">
+						<rux-icon icon="[[icon]]" class$="rux-status--[[status]]"></rux-icon>
+						<div class="rux-advanced-status__badge">[[notifications]]</div>
+					</div>
+					
+					<div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
+				</div>
 
-			disconnectedCallback() {
-				super.disconnectedCallback();
-				
-			}
+				<!-- Use simple status if no other properties are set //-->
+				<rux-icon icon="status:[[status]]" class="rux-icon--status" hidden=[[advanced]]></rux-icon>	
+			`;
+		}
 
-			ready() {
-				super.ready();
+		constructor() {
+			super();
+		}
 
-				this.advanced = true;
-				if(!this.label) {
-					this.advanced = false;
-				}
-			}
+		connectedCallback() {
+			super.connectedCallback();
+		}
 
-
+		disconnectedCallback() {
+			super.disconnectedCallback();
 			
 		}
 
-		customElements.define(RuxStatus.is, RuxStatus);
-	</script>
+		ready() {
+			super.ready();
 
-</dom-module>
+			this.advanced = true;
+			if(!this.label) {
+				this.advanced = false;
+			}
+		}		
+	}
+
+	customElements.define(RuxStatus.is, RuxStatus);
+</script>
