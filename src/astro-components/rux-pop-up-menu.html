@@ -12,6 +12,9 @@
 				target: {
 					type: Object,
 					observer: "_targetChanged"
+				},
+				menu: {
+					type: Object
 				}
 			}
 		}
@@ -22,10 +25,11 @@
 
 				<div class$="rux-pop-up rux-pop-up--[[orientation]]">
 					<ul>
-						<li><a href>Option One</a></li>
-						<li><a href>Option Two</a></li>
-						<li><a href>Option Three</a></li>
-						<li><a href>Option Four</a></li>
+						<dom-repeat id="pop-up-menu" items="{{menu}}">
+								<template>
+									<li>{{item.label}}</li>
+								</template>
+						</dom-repeat>
 					</ul>
 				</div>
 			`;
@@ -49,57 +53,34 @@
 			super.ready();
 		}
 
-		// _serializeValue(value) {
-  	// 	if (value instanceof MyCustomType) {
-    // 		return value.toString();
-  	// }
-  	// 	return super._serializeValue(value);
-		// }
+
 
 
 		_targetChanged(e) {
-			
+			console.log(e);
 			const _target = typeof(e) === 'string' ? this.getRootNode().getElementById(e) : e;
-			
+			console.log(_target);
 
 			const _targetBounds = _target.getBoundingClientRect();
-			const _popBounds = this.getBoundingClientRect();
+			const _popUpBounds = this.getBoundingClientRect();
 			
-			let _style = document.head.appendChild(document.createElement('style'));
-					_style.innerHTML = '#test::before { margin-left: 24px';
 			let _left = _targetBounds.left;
 			let _top = _targetBounds.bottom;
 
+			// Handle edge cases where the menu might be off screen
+			if((_targetBounds.left + _popUpBounds.width) > window.innerWidth) {	
+				_left = window.innerWidth - _popUpBounds.width;
+			} else if ((_targetBounds.bottom + _popUpBounds.height) > window.innerHeight) {
+				_top = window.innerHeight - _popUpBounds.height;
+			}
 
-			/*
-			var h3 = document.querySelector('h3'); 
-  		var result = getComputedStyle(h3, ':after').content;
-			*/
-			
-			let _div = this.shadowRoot.querySelector('div');
-			console.log('_div',_div);
-			let _indicator = window.getComputedStyle(_div, ':before');
-			
-			console.log('_indicator',_indicator.marginLeft);
-			_indicator.marginLeft = "25px";
-			console.log('_indicator',_indicator);
-			// _indicator.setAttribute('margin-left','10px')
-
-				/* console.log(this);
-				console.log(this.getBoundingClientRect());
-				console.log(window.innerWidth);
-				console.log(window.innerHeight);
-				console.log(_popBounds.width); */
-
-				// move popup back on screen if it extends past window width
-				if((_targetBounds.left + _popBounds.width) > window.innerWidth) {	
-					_left = window.innerWidth - _popBounds.width;
-					this.classLists.replace('rux-pop-up--')
-				}
-
-			const _css = `position: fixed; top: ${_top}px; left: ${_left}px`;
-				this.setAttribute('style', _css);
+			// generate CSS for position of the element
+			const _css = `
+				position: fixed; 
+				top: ${_top}px; 
+				left: ${_left}px;`;
 				
+			this.setAttribute('style', _css);
 			
 		}
 	}
