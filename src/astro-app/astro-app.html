@@ -1,14 +1,13 @@
+<!-- Environment-specific config -->
+<script src='config.js'></script>
+console.log(AstroAppConfig);
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../astro-components/rux-component.html">
 <link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
 <link rel="import" href="../astro-components/rux-status.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-tabs.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
-<link rel="import" href="../astro-components/rux-progress.html">
-<link rel="import" href="../astro-components/rux-segmented-button.html">
-
 <link rel="import" href="../astro-components/rux-spectrum-analyzer.html">
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
@@ -125,11 +124,13 @@
             icon="default:notifications">Notifications</rux-button>
         </li>
         <li>
-            <!-- <rux-user></rux-user> -->
+            <rux-user></rux-user>
         </li>
         <li>
-          
-        </li>
+          <rux-button
+					  type="large"
+					  icon="advanced-status:netcom">Master Off</rux-button>
+          </li>
       </ul>
       
     </rux-global-status-bar>
@@ -137,48 +138,6 @@
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
-
-          <rux-segmented-button
-            data="{{ viewPicker }}"></rux-segmented-button>
-
-          <rux-segmented-button
-            data="{{ timeSelector }}"></rux-segmented-button>
-
-          <rux-segmented-button
-            buttons='[{ "label": "Manual" },
-                      { "label": "Manual Two" },
-                      { "label": "Manual Three" }]'></rux-segmented-button>
-
-          
-          <div>
-            view format: [[ viewPicker.selected.label ]]<br>
-            time format: [[ timeSelector.selected.label ]]
-          </div>
-
-
-          <rux-progress
-            min="0"
-            max="100"
-            value="10"
-            step="1"></rux-progress>
-          <br>
-          <rux-progress
-            min="0"
-            max="100"
-            value="99"
-            text="false"></rux-progress>
-          <br>
-          <rux-progress></rux-progress>
-        
-          <rux-button type="small">Small</rux-button>
-          <rux-button default="true" type="small">Small</rux-button>
-          <rux-button disabled>Disabled</rux-button>
-          <rux-button type="narrow">Narrow</rux-button>
-          <rux-button type="short">Short</rux-button>
-          <rux-button>Cancel</rux-button>
-          <rux-button on-click="_someFunction" default="true" icon="default:caution">Default Icon</rux-button>
-          <rux-button default="true">Ok</rux-button>
-          <rux-button icon="advanced-status:netcom">Master Off</rux-button>
           <rux-button>Cancel</rux-button>
           <rux-button on-click="graph" default>Ok</rux-button>
         
@@ -188,16 +147,16 @@
           icon="default:notifications">Notifications</rux-button>
         <rux-button
           type="icon"
-          default="true"
           icon="default:settings">Settings</rux-button>
             
-        <rux-button
-          type="large"
-          icon="default:caution">Master Off</rux-button>
-        <rux-button
-          deafult="true"
-          type="large">Master Off</rux-button>
-              
+        <rux-button icon="advanced-status:netcom">Master Off</rux-button>
+        
+
+        <rux-dialog class="rux-dialog">
+          <rux-button>Ok</rux-button>
+          <rux-button>Cancel</rux-button>
+            
+        </rux-dialog>
       </rux-tab-panel>
 
       <rux-tab-panel aria-labeledby="tab-pass-plans">
@@ -229,8 +188,6 @@
   </template>
 
   <script>
-
-    
     /**
      * @customElement
      * @polymer
@@ -250,43 +207,12 @@
       constructor() {
         super();
 
-        // console.log(customElements.get('parent-element'));
-
-        this.viewPicker = {
-          buttons: [ 
-            { "label": "Track" },
-            { "label": "List" }]
-        }
-        // This should probably exist in a separate component outside of
-        // astro-app and outside of rux-spectrum-analysis
-        const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
-            ws.addEventListener('message', (event) => {
-              // assign the data to a property on the rux-spectrum-analysis component
-              this.chartData = this._dataToJsonObjArray(event.data);
-            });
+        // const ws = new WebSocket(AstroAppConfig.api_server + ':' + AstroAppConfig.api_port);
+        // ws.addEventListener('message', (event) => {
+        //   // assign the data to a property on the rux-spectrum-analysis component
+        //   this.chartData = this._dataToJsonObjArray(event.data);
+        // });
         
-        this.timeSelector = {
-          buttons: [ 
-            { "label": "Hour" },
-            { "label": "Day" },
-            { "label": "Week" }]
-        }
-      }
-
-      _stringIt(obj) {
-        return JSON.stringify(obj);
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-
-        window.addEventListener('master-off', this._masterOff);
-      }
-
-      disconnectedCallback() {
-        suer.disconnectedCallback();
-
-        window.removeEventListener('master-off', this._masterOff);
       }
 
 
@@ -295,20 +221,6 @@
         super.ready();
       }
 
-      
-      _segmentedButton(e) {
-        console.log('segmented button',e);
-        console.log('segmented button',e.target);
-      }
-
-
-      _masterOff() {
-				console.log('master off from Astro App')
-			}
-
-      _someFunction() {
-        alert('Click Event is handled in the astro-app component')
-      }
 
 
       // This should probably exist in a separate component outside of
