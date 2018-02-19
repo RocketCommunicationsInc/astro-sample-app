@@ -1,3 +1,6 @@
+<!-- Environment-specific config -->
+<script src='config.js'></script>
+console.log(AstroAppConfig);
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../astro-components/rux-button.html">
 <link rel="import" href="../astro-components/rux-global-status-bar.html">
@@ -6,6 +9,7 @@
 <link rel="import" href="../astro-components/rux-tabs.html">
 <link rel="import" href="../astro-components/rux-icons-svg.html">
 <link rel="import" href="../astro-components/rux-spectrum-analyzer.html">
+<!-- <link rel="import" href="../astro-components/rux-dialog.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-advanced-status.html"> -->
 <!-- <link rel="import" href="../astro-components/rux-icon-library.html">
 <link rel="import" href="../astro-components/rux-icon.html"> -->
@@ -147,7 +151,17 @@
           icon="default:settings">Settings</rux-button>
             
         <rux-button icon="advanced-status:netcom">Master Off</rux-button>
+<<<<<<< HEAD
+        
+
+        <rux-dialog class="rux-dialog">
+          <rux-button>Ok</rux-button>
+          <rux-button>Cancel</rux-button>
+            
+        </rux-dialog>
+=======
               
+>>>>>>> 25f67325fb6e65d9dce08eb125a108c8f4375745
       </rux-tab-panel>
 
       <rux-tab-panel aria-labeledby="tab-pass-plans">
@@ -198,14 +212,12 @@
       constructor() {
         super();
 
-        // This should probably exist in a separate component outside of
-        // astro-app and outside of rux-spectrum-analysis
-        const ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
-            ws.addEventListener('message', (event) => {
-              // assign the data to a property on the rux-spectrum-analysis component
-              this.chartData = this._dataToJsonObjArray(event.data);
-            });
-        
+        // const ws = new WebSocket(AstroAppConfig.api_server + ':' + AstroAppConfig.api_port);
+        // ws.addEventListener('message', (event) => {
+        //   // assign the data to a property on the rux-spectrum-analysis component
+        //   this.chartData = this._dataToJsonObjArray(event.data);
+        // });
+
       }
 
 
