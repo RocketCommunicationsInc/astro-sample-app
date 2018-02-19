@@ -91,6 +91,7 @@
       <ul class="rux-status-bar-group"
           slot="status-bar">
           <li><rux-status
+            id="netcom-status"
             on-click="_showStatus"
             status="emergency"
             label="Netcom"
@@ -98,6 +99,7 @@
             notifications="999"
             icon="advanced-status:netcom"></rux-status></li>
           <li><rux-status
+            id="thermal-status"
             on-click="_showStatus"
             status="emergency"
             label="Advanced Status"
@@ -126,6 +128,7 @@
             notifications="9,234,567,000"
             icon="advanced-status:propulsion-power"></rux-status></li>
             <li><rux-status
+              id="propulsion-status"
               on-click="_showStatus"
               status="standby"
               label="Standby"
@@ -165,9 +168,7 @@
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
 
-          <rux-pop-up-menu
-            orientation="bottom">
-          </rux-pop-up-menu>
+          
 
           <rux-segmented-button
             data="{{ viewPicker }}"></rux-segmented-button>
@@ -238,6 +239,11 @@
       </rux-tab-panel>
       
   </rux-tab-panels>
+
+  <rux-pop-up-menu
+    id="pop-menu"
+    orientation="top">
+  </rux-pop-up-menu>
 
 
  
@@ -327,8 +333,12 @@
         alert('Click Event is handled in the astro-app component')
       }
 
-      _showStatus() {
-        console.log('showing status')
+      _showStatus(e) {
+        console.log('showing status',e.target.getAttribute('id'));
+        // this.root.getElementById('pop-menu').attribute('target',e.target)
+        // console.log('pop-up-menu', this.root.getElementById('pop-menu'));
+
+        this.root.getElementById('pop-menu').setAttribute('target',e.target.getAttribute('id'));
       }
 
     }
