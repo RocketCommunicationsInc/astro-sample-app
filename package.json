@@ -21,6 +21,10 @@
     "browser-sync": "^2.18.13",
     "gulp": "^3.9.1",
     "gulp-exec": "^2.1.3",
-    "gulp-shell": "^0.6.3"
+    "gulp-shell": "^0.6.3",
+    "polymer-modulizer": "^0.3.0"
+  },
+  "dependencies": {
+    "polymer-cli": "^1.6.0"
   }
 }
