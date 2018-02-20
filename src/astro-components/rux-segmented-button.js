@@ -1,0 +1,88 @@
+import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
+import '/node_modules/@polymer/polymer/lib/elements/array-selector.js';
+import { html } from '../../../@polymer/polymer/polymer.js';
+
+class RuxSegmentedButton extends Element {
+
+		static get is() { return 'rux-segmented-button'; }
+		static get properties() {
+        return {
+            selected: {
+                type: Object
+            },
+            buttons : {
+                type: Object,
+                notify: true
+            },
+            data: {
+                type: Object,
+                notify: true
+            }
+        }
+		}
+
+
+
+		static get template() {
+        return html`
+        <link rel="stylesheet" href="src/astro-components/rux-segmented-button.css">
+
+            <ul class="rux-segmented-buttons">
+                <dom-repeat id="buttonSegments" items="{{data.buttons}}">
+                    <template>
+                        <li class="rux-segmented-button">
+                            <input type="radio" name="rux-group" id="[[item.label]]" on-click="_selectSegment" />
+                            <label for$="[[item.label]]">[[item.label]]</label>
+                        </li>
+                    </template>
+                </dom-repeat>
+            </ul>
+
+            <array-selector id="selector" items="{{data.buttons}}" selected="{{selected}}"></array-selector>`;	
+		}
+
+		
+
+
+		constructor() {
+        super();
+
+        
+		}
+
+
+		connectedCallback() {
+        super.connectedCallback();
+
+
+        if(this.buttons && this.buttons.length) {
+            this.data = {};
+            this.data['buttons'] = this.buttons;
+        }
+		}
+
+
+		disconnectedCallback() {
+        super.disconnectedCallback();
+		}
+
+
+		ready() {
+        super.ready();
+		}
+
+		
+
+		_selectSegment(e) {
+        
+        
+        let item = this.$.buttonSegments.itemForElement(e.target);
+        this.$.selector.select(item);
+        this.data.selected = item;
+        this.notifyPath('data.selected');
+		}
+
+
+}
+
+customElements.define(RuxSegmentedButton.is, RuxSegmentedButton);

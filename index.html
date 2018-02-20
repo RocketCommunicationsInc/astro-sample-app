@@ -1,41 +1,43 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Astro Demo App</title>
-    <meta name="description" content="Sample application using the Astro Design System">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <!-- Global Styles //-->
-    <link rel="stylesheet" href="/public/css/astro.css">
+  <title>Astro Demo App</title>
+  <meta name="description" content="Sample application using the Astro Design System">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+  <!-- Global Styles //-->
+  <link rel="stylesheet" href="/public/css/astro.css">
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="/manifest.json">
 
-    <link rel="import" href="/src/astro-app/astro-app.html">
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <!-- Polymer Based Web Component //-->
-    <!-- <link rel="import" href="src/astro-components/polymer-rux-button.html"> -->
+  <link rel="import" href="/src/astro-app/astro-app.html">
 
-    <!-- Vanilla Based Web Component //-->
-    <!-- <script type="module" src="src/astro-components/rux-button.js"></script> -->
-    <script>
-      
-      addEventListener('clicked', function(payload) {
-	      console.log('Dispatched Event from Web Component',payload);
-      });
+  <!-- Polymer Based Web Component //-->
+  <!-- <link rel="import" href="src/astro-components/polymer-rux-button.html"> -->
 
-    </script>
+  <!-- Vanilla Based Web Component //-->
+  <!-- <script type="module" src="src/astro-components/rux-button.js"></script> -->
+  <script>
+    addEventListener('clicked', function (payload) {
+      console.log('Dispatched Event from Web Component', payload);
+    });
 
-  </head>
-  <body class="dark-theme">    
-    <astro-app>
+  </script>
 
-    </astro-app>
-    <!-- <rux-button>Component Button  in Index</rux-button> -->
+</head>
 
-  </body>
+<body class="dark-theme">
+  <astro-app>
+
+  </astro-app>
+  <!-- <rux-button>Component Button  in Index</rux-button> -->
+
+</body>
+
 </html>
