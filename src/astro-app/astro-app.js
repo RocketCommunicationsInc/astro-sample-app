@@ -8,6 +8,7 @@ import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
 import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
+import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
 
 // import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
@@ -35,6 +36,10 @@ export class AstroApp extends PolymerElement {
       }
     </style>
     
+    <rux-global-status-bar
+      appname="Astro App"
+      version="v1.022a"></rux-global-status-bar>
+
     <rux-button
       icon="default:caution">Caution</rux-button>
 

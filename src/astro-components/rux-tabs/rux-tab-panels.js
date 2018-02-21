@@ -1,42 +1,37 @@
-import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
-class RuxTabPanels extends Element {
-				
-				static get is() { return 'rux-tab-panels'; }
-				static get properties() {
-            return {
-                type: String
-            }
-				}
+import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
+export class RuxTabPanels extends PolymerElement {
+  static get properties() {
+    return {
+      type: String
+    };
+  }
 
-				constructor() {
-    super();					
-				}
+  constructor() {
+    super();
+  }
 
+  connectedCallback() {
+    // set the role to tab
+    this.setAttribute("role", "tablist");
 
-				connectedCallback() {
-            
-            // set the role to tab
-            this.setAttribute('role','tablist');
+    let _panels = this.querySelectorAll("rux-tab-panel");
 
-            let _panels = this.querySelectorAll('rux-tab-panel');
-            
-            window.dispatchEvent(new CustomEvent('register-panels', 
-                { detail : 
-                    { panels: _panels }
-                }
-            ));
-            
-            super.connectedCallback();
-				}
+    window.dispatchEvent(
+      new CustomEvent("register-panels", {
+        detail: { panels: _panels }
+      })
+    );
 
-				disconnectedCallback() {
-            super.disconnectedCallback();
-				}
+    super.connectedCallback();
+  }
 
-				ready() {
-            super.ready();
-				}
-    }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
 
+  ready() {
+    super.ready();
+  }
+}
 
-customElements.define(RuxTabPanels.is, RuxTabPanels);
+customElements.define("rux-tab-panels", RuxTabPanels);

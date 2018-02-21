@@ -1,34 +1,29 @@
-import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
-class RuxTabPanel extends Element {
-				
-				static get is() { return 'rux-tab-panel'; }
-				static get properties() {
-            return {
-                type: String
-            }
-				}
+import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
+export class RuxTabPanel extends PolymerElement {
+  static get properties() {
+    return {
+      type: String
+    };
+  }
 
-				constructor() {
+  constructor() {
     super();
-				}
+  }
 
+  connectedCallback() {
+    super.connectedCallback();
 
-				connectedCallback() {
-            super.connectedCallback();
+    // set the role to tab
+    this.setAttribute("role", "tabpanel");
+  }
 
-            // set the role to tab
-            this.setAttribute('role','tabpanel');
-				}
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
 
-				disconnectedCallback() {
-            super.disconnectedCallback();
-            
-				}
-
-
-				ready() {
-            super.ready();
-				}
+  ready() {
+    super.ready();
+  }
 }
 
-customElements.define(RuxTabPanel.is, RuxTabPanel);
+customElements.define("rux-tab-panel", RuxTabPanel);

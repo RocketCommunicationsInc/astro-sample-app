@@ -63,9 +63,6 @@ export class RuxIconLibrary extends PolymerElement {
           let iconSize = `rux-icon--${_icon.size}`;
           e.detail.el.classList.add(iconSize);
         }
-
-        // console.log(iconSize);
-        // console.log(e.detail.el.classList);
       }
 
       let sourceSvg = this.querySelectorAll(`#${_icon.icon}`)[0];
@@ -89,14 +86,6 @@ export class RuxIconLibrary extends PolymerElement {
         svg.setAttribute("focusable", "false");
         svg.appendChild(content);
 
-        // this.classList.add('rux-icon--status')
-        // console.log(this.classList);
-        // this.classList.add('rux-icon--status');
-        console.log("e", e);
-        console.log("e.detail", e.detail);
-        console.log("e.detail.el", e.detail.el);
-        console.log("e.detail.el.root", e.detail.el.root);
-        // return;
         e.detail.el.root.insertBefore(svg, null);
       }
     }

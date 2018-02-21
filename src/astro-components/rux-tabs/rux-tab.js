@@ -1,30 +1,28 @@
-import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
-class RuxTab extends Element {
-				
-				static get is() { return 'rux-tab'; }
-				static get properties() {
-            return {
-                selected: {
-                    type: Boolean,
-                    reflectToAttribute: true
-                }
-            }
-				}
+import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element as PolymerElement.js";
+export class RuxTab extends PolymerElement {
+  static get properties() {
+    return {
+      selected: {
+        type: Boolean,
+        reflectToAttribute: true
+      }
+    };
+  }
 
-				constructor() {
+  constructor() {
     super();
-				}
+  }
 
-				connectedCallback() {
-            super.connectedCallback();
+  connectedCallback() {
+    super.connectedCallback();
 
-            // set the role to tab
-            this.setAttribute('role','tab');
-				}
+    // set the role to tab
+    this.setAttribute("role", "tab");
+  }
 
-				ready() {
-            super.ready();
-				}
+  ready() {
+    super.ready();
+  }
 }
 
-customElements.define(RuxTab.is, RuxTab);
+customElements.define("rux-tab", RuxTab);

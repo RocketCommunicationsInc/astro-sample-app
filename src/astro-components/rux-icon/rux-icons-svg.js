@@ -3,7 +3,8 @@
 const $_documentContainer = document.createElement("div");
 $_documentContainer.setAttribute("style", "display: none;");
 
-$_documentContainer.innerHTML = `<rux-icon-library name="default" size="114">
+$_documentContainer.innerHTML = `
+<rux-icon-library name="default" size="114">
 	<svg>
 		<defs>
 				<g id="notifications">
@@ -18,7 +19,8 @@ $_documentContainer.innerHTML = `<rux-icon-library name="default" size="114">
 
 		</defs>
 	</svg>
-</rux-icon-library><rux-icon-library name="advanced-status" size="114">
+</rux-icon-library>
+<rux-icon-library name="advanced-status" size="114">
   <svg>
     <defs>
 			<g id="propulsion-power">
