@@ -1,11 +1,6 @@
-import {
-  html,
-  Element as PolymerElement
-} from "/node_modules/@polymer/polymer/polymer-element.js";
+import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
 export class RuxComponent extends PolymerElement {
-  static get is() {
-    return "rux-component";
-  }
   static get properties() {
     return {
       min: String,
