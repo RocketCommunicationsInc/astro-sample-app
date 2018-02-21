@@ -1,7 +1,7 @@
-import './rux-icon-library.js';
-import './rux-icon.js';
-const $_documentContainer = document.createElement('div');
-$_documentContainer.setAttribute('style', 'display: none;');
+// import './rux-icon-library.js';
+// import './rux-icon.js';
+const $_documentContainer = document.createElement("div");
+$_documentContainer.setAttribute("style", "display: none;");
 
 $_documentContainer.innerHTML = `<rux-icon-library name="default" size="114">
 	<svg>

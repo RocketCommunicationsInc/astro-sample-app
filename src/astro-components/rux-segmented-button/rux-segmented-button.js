@@ -1,30 +1,28 @@
-import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
-import '/node_modules/@polymer/polymer/lib/elements/array-selector.js';
-import { html } from '../../../@polymer/polymer/polymer.js';
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
+import "/node_modules/@polymer/polymer/lib/elements/array-selector.js";
 
-class RuxSegmentedButton extends Element {
+export class RuxSegmentedButton extends PolymerElement {
+  static get properties() {
+    return {
+      selected: {
+        type: Object
+      },
+      buttons: {
+        type: Object,
+        notify: true
+      },
+      data: {
+        type: Object,
+        notify: true
+      }
+    };
+  }
 
-		static get is() { return 'rux-segmented-button'; }
-		static get properties() {
-        return {
-            selected: {
-                type: Object
-            },
-            buttons : {
-                type: Object,
-                notify: true
-            },
-            data: {
-                type: Object,
-                notify: true
-            }
-        }
-		}
-
-
-
-		static get template() {
-        return html`
+  static get template() {
+    return html`
         <link rel="stylesheet" href="src/astro-components/rux-segmented-button.css">
 
             <ul class="rux-segmented-buttons">
@@ -38,51 +36,36 @@ class RuxSegmentedButton extends Element {
                 </dom-repeat>
             </ul>
 
-            <array-selector id="selector" items="{{data.buttons}}" selected="{{selected}}"></array-selector>`;	
-		}
+            <array-selector id="selector" items="{{data.buttons}}" selected="{{selected}}"></array-selector>`;
+  }
 
-		
+  constructor() {
+    super();
+  }
 
+  connectedCallback() {
+    super.connectedCallback();
 
-		constructor() {
-        super();
+    if (this.buttons && this.buttons.length) {
+      this.data = {};
+      this.data["buttons"] = this.buttons;
+    }
+  }
 
-        
-		}
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
 
+  ready() {
+    super.ready();
+  }
 
-		connectedCallback() {
-        super.connectedCallback();
-
-
-        if(this.buttons && this.buttons.length) {
-            this.data = {};
-            this.data['buttons'] = this.buttons;
-        }
-		}
-
-
-		disconnectedCallback() {
-        super.disconnectedCallback();
-		}
-
-
-		ready() {
-        super.ready();
-		}
-
-		
-
-		_selectSegment(e) {
-        
-        
-        let item = this.$.buttonSegments.itemForElement(e.target);
-        this.$.selector.select(item);
-        this.data.selected = item;
-        this.notifyPath('data.selected');
-		}
-
-
+  _selectSegment(e) {
+    let item = this.$.buttonSegments.itemForElement(e.target);
+    this.$.selector.select(item);
+    this.data.selected = item;
+    this.notifyPath("data.selected");
+  }
 }
 
-customElements.define(RuxSegmentedButton.is, RuxSegmentedButton);
+customElements.define("rux-segmented-button", RuxSegmentedButton);

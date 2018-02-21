@@ -1,7 +1,13 @@
-import { Element as PolymerElement } from "../../node_modules/@polymer/polymer/polymer-element.js";
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
 import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
+import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
 import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
 import { RuxButton } from "../astro-components/rux-button/rux-button.js";
+
+// import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
 // import '../astro-components/rux-button.js';
 // import '../astro-components/rux-global-status-bar.js';
@@ -29,10 +35,18 @@ export class AstroApp extends PolymerElement {
     
     <rux-component></rux-component>
 
+    
+
     <div class="rux-button-group">
       <rux-button>Cancel</rux-button>
       <rux-button type="default">Ok</rux-button>
     </div>
+
+    <rux-segemented-button
+    min="0"
+    max="20"
+    value="10"
+    label=true></rux-segmented-button>
 
     <rux-progress
       min="0"
@@ -44,6 +58,11 @@ export class AstroApp extends PolymerElement {
   constructor() {
     super();
     this.name = "3.0 preview";
+    console.log(RuxSegmentedButton.template);
+
+    // this.timeSelector = {
+    //   buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
+    // };
   }
 
   static get properties() {
