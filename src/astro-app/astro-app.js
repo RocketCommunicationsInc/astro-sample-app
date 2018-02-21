@@ -35,6 +35,9 @@ export class AstroApp extends PolymerElement {
       }
     </style>
     
+    <rux-button
+      icon="default:caution">Caution</rux-button>
+
     <rux-icon
       icon="default:settings"></rux-icon>
 
