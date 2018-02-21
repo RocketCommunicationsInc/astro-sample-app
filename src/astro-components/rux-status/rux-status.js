@@ -1,40 +1,41 @@
-import { Element } from '/node_modules/@polymer/polymer/polymer-element.js';
-import './rux-icons-svg.js';
-import { html } from '../../../@polymer/polymer/polymer.js';
-class RuxStatus extends Element {
-		static get is() { return 'rux-status'; }
-		static get properties() {
-        return {
-            status: {
-                type: String
-            },
-            label: {
-                type: String
-            },
-            sublabel: {
-                type: String
-            },
-            notifications: {
-                type: String
-            },
-            icon: {
-                type: String
-            },
-            _notifications: {
-                type: String,
-                computed: '_filterNotifications(notifications)'
-            },
-            advanced: {
-                type: Boolean,
-                default: false
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
+// import "./rux-icons-svg.js";
 
-            }
-        }
-		}
+export class RuxStatus extends PolymerElement {
+  static get properties() {
+    return {
+      status: {
+        type: String
+      },
+      label: {
+        type: String
+      },
+      sublabel: {
+        type: String
+      },
+      notifications: {
+        type: String
+      },
+      icon: {
+        type: String
+      },
+      _notifications: {
+        type: String,
+        computed: "_filterNotifications(notifications)"
+      },
+      advanced: {
+        type: Boolean,
+        default: false
+      }
+    };
+  }
 
-		static get template() {
-        return html`
-            <link rel="stylesheet" href="src/astro-components/rux-status.css">
+  static get template() {
+    return html`
+            <link rel="stylesheet" href="src/astro-components/rux-status/rux-status.css">
 
             <!-- Use Advanced Status Template is any property is set //-->
             <div class="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
@@ -52,62 +53,54 @@ class RuxStatus extends Element {
             <!-- Use simple status if no other properties are set //-->
             <rux-icon icon="status:[[status]]" class="rux-icon--status" hidden=[[advanced]]></rux-icon>	
         `;
-		}
+  }
 
-		constructor() {
-        super();
-		}
+  constructor() {
+    super();
+  }
 
-		connectedCallback() {
-        super.connectedCallback();
-		}
+  connectedCallback() {
+    super.connectedCallback();
+  }
 
-		disconnectedCallback() {
-        super.disconnectedCallback();
-        
-		}
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
 
-		ready() {
-        super.ready();
+  ready() {
+    super.ready();
 
-        if(this.label || this.icon || this.notifications) {
-            this.advanced = true;
-        }
-		}
+    if (this.label || this.icon || this.notifications) {
+      this.advanced = true;
+    }
+  }
 
+  _filterNotifications(n) {
+    // remove commas if they exist and convert to an integer
+    let _n = parseInt(n.replace(/\,/g, ""));
 
+    // get the place value
+    const _thousand = Math.floor((_n / 1000) % 1000); // only return a whole number
+    const _million = (_n / 1000000) % 1000000; // return a decimal value for numbers like 1.2m
+    const _billion = (_n / 1000000000) % 1000000000; // return a decimal value for numbers like 1.2b
+    const _trillion = (_n / 1000000000000) % 1000000000000; // trillion is just to offer an overflow instance
 
+    // set the display to its original state
+    let _message = n;
 
+    //
+    if (_trillion >= 1) {
+      _message = "∞";
+    } else if (_billion >= 1) {
+      _message = _billion.toFixed(1).toString() + "b";
+    } else if (_million >= 1) {
+      _message = _million.toFixed(1).toString() + "m";
+    } else if (_thousand >= 1) {
+      _message = _thousand + "k";
+    }
 
-
-		_filterNotifications(n) {
-        
-        // remove commas if they exist and convert to an integer
-        let _n = parseInt(n.replace(/\,/g,''));
-
-        // get the place value
-        const _thousand = Math.floor(_n/1000 % 1000); 				// only return a whole number
-        const _million = _n/1000000 % 1000000; 								// return a decimal value for numbers like 1.2m
-        const _billion = _n/1000000000 % 1000000000;					// return a decimal value for numbers like 1.2b
-        const _trillion = _n/1000000000000 % 1000000000000;		// trillion is just to offer an overflow instance
-
-        // set the display to its original state
-        let _message = n;
-        
-        // 
-        if(_trillion >= 1) {
-            _message = "∞";
-        } else if(_billion >= 1) {
-            _message = _billion.toFixed(1).toString() + 'b';
-        } else if(_million >= 1) {
-            _message = _million.toFixed(1).toString() + 'm';
-        } else if(_thousand >= 1) {
-            _message = _thousand + 'k';
-        }
-
-
-        return _message;
-		}
+    return _message;
+  }
 }
 
-customElements.define(RuxStatus.is, RuxStatus);
+customElements.define("rux-status", RuxStatus);

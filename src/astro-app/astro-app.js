@@ -6,6 +6,7 @@ import { RuxComponent } from "../astro-components/rux-component/rux-component.js
 import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
 import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
 import { RuxButton } from "../astro-components/rux-button/rux-button.js";
+import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 
 // import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
@@ -35,7 +36,14 @@ export class AstroApp extends PolymerElement {
     
     <rux-component></rux-component>
 
+    <rux-status
+      status="error"></rux-status>
     
+    <rux-status
+      status="error"
+      label="Netcom"
+      sublabel="45Khz"
+      notifications=1000001></rux-status>
 
     <div class="rux-button-group">
       <rux-button>Cancel</rux-button>
