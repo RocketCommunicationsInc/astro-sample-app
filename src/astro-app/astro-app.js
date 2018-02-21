@@ -1,5 +1,5 @@
 import { Element as PolymerElement } from "../../node_modules/@polymer/polymer/polymer-element.js";
-import { RuxComponent } from "../astro-components/rux-component.js";
+import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
 
 // import '../astro-components/rux-button.js';
 // import '../astro-components/rux-global-status-bar.js';

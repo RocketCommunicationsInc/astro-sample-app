@@ -1,8 +1,8 @@
 import {
   html,
-  Element
+  Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
-export class RuxComponent extends Element {
+export class RuxComponent extends PolymerElement {
   static get is() {
     return "rux-component";
   }
@@ -17,9 +17,8 @@ export class RuxComponent extends Element {
 
   static get template() {
     return html`
-            <link rel="stylesheet" href="src/astro-components/rux-component.css">
-
-            <div class="rux-component">This is a blank component template written in Polymer 2.4. Use me as a starting point for a new Component</div>`;
+      <link rel="stylesheet" href="/src/astro-components/rux-component/rux-component.css">
+      <div class="rux-component">This is a blank component template written in Polymer 3. Use me as a starting point for a new Component</div>`;
   }
 
   constructor() {
@@ -39,4 +38,4 @@ export class RuxComponent extends Element {
   }
 }
 
-customElements.define(RuxComponent.is, RuxComponent);
+customElements.define("rux-component", RuxComponent);
