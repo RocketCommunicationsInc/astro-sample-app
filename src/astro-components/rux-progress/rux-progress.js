@@ -7,7 +7,10 @@ export class RuxProgress extends PolymerElement {
       min: String,
       max: String,
       value: String,
-      text: String
+      label: {
+        type: Boolean,
+        value: false
+      }
     };
   }
 
@@ -16,8 +19,8 @@ export class RuxProgress extends PolymerElement {
       <link rel="stylesheet" href="src/astro-components/rux-progress/rux-progress.css">
 
       <div class="rux-progress">
-          <progress value="[[value]]" min=[[min]] max=[[max]]></progress>
-          <div hidden="[[hidden]]">[[value]]</div>
+        <progress value="[[value]]" min=[[min]] max=[[max]]></progress>
+        <div class="rux-progress__value" hidden="[[!label]]">[[value]]</div>
       </div>`;
   }
 
@@ -35,8 +38,6 @@ export class RuxProgress extends PolymerElement {
 
   ready() {
     super.ready();
-
-    this.hidden = !this.text;
   }
 }
 

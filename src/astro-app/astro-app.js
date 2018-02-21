@@ -30,7 +30,8 @@ export class AstroApp extends PolymerElement {
     <rux-progress
       min="0"
       max="20"
-      value="10"></rux-progress>`;
+      value="10"
+      label=true></rux-progress>`;
   }
 
   constructor() {
