@@ -1,6 +1,7 @@
 import { Element as PolymerElement } from "../../node_modules/@polymer/polymer/polymer-element.js";
 import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
 import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
+import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 
 // import '../astro-components/rux-button.js';
 // import '../astro-components/rux-global-status-bar.js';
@@ -27,6 +28,12 @@ export class AstroApp extends PolymerElement {
     </style>
     
     <rux-component></rux-component>
+
+    <div class="rux-button-group">
+      <rux-button>Cancel</rux-button>
+      <rux-button type="default">Ok</rux-button>
+    </div>
+
     <rux-progress
       min="0"
       max="20"
