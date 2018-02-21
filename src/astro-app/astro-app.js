@@ -7,6 +7,7 @@ import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux
 import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
 import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
+import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
 // import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
@@ -34,8 +35,12 @@ export class AstroApp extends PolymerElement {
       }
     </style>
     
+    <rux-icon
+      icon="default:settings"></rux-icon>
+
     <rux-component></rux-component>
 
+    
     <rux-status
       status="error"></rux-status>
     
@@ -43,7 +48,9 @@ export class AstroApp extends PolymerElement {
       status="error"
       label="Netcom"
       sublabel="45Khz"
+      icon="advanced-status:thermal"
       notifications=1000001></rux-status>
+    
 
     <div class="rux-button-group">
       <rux-button>Cancel</rux-button>
@@ -66,7 +73,6 @@ export class AstroApp extends PolymerElement {
   constructor() {
     super();
     this.name = "3.0 preview";
-    console.log(RuxSegmentedButton.template);
 
     // this.timeSelector = {
     //   buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]

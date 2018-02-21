@@ -92,6 +92,11 @@ export class RuxIconLibrary extends PolymerElement {
         // this.classList.add('rux-icon--status')
         // console.log(this.classList);
         // this.classList.add('rux-icon--status');
+        console.log("e", e);
+        console.log("e.detail", e.detail);
+        console.log("e.detail.el", e.detail.el);
+        console.log("e.detail.el.root", e.detail.el.root);
+        // return;
         e.detail.el.root.insertBefore(svg, null);
       }
     }

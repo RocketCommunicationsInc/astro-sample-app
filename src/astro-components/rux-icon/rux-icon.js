@@ -1,6 +1,9 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { RuxIconLibrary } from "rux-icon-library.js";
-import { RuxIconsSVG } from "rux-icons-svg.js";
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
+import { RuxIconLibrary } from "./rux-icon-library.js";
+import "./rux-icons-svg.js";
 /*
 
 
@@ -19,6 +22,11 @@ export class RuxIcon extends PolymerElement {
         type: String
       }
     };
+  }
+
+  static get template() {
+    return html`
+    <link rel="stylesheet" href="/src/astro-components/rux-icon/rux-icon.css">`;
   }
 
   constructor() {
