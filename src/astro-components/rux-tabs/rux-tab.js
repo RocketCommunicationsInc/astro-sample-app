@@ -1,4 +1,7 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element as PolymerElement.js";
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
 export class RuxTab extends PolymerElement {
   static get properties() {
     return {
@@ -7,6 +10,13 @@ export class RuxTab extends PolymerElement {
         reflectToAttribute: true
       }
     };
+  }
+
+  static get template() {
+    return html`
+      <link rel="stylesheet" src="/src/astro-components/rux-tab/rux-tab.css">
+      <slot></slot>
+    `;
   }
 
   constructor() {
@@ -18,6 +28,7 @@ export class RuxTab extends PolymerElement {
 
     // set the role to tab
     this.setAttribute("role", "tab");
+    this.setAttribute("class", "rux-tabs__tab");
   }
 
   ready() {

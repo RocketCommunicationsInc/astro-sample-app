@@ -21,6 +21,15 @@ export class RuxTabs extends PolymerElement {
     };
   }
 
+  static get template() {
+    return html`
+      <link rel="stylesheet" src="/src/astro-components/rux-tabs/rux-tabs.css">
+      <div class="rux-tabs">
+        <slot></slot>
+      </div>
+    `;
+  }
+
   constructor() {
     super();
 
@@ -101,4 +110,4 @@ export class RuxTabs extends PolymerElement {
   }
 }
 
-customElements.define(RuxTabs.is, RuxTabs);
+customElements.define("rux-tabs", RuxTabs);

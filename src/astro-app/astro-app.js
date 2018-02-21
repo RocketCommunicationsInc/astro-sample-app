@@ -2,13 +2,14 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
+import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
 import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
+import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
 import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
 import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
-import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
+import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 
 // import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 
@@ -38,7 +39,28 @@ export class AstroApp extends PolymerElement {
     
     <rux-global-status-bar
       appname="Astro App"
-      version="v1.022a"></rux-global-status-bar>
+      version="v1.022a">
+      
+      <rux-tabs slot="tabs">
+        <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
+        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
+      </rux-tabs>
+      
+
+    </rux-global-status-bar>
+
+    <rux-tab-panels>
+      <rux-tab-panel aria-labeledby="tab-modems">
+        Modems
+      </rux-tab-panel>
+      <rux-tab-panel aria-labeledby="tab-pass-plans">
+        Pass Plans
+      </rux-tab-panel>
+      <rux-tab-panel aria-labeledby="tab-telemetry">
+        Telemetry
+      </rux-tab-panel>
+    </rux-tab-panels>
 
     <rux-button
       icon="default:caution">Caution</rux-button>
