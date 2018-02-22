@@ -14,7 +14,7 @@ export class RuxTab extends PolymerElement {
 
   static get template() {
     return html`
-      <link rel="stylesheet" src="/src/astro-components/rux-tab/rux-tab.css">
+      <link rel="stylesheet" href="/src/astro-components/rux-tabs/rux-tab.css">
       <slot></slot>
     `;
   }
@@ -28,7 +28,6 @@ export class RuxTab extends PolymerElement {
 
     // set the role to tab
     this.setAttribute("role", "tab");
-    this.setAttribute("class", "rux-tabs__tab");
   }
 
   ready() {
