@@ -2,15 +2,8 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
-import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
-import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
-import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
-import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
-import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
-import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 
 /**
  * @polymer
@@ -20,90 +13,101 @@ export class AstroApp extends PolymerElement {
   static get template() {
     return `
     <style>
-      :host {
-        display: block;
-        /* box-sizing: border-box; */
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      ul li {
+        margin 0 1rem;
       }
     </style>
-    
-    <rux-global-status-bar
-      appname="Astro App"
-      version="v1.022a">
-      
-      <rux-tabs slot="tabs">
-        <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
-      </rux-tabs>
-      
 
-    </rux-global-status-bar>
-
-    <rux-tab-panels>
-      <rux-tab-panel aria-labeledby="tab-modems">
-        Modems
-      </rux-tab-panel>
-      <rux-tab-panel aria-labeledby="tab-pass-plans">
-        Pass Plans
-      </rux-tab-panel>
-      <rux-tab-panel aria-labeledby="tab-telemetry">
-        Telemetry
-      </rux-tab-panel>
-    </rux-tab-panels>
-
-    <rux-button
-      icon="default:caution">Caution</rux-button>
-
-    <rux-icon
-      icon="default:settings"></rux-icon>
-
-    <rux-component></rux-component>
-
-    
-    <rux-status
-      status="error"></rux-status>
-    
-    <rux-status
-      id="netcom"
-      on-click="_showStatus"
-      status="error"
-      label="Netcom"
-      sublabel="45Khz"
-      icon="advanced-status:thermal"
-      notifications=1000001></rux-status>
-    
-
-    <div class="rux-button-group">
-      <rux-button>Cancel</rux-button>
-      <rux-button type="default">Ok</rux-button>
+    <div class="section">
+      <h1>Astro Status</h1>
+      <ul>
+        <li><rux-status status="emergency"></rux-status></li>
+        <li><rux-status status="caution"></rux-status></li>
+        <li><rux-status status="error"></rux-status></li>
+        <li><rux-status status="ok"></rux-status></li>
+        <li><rux-status status="standby"></rux-status></li>
+        <li><rux-status status="off"></rux-status></li>
+      </ul>
     </div>
 
-    <div>
-      time format: [[ timeSelector.selected.label ]]
+
+    <div class="section">
+      <h1>Astro Advanced Status</h1>
+      <ul>
+        <li>
+          <rux-status
+            id="netcom"
+            on-click="_showStatus"
+            status="emergency"
+            label="Netcom"
+            sublabel="45Khz"
+            icon="advanced-status:netcom"
+            notifications=1></rux-status>
+        </li>
+        <li>
+          <rux-status
+            id="thermal"
+            on-click="_showStatus"
+            status="caution"
+            label="Thermal"
+            sublabel="45Khz"
+            icon="advanced-status:thermal"
+            notifications=1234></rux-status>
+        </li>
+        <li>
+          <rux-status
+            id="propulsion"
+            on-click="_showStatus"
+            status="error"
+            label="Propulsion"
+            sublabel="45Khz"
+            icon="advanced-status:propulsion-power"
+            notifications=456782></rux-status>
+        </li>
+        <li>
+          <rux-status
+            id="netcom2"
+            on-click="_showStatus"
+            status="ok"
+            label="Satelite 1"
+            sublabel="45Khz"
+            icon="advanced-status:netcom"
+            notifications="12000001"></rux-status>
+        </li>
+        <li>
+          <rux-status
+            id="thermal2"
+            on-click="_showStatus"
+            status="standby"
+            label="Satelite 2"
+            sublabel="45Khz"
+            icon="advanced-status:thermal"
+            notifications="12,400,000,000"></rux-status>
+        </li>
+        <li>
+          <rux-status
+            id="propulsion2"
+            on-click="_showStatus"
+            status="off"
+            label="Satelite 3"
+            sublabel="45Khz"
+            icon="advanced-status:propulsion-power"
+            notifications="12340981234098213412341234098"></rux-status>
+        </li>
+      </ul>
     </div>
-
-    <rux-segmented-button data="{{ timeSelector }}"></rux-segmented-button>
-    
-
-    <rux-progress
-      min="0"
-      max="20"
-      value="10"
-      label=true></rux-progress>
-      
-      <rux-pop-up-menu
-        id="pop-menu"
-        orientation="top">
-      </rux-pop-up-menu>  
-      
     `;
   }
 
   constructor() {
     super();
-    this.name = "3.0 preview";
-
-    console.log(RuxSegmentedButton);
 
     this.timeSelector = {
       buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
@@ -117,10 +121,6 @@ export class AstroApp extends PolymerElement {
         value: "astro-app"
       }
     };
-  }
-
-  _stringIt(obj) {
-    return JSON.stringify(obj);
   }
 
   _showStatus(e) {
