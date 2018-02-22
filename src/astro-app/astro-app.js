@@ -87,11 +87,12 @@ export class AstroApp extends PolymerElement {
       <rux-button type="default">Ok</rux-button>
     </div>
 
-    <rux-segemented-button
-    min="0"
-    max="20"
-    value="10"
-    label=true></rux-segmented-button>
+    <div>
+      time format: [[ timeSelector.selected.label ]]
+    </div>
+
+    <rux-segmented-button data="{{ timeSelector }}"></rux-segmented-button>
+    
 
     <rux-progress
       min="0"
@@ -104,9 +105,11 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
-    // this.timeSelector = {
-    //   buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
-    // };
+    console.log(RuxSegmentedButton);
+
+    this.timeSelector = {
+      buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
+    };
   }
 
   static get properties() {

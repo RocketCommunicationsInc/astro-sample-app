@@ -1,34 +1,38 @@
+:host {
+  border: 1px solid red;
+}
+
 .rux-segmented-buttons {
-	display: flex;
-	
+  display: flex;
+
   overflow: auto;
-	
-	padding: 0;
-	
+
+  padding: 0;
+
   list-style: none;
 }
 
 .rux-segmented-button label {
   display: flex;
   justify-content: center;
-	align-items: center;
-	
-	width: auto;
-	height: 1.5rem;
-	
-	padding: 0 0.75rem;
-  
+  align-items: center;
+
+  width: auto;
+  height: 1.5rem;
+
+  padding: 0 0.75rem;
+
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   border-right: 1px solid #15057a;
-	
-	color: #fff;
-	background-color: var(--button-background);
+
+  color: #fff;
+  background-color: var(--button-background);
 
   font-size: 0.875rem;
-  
-	cursor: pointer;
+
+  cursor: pointer;
 }
 
 .rux-segmented-button input {
