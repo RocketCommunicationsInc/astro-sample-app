@@ -1,6 +1,6 @@
 import {
   html,
-  Element
+  Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 
@@ -8,7 +8,7 @@ import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
  * @polymer
  * @extends HTMLElement
  */
-export class RuxPopUpMenu extends Element {
+export class RuxPopUpMenu extends PolymerElement {
   static get properties() {
     return {
       orientation: {
@@ -26,7 +26,7 @@ export class RuxPopUpMenu extends Element {
 
   static get template() {
     return html`
-      <link rel="stylesheet" href="src/astro-components/rux-pop-up-menu.css">
+      <link rel="stylesheet" href="src/astro-components/rux-pop-up-menu/rux-pop-up-menu.css">
 
       <div class$="rux-pop-up rux-pop-up--[[orientation]]">
         <ul>

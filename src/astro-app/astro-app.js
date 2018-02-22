@@ -13,8 +13,8 @@ import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 
 /**
- * @customElement
  * @polymer
+ * @extends HTMLElement
  */
 export class AstroApp extends PolymerElement {
   static get template() {
@@ -64,6 +64,8 @@ export class AstroApp extends PolymerElement {
       status="error"></rux-status>
     
     <rux-status
+      id="netcom"
+      on-click="_showStatus"
       status="error"
       label="Netcom"
       sublabel="45Khz"
@@ -87,7 +89,14 @@ export class AstroApp extends PolymerElement {
       min="0"
       max="20"
       value="10"
-      label=true></rux-progress>`;
+      label=true></rux-progress>
+      
+      <rux-pop-up-menu
+        id="pop-menu"
+        orientation="top">
+      </rux-pop-up-menu>  
+      
+    `;
   }
 
   constructor() {
@@ -112,6 +121,16 @@ export class AstroApp extends PolymerElement {
 
   _stringIt(obj) {
     return JSON.stringify(obj);
+  }
+
+  _showStatus(e) {
+    console.log("showing status", e.target.getAttribute("id"));
+    // this.root.getElementById('pop-menu').attribute('target',e.target)
+    // console.log('pop-up-menu', this.root.getElementById('pop-menu'));
+
+    this.root
+      .getElementById("pop-menu")
+      .setAttribute("target", e.target.getAttribute("id"));
   }
 
   connectedCallback() {
