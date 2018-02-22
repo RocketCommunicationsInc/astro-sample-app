@@ -5,6 +5,10 @@ import {
 import "/node_modules/@polymer/polymer/lib/elements/array-selector.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxSegmentedButton extends PolymerElement {
   static get properties() {
     return {

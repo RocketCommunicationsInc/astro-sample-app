@@ -2,6 +2,10 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxTab extends PolymerElement {
   static get properties() {
     return {

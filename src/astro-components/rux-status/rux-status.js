@@ -3,7 +3,10 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 // import "./rux-icons-svg.js";
-
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxStatus extends PolymerElement {
   static get properties() {
     return {

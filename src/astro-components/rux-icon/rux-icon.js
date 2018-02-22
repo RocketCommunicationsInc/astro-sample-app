@@ -4,10 +4,11 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { RuxIconLibrary } from "./rux-icon-library.js";
 import "./rux-icons-svg.js";
-/*
 
-
-//*/
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxIcon extends PolymerElement {
   static get properties() {
     return {

@@ -4,6 +4,10 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { RuxButton } from "../rux-button/rux-button.js";
 
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxGlobalStatusBar extends PolymerElement {
   static get properties() {
     return {

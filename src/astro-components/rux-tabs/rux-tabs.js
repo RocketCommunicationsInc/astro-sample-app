@@ -5,6 +5,11 @@ import {
 import { RuxTab } from "./rux-tab.js";
 import { RuxTabPanels } from "./rux-tab-panels.js";
 import { RuxTabPanel } from "./rux-tab-panel.js";
+
+/**
+ * @polymer
+ * @extends HTMLElement
+ */
 export class RuxTabs extends PolymerElement {
   static get is() {
     return "rux-tabs";

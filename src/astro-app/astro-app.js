@@ -10,18 +10,7 @@ import { RuxButton } from "../astro-components/rux-button/rux-button.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
-
-// import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
-
-// import '../astro-components/rux-button.js';
-// import '../astro-components/rux-global-status-bar.js';
-// import '../astro-components/rux-status.js';
-// import '../astro-components/rux-icons-svg.js';
-// import '../astro-components/rux-tabs.js';
-// import '../astro-components/rux-icons-svg.js';
-// import '../astro-components/rux-progress.js';
-// import '../astro-components/rux-segmented-button.js';
-// import '../astro-components/rux-pop-up-menu.js';
+import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 
 /**
  * @customElement
