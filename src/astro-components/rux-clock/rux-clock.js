@@ -9,11 +9,10 @@ export class RuxClock extends PolymerElement {
     return {
       dayOfYear: {
         type: String,
-        observer: "_getDayOfYear"
+        computed: "_getDayOfYear()"
       },
       currentTime: {
-        type: String,
-        observer: "_updateTime"
+        type: String
       },
       aos: {
         type: String,
@@ -53,26 +52,9 @@ export class RuxClock extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    // function updateTime() {
-    //   let currentTime = new Date();
-    //   let hours = currentTime.getUTCHours();
-    //   let minutes = currentTime.getMinutes();
-    //   let seconds = currentTime.getSeconds();
-    //   if (hours < 10) {
-    //     hours = "0" + hours;
-    //   }
-    //   if (minutes < 10) {
-    //     minutes = "0" + minutes;
-    //   }
-    //   if (seconds < 10) {
-    //     seconds = "0" + seconds;
-    //   }
-    //   let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
-    //   return formatted;
-    // }
-    // setInterval(updateTime, 1000);
-    // $("#rux-aos").val("08:29:15");
-    // $("#rux-los").val("08:53:12");
+    let _timer = setInterval(() => {
+      this._updateTime();
+    }, 1000);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
@@ -94,6 +76,7 @@ export class RuxClock extends PolymerElement {
     } else {
       formattedDayOfYear = dayOfYear;
     }
+    this.dayOfYear = formattedDayOfYear;
     return formattedDayOfYear;
   }
   _updateTime() {
@@ -101,6 +84,10 @@ export class RuxClock extends PolymerElement {
     let hours = currentTime.getUTCHours();
     let minutes = currentTime.getMinutes();
     let seconds = currentTime.getSeconds();
+    // update the day of year at midnight
+    if (hours === 0) {
+      this.dayOfYear = this._getDayOfYear();
+    }
     if (hours < 10) {
       hours = "0" + hours;
     }
@@ -111,7 +98,7 @@ export class RuxClock extends PolymerElement {
       seconds = "0" + seconds;
     }
     let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
-    return formatted;
+    this.currentTime = formatted;
   }
   _updateAos() {
     return "08:29:15";
