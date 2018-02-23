@@ -12,6 +12,7 @@ import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
+import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 
 /**
  * @polymer
@@ -41,10 +42,21 @@ export class AstroApp extends PolymerElement {
 
       <div class="">
         <ul>
+          <dom-repeat id="astroAdvancedStatus" items="{{statusIndicators}}">
+            <template>
+              <li>
+                <rux-status
+                  status=[[item.status]]
+                  label=[[item.label]]
+                  icon=[[item.icon]]></rux-status>
+              </li>
+            </template>
+          </dom-repeat>
         </ul>
       </div>
 
       <rux-button
+        type="icon"
         icon="default:settings"></rux-button>
       
 
@@ -84,30 +96,7 @@ export class AstroApp extends PolymerElement {
       sublabel="45Khz"
       icon="advanced-status:thermal"
       notifications=1000001></rux-status>
-    
-
-    <div class="rux-button-group">
-      <rux-button>Cancel</rux-button>
-      <rux-button type="default">Ok</rux-button>
-    </div>
-
-    <div>
-      time format: [[ timeSelector.selected.label ]]
-    </div>
-
-    <rux-segmented-button data="{{ timeSelector }}"></rux-segmented-button>
-    
-
-    <rux-progress
-      min="0"
-      max="20"
-      value="10"
-      label=true></rux-progress>
-      
-      <rux-pop-up-menu
-        id="pop-menu"
-        orientation="top">
-      </rux-pop-up-menu>  
+  
       
     `;
   }
@@ -121,6 +110,15 @@ export class AstroApp extends PolymerElement {
     this.timeSelector = {
       buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
     };
+
+    this.statusIndicators = [
+      {
+        status: "ok",
+        label: "Power",
+        icon: "advanced-status:propulsion-power",
+        notifications: 0
+      }
+    ];
   }
 
   static get properties() {
