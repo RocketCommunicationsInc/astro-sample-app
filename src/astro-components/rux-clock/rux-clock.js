@@ -43,30 +43,29 @@ export class RuxClock extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-clock/rux-clock.css">
-
+      
       <div id="rux-clock">
-      <h3>[[label]]</h3>
-      <div class="rux-date-group">
-        <div class="rux-date-control rux-left" hidden="[[hideDate]]">
-          <label for="rux-day-of-year">Date</label>
-          <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> 
+        <div class="rux-date-group">
+          <div class="rux-date-control rux-left" hidden="[[hideDate]]">
+            <label for="rux-day-of-year">Date</label>
+            <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> 
+          </div>
+          <div class="rux-date-control rux-right">
+            <label for="rux-time">Time</label>
+            <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> 
+          </div>
         </div>
-        <div class="rux-date-control rux-right">
-          <label for="rux-time">Time</label>
-          <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> 
+        <div class="rux-date-group">
+          <div class="rux-date-control" hidden="[[!aos]]">
+            <label for="rux-aos">AOS</label>
+            <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> 
+          </div>
+          <div class="rux-date-control" hidden="[[!los]]">
+            <label for="rux-los">LOS</label>
+            <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> 
+          </div>
         </div>
-      </div>
-      <div class="rux-date-group">
-        <div class="rux-date-control" hidden="[[!aos]]">
-          <label for="rux-aos">AOS</label>
-          <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> 
-        </div>
-        <div class="rux-date-control" hidden="[[!los]]">
-          <label for="rux-los">LOS</label>
-          <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> 
-        </div>
-      </div>
-    </div>`;
+      </div>`;
   }
   constructor() {
     super();
@@ -116,6 +115,7 @@ export class RuxClock extends PolymerElement {
   }
 
   _getDayOfYear() {
+    // May need to polyfill or find an alternate option for .padStart IE11 doesn’t support
     const _dayOfYear = Math.floor((this._today - this._year) / this._oneDay)
       .toString()
       .padStart(3, "000");
