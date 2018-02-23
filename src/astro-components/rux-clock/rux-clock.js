@@ -21,6 +21,10 @@ export class RuxClock extends PolymerElement {
       los: {
         type: String,
         value: "08:53:12"
+      },
+      timezone: {
+        type: String,
+        value: "UTC"
       }
     };
   }
@@ -52,16 +56,24 @@ export class RuxClock extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
+
     let _timer = setInterval(() => {
       this._updateTime();
     }, 1000);
   }
+
   disconnectedCallback() {
     super.disconnectedCallback();
+    _timer = null;
   }
+
   ready() {
     super.ready();
+
+    // show a time immediately
+    this._updateTime();
   }
+
   _getDayOfYear() {
     let now = new Date();
     let start = new Date(now.getFullYear(), 0, 0);
@@ -69,6 +81,7 @@ export class RuxClock extends PolymerElement {
     const oneDay = 1000 * 60 * 60 * 24;
     let dayOfYear = Math.floor(diff / oneDay);
     let formattedDayOfYear = null;
+
     if (dayOfYear < 100) {
       formattedDayOfYear = "0" + dayOfYear;
     } else if (dayOfYear < 10) {
@@ -79,32 +92,14 @@ export class RuxClock extends PolymerElement {
     this.dayOfYear = formattedDayOfYear;
     return formattedDayOfYear;
   }
+
   _updateTime() {
-    let currentTime = new Date();
-    let hours = currentTime.getUTCHours();
-    let minutes = currentTime.getMinutes();
-    let seconds = currentTime.getSeconds();
-    // update the day of year at midnight
-    if (hours === 0) {
-      this.dayOfYear = this._getDayOfYear();
-    }
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
-    this.currentTime = formatted;
-  }
-  _updateAos() {
-    return "08:29:15";
-  }
-  _updateLos() {
-    return "08:53:12";
+    const _currentTime = new Date();
+    this.currentTime = _currentTime.toLocaleTimeString("us-en", {
+      hour12: false,
+      timeZone: this.timezone,
+      timeZoneName: "short"
+    });
   }
 }
 customElements.define("rux-clock", RuxClock);
