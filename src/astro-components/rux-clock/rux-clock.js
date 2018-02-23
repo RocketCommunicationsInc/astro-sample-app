@@ -36,18 +36,22 @@ export class RuxClock extends PolymerElement {
       <div class="rux-date-group">
         <div class="rux-date-control rux-left">
           <label for="rux-day-of-year">Date</label>
-          <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> </div>
+          <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> 
+        </div>
         <div class="rux-date-control rux-right">
           <label for="rux-time">Time</label>
-          <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> </div>
+          <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> 
+        </div>
       </div>
-      <div class="rux-date-group">
+      <div class="rux-date-group" hidden="[[!aos]]">
         <div class="rux-date-control">
           <label for="rux-aos">AOS</label>
-          <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> </div>
-        <div class="rux-date-control">
+          <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> 
+        </div>
+        <div class="rux-date-control" hidden="[[!los]]">
           <label for="rux-los">LOS</label>
-          <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> </div>
+          <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> 
+        </div>
       </div>
     </div>`;
   }

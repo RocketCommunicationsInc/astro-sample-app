@@ -7,6 +7,10 @@ label {
   text-align: center;
 }
 
+*[hidden] {
+  display: none !important;
+}
+
 input[type="text"] {
   padding: 6px;
   font-weight: bold;

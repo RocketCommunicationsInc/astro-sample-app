@@ -20,7 +20,7 @@ export class AstroApp extends PolymerElement {
     <section>
       <h1>Clock</h1>
       <rux-clock
-        aos=""
+        aos="00:11:11"
         los=""
         timezone="America/Los_Angeles"></rux-clock>
     </section>
