@@ -60,7 +60,8 @@ export class AstroApp extends PolymerElement {
               <rux-status
                 status=[[item.status]]
                 label=[[item.label]]
-                icon=[[item.icon]]></rux-status>
+                icon=[[item.icon]]
+                notifications=[[item.notifications]]></rux-status>
             </li>
           </template>
         </dom-repeat>
@@ -127,14 +128,14 @@ export class AstroApp extends PolymerElement {
       {
         status: "ok",
         label: "Power",
-        icon: "advanced-status:propulsion-power",
-        notifications: 0
+        icon: "advanced-status:propulsion-power"
       },
       {
-        status: "ok",
-        label: "Communications",
-        icon: "advanced-status:netcom",
-        notifications: 0
+        status: "error",
+        label: "Satellite 2",
+        sublabel: "Sublabel",
+        icon: "advanced-status:thermal",
+        notifications: "10"
       }
     ];
   }
