@@ -1,0 +1,24 @@
+.rux-date-control {
+  display: inline-block;
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 6px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#rux-clock {
+  padding: 50px;
+  border: 1px solid gray;
+  width: 475px;
+}
+
+.rux-date-group {
+  display: inline-block;
+}

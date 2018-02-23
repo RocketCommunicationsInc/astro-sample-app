@@ -11,7 +11,7 @@ import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
 import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
-
+import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -45,7 +45,7 @@ export class AstroApp extends PolymerElement {
       </rux-tab-panel>
       <rux-tab-panel aria-labeledby="tab-pass-plans">
         Pass Plans
-      </rux-tab-panel>
+        <rux-clock></rux-clock>
       <rux-tab-panel aria-labeledby="tab-telemetry">
         Telemetry
       </rux-tab-panel>
@@ -98,18 +98,14 @@ export class AstroApp extends PolymerElement {
       
     `;
   }
-
   constructor() {
     super();
     this.name = "3.0 preview";
-
     console.log(RuxSegmentedButton);
-
     this.timeSelector = {
       buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
     };
   }
-
   static get properties() {
     return {
       prop1: {
@@ -118,32 +114,25 @@ export class AstroApp extends PolymerElement {
       }
     };
   }
-
   _stringIt(obj) {
     return JSON.stringify(obj);
   }
-
   _showStatus(e) {
     console.log("showing status", e.target.getAttribute("id"));
     // this.root.getElementById('pop-menu').attribute('target',e.target)
     // console.log('pop-up-menu', this.root.getElementById('pop-menu'));
-
     this.root
       .getElementById("pop-menu")
       .setAttribute("target", e.target.getAttribute("id"));
   }
-
   connectedCallback() {
     super.connectedCallback();
   }
-
   disconnectedCallback() {
     suer.disconnectedCallback();
   }
-
   ready() {
     super.ready();
   }
 }
-
 customElements.define("astro-app", AstroApp);
