@@ -4,6 +4,7 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
 import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
+import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 
 /**
  * @polymer
@@ -38,7 +39,7 @@ export class AstroApp extends PolymerElement {
     </div>
 
 
-    <div class="section">
+    <section class="section">
       <h1>Astro Advanced Status</h1>
       <ul>
         <li>
@@ -102,7 +103,29 @@ export class AstroApp extends PolymerElement {
             notifications="12340981234098213412341234098"></rux-status>
         </li>
       </ul>
-    </div>
+
+
+
+    </section>
+    <section>
+      <h1>Object Based Status</h1>
+        <ul>
+        <dom-repeat id="advancedStatusIcons" items="{{ advancedStatus }}">
+        <template>
+          <li>
+            <rux-status
+              status="[[item.status]]"
+              label="[[item.label]]"
+              sublabel="[[item.sublabel]]"
+              icon="[[item.icon]]"
+              notifications="[[item.notifications]]">
+            </rux-status>
+
+          </li>
+        </template>
+        </dom-repeat>
+        </ul>
+      </section>
     `;
   }
 
@@ -112,6 +135,23 @@ export class AstroApp extends PolymerElement {
     this.timeSelector = {
       buttons: [{ label: "Hour" }, { label: "Day" }, { label: "Week" }]
     };
+
+    this.advancedStatus = [
+      {
+        status: "off",
+        label: "Satellite 1",
+        sublabel: "Sublabel",
+        icon: "advanced-status:propulsion-power",
+        notifications: "13"
+      },
+      {
+        status: "error",
+        label: "Satellite 2",
+        sublabel: "Sublabel",
+        icon: "advanced-status:thermal",
+        notifications: "113"
+      }
+    ];
   }
 
   static get properties() {
