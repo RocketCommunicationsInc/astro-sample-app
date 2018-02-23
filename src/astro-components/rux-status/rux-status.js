@@ -20,7 +20,7 @@ export class RuxStatus extends PolymerElement {
         type: String
       },
       notifications: {
-        type: String
+        type: Number
       },
       icon: {
         type: String
@@ -78,8 +78,10 @@ export class RuxStatus extends PolymerElement {
   }
 
   _filterNotifications(n) {
-    // remove commas if they exist and convert to an integer
-    let _n = parseInt(n.replace(/\,/g, ""));
+    if (isNaN(n))
+      console.error(`${this.label}’s notification count is not a number`);
+
+    let _n = Math.floor(n);
 
     // don't show any values less than 0
     if (_n <= 0) return null;
