@@ -16,15 +16,19 @@ export class RuxClock extends PolymerElement {
       },
       aos: {
         type: String,
-        value: "08:29:15"
+        value: false
       },
       los: {
         type: String,
-        value: "08:53:12"
+        value: false
       },
       timezone: {
         type: String,
         value: "UTC"
+      },
+      timezoneLabel: {
+        type: Boolean,
+        value: true
       }
     };
   }
@@ -43,8 +47,8 @@ export class RuxClock extends PolymerElement {
           <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> 
         </div>
       </div>
-      <div class="rux-date-group" hidden="[[!aos]]">
-        <div class="rux-date-control">
+      <div class="rux-date-group">
+        <div class="rux-date-control" hidden="[[!aos]]">
           <label for="rux-aos">AOS</label>
           <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> 
         </div>
@@ -57,6 +61,10 @@ export class RuxClock extends PolymerElement {
   }
   constructor() {
     super();
+
+    this._today = new Date();
+    this._oneDay = 1000 * 60 * 60 * 24;
+    this._year = new Date(this._today.getFullYear(), 0, 0);
   }
   connectedCallback() {
     super.connectedCallback();
@@ -73,32 +81,24 @@ export class RuxClock extends PolymerElement {
 
   ready() {
     super.ready();
-
-    // show a time immediately
-    this._updateTime();
   }
 
   _getDayOfYear() {
-    let now = new Date();
-    let start = new Date(now.getFullYear(), 0, 0);
-    let diff = now - start;
-    const oneDay = 1000 * 60 * 60 * 24;
-    let dayOfYear = Math.floor(diff / oneDay);
-    let formattedDayOfYear = null;
+    const _dayOfYear = Math.floor((this._today - this._year) / this._oneDay)
+      .toString()
+      .padStart(3, "000");
 
-    if (dayOfYear < 100) {
-      formattedDayOfYear = "0" + dayOfYear;
-    } else if (dayOfYear < 10) {
-      formattedDayOfYear = "00" + dayOfYear;
-    } else {
-      formattedDayOfYear = dayOfYear;
-    }
-    this.dayOfYear = formattedDayOfYear;
-    return formattedDayOfYear;
+    return _dayOfYear;
   }
 
   _updateTime() {
     const _currentTime = new Date();
+
+    /* format the current time using toLocaleString
+       Requires locale e.g., "us-en" would format U.S. English
+       options to force 24 hour clock, timezone support and 
+       forcing the timezone tag (maybe allow that to be settable)
+    */
     this.currentTime = _currentTime.toLocaleTimeString("us-en", {
       hour12: false,
       timeZone: this.timezone,
