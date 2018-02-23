@@ -26,6 +26,18 @@ export class AstroApp extends PolymerElement {
         display: block;
         /* box-sizing: border-box; */
       }
+
+
+      .astro-advanced-status-indicators {
+        display: flex;
+        
+        padding: 0;
+        margin: 0;
+
+        list-style: none;
+      }
+
+
     </style>
     
     <rux-global-status-bar
@@ -40,20 +52,20 @@ export class AstroApp extends PolymerElement {
 
       <rux-clock></rux-clock>
 
-      <div class="">
-        <ul>
-          <dom-repeat id="astroAdvancedStatus" items="{{statusIndicators}}">
-            <template>
-              <li>
-                <rux-status
-                  status=[[item.status]]
-                  label=[[item.label]]
-                  icon=[[item.icon]]></rux-status>
-              </li>
-            </template>
-          </dom-repeat>
-        </ul>
-      </div>
+      
+      <ul class="astro-advanced-status-indicators">
+        <dom-repeat id="astroAdvancedStatus" items="{{statusIndicators}}">
+          <template>
+            <li>
+              <rux-status
+                status=[[item.status]]
+                label=[[item.label]]
+                icon=[[item.icon]]></rux-status>
+            </li>
+          </template>
+        </dom-repeat>
+      </ul>
+      
 
       <rux-button
         type="icon"
@@ -116,6 +128,12 @@ export class AstroApp extends PolymerElement {
         status: "ok",
         label: "Power",
         icon: "advanced-status:propulsion-power",
+        notifications: 0
+      },
+      {
+        status: "ok",
+        label: "Communications",
+        icon: "advanced-status:netcom",
         notifications: 0
       }
     ];

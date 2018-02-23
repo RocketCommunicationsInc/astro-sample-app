@@ -31,7 +31,7 @@ export class RuxStatus extends PolymerElement {
       },
       advanced: {
         type: Boolean,
-        default: false
+        value: false
       }
     };
   }
@@ -76,6 +76,8 @@ export class RuxStatus extends PolymerElement {
     if (this.label || this.icon || this.notifications) {
       this.advanced = true;
     }
+
+    console.log(this.advanced);
   }
 
   _filterNotifications(n) {
