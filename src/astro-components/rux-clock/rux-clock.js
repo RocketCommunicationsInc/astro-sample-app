@@ -14,10 +14,10 @@ export class RuxClock extends PolymerElement {
 
       <div id="rux-clock">
       <div class="rux-date-group">
-        <div class="rux-date-control">
+        <div class="rux-date-control rux-left">
           <label for="rux-day-of-year">Date</label>
           <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3"> </div>
-        <div class="rux-date-control">
+        <div class="rux-date-control rux-right">
           <label for="rux-time">Time</label>
           <input name="rux-time" id="rux-time" type="text" size="12"> </div>
       </div>
@@ -41,7 +41,6 @@ export class RuxClock extends PolymerElement {
     let diff = now - start;
     const oneDay = 1000 * 60 * 60 * 24;
     let dayOfYear = Math.floor(diff / oneDay);
-    console.log("Day of year: " + dayOfYear);
     let formattedDayOfYear = null;
     if (dayOfYear < 100) {
       formattedDayOfYear = "0" + dayOfYear;

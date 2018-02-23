@@ -22,3 +22,11 @@ input[type="text"] {
 .rux-date-group {
   display: inline-block;
 }
+
+.rux-left {
+  float: left;
+}
+
+.rux-right {
+  float: right;
+}
