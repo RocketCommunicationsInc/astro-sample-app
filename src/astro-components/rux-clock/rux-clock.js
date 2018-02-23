@@ -26,9 +26,17 @@ export class RuxClock extends PolymerElement {
         type: String,
         value: "UTC"
       },
-      timezoneLabel: {
+      hideTimezone: {
         type: Boolean,
-        value: true
+        value: false
+      },
+      hideDate: {
+        type: Boolean,
+        value: false
+      },
+      timeOptions: {
+        type: Object,
+        computed: "_setTimeOptions(hideTimezone)"
       }
     };
   }
@@ -37,8 +45,9 @@ export class RuxClock extends PolymerElement {
       <link rel="stylesheet" href="src/astro-components/rux-clock/rux-clock.css">
 
       <div id="rux-clock">
+      <h3>[[label]]</h3>
       <div class="rux-date-group">
-        <div class="rux-date-control rux-left">
+        <div class="rux-date-control rux-left" hidden="[[hideDate]]">
           <label for="rux-day-of-year">Date</label>
           <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> 
         </div>
@@ -66,21 +75,44 @@ export class RuxClock extends PolymerElement {
     this._oneDay = 1000 * 60 * 60 * 24;
     this._year = new Date(this._today.getFullYear(), 0, 0);
   }
+
   connectedCallback() {
     super.connectedCallback();
 
-    let _timer = setInterval(() => {
+    const _timer = setInterval(() => {
       this._updateTime();
     }, 1000);
+
+    // show time immediately
+    this._updateTime();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    _timer = null;
   }
 
   ready() {
     super.ready();
+  }
+
+  /*
+  **
+  ** Set the options for toLocalTimeString. Essentially
+  ** only needed to show/hide the time zone string.
+  **
+  */
+  _setTimeOptions(hideTimezone) {
+    let _timeOptions = {
+      hour12: false,
+      timeZone: this.timezone
+    };
+
+    // explicitly optin to hide the timzone label
+    if (!hideTimezone) {
+      _timeOptions.timeZoneName = "short";
+    }
+
+    return _timeOptions;
   }
 
   _getDayOfYear() {
@@ -99,11 +131,10 @@ export class RuxClock extends PolymerElement {
        options to force 24 hour clock, timezone support and 
        forcing the timezone tag (maybe allow that to be settable)
     */
-    this.currentTime = _currentTime.toLocaleTimeString("us-en", {
-      hour12: false,
-      timeZone: this.timezone,
-      timeZoneName: "short"
-    });
+    this.currentTime = _currentTime.toLocaleTimeString(
+      "us-en",
+      this.timeOptions
+    );
   }
 }
 customElements.define("rux-clock", RuxClock);

@@ -14,6 +14,7 @@ label {
 input[type="text"] {
   padding: 6px;
   font-weight: bold;
+  font-family: monospace;
   font-size: 1.2em;
 }
 
