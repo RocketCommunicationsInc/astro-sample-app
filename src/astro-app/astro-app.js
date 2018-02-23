@@ -148,8 +148,7 @@ export class AstroApp extends PolymerElement {
         status: "error",
         label: "Satellite 2",
         sublabel: "Sublabel",
-        icon: "advanced-status:thermal",
-        notifications: "113"
+        icon: "advanced-status:thermal"
       }
     ];
   }
