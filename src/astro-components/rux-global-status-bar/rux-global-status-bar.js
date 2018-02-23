@@ -3,7 +3,6 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { RuxButton } from "../rux-button/rux-button.js";
-
 /**
  * @polymer
  * @extends HTMLElement
@@ -15,7 +14,6 @@ export class RuxGlobalStatusBar extends PolymerElement {
       version: String
     };
   }
-
   static get template() {
     return html`
     <link rel="stylesheet" href="/src/astro-components/rux-global-status-bar/rux-global-status-bar.css">
@@ -40,20 +38,16 @@ export class RuxGlobalStatusBar extends PolymerElement {
           icon="default:caution">Master Off</rux-button>
       </header>`;
   }
-
   constructor() {
     super();
   }
-
   connectedCallback() {
     super.connectedCallback();
-
     // if the user hasn’t defined an appname then explicitly
     // set the appname property to false to hide the app-meta
     // section from being included in the flex DOM
     if (!this.appname) this.appname = false;
   }
-
   _masterOff() {
     console.log("master off from inside global status");
     window.dispatchEvent(
@@ -62,10 +56,8 @@ export class RuxGlobalStatusBar extends PolymerElement {
       })
     );
   }
-
   ready() {
     super.ready();
   }
 }
-
 customElements.define("rux-global-status-bar", RuxGlobalStatusBar);

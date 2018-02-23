@@ -6,7 +6,24 @@ import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
  */
 export class RuxClock extends PolymerElement {
   static get properties() {
-    return {};
+    return {
+      dayOfYear: {
+        type: String,
+        observer: "_getDayOfYear"
+      },
+      currentTime: {
+        type: String,
+        observer: "_updateTime"
+      },
+      aos: {
+        type: String,
+        value: "08:29:15"
+      },
+      los: {
+        type: String,
+        value: "08:53:12"
+      }
+    };
   }
   static get template() {
     return html`
@@ -16,18 +33,18 @@ export class RuxClock extends PolymerElement {
       <div class="rux-date-group">
         <div class="rux-date-control rux-left">
           <label for="rux-day-of-year">Date</label>
-          <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3"> </div>
+          <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> </div>
         <div class="rux-date-control rux-right">
           <label for="rux-time">Time</label>
-          <input name="rux-time" id="rux-time" type="text" size="12"> </div>
+          <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> </div>
       </div>
       <div class="rux-date-group">
         <div class="rux-date-control">
           <label for="rux-aos">AOS</label>
-          <input name="rux-aos" id="rux-aos" type="text" size="8"> </div>
+          <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> </div>
         <div class="rux-date-control">
           <label for="rux-los">LOS</label>
-          <input name="rux-los" id="rux-los" type="text" size="8"> </div>
+          <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> </div>
       </div>
     </div>`;
   }
@@ -36,6 +53,34 @@ export class RuxClock extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
+    // function updateTime() {
+    //   let currentTime = new Date();
+    //   let hours = currentTime.getUTCHours();
+    //   let minutes = currentTime.getMinutes();
+    //   let seconds = currentTime.getSeconds();
+    //   if (hours < 10) {
+    //     hours = "0" + hours;
+    //   }
+    //   if (minutes < 10) {
+    //     minutes = "0" + minutes;
+    //   }
+    //   if (seconds < 10) {
+    //     seconds = "0" + seconds;
+    //   }
+    //   let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
+    //   return formatted;
+    // }
+    // setInterval(updateTime, 1000);
+    // $("#rux-aos").val("08:29:15");
+    // $("#rux-los").val("08:53:12");
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+  ready() {
+    super.ready();
+  }
+  _getDayOfYear() {
     let now = new Date();
     let start = new Date(now.getFullYear(), 0, 0);
     let diff = now - start;
@@ -49,34 +94,30 @@ export class RuxClock extends PolymerElement {
     } else {
       formattedDayOfYear = dayOfYear;
     }
-    document.getElementById("rux-day-of-year").value(formattedDayOfYear);
-
-    function updateTime() {
-      let currentTime = new Date();
-      let hours = currentTime.getUTCHours();
-      let minutes = currentTime.getMinutes();
-      let seconds = currentTime.getSeconds();
-      if (hours < 10) {
-        hours = "0" + hours;
-      }
-      if (minutes < 10) {
-        minutes = "0" + minutes;
-      }
-      if (seconds < 10) {
-        seconds = "0" + seconds;
-      }
-      let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
-      //$("#rux-time").val(formatted);
+    return formattedDayOfYear;
+  }
+  _updateTime() {
+    let currentTime = new Date();
+    let hours = currentTime.getUTCHours();
+    let minutes = currentTime.getMinutes();
+    let seconds = currentTime.getSeconds();
+    if (hours < 10) {
+      hours = "0" + hours;
     }
-    setInterval(updateTime, 1000);
-    // $("#rux-aos").val("08:29:15");
-    // $("#rux-los").val("08:53:12");
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    let formatted = hours + ":" + minutes + ":" + seconds + " UTC";
+    return formatted;
   }
-  disconnectedCallback() {
-    super.disconnectedCallback();
+  _updateAos() {
+    return "08:29:15";
   }
-  ready() {
-    super.ready();
+  _updateLos() {
+    return "08:53:12";
   }
 }
 customElements.define("rux-clock", RuxClock);

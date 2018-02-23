@@ -16,7 +16,6 @@ export class RuxProgress extends PolymerElement {
       }
     };
   }
-
   static get template() {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-progress/rux-progress.css">
@@ -26,22 +25,17 @@ export class RuxProgress extends PolymerElement {
         <div class="rux-progress__value" hidden="[[!label]]">[[value]]</div>
       </div>`;
   }
-
   constructor() {
     super();
   }
-
   connectedCallback() {
     super.connectedCallback();
   }
-
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-
   ready() {
     super.ready();
   }
 }
-
 customElements.define("rux-progress", RuxProgress);
