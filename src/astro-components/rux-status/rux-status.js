@@ -81,6 +81,9 @@ export class RuxStatus extends PolymerElement {
     // remove commas if they exist and convert to an integer
     let _n = parseInt(n.replace(/\,/g, ""));
 
+    // don't show any values less than 0
+    if (_n <= 0) return null;
+
     // get the place value
     const _thousand = Math.floor((_n / 1000) % 1000); // only return a whole number
     const _million = (_n / 1000000) % 1000000; // return a decimal value for numbers like 1.2m
@@ -88,7 +91,7 @@ export class RuxStatus extends PolymerElement {
     const _trillion = (_n / 1000000000000) % 1000000000000; // trillion is just to offer an overflow instance
 
     // set the display to its original state
-    let _message = n;
+    let _message = _n;
 
     if (_trillion >= 1) {
       _message = "∞";
