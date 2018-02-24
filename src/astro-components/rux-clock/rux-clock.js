@@ -44,28 +44,25 @@ export class RuxClock extends PolymerElement {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-clock/rux-clock.css">
       
-      <div id="rux-clock">
-        <div class="rux-date-group">
-          <div class="rux-date-control rux-left" hidden="[[hideDate]]">
-            <label for="rux-day-of-year">Date</label>
-            <input name="rux-day-of-year" id="rux-day-of-year" type="text" size="3" value=[[dayOfYear]]> 
-          </div>
-          <div class="rux-date-control rux-right">
-            <label for="rux-time">Time</label>
-            <input name="rux-time" id="rux-time" type="text" size="12" value=[[currentTime]]> 
-          </div>
+      <div class="rux-clock">
+        <div class="rux-clock__segment rux-clock__day-of-the-year" hidden="[[hideDate]]">
+          <div class="rux-clock__segment__value" aria-labeledby="rux-clock__day-of-year-label">[[dayOfYear]]</div>
+          <div class="rux-clock__segment__label" id="rux-clock__day-of-year-label">Date</div>
         </div>
-        <div class="rux-date-group">
-          <div class="rux-date-control" hidden="[[!aos]]">
-            <label for="rux-aos">AOS</label>
-            <input name="rux-aos" id="rux-aos" type="text" size="8" value=[[aos]]> 
-          </div>
-          <div class="rux-date-control" hidden="[[!los]]">
-            <label for="rux-los">LOS</label>
-            <input name="rux-los" id="rux-los" type="text" size="8" value=[[los]]> 
-          </div>
+        <div class="rux-clock__segment rux-clock__time">
+          <div class="rux-clock__segment__value" aria-labeledby="rux-clock__time-label">[[currentTime]]</div>
+          <div class="rux-clock__segment__label" id="rux-clock__time-label">Time</div>
         </div>
-      </div>`;
+        <div class="rux-clock__segment rux-clock__aos" hidden="[[!aos]]">
+          <div class="rux-clock__segment__value" aria-labeledby="rux-clock__time-label">[[aos]]</div>
+          <div class="rux-clock__segment__label" id="rux-clock__time-label">AOS</div>
+        </div>
+        <div class="rux-clock__segment rux-clock__los" hidden="[[!los]]">
+          <div class="rux-clock__segment__value" aria-labeledby="rux-clock__time-label">[[los]]</div>
+          <div class="rux-clock__segment__label" id="rux-clock__time-label">LOS</div>
+        </div>
+      </div>
+      `;
   }
   constructor() {
     super();
