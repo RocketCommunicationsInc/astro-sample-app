@@ -1,29 +1,40 @@
-.rux-date-control {
-  display: inline-block;
-}
-
-label {
-  display: block;
-  text-align: center;
-}
-
 *[hidden] {
   display: none !important;
 }
 
-input[type="text"] {
-  padding: 6px;
-  font-weight: bold;
+.rux-clock {
+  display: flex;
+
+  color: rgb(205, 210, 212);
+
+  font-size: 1.5rem;
+}
+
+.rux-clock__segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rux-clock__segment__value {
+  display: flex;
+  align-items: center;
   font-family: monospace;
-  font-size: 1.2em;
+  height: 44px;
+  padding: 0 0.75em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 0.25rem;
 }
 
-#rux-clock {
-  padding: 50px;
-  border: 1px solid gray;
-  width: 475px;
+.rux-clock__segment__label {
+  font-size: 0.875rem;
+  border: 1px solid rgb(36, 56, 77);
 }
 
-.rux-date-group {
-  display: inline-block;
+.rux-clock__aos {
+  margin-left: 1em;
+}
+
+.rux-clock__los {
+  margin-left: 0.5em;
 }
