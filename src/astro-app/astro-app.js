@@ -98,16 +98,19 @@ export class AstroApp extends PolymerElement {
 
 
     <rux-tab-panels>
-      <rux-tab-panel aria-labeledby="tab-modems">
+      
+    <rux-tab-panel aria-labeledby="tab-modems">
         <div class="telemetry-tab">
           <astro-telemetry
             title="Sat 1"
-            telemetry-data=[[telemetryDataObj]]></astro-telemetry>
+            telemetry-data=[[satellite1]]></astro-telemetry>
           <astro-telemetry
-            title="Sat 2">
-            telemetry-data=[[satelliteData2]]></astro-telemetry>
+            title="Sat 2"
+            telemetry-data=[[satellite2]]></astro-telemetry>
+          
         </div>
       </rux-tab-panel>
+
       <rux-tab-panel aria-labeledby="tab-pass-plans">
         Pass Plans
       </rux-tab-panel>
@@ -124,33 +127,113 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
-    this.telemetryDataObj = [{
+    this.satellite1 = {
       power: [{
-          label: "Pwr 1",
+          label: "Power 1",
+          status: "ok"
+        },
+        {
+          label: "Power 2",
           status: "error"
         },
         {
-          label: "Pwr 2",
+          label: "Power 3",
           status: "error"
         },
         {
-          label: "Pwr 3",
+          label: "Power 4",
+          status: "caution"
+        },
+        {
+          label: "Power 5",
+          status: "off"
+        },
+        {
+          label: "Power 6",
+          status: "error"
+        }
+      ],
+      thermal: [{
+          label: "Thermal 1",
+          status: "caution"
+        },
+        {
+          label: "Thermal 2",
           status: "error"
         },
         {
-          label: "Pwr 4",
-          status: "error"
+          label: "Thermal 3",
+          status: "standby"
         },
         {
-          label: "Pwr 5",
-          status: "error"
+          label: "Thermal 4",
+          status: "standby"
         },
         {
-          label: "Pwr 6",
+          label: "Thermal 5",
+          status: "off"
+        },
+        {
+          label: "Thermal 6",
           status: "error"
         }
       ]
-    }];
+    };
+    this.satellite2 = {
+      power: [{
+          label: "Power 1",
+          status: "off"
+        },
+        {
+          label: "Power 2",
+          status: "caution"
+        },
+        {
+          label: "Power 3",
+          status: "ok"
+        },
+        {
+          label: "Power 4",
+          status: "ok"
+        },
+        {
+          label: "Power 5",
+          status: "off"
+        },
+        {
+          label: "Power 6",
+          status: "error"
+        }
+      ],
+      thermal: [{
+          label: "Thermal 1",
+          status: "ok"
+        },
+        {
+          label: "Thermal 2",
+          status: "ok"
+        },
+        {
+          label: "Thermal 3",
+          status: "standby"
+        },
+        {
+          label: "Thermal 4",
+          status: "error"
+        },
+        {
+          label: "Thermal 5",
+          status: "off"
+        },
+        {
+          label: "Thermal 6",
+          status: "error"
+        }
+      ]
+    };
+
+    // emulate a JSON object
+    this.telemetryDataObj = [this.satellite1, this.satellite2];
 
 
     /* this.telemetryDataObj = [{
@@ -190,6 +273,14 @@ export class AstroApp extends PolymerElement {
       prop1: {
         type: String,
         value: "astro-app"
+      },
+      sat2: {
+        type: Object,
+        computed: "_getSatelliteData(0)"
+      },
+      sat1: {
+        type: Object,
+        computed: "_getSatelliteData(1)"
       }
     };
   }
@@ -201,6 +292,11 @@ export class AstroApp extends PolymerElement {
   disconnectedCallback() {
     suer.disconnectedCallback();
   }
+
+  _getSatelliteData(id) {
+    return this.telemetryDataObj[id];
+  }
+
 
   ready() {
     super.ready();

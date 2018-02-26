@@ -27,7 +27,11 @@ export class AstroTelemetry extends PolymerElement {
       power: {
         type: Object,
         computed: "_getPower(telemetryData)"
-      }
+      },
+      thermal: {
+        type: Object,
+        computed: "_getThermal(telemetryData)"
+      },
     };
   }
   static get template() {
@@ -48,6 +52,16 @@ export class AstroTelemetry extends PolymerElement {
             </template>
           </ul>
         </div>
+
+        <div class="astro-telemetry__status__power">
+          <h3>Thermal</h3>
+          <ul>
+            <dom-repeat id="power-telemetry" items="[[thermal]]">
+            <template>
+              <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
+            </template>
+          </ul>
+        </div>
       </div>
 
     </section>
@@ -58,14 +72,18 @@ export class AstroTelemetry extends PolymerElement {
     super();
   }
 
-  _getPower(t) {
-    console.log(t[0].power);
-    return t[0].power;
+  _getPower(p) {
+    return p.power;
+  }
+
+  _getThermal(t) {
+    return t.thermal;
   }
 
   connectedCallback() {
     super.connectedCallback();
     if (!this.telemetryData) return;
+    console.log(this.telemetryData.thermal);
     // console.log(this);
     // console.log(this.telemetryData[0].power);
     // this.power = telemetryData[0].power;
