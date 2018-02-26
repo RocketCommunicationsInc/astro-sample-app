@@ -42,26 +42,31 @@ export class AstroTelemetry extends PolymerElement {
       <rux-spectrum-analyser></rux-spectrum-analyser>
 
       <div class="astro-telemetry__status">
-        <h2>Telemetry</h2>
-        <div class="astro-telemetry__status__power">
+        
+      <h2 class="astro-telemetry__status__header">Telemetry</h2>
+
+        
+        <div class="astro-telemetry__status__group">
           <h3>Power</h3>
           <ul>
-            <dom-repeat id="power-telemetry" items="[[power]]">
+            <dom-repeat items="[[thermal]]">
             <template>
               <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
             </template>
           </ul>
         </div>
 
-        <div class="astro-telemetry__status__power">
+        <div class="astro-telemetry__status__group">
           <h3>Thermal</h3>
           <ul>
-            <dom-repeat id="power-telemetry" items="[[thermal]]">
+            <dom-repeat items="[[thermal]]">
             <template>
               <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
             </template>
           </ul>
         </div>
+
+
       </div>
 
     </section>
