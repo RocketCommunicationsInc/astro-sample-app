@@ -28,6 +28,8 @@ export class RuxTabPanels extends PolymerElement {
           width: 100%;
           overflow: hidden;
         }
+
+        
       </style>
       <slot></slot>
     `;

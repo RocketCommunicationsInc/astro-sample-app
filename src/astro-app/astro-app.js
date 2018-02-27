@@ -51,9 +51,11 @@ export class AstroApp extends PolymerElement {
         align-items: stretch;
         
         padding: 0 1em;
-        
       }
 
+      .telemetry-tab[hidden] {
+        display: none !important;
+      }
       
 
     </style>
@@ -97,14 +99,9 @@ export class AstroApp extends PolymerElement {
 
     <rux-tab-panels>
       
-      <rux-tab-panel class="telemetry-tab" aria-labeledby="tab-modems">  
+      <rux-tab-panel aria-labeledby="tab-modems">  
         
-        <astro-telemetry
-          title="Sat 1"
-          telemetry-data=[[satellite1]]></astro-telemetry>
-        <astro-telemetry
-          title="Sat 2"
-          telemetry-data=[[satellite2]]></astro-telemetry>
+        
 
       </rux-tab-panel>
 
@@ -112,8 +109,15 @@ export class AstroApp extends PolymerElement {
         <div>Pass Plans</div>
       </rux-tab-panel>
 
-      <rux-tab-panel aria-labeledby="tab-telemetry">
-        <div>Telemetry</div>  
+      <rux-tab-panel  class="telemetry-tab" aria-labeledby="tab-telemetry">
+        <astro-telemetry
+          title="Sat 1"
+          chart=[[chart1]]
+          telemetry-data=[[satellite1]]></astro-telemetry>
+        <astro-telemetry
+          title="Sat 2"
+          chart=[[chart2]]
+          telemetry-data=[[satellite2]]></astro-telemetry>
       </rux-tab-panel>
 
     </rux-tab-panels>
@@ -126,6 +130,9 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
+    this.chart1 = {};
+    this.chart2 = {};
+
     this.satellite1 = {
       power: [
         {
@@ -134,7 +141,7 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Power 2",
-          status: "error"
+          status: "emergency"
         },
         {
           label: "Power 3",
