@@ -5,41 +5,19 @@ import {
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 
 /* Rux Components */
-import {
-  RuxGlobalStatusBar
-} from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
-import {
-  RuxSegmentedButton
-} from "../astro-components/rux-segmented-button/rux-segmented-button.js";
-import {
-  RuxComponent
-} from "../astro-components/rux-component/rux-component.js";
-import {
-  RuxProgress
-} from "../astro-components/rux-progress/rux-progress.js";
-import {
-  RuxButton
-} from "../astro-components/rux-button/rux-button.js";
-import {
-  RuxStatus
-} from "../astro-components/rux-status/rux-status.js";
-import {
-  RuxIcon
-} from "../astro-components/rux-icon/rux-icon.js";
-import {
-  RuxTabs
-} from "../astro-components/rux-tabs/rux-tabs.js";
-import {
-  RuxPopUpMenu
-} from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
-import {
-  RuxClock
-} from "../astro-components/rux-clock/rux-clock.js";
+import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
+import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
+import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
+import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
+import { RuxButton } from "../astro-components/rux-button/rux-button.js";
+import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
+import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
+import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
+import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
+import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 
 /* Astro App */
-import {
-  AstroTelemetry
-} from "./astro-telemetry/astro-telemetry.js";
+import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
 
 /**
  * @polymer
@@ -50,13 +28,32 @@ export class AstroApp extends PolymerElement {
     return `
     <style>
       :host {
-        display: block;
-        /* box-sizing: border-box; */
+        
+        display: flex;
+        flex-direction: column;
+        height: 100%; 
+        box-sizing: border-box; 
       }
 
-      .telemetry-tab {
-        display: flex;
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
       }
+
+      /*
+        
+      */
+      .telemetry-tab {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-content: stretch;
+        padding: 0 1em;
+        
+      }
+
+      
 
     </style>
     
@@ -99,24 +96,25 @@ export class AstroApp extends PolymerElement {
 
     <rux-tab-panels>
       
-    <rux-tab-panel aria-labeledby="tab-modems">
-        <div class="telemetry-tab">
-          <astro-telemetry
-            title="Sat 1"
-            telemetry-data=[[satellite1]]></astro-telemetry>
-          <astro-telemetry
-            title="Sat 2"
-            telemetry-data=[[satellite2]]></astro-telemetry>
-          
-        </div>
+      <rux-tab-panel class="telemetry-tab" aria-labeledby="tab-modems">  
+        
+        <astro-telemetry
+          title="Sat 1"
+          telemetry-data=[[satellite1]]></astro-telemetry>
+        <astro-telemetry
+          title="Sat 2"
+          telemetry-data=[[satellite2]]></astro-telemetry>
+
       </rux-tab-panel>
 
       <rux-tab-panel aria-labeledby="tab-pass-plans">
-        Pass Plans
+        <div>Pass Plans</div>
       </rux-tab-panel>
+
       <rux-tab-panel aria-labeledby="tab-telemetry">
-        
+        <div>Telemetry</div>  
       </rux-tab-panel>
+
     </rux-tab-panels>
 
       
@@ -128,7 +126,8 @@ export class AstroApp extends PolymerElement {
     this.name = "3.0 preview";
 
     this.satellite1 = {
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "ok"
         },
@@ -153,7 +152,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "caution"
         },
@@ -180,7 +180,8 @@ export class AstroApp extends PolymerElement {
       ]
     };
     this.satellite2 = {
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "off"
         },
@@ -205,7 +206,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "ok"
         },
@@ -234,7 +236,6 @@ export class AstroApp extends PolymerElement {
 
     // emulate a JSON object
     this.telemetryDataObj = [this.satellite1, this.satellite2];
-
 
     /* this.telemetryDataObj = [{
       satellite1: {
@@ -265,7 +266,6 @@ export class AstroApp extends PolymerElement {
         ]
       }
     }]; */
-
   }
 
   static get properties() {
@@ -296,7 +296,6 @@ export class AstroApp extends PolymerElement {
   _getSatelliteData(id) {
     return this.telemetryDataObj[id];
   }
-
 
   ready() {
     super.ready();

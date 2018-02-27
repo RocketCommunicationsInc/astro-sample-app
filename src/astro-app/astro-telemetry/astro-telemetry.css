@@ -1,11 +1,15 @@
 :host {
-  width: 100%;
 }
 
 .astro-telemetry {
+  display: flex;
+  flex-direction: column;
   background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+
   padding: 3rem;
-  margin: 0.25rem;
+  /* margin: 0.25rem; */
 }
 
 .astro-telemetry__status {
@@ -16,7 +20,7 @@
 }
 
 .astro-telemetry__status__group {
-  background-color: #1B3044;
+  background-color: #1b3044;
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
@@ -33,7 +37,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  color: #BDC3C9;
+  color: #bdc3c9;
   font-size: 1.125rem;
 }
 
