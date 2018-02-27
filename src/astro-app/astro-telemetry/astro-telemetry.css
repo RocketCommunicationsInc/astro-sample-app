@@ -1,15 +1,15 @@
 :host {
+  flex-grow: 1;
 }
 
 .astro-telemetry {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
-  width: 100%;
 
   padding: 3rem;
-  /* margin: 0.25rem; */
+  margin: 0.25rem;
 }
 
 .astro-telemetry__status {

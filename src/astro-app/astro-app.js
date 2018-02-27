@@ -48,7 +48,8 @@ export class AstroApp extends PolymerElement {
         height: 100%;
         display: flex;
         justify-content: space-between;
-        align-content: stretch;
+        align-items: stretch;
+        
         padding: 0 1em;
         
       }

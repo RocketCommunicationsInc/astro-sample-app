@@ -3,10 +3,7 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
-import {
-  RuxStatus
-} from "/src/astro-components/rux-status/rux-status.js"
-
+import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
 
 /**
  * @polymer
@@ -18,9 +15,7 @@ export class AstroTelemetry extends PolymerElement {
       title: {
         type: String
       },
-      chart: {
-
-      },
+      chart: {},
       telemetryData: {
         type: Object
       },
@@ -31,19 +26,19 @@ export class AstroTelemetry extends PolymerElement {
       thermal: {
         type: Object,
         computed: "_getThermal(telemetryData)"
-      },
+      }
     };
   }
   static get template() {
-    return html `
+    return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <section class="astro-telemetry">
       <h1>[[title]]</h1>
-      <rux-spectrum-analyser></rux-spectrum-analyser>
+      
 
       <div class="astro-telemetry__status">
         
-      <h2 class="astro-telemetry__status__header">Telemetry</h2>
+        <h2 class="astro-telemetry__status__header">Telemetry</h2>
 
         
         <div class="astro-telemetry__status__group">
