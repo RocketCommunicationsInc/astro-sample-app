@@ -17,7 +17,7 @@ gulp.task('serve', ['styles'], (cb) => {
 
 			gulp.watch("public/css/**/*.css", ['styles']);
 			gulp.watch("public/*.html").on('change', browserSync.reload);
-			gulp.watch("src/**/*.html").on('change', browserSync.reload);
+			gulp.watch("src/**/*").on('change', browserSync.reload);
 			gulp.watch("index*.html").on('change', browserSync.reload);
 		}
 	});

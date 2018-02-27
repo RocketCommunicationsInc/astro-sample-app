@@ -1,0 +1,44 @@
+:host {
+  width: 100%;
+}
+
+.astro-telemetry {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 3rem;
+  margin: 0.25rem;
+}
+
+.astro-telemetry__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.astro-telemetry__status__group {
+  background-color: #1B3044;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  align-items: stretch;
+  padding: 1em;
+}
+
+.astro-telemetry__status__header {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.astro-telemetry__status__group ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #BDC3C9;
+  font-size: 1.125rem;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 300;
+}
