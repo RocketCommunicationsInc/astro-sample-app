@@ -1,8 +1,7 @@
 :host {
-  height: 100vh;
-  width: 200vw;
   display: block;
-
+  height: 300px;
+  width: 100%;
   contain: content;
 }
 

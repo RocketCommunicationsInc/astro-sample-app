@@ -40,25 +40,25 @@ export class AstroTelemetry extends PolymerElement {
       
 
       <div class="astro-telemetry__status">
-        
+      <rux-spectrum-analyzer
+      chart-data=[[chart.data]]
+      chart-legend-x=[[chartLegendX]]
+      chart-legend-y=[[chartLegendY]]
+      x-scale-min=[[chart.xScaleMin]]
+      x-scale-max=[[chart.xScaleMax]]
+      x-scale-step=[[chart.xScaleStep]]
+      y-scale-min=[[chart.yScaleMin]]
+      y-scale-max=[[chart.yScaleMax]]
+      height="250"
+      width="480">
+    </rux-spectrum-analyzer>
         <h2 class="astro-telemetry__status__header">Telemetry</h2>
-
+       
         
         <div class="astro-telemetry__status__group">
           <h3>Power</h3>
 
-         <!-- <rux-spectrum-analyzer
-            chart-data=[[chart.data]]
-            chart-legend-x=[[chartLegendX]]
-            chart-legend-y=[[chartLegendY]]
-            x-scale-min=[[chart.xScaleMin]]
-            x-scale-max=[[chart.xScaleMax]]
-            x-scale-step=[[chart.xScaleStep]]
-            y-scale-min=[[chart.yScaleMin]]
-            y-scale-max=[[chart.yScaleMax]]
-            height="250"
-            width="480">
-          </rux-spectrum-analyzer> //-->
+        
 
           <ul>
             <dom-repeat items="[[power]]">
