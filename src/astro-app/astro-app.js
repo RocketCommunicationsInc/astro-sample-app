@@ -99,9 +99,13 @@ export class AstroApp extends PolymerElement {
 
     <rux-tab-panels>
       
-      <rux-tab-panel aria-labeledby="tab-modems">  
-        
-        
+      <rux-tab-panel class="modem-tab" aria-labeledby="tab-modems">  
+        <astro-modems>
+          
+          <astro-modems-list></astro-modems-list>
+          <astro-modem-detail></astro-modem-detail>
+
+        </astro-modems>
 
       </rux-tab-panel>
 
