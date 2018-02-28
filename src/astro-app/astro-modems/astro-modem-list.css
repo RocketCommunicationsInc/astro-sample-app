@@ -1,38 +1,66 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
-
-/**
- * @polymer
- * @extends HTMLElement
- */
-export class AstroModemList extends PolymerElement {
-  static get properties() {
-    return {
-      min: String
-    };
-  }
-
-  static get template() {
-    return html`
-      <link rel="stylesheet" href="/src/astro-app/astro-modem-list/astro-modem-list.css">
-    `;
-  }
-
-  constructor() {
-    super();
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-  }
-
-  ready() {
-    super.ready();
-  }
+:host {
+  display: flex;
 }
 
-customElements.define("astro-modem-list", AstroModemList);
+.modem-list ul {
+  display: flex;
+  justify-content: space-between;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modem-list__list {
+  flex-direction: column;
+}
+
+.modem-list__header {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: #0f1a24;
+
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+  line-height: 1;
+  width: 100%;
+
+  box-shadow: 0 1px 0 #000;
+}
+
+.modem-list__list__list-item {
+  font-size: 1.375rem;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0f1a24;
+  margin: 0 0 0.25em 0;
+  padding: 0.35em 0;
+  position: relative;
+
+  box-shadow: 0 1px 0 #000;
+
+  cursor: pointer;
+}
+
+.modem-list__list__list-item::before {
+  content: "";
+  width: 6px;
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: rgba(216, 216, 216, 0.1);
+}
+
+.modem-list__list__list-item[selected] {
+  background-color: #004368;
+  box-shadow: 0 1px 0 #000;
+  color: #fff;
+}
+
+.modem-list__list__list-item.selected::before {
+  background-color: #0080f4;
+}
+
+.modem-list--condensed {
+}

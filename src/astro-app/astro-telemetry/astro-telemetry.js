@@ -4,7 +4,7 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
-import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+// import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 
 /**
  * @polymer
@@ -40,18 +40,7 @@ export class AstroTelemetry extends PolymerElement {
       
 
       <div class="astro-telemetry__status">
-      <rux-spectrum-analyzer
-      chart-data=[[chart.data]]
-      chart-legend-x=[[chartLegendX]]
-      chart-legend-y=[[chartLegendY]]
-      x-scale-min=[[chart.xScaleMin]]
-      x-scale-max=[[chart.xScaleMax]]
-      x-scale-step=[[chart.xScaleStep]]
-      y-scale-min=[[chart.yScaleMin]]
-      y-scale-max=[[chart.yScaleMax]]
-      height="250"
-      width="480">
-    </rux-spectrum-analyzer>
+     
         <h2 class="astro-telemetry__status__header">Telemetry</h2>
        
         

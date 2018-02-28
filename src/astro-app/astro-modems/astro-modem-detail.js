@@ -1,5 +1,7 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
+import {
+  html,
+  Element as PolymerElement
+} from "/node_modules/@polymer/polymer/polymer-element.js";
 
 /**
  * @polymer
@@ -14,7 +16,8 @@ export class AstroModemDetail extends PolymerElement {
 
   static get template() {
     return html`
-      <link rel="stylesheet" href="/src/astro-app/astro-modem-detail/astro-modem-detail.css">
+      <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
+      <h1>Modem Detail</h1>
     `;
   }
 
