@@ -35,8 +35,9 @@ export class AstroApp extends PolymerElement {
         
         display: flex;
         flex-direction: column;
-        height: 100%; 
+        height: 100%;
         box-sizing: border-box; 
+        overflow: hidden;
       }
 
       *,

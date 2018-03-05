@@ -27,28 +27,59 @@ export class AstroModemList extends PolymerElement {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
 
+      <style>
+
+        .modem-list > ul li {
+          // outline: 1px solid red;
+        }
+
+        .modem-list__list__list-item li {
+          text-align: center;
+          vertical-align: center;
+          line-height: 1;
+          padding: 0;
+        }
+
+        .a {
+          margin-left: 2%;
+          width: 12%;
+        }
+
+        .b {
+          width: 10%;
+          overflow: hidden;
+          
+        }
+
+        .c {
+          width: 20%;
+        }
+
+      </style>
 
       <div class="modem-list">
-      <ul class="modem-list__header">
-        <li class='modem-list-id'></li>
-        <li class='modem-list-tx-power'>Tx</li>
-        <li class='modem-list-rx-power'>Rx</li>
-        <li class='modem-list-carrier'>Carrier</li>
-        <li class='modem-list-code'>Code</li>
-        <li class='modem-list-power'>PWR</li>
-        <li class='modem-list-evm'>EVM</li>
-      </ul>
       <ul class="modem-list__list">
+        <li class="modem-list__list__header">
+            <ul class="modem-list__header">
+            <li class='a'></li>
+            <li class='b'>Tx</li>
+            <li class='b'>Rx</li>
+            <li class='b'>Carrier</li>
+            <li class='b'>Code</li>
+            <li class='c'>PWR</li>
+            <li class='c'>EVM</li>
+          </ul>
+        </li>
         <template is="dom-repeat" id="modem-list" items=[[modems]]>
           <li class="modem-list__list__list-item" on-click="_selectModem">
             <ul>
-              <li>[[item.modemId]]</li>
-              <li><rux-status status=[[_getStatus(item,'tx')]]></rux-status></li>
-              <li><rux-status status=[[_getStatus(item,'rx')]]></rux-status></li>
-              <li><rux-status status=[[_getStatus(item,'carrier')]]></rux-status></li>
-              <li><rux-status status=[[_getStatus(item,'code')]]></rux-status></li>
-              <li>[[_getModemType(item.txModType)]]</li>
-              <li>[[item.errorVectorMagnitude]]dB</li>
+              <li class="a">[[item.modemId]]</li>
+              <li class="b"><rux-status status=[[_getStatus(item,'tx')]]></rux-status></li>
+              <li class="b"><rux-status status=[[_getStatus(item,'rx')]]></rux-status></li>
+              <li class="b"><rux-status status=[[_getStatus(item,'carrier')]]></rux-status></li>
+              <li class="b"><rux-status status=[[_getStatus(item,'code')]]></rux-status></li>
+              <li class="c">[[_getModemType(item.txModType)]]</li>
+              <li class="c">[[item.errorVectorMagnitude]]dB</li>
             </ul>
           </li>
         </template>
