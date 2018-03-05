@@ -28,7 +28,7 @@ body {
   width: 100%;
 
   margin: 0;
-  padding: 0;
+  padding: 0 42px;
 
   font-family: var(--font-family);
   color: var(--font-color);

@@ -1,5 +1,8 @@
 :host {
   display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
+  outline: 1px solid red;
+  width: 100%;
 }
 
 .modem-list ul {
@@ -8,7 +11,7 @@
 
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0.75rem;
 }
 
 .modem-list__list {

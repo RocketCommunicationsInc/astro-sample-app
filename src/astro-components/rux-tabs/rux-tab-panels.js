@@ -1,7 +1,4 @@
-import {
-  html,
-  Element as PolymerElement
-} from "/node_modules/@polymer/polymer/polymer-element.js";
+import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
 
 /**
  * @polymer
@@ -12,27 +9,6 @@ export class RuxTabPanels extends PolymerElement {
     return {
       type: String
     };
-  }
-
-  static get template() {
-    return html`
-      <style>
-        /* 
-          define a container for tab panels with some basic assumptions: 
-            - Panels should be the height and width of the available screen
-            - Panels should not show overflow content or scroll
-            - Panels should use box-sizing: border-box (?)
-        */
-        :host {
-          height: 100%;
-          width: 100%;
-          overflow: hidden;
-        }
-
-        
-      </style>
-      <slot></slot>
-    `;
   }
 
   constructor() {

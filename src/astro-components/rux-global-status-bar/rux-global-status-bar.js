@@ -23,20 +23,8 @@ export class RuxGlobalStatusBar extends PolymerElement {
           <h1>[[appname]]<span class="app-version">[[version]]</span></h1>
         </div>
 
+        <!-- optional for tabbed based UIs //-->
         <slot></slot>
-        <!-- optional for tabbed based UIs
-        <slot name="tabs"></slot> //-->
-
-        <!-- optional for status icons 
-        <slot name="status-bar"></slot>//-->
-
-        <!-- optional for toolbars 
-        <slot name="tool-bar"></slot>//-->
-
-        <rux-button
-          on-click="_masterOff"
-          type="large"
-          icon="default:caution">Master Off</rux-button>
       </header>`;
   }
   constructor() {

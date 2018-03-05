@@ -106,7 +106,7 @@ export class RuxTabs extends PolymerElement {
       panel =>
         panel.getAttribute("aria-labeledby") === selectedTab.getAttribute("id")
     );
-    console.log(selectedTab);
+
     selectedTab.selected = true;
     selectedPanel.hidden = false;
   }

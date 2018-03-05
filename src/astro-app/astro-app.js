@@ -59,6 +59,13 @@ export class AstroApp extends PolymerElement {
       .telemetry-tab[hidden] {
         display: none !important;
       }
+
+      .astro-advanced-status-indicators {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
       
 
     </style>
@@ -836,38 +843,24 @@ export class AstroApp extends PolymerElement {
       ]
     };
 
-    // emulate a JSON object
+    // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
 
-    /* this.telemetryDataObj = [{
-      satellite1: {
-        power: [{
-            label: "Pwr 1",
-            status: "error"
-          },
-          {
-            label: "Pwr 2",
-            status: "error"
-          },
-          {
-            label: "Pwr 3",
-            status: "error"
-          },
-          {
-            label: "Pwr 4",
-            status: "error"
-          },
-          {
-            label: "Pwr 5",
-            status: "error"
-          },
-          {
-            label: "Pwr 6",
-            status: "error"
-          }
-        ]
+    // emulate a JSON object for advanced status
+    this.statusIndicators = [
+      {
+        label: "Power",
+        status: "ok",
+        icon: "advanced-status-egs:propulsion-power",
+        notifications: 1
+      },
+      {
+        label: "Communications",
+        status: "ok",
+        icon: "advanced-status-egs:netcom",
+        notifications: 0
       }
-    }]; */
+    ];
   }
 
   static get properties() {

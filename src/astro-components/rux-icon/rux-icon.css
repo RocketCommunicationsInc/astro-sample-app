@@ -1,12 +1,9 @@
 :host {
   display: inline-block;
   line-height: 0;
-
   fill: var(--default-icon-color);
-
   height: var(--icon-size--default, 58px);
   /* width: var(--default-icon-width, 44px); */
-
   /* outline: 1px solid red; */
 }
 
@@ -16,12 +13,14 @@
 }
 
 /* small variant */
+
 :host(.rux-icon--small) {
   height: var(--icon-size--small, 32px);
   width: var(--icon-size--small, 32px);
 }
 
 /* status symbol icon size */
+
 :host(.rux-icon--status) {
   height: var(--icon-size--status, 12px);
   width: var(--icon-size--status, 12px);
