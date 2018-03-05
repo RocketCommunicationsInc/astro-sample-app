@@ -1,6 +1,9 @@
 :host {
+  display: flex;
   flex-grow: 1;
+  width: 100%;
   box-sizing: border-box;
+  outline: 1px solid red;
 }
 
 *,
@@ -16,7 +19,7 @@
   height: 100%;
 
   padding: 3rem;
-  margin: 0.25rem;
+  /* margin: 0.25rem; */
 }
 
 .astro-telemetry__status {

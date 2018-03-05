@@ -35,6 +35,8 @@ export class AstroTelemetry extends PolymerElement {
   static get template() {
     return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
+    <h1>[[title]]</h1>
+    <!--
     <section class="astro-telemetry">
       <h1>[[title]]</h1>
       
@@ -69,8 +71,10 @@ export class AstroTelemetry extends PolymerElement {
 
 
       </div>
+      
 
     </section>
+    //-->
       
     `;
   }

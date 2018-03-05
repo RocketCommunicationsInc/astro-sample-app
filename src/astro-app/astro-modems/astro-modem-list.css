@@ -1,7 +1,13 @@
 :host {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.2);
-  outline: 1px solid red;
+  width: 30%;
+  min-width: 400px;
+  max-width: 458px;
+  margin-right: 3.125rem;
+  /* outline: 1px solid green; */
+}
+
+.modem-list {
   width: 100%;
 }
 
@@ -12,6 +18,7 @@
   list-style: none;
   padding: 0;
   margin: 0.75rem;
+  /* outline: 1px solid orange; */
 }
 
 .modem-list__list {

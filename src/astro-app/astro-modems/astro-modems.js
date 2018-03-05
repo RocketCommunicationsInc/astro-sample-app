@@ -8,6 +8,9 @@ import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
 export class AstroModems extends PolymerElement {
   static get properties() {
     return {
+      title: {
+        type: String
+      },
       modems: {
         type: Object
       }
@@ -17,9 +20,7 @@ export class AstroModems extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modems.css">
-      <slot id="list"></slot>
-      <div>Test[[modems]]</div>
-      <!-- <slot id="detail"></slot> //-->
+      <slot id="detail"></slot>
     `;
   }
 
