@@ -1,9 +1,119 @@
 :host {
   display: flex;
-  background-color: rgba(255, 0, 0, 0.2);
-  height: 100%;
+  flex-grow: 1;
+  /* background-color: rgba(255, 0, 0, 0.2); */
+}
+
+.rux-tabs--vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  list-style: none;
+
+  width: 6rem;
+  padding: 0;
+  margin: 0;
+
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.rux-tabs--vertical li {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 8.125rem;
+
+  text-transform: uppercase;
+  text-align: center;
+
+  font-size: 0.875rem;
+  color: #5cb3ff;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rux-tabs--vertical li:first-child {
+  border-top: none;
+}
+
+.rux-tabs--vertical .label {
+  max-width: 44px;
+  margin: 1em auto 0 auto;
 }
 
 .modem-detail__detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-content: flex-start;
+  padding: 0 2em;
   background-image: linear-gradient(to bottom, #23384e 0%, #172b40 100%);
+}
+
+.modem-detail__detail h1 {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+.modem-detail__modem-settings {
+  width: 25rem;
+  width: 0;
+  display: none;
+}
+
+.modem-detail__detail__section {
+  flex-grow: 1;
+  max-width: 400px;
+  min-width: 200px;
+  margin: 0 0.25rem 0 0;
+  padding: 0 1em;
+}
+
+.modem-detail__detail__section:last-child {
+  margin: 0;
+}
+
+.modem-detail__detail__section header {
+  background-color: rgba(0, 0, 0, 0.3);
+  /* padding: 0.1rem 0.5rem; */
+  margin: 0 0 2px 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.modem-detail__detail__section h1 {
+  font-size: 2.375rem;
+  font-weight: 300;
+  line-height: 1;
+  padding: 0.5rem 0 0 1rem;
+}
+
+.modem-detail__detail__section dl {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem 0 0rem 1rem;
+  margin: 0;
+  height: 100%;
+}
+
+.modem-detail__detail__section dd {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.modem-detail__detail__section dt,
+.modem-detail__detail__section .label {
+  color: #bdc3c9;
+  font-size: 1.125rem;
+  margin: 0;
+  padding: 0;
 }

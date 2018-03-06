@@ -19,49 +19,53 @@ export class AstroModemDetail extends PolymerElement {
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       <!-- So these are effectively a vertical tabs //-->
-      <ul>
-        <li><rux-icon icon="modem-controls:set-power"></rux-icon>Set Power</li>
+      <ul class="rux-tabs--vertical">
+        <li><rux-icon icon="modem-controls:set-power"></rux-icon><span class="label">Set Power</span></li>
+        <li><rux-icon icon="modem-controls:power-off"></rux-icon><span class="label">Power Off</span></li>
       </ul>
 
+      <div class="modem-detail__modem-settings">
+        <rux-slider
+          min=0
+          max=30
+          step=1
+          value=[[selectedModem.power]]><rux-slider>
+
+          <div class="rux-button-group">
+            <rux-button>Apply</rux-button>
+            <rux-button default>Cancel</rux-button>
+          </div>
+
+      </div>
+
       <div class="modem-detail__detail">
-        <form>
-          <rux-slider
-            min=0
-            max=30
-            step=1
-            value=[[selectedModem.power]]><rux-slider>
-
-            <div class="rux-button-group">
-              <rux-button>Apply</rux-button>
-              <rux-button default>Cancel</rux-button>
-            </div>
-
-        </form>
+        
         <h1>[[Modem Detail]]</h1>
-      <section>
-        <h1>Tx</h1>
+      <section class="modem-detail__detail__section">
+        <header>
+          <h1>Tx</h1>
+        </header>
         <dl>
           <dt>Power</dt>
-          <dd>[[Power]]dBm</dd>
+          <dd>[[Power]]<span class="label">dBm</span></dd>
           <dt>Frequency</dt>
-          <dd>[[Power]]mHz</dd>
+          <dd>[[Power]]<span class="label">mHz</span></dd>
           <dt>Symbol Rate</dt>
-          <dd>[[Power]]samples/sec</dd>
+          <dd>[[Power]]<span class="label">samples/sec</span></dd>
         </dl>
       </section>
-      <section>
-        <h1>Rx</h1>
+      <section class="modem-detail__detail__section">
+        <header>
+          <h1>Rx</h1>
+        </header>
         <dl>
           <dt>Frequency</dt>
-          <dd>[[Power]]mHz</dd>
+          <dd>[[Power]]<span class="label">mHz</span></dd>
           <dt>Symbol Rate</dt>
-          <dd>[[Power]]samples/sec</dd>
+          <dd>[[Power]]<span class="label">samples/sec</span></dd>
         </dl>
       </section>
       </div>
-
-      
-
     `;
   }
 

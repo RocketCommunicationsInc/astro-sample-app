@@ -47,7 +47,7 @@ export class AstroApp extends PolymerElement {
       }
 
       /*
-        
+        move all of this noise to the telemetry component
       */
       .telemetry-tab {
         height: 100%;
@@ -88,8 +88,8 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
-      <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-telemetry">Telemetry</rux-tab>
       </rux-tabs>
 
@@ -514,7 +514,11 @@ export class AstroApp extends PolymerElement {
         rxModType: "CODING_UNCODED",
         rxCoding: 500,
         power: true
-      },
+      }
+    ];
+
+    /* 
+    ,
       {
         _id: { $oid: "570cf0ede4b0cbcd095d47fb" },
         modemId: 15,
@@ -756,7 +760,7 @@ export class AstroApp extends PolymerElement {
         rxCoding: 500,
         power: true
       }
-    ];
+      */
 
     this.satellite1 = {
       power: [
