@@ -16,7 +16,7 @@ export class AstroPassPlans extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
     <style>
       .task-container {
         width: 100%;
@@ -38,18 +38,23 @@ export class AstroPassPlans extends PolymerElement {
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
     <div class="rux-timeline-component">
       <div class="rux-timelne"><img src="/public/img/timeline.svg" /></div>
+
+
       <div class="rux-timeline__controls">
+        
         <rux-status
           icon="advanced-status:satellite-transmit"
           label="Sat 1"
           status="ok"></rux-status>
 
-        <rux-button
-          icon="media-controls:play">Play</rux-button>
-        <rux-button
-          icon="media-controls:pause">Pause</rux-button>
+        <div class="rux-button-group">
+          <rux-button
+            icon="media-controls:play">Play</rux-button>
+          <rux-button
+            icon="media-controls:pause">Pause</rux-button>
+        </div>
 
-        <div class="tasks-status">[[0]] of [[7]] Tasks Complete</div>
+        <div class="rux-timeline__tasks-status">[[0]] of [[7]] Tasks Complete</div>
       </div>
 
       <div class="task-container">

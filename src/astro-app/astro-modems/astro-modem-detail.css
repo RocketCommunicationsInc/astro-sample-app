@@ -3,3 +3,7 @@
   background-color: rgba(255, 0, 0, 0.2);
   height: 100%;
 }
+
+.modem-detail__detail {
+  background-image: linear-gradient(to bottom, #23384e 0%, #172b40 100%);
+}
