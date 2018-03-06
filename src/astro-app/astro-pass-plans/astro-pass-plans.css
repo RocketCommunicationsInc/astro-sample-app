@@ -17,9 +17,14 @@ ol li {
   display: flex;
   align-items: center;
   line-height: 1;
-  height: 2.5rem;
+  height: 2.45rem;
   padding: 0 1rem;
-  margin: 0 0 0.3125rem 0;
+  margin: 0 0 0.325rem 0;
+
+  font-size: 1.125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+  background-color: #20313f;
 }
 
 ol li::before {
@@ -35,6 +40,8 @@ ol li::before {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 1rem 0;
 }
 
 .rux-timeline__tasks-status {
@@ -51,4 +58,16 @@ rux-status {
 
 .rux-timeline__tasks-status {
   margin-right: auto;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.rux-timeline__tasks-status__count {
+  font-size: 1.75rem;
+  color: rgba(255, 255, 255, 1);
+}
+
+.tasks-container {
+  width: 100%;
+  padding: 1.3rem;
+  background: rgba(0, 0, 0, 0.2);
 }

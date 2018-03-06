@@ -17,23 +17,7 @@ export class AstroPassPlans extends PolymerElement {
   }
   static get template() {
     return html`
-    <style>
-      .task-container {
-        width: 100%;
-        padding: 0.25rem;
-        background: rgba(0,0,0,0.2);
-      }
-
-      ol {
-        width: 100%;
-      }
-
-      ol li {
-        background-color: #20313F;
-        padding: 0.5rem;
-        margin: 0 0 .025rem 0;
-      }
-    </style>
+    
 
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
     <div class="rux-timeline-component">
@@ -54,10 +38,10 @@ export class AstroPassPlans extends PolymerElement {
             icon="media-controls:pause">Pause</rux-button>
         </div>
 
-        <div class="rux-timeline__tasks-status">[[0]] of [[7]] Tasks Complete</div>
+        <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[0]]</b> of <b>[[7]]</b></span> Tasks Complete</div>
       </div>
 
-      <div class="task-container">
+      <div class="tasks-container">
         <ol class="tasks">
           <li>Acquire and confirm signal</li>
           <li>Confirm telemetry data reception</li>
