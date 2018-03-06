@@ -163,7 +163,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         })
         .attr("width", 10);
       // this is the original x/y/height data with the xScale/yScale applied
-      // couldnÃ¢â‚¬â„¢t get thsoe functions to return.
+      // couldnâ€™t get thsoe functions to return.
       //
       // Side note, not knowing anything about d3, but rather than replacing
       // the bars is it possible to transition them?

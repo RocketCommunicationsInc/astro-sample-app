@@ -1,5 +1,11 @@
 :host {
   display: flex;
+  min-width: 450px;
+  margin-right: 3.125rem;
+}
+
+.modem-list {
+  width: 100%;
 }
 
 .modem-list ul {
@@ -8,7 +14,8 @@
 
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0.75rem;
+  /* outline: 1px solid orange; */
 }
 
 .modem-list__list {
@@ -16,17 +23,17 @@
 }
 
 .modem-list__header {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
   background-color: #0f1a24;
 
-  padding: 0.5em 0;
-  margin: 0.5em 0;
+  /* padding: 0.5em 0;
+  margin: 0.5em 0; */
   line-height: 1;
-  width: 100%;
+  /* width: 100%; */
 
-  box-shadow: 0 1px 0 #000;
+  /* box-shadow: 0 1px 0 #000; */
 }
 
 .modem-list__list__list-item {

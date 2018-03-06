@@ -21,6 +21,7 @@ import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
 import { AstroModems } from "./astro-modems/astro-modems.js";
 import { AstroModemList } from "./astro-modems/astro-modem-list.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
+import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 
 /**
  * @polymer
@@ -34,8 +35,9 @@ export class AstroApp extends PolymerElement {
         
         display: flex;
         flex-direction: column;
-        height: 100%; 
+        height: 100%;
         box-sizing: border-box; 
+        overflow: hidden;
       }
 
       *,
@@ -45,7 +47,7 @@ export class AstroApp extends PolymerElement {
       }
 
       /*
-        
+        move all of this noise to the telemetry component
       */
       .telemetry-tab {
         height: 100%;
@@ -56,8 +58,26 @@ export class AstroApp extends PolymerElement {
         padding: 0 1em;
       }
 
+      .telemetry-tab astro-telemetry:first-child {
+        margin-right: 0.25rem;
+      }
+      .telemetry-tab astro-telemetry:last-child {
+        margin-left: 0.25rem;
+      }
+
+
       .telemetry-tab[hidden] {
         display: none !important;
+      }
+
+
+      
+
+      .astro-advanced-status-indicators {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
       }
       
 
@@ -75,7 +95,6 @@ export class AstroApp extends PolymerElement {
 
       <rux-clock></rux-clock>
 
-      
       <ul class="astro-advanced-status-indicators">
         <dom-repeat id="astroAdvancedStatus" items="{{statusIndicators}}">
           <template>
@@ -89,36 +108,47 @@ export class AstroApp extends PolymerElement {
           </template>
         </dom-repeat>
       </ul>
-      
 
       <rux-button
         type="icon"
-        icon="default:settings"></rux-button>
+        icon="default:settings">Settings</rux-button>
       
-
+      <rux-button
+        type="large"
+        icon="default:caution">Master Off</rux-button>
     </rux-global-status-bar>
 
 
 
     <rux-tab-panels>
       
-      <rux-tab-panel class="modem-tab" aria-labeledby="tab-modems">  
+      <rux-tab-panel class="astro-tab modem-tab" aria-labeledby="tab-modems">  
+        
         <astro-modems
+          title="Modems"
           selected=[[selected]]
           modems=[[modems]]>
           
+          
           <astro-modem-list modems=[[modems]]></astro-modem-list>
           <astro-modem-detail slot-name="detail"></astro-modem-detail>
+          
 
         </astro-modems>
-
       </rux-tab-panel>
 
-      <rux-tab-panel aria-labeledby="tab-pass-plans">
-        <div>Pass Plans</div>
+
+
+      <rux-tab-panel class="astro-tab pass-plan-tab" aria-labeledby="tab-pass-plans">
+        <astro-pass-plans
+          title="Pass Plans">
+        </astro-pass-plans>
       </rux-tab-panel>
 
-      <rux-tab-panel  class="telemetry-tab" aria-labeledby="tab-telemetry">
+
+
+      <rux-tab-panel  class="astro-tab telemetry-tab" aria-labeledby="tab-telemetry">
+        
         <astro-telemetry
           title="Sat 1"
           chart=[[chart1]]
@@ -127,6 +157,7 @@ export class AstroApp extends PolymerElement {
           title="Sat 2"
           chart=[[chart2]]
           telemetry-data=[[satellite2]]></astro-telemetry>
+  
       </rux-tab-panel>
 
     </rux-tab-panels>
@@ -483,7 +514,11 @@ export class AstroApp extends PolymerElement {
         rxModType: "CODING_UNCODED",
         rxCoding: 500,
         power: true
-      },
+      }
+    ];
+
+    /* 
+    ,
       {
         _id: { $oid: "570cf0ede4b0cbcd095d47fb" },
         modemId: 15,
@@ -725,7 +760,7 @@ export class AstroApp extends PolymerElement {
         rxCoding: 500,
         power: true
       }
-    ];
+      */
 
     this.satellite1 = {
       power: [
@@ -836,38 +871,24 @@ export class AstroApp extends PolymerElement {
       ]
     };
 
-    // emulate a JSON object
+    // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
 
-    /* this.telemetryDataObj = [{
-      satellite1: {
-        power: [{
-            label: "Pwr 1",
-            status: "error"
-          },
-          {
-            label: "Pwr 2",
-            status: "error"
-          },
-          {
-            label: "Pwr 3",
-            status: "error"
-          },
-          {
-            label: "Pwr 4",
-            status: "error"
-          },
-          {
-            label: "Pwr 5",
-            status: "error"
-          },
-          {
-            label: "Pwr 6",
-            status: "error"
-          }
-        ]
+    // emulate a JSON object for advanced status
+    this.statusIndicators = [
+      {
+        label: "Power",
+        status: "ok",
+        icon: "advanced-status-egs:propulsion-power",
+        notifications: 1
+      },
+      {
+        label: "Communications",
+        status: "ok",
+        icon: "advanced-status-egs:netcom",
+        notifications: 0
       }
-    }]; */
+    ];
   }
 
   static get properties() {

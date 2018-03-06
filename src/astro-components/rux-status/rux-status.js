@@ -43,12 +43,16 @@ export class RuxStatus extends PolymerElement {
       <link rel="stylesheet" href="src/astro-components/rux-status/rux-status.css">
 
       <!-- Use Advanced Status Template is any property is set //-->
-      <div class="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
-        <rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status [[status]]"></rux-icon>
-          <div class="rux-advanced-status__icon">
-              <rux-icon icon="[[icon]]" class$="rux-status--[[status]]"></rux-icon>
-              <div class="rux-advanced-status__badge" hidden=[[!_notifications]]>[[_notifications]]</div>
-          </div>  
+      <div class$="rux-advanced-status rux-status--[[status]]" title="[[notifications]] [[label]] [[sublabel]]" aria-labelledby="rux-advanced-status-aria-label" hidden=[[!advanced]]>
+        
+        
+        
+        <div class="rux-advanced-status__icon">
+          <rux-icon icon="status:{{status}}" class$="rux-advanced-status__status-icon rux-icon--status [[status]]"></rux-icon>
+          <div class="rux-advanced-status__badge" hidden=[[!_notifications]]>[[_notifications]]</div>
+          <rux-icon icon="[[icon]]" class$="rux-status--[[status]]"></rux-icon>  
+        </div>  
+
         <div id="rux-advanced-status-aria-label" class="rux-advanced-status__label">[[label]]<span class="rux-advanced-status__label__sub-label">[[sublabel]]</span></div>
       </div>
 
@@ -79,7 +83,7 @@ export class RuxStatus extends PolymerElement {
 
   _filterNotifications(n) {
     if (isNaN(n))
-      console.error(`${this.label}’s notification count is not a number`);
+      console.error(`${this.label}â€™s notification count is not a number`);
 
     let _n = Math.floor(n);
 
@@ -96,7 +100,7 @@ export class RuxStatus extends PolymerElement {
     let _message = _n;
 
     if (_trillion >= 1) {
-      _message = "∞";
+      _message = "âˆž";
     } else if (_billion >= 1) {
       _message = _billion.toFixed(1).toString() + "b";
     } else if (_million >= 1) {
