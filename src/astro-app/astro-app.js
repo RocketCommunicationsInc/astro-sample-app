@@ -49,15 +49,21 @@ export class AstroApp extends PolymerElement {
       /*
         
       */
-      // .telemetry-tab {
-      //   height: 100%;
-      //   display: flex;
-      //   justify-content: space-between;
-      //   align-items: stretch;
+      .telemetry-tab {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
         
-      //   padding: 0 1em;
-      // }
+        padding: 0 1em;
+      }
 
+      .telemetry-tab astro-telemetry:first-child {
+        margin-right: 0.25rem;
+      }
+      .telemetry-tab astro-telemetry:last-child {
+        margin-left: 0.25rem;
+      }
 
 
       .telemetry-tab[hidden] {
@@ -82,8 +88,8 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
+      <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-telemetry">Telemetry</rux-tab>
       </rux-tabs>
 
