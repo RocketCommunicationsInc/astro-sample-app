@@ -17,7 +17,33 @@ export class AstroModemDetail extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
-      <h1>Modem Detail</h1>
+
+      <ul>
+        <li><rux-icon icon="modem-controls:set-power"></rux-icon>Set Power</li>
+      </ul>
+
+      <h1>[[Modem Detail]]</h1>
+      <section>
+        <h1>Tx</h1>
+        <dl>
+          <dt>Power</dt>
+          <dd>[[Power]]dBm</dd>
+          <dt>Frequency</dt>
+          <dd>[[Power]]mHz</dd>
+          <dt>Symbol Rate</dt>
+          <dd>[[Power]]samples/sec</dd>
+        </dl>
+      </section>
+      <section>
+        <h1>Rx</h1>
+        <dl>
+          <dt>Frequency</dt>
+          <dd>[[Power]]mHz</dd>
+          <dt>Symbol Rate</dt>
+          <dd>[[Power]]samples/sec</dd>
+        </dl>
+      </section>
+
     `;
   }
 

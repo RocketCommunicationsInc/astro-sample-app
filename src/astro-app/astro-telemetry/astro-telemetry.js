@@ -37,7 +37,7 @@ export class AstroTelemetry extends PolymerElement {
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <section class="astro-telemetry">
       <h1>[[title]]</h1>
-      
+      <img src="/public/img/speca.svg" width="100%" />
 
       <div class="astro-telemetry__status">
      
