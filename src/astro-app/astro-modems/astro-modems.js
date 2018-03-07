@@ -13,6 +13,9 @@ export class AstroModems extends PolymerElement {
       },
       modems: {
         type: Object
+      },
+      selectedModem: {
+        type: Object
       }
     };
   }

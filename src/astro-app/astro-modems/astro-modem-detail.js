@@ -10,13 +10,17 @@ import {
 export class AstroModemDetail extends PolymerElement {
   static get properties() {
     return {
-      min: String
+      selectedModem: {
+        type: Object
+      }
     };
   }
 
   static get template() {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
+
+      
 
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
@@ -40,7 +44,7 @@ export class AstroModemDetail extends PolymerElement {
 
       <div class="modem-detail__detail">
         
-        <h1>[[Modem Detail]]</h1>
+        <h1>[[selectedModem.modemId]]</h1>
       <section class="modem-detail__detail__section">
         <header>
           <h1>Tx</h1>
@@ -75,6 +79,7 @@ export class AstroModemDetail extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
+    console.log(this.selectedModem);
   }
 
   disconnectedCallback() {
