@@ -48,7 +48,7 @@ export class AstroModemList extends PolymerElement {
                 <li><rux-status status=[[_getStatus(item,'rx')]]></rux-status></li>
                 <li><rux-status status=[[_getStatus(item,'carrier')]]></rux-status></li>
                 <li><rux-status status=[[_getStatus(item,'code')]]></rux-status></li>
-                <li class="modem-list__reading">[[_getModemType(item.txModType)]]</li>
+                <li class="modem-list__reading">[[item.txPower]]</li>
                 <li class="modem-list__reading">[[item.errorVectorMagnitude]]dB</li>
               </ul>
             </li>
@@ -91,13 +91,6 @@ export class AstroModemList extends PolymerElement {
     _modems.forEach(modem => {
       modem.removeAttribute("selected");
     });
-  }
-
-  _getModemType(raw) {
-    if (!raw) return "----";
-
-    let _raw = raw.split("_");
-    return _raw[_raw.length - 1];
   }
 
   /*

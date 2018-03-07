@@ -44,18 +44,18 @@ export class AstroModemDetail extends PolymerElement {
 
       <div class="modem-detail__detail">
         
-        <h1>[[selectedModem.modemId]]</h1>
+        <h1>Modem [[selectedModem.modemId]]</h1>
       <section class="modem-detail__detail__section">
         <header>
           <h1>Tx</h1>
         </header>
         <dl>
           <dt>Power</dt>
-          <dd>[[Power]]<span class="label">dBm</span></dd>
+          <dd>[[selectedModem.txPower]]<span class="label">dBm</span></dd>
           <dt>Frequency</dt>
-          <dd>[[Power]]<span class="label">mHz</span></dd>
+          <dd>[[selectedModem.errorVectorMagnitude]]<span class="label">mHz</span></dd>
           <dt>Symbol Rate</dt>
-          <dd>[[Power]]<span class="label">samples/sec</span></dd>
+          <dd>[[selectedModem.txSymbolRate]]<span class="label">samples/sec</span></dd>
         </dl>
       </section>
       <section class="modem-detail__detail__section">
@@ -64,9 +64,9 @@ export class AstroModemDetail extends PolymerElement {
         </header>
         <dl>
           <dt>Frequency</dt>
-          <dd>[[Power]]<span class="label">mHz</span></dd>
+          <dd>[[selectedModem.rxFreq]]<span class="label">mHz</span></dd>
           <dt>Symbol Rate</dt>
-          <dd>[[Power]]<span class="label">samples/sec</span></dd>
+          <dd>[[selectedModem.rxSymbolRate]]<span class="label">samples/sec</span></dd>
         </dl>
       </section>
       </div>
