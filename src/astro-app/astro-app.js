@@ -102,11 +102,11 @@ export class AstroApp extends PolymerElement {
         
         <astro-modems
           title="Modems"
-          selected=[[selected]]
+          selected-modem={{astroModem}}
           modems=[[modems]]>
 
-          <astro-modem-list modems=[[modems]]></astro-modem-list>
-          <astro-modem-detail slot-name="detail"></astro-modem-detail>
+          <astro-modem-list modems={{modems}} selected-modem={{astroModem}}></astro-modem-list>
+          <astro-modem-detail selected-modem=[[astroModem]] slot-name="detail"></astro-modem-detail>
           
         </astro-modems>
       </rux-tab-panel>
@@ -140,6 +140,29 @@ export class AstroApp extends PolymerElement {
 
     this.chart1 = {};
     this.chart2 = {};
+
+    this.astroModem = {
+      _id: { $oid: "570cef10e4b0cbcd095d473b" },
+      modemId: 1,
+      modulatorResource: { sliceId: "255.255.255.004", resourceId: 92976 },
+      txModType: "MOD_TYPE_BPSK",
+      txSymbolRate: 3900,
+      txCoding: "CODING_UNCODED",
+      txFreq: 1200,
+      txPower: 55,
+      txPath: 3,
+      txEnabled: true,
+      demodulatorResource: { sliceId: "255.255.255.003", resourceId: 61204 },
+      rxSymbolRate: 0,
+      rxFreq: 0,
+      rxPower: -10,
+      rxPath: 0,
+      rxEnabled: true,
+      errorVectorMagnitude: 95,
+      carrierLock: true,
+      codeLock: true,
+      allocated: false
+    };
 
     this.modems = [
       {

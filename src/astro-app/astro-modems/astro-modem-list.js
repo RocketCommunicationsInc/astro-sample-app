@@ -15,9 +15,8 @@ export class AstroModemList extends PolymerElement {
       modems: {
         type: Array
       },
-      selected: {
-        type: Boolean,
-        reflectToAttribute: true,
+      selectedModem: {
+        type: Object,
         notify: true
       }
     };
@@ -81,26 +80,8 @@ export class AstroModemList extends PolymerElement {
     this._reset();
 
     e.currentTarget.setAttribute("selected", "");
-    // e.target.createAttribute("selected");
-    // const _modems = Array.from(
-    //   this.shadowRoot.querySelectorAll("li.modem-list__list-item")
-    // );
-
-    /* console.log(e);
-    console.log(e.model);
-    console.log(e.model.item);
-
-    e.target.setAttribute("selected", true);
-
-    e.model.item.selected = true;
-    console.log(this.shadowRoot);
-    console.log(this.shadowRoot.querySelectorAll("[li]"));
-    this._modems = Array.from(this.querySelectorAll(".modem-list__list-item"));
-    const selectedModem = this._modems.find(modem => modem.selected);
-
-    console.log("selectedModem", selectedModem);
-    console.log(this._modems);
-    console.log(e.model.item.selected); */
+    this.selectedModem = e.model.item;
+    this.notifyPath("slectedModem.selected");
   }
 
   _reset() {
