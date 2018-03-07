@@ -47,16 +47,6 @@ export class AstroApp extends PolymerElement {
         box-sizing: border-box;
       }
 
-      /*
-        move all of this noise to the telemetry component
-      */
-
-      
-    
-
-
-      
-
 
       
 
@@ -75,10 +65,9 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
-        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        
       </rux-tabs>
 
       <rux-clock></rux-clock>
