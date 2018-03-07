@@ -18,6 +18,7 @@ import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
+import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
 import { AstroModems } from "./astro-modems/astro-modems.js";
 import { AstroModemList } from "./astro-modems/astro-modem-list.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
@@ -49,26 +50,17 @@ export class AstroApp extends PolymerElement {
       /*
         move all of this noise to the telemetry component
       */
-      .telemetry-tab {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch;
-        
-        padding: 0 1em;
-      }
 
-      .telemetry-tab astro-telemetry:first-child {
-        margin-right: 0.25rem;
-      }
-      .telemetry-tab astro-telemetry:last-child {
-        margin-left: 0.25rem;
-      }
+      
+     astro-telemetry-pane {
+       margin-right: 0.5rem;
+     }
+     astro-telemetry-pane:last-child {
+       margin-right: 0;
+     }
 
 
-      .telemetry-tab[hidden] {
-        display: none !important;
-      }
+      
 
 
       
@@ -88,9 +80,10 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
+        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
+        
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -121,25 +114,22 @@ export class AstroApp extends PolymerElement {
 
 
     <rux-tab-panels>
-      
-      <rux-tab-panel class="astro-tab modem-tab" aria-labeledby="tab-modems">  
+      <rux-tab-panel aria-labeledby="tab-modems">  
         
         <astro-modems
           title="Modems"
           selected=[[selected]]
           modems=[[modems]]>
-          
-          
+
           <astro-modem-list modems=[[modems]]></astro-modem-list>
           <astro-modem-detail slot-name="detail"></astro-modem-detail>
           
-
         </astro-modems>
       </rux-tab-panel>
 
 
 
-      <rux-tab-panel class="astro-tab pass-plan-tab" aria-labeledby="tab-pass-plans">
+      <rux-tab-panel aria-labeledby="tab-pass-plans">
         <astro-pass-plans
           title="Pass Plans">
         </astro-pass-plans>
@@ -147,16 +137,17 @@ export class AstroApp extends PolymerElement {
 
 
 
-      <rux-tab-panel  class="astro-tab telemetry-tab" aria-labeledby="tab-telemetry">
-        
-        <astro-telemetry
-          title="Sat 1"
-          chart=[[chart1]]
-          telemetry-data=[[satellite1]]></astro-telemetry>
-        <astro-telemetry
-          title="Sat 2"
-          chart=[[chart2]]
-          telemetry-data=[[satellite2]]></astro-telemetry>
+      <rux-tab-panel aria-labeledby="tab-telemetry">
+        <astro-telemetry>
+          <astro-telemetry-pane
+            title="Sat 1"
+            chart=[[chart1]]
+            telemetry-data=[[satellite1]]></astro-telemetry-pane>
+          <astro-telemetry-pane
+            title="Sat 2"
+            chart=[[chart2]]
+            telemetry-data=[[satellite2]]></astro-telemetry-pane>
+        </astro-telemetry>
   
       </rux-tab-panel>
 

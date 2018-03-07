@@ -20,7 +20,7 @@ export class AstroModems extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modems.css">
-      <slot id="detail"></slot>
+      <slot></slot>
     `;
   }
 
