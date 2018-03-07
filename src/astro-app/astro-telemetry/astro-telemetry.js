@@ -13,14 +13,25 @@ export class AstroTelemetry extends PolymerElement {
     return {
       title: {
         type: String
+      },
+      telemetryData: {
+        type: Array
       }
     };
   }
   static get template() {
     return html`
 		<link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
-		<div class="astro-telemetry-panes">
-			<slot></slot>
+    <div class="astro-telemetry-panes">
+    <dom-repeat items="[[telemetryData]]">
+      <template>
+        <astro-telemetry-pane
+          title=[[item.label]]
+          chart=[[item.chart]]
+          power=[[item.power]]
+          thermal=[[item.thermal]]></astro-telemetry-pane>
+      </template>
+    </dom-repeat>
 		</div>
     `;
   }

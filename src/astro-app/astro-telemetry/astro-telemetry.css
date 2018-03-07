@@ -13,3 +13,10 @@
   justify-content: space-between;
   align-items: stretch;
 }
+
+astro-telemetry-pane {
+  margin-right: 0.5rem;
+}
+astro-telemetry-pane:last-child {
+  margin-right: 0;
+}
