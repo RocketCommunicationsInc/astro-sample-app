@@ -61,10 +61,36 @@ export class AstroModemList extends PolymerElement {
     `;
   }
 
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.addEventListener("click", this._onClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    this.removeEventListener("click", this._onClick);
+  }
+
   _selectModem(e) {
-    console.log(e);
+    this._reset();
+
+    e.currentTarget.setAttribute("selected", "");
+    // e.target.createAttribute("selected");
+    // const _modems = Array.from(
+    //   this.shadowRoot.querySelectorAll("li.modem-list__list-item")
+    // );
+
+    /* console.log(e);
     console.log(e.model);
     console.log(e.model.item);
+
+    e.target.setAttribute("selected", true);
 
     e.model.item.selected = true;
     console.log(this.shadowRoot);
@@ -74,7 +100,16 @@ export class AstroModemList extends PolymerElement {
 
     console.log("selectedModem", selectedModem);
     console.log(this._modems);
-    console.log(e.model.item.selected);
+    console.log(e.model.item.selected); */
+  }
+
+  _reset() {
+    const _modems = this.shadowRoot.querySelectorAll(
+      "li.modem-list__list-item"
+    );
+    _modems.forEach(modem => {
+      modem.removeAttribute("selected");
+    });
   }
 
   _getModemType(raw) {
@@ -114,22 +149,6 @@ export class AstroModemList extends PolymerElement {
         break;
     }
     return _status;
-  }
-
-  constructor() {
-    super();
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-  }
-
-  ready() {
-    super.ready();
   }
 }
 
