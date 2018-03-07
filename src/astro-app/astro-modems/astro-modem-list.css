@@ -59,7 +59,7 @@
   color: #fff;
 }
 
-.modem-list__list-item.selected::before {
+.modem-list__list-item[selected]::before {
   background-color: #0080f4;
 }
 
