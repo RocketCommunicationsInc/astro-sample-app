@@ -52,12 +52,7 @@ export class AstroApp extends PolymerElement {
       */
 
       
-     astro-telemetry-pane {
-       margin-right: 0.5rem;
-     }
-     astro-telemetry-pane:last-child {
-       margin-right: 0;
-     }
+    
 
 
       
@@ -138,15 +133,8 @@ export class AstroApp extends PolymerElement {
 
 
       <rux-tab-panel aria-labeledby="tab-telemetry">
-        <astro-telemetry>
-          <astro-telemetry-pane
-            title="Sat 1"
-            chart=[[chart1]]
-            telemetry-data=[[satellite1]]></astro-telemetry-pane>
-          <astro-telemetry-pane
-            title="Sat 2"
-            chart=[[chart2]]
-            telemetry-data=[[satellite2]]></astro-telemetry-pane>
+        <astro-telemetry
+          telemetry-data=[[telemetryDataObj]]>
         </astro-telemetry>
   
       </rux-tab-panel>
@@ -754,6 +742,7 @@ export class AstroApp extends PolymerElement {
       */
 
     this.satellite1 = {
+      label: "Satellite 1",
       power: [
         {
           label: "Power 1",
@@ -808,6 +797,7 @@ export class AstroApp extends PolymerElement {
       ]
     };
     this.satellite2 = {
+      label: "Satellite 2",
       power: [
         {
           label: "Power 1",

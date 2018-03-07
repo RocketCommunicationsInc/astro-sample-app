@@ -19,16 +19,11 @@ export class AstroTelemetryPane extends PolymerElement {
       chart: {
         type: Object
       },
-      telemetryData: {
+      power: {
         type: Object
       },
-      power: {
-        type: Object,
-        computed: "_getPower(telemetryData)"
-      },
       thermal: {
-        type: Object,
-        computed: "_getThermal(telemetryData)"
+        type: Object
       }
     };
   }
@@ -40,7 +35,6 @@ export class AstroTelemetryPane extends PolymerElement {
       <img src="/public/img/speca.svg" width="100%" />
 
       <div class="astro-telemetry-pane__status">
-     
         <h2 class="astro-telemetry-pane__status__header">Telemetry</h2>        
         <div class="astro-telemetry-pane__status__group">
           <h3>Power</h3>
@@ -62,11 +56,7 @@ export class AstroTelemetryPane extends PolymerElement {
             </template>
           </ul>
         </div>
-
-
       </div>
-      
-
     </section>
     
       
@@ -76,21 +66,9 @@ export class AstroTelemetryPane extends PolymerElement {
     super();
   }
 
-  _getPower(p) {
-    return p.power;
-  }
-
-  _getThermal(t) {
-    return t.thermal;
-  }
-
   connectedCallback() {
     super.connectedCallback();
     if (!this.telemetryData) return;
-    // console.log(this.telemetryData.thermal);
-    // console.log(this);
-    // console.log(this.telemetryData[0].power);
-    // this.power = telemetryData[0].power;
   }
 
   ready() {
