@@ -6,12 +6,14 @@
 
 .modem-list {
   width: 100%;
+  overflow-y: scroll;
 }
 
 .modem-list {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
 
   list-style: none;
   padding: 0;
@@ -21,12 +23,14 @@
 
 .modem-list__list-item {
   display: flex;
+  flex-shrink: 1;
   justify-content: flex-start;
   font-size: 1.375rem;
   color: rgba(255, 255, 255, 0.8);
   background-color: #0f1a24;
   margin: 0 0 0.625rem 0;
   height: 3.5rem;
+  min-height: 2rem;
   position: relative;
 
   box-shadow: 0 1px 0 #000;
@@ -64,7 +68,7 @@
 .modem-list__list-item ul {
   flex-grow: 1;
   padding: 0;
-  margin: 0 0 0 1em;
+  margin: 0 0 0 0.5rem;
 
   display: flex;
 }
@@ -79,19 +83,5 @@
 
 .modem-list__list-item li.modem-list__reading {
   width: 22%;
+  text-align: right;
 }
-
-/* 
-.a {
-  margin-left: 2%;
-  width: 12%;
-}
-
-.b {
-  width: 10%;
-  overflow: hidden;
-}
-
-.c {
-  width: 20%;
-} */

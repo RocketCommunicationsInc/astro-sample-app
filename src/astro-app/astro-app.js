@@ -482,11 +482,7 @@ export class AstroApp extends PolymerElement {
         rxModType: "CODING_UNCODED",
         rxCoding: 500,
         power: true
-      }
-    ];
-
-    /* 
-    ,
+      },
       {
         _id: { $oid: "570cf0ede4b0cbcd095d47fb" },
         modemId: 15,
@@ -728,7 +724,7 @@ export class AstroApp extends PolymerElement {
         rxCoding: 500,
         power: true
       }
-      */
+    ];
 
     this.satellite1 = {
       label: "Satellite 1",
