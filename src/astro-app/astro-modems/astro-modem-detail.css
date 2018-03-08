@@ -66,6 +66,19 @@
   background-color: #000;
 }
 
+.modem-detail__settings form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 2em 2.5rem;
+  outline: 1px solid red;
+}
+
+.modem-detail__settings .rux-button-group {
+  outline: 1px solid blue;
+  padding: 1em;
+}
+
 .modem-detail__detail {
   display: flex;
   flex-direction: row;

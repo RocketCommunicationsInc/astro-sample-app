@@ -31,21 +31,25 @@ export class AstroModemDetail extends PolymerElement {
       </ul>
 
       <div class="modem-detail__settings">
-        <rux-slider
-          min=0
-          max=30
-          step=1
-          value=[[selectedModem.power]]><rux-slider>
+        <form>
+          <rux-slider
+            label="Set Power"
+            min=0
+            max=30
+            step=1
+            input=true
+            value=[[selectedModem.power]]><rux-slider>
 
-        <div class="rux-button-group">
-          <rux-button>Apply</rux-button>
-          <rux-button default>Cancel</rux-button>
-        </div>
+          <div class="rux-button-group">
+            <rux-button>Apply</rux-button>
+            <rux-button default>Cancel</rux-button>
+          </div>
+        </form>
       </div>
 
      
 
-      <div class="modem-detail__detail" hidden="[[!selectedModem]]">
+      <div class="modem-detail__detail open" hidden="[[!selectedModem]]">
         <h1>Modem [[selectedModem.modemId]]</h1>
         
         <section class="modem-detail__detail__section">
