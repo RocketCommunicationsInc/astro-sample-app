@@ -66,14 +66,10 @@ export class AstroModemList extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-
-    this.addEventListener("click", this._onClick);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    this.removeEventListener("click", this._onClick);
   }
 
   _selectModem(e) {
