@@ -3,20 +3,8 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 
-
-
 /* <div class="modem-detail__modem-settings">
-<rux-slider
-  min=0
-  max=30
-  step=1
-  value=[[selectedModem.power]]><rux-slider>
-
-<div class="rux-button-group">
-  <rux-button>Apply</rux-button>
-  <rux-button default>Cancel</rux-button>
-</div>
-</div> */
+ */
 
 /**
  * @polymer
@@ -32,15 +20,28 @@ export class AstroModemDetail extends PolymerElement {
   }
 
   static get template() {
-    return html `
+    return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       
 
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
-        <li><rux-icon icon="modem-controls:set-power"></rux-icon><span class="label">Set Power</span></li>
+        <li><rux-icon on-click="togglePane" icon="modem-controls:set-power"></rux-icon><span class="label">Set Power</span></li>
       </ul>
+
+      <div class="modem-detail__settings">
+        <rux-slider
+          min=0
+          max=30
+          step=1
+          value=[[selectedModem.power]]><rux-slider>
+
+        <div class="rux-button-group">
+          <rux-button>Apply</rux-button>
+          <rux-button default>Cancel</rux-button>
+        </div>
+      </div>
 
      
 
@@ -89,8 +90,12 @@ export class AstroModemDetail extends PolymerElement {
     super.disconnectedCallback();
   }
 
-  ready() {
-    super.ready();
+  togglePane() {
+    console.log("opening pane");
+    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
+    const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
+    console.log(_pane[0]);
+    _pane[0].classList.toggle("open");
   }
 }
 
