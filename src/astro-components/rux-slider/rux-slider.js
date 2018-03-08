@@ -10,15 +10,21 @@ export class RuxSlider extends PolymerElement {
     return {
       min: Number,
       max: Number,
-      value: Number,
+      val: {
+        type: Number
+      },
       step: Number,
       label: String,
-      axisLabels: Array,
+      axisLabels: String,
       disabled: Boolean,
+      _axisLabels: {
+        type: Array,
+        value: "_getAxisValues(axisLabels)"
+      },
       _name: {
         type: String,
         value: () => {
-          return `slider-${Math.random() * 100}`;
+          return `slider-${Math.floor(Math.random() * 1000)}`;
         }
       },
       input: {
@@ -34,12 +40,12 @@ export class RuxSlider extends PolymerElement {
       <div class="rux-slider">
         <div class="rux-slider__label">
           <label>[[label]]</label>
-          <input type="number" min=[[min]] max=[[max]] step=[[step]] disabled=[[disabled]] />
+          <input type="number" min=[[min]] max=[[max]] step=[[step]] value={{val}} />
         </div>
         <div class="rux-slider__control">
-          <input type="range" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] disabled=[[disabled]] />
-          <ol class="rux-slider__control__labels">
-            <dom-repeat id="sliderAxisLabels" items=[[axisLabels]]>
+          <input type="range" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} disabled=[[disabled]] />
+          <ol class="rux-slider__control__labels" hidden=[[!_axisLabels]]>
+            <dom-repeat id="sliderAxisLabels" items=[[_axisLabels]]>
             <template>
               <li>[[item]]</li>
             </template>
@@ -53,12 +59,15 @@ export class RuxSlider extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
+    console.log(this);
+    console.log("axis labels", this.axisLabels);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-  ready() {
-    super.ready();
+  _getAxisValues(values) {
+    console.log("a", values);
+    return values.split(",");
   }
 }
 customElements.define("rux-slider", RuxSlider);

@@ -33,12 +33,13 @@ export class AstroModemDetail extends PolymerElement {
       <div class="modem-detail__settings">
         <form>
           <rux-slider
-            label="Set Power"
-            min=0
-            max=30
+            label=[[selectedModem.txPower]]
+            min=-100
+            max=100
             step=1
             input=true
-            value=[[selectedModem.power]]><rux-slider>
+            axis-labels="0, 5, 10, 15, 20, 25, 30"
+            val=[[selectedModem.txPower]]><rux-slider>
 
           <div class="rux-button-group">
             <rux-button>Apply</rux-button>
@@ -95,10 +96,7 @@ export class AstroModemDetail extends PolymerElement {
   }
 
   togglePane() {
-    console.log("opening pane");
-    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
     const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
-    console.log(_pane[0]);
     _pane[0].classList.toggle("open");
   }
 }
