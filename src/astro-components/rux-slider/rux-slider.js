@@ -10,17 +10,13 @@ export class RuxSlider extends PolymerElement {
     return {
       min: Number,
       max: Number,
-      val: {
-        type: Number,
-        notify: true
-      },
       step: Number,
       label: String,
       axisLabels: String,
       disabled: Boolean,
-      _axisLabels: {
-        type: Array,
-        value: "_getAxisValues(axisLabels)"
+      val: {
+        type: Number,
+        notify: true
       },
       _name: {
         type: String,
@@ -45,8 +41,8 @@ export class RuxSlider extends PolymerElement {
         </div>
         <div class="rux-slider__control">
           <input type="range" on-input="_updateValue" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} disabled=[[disabled]] />
-          <ol class="rux-slider__control__labels" hidden=[[!_axisLabels]]>
-            <dom-repeat id="sliderAxisLabels" items=[[_axisLabels]]>
+          <ol class="rux-slider__control__labels" hidden=[[!axisLabels]]>
+            <dom-repeat id="sliderAxisLabels" items=[[_getAxisLabels(axisLabels)]]>
               <template>
                 <li>[[item]]</li>
               </template>
@@ -60,19 +56,17 @@ export class RuxSlider extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    console.log(this);
-    console.log("axis labels", this.axisLabels);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
   }
   _updateValue(e) {
-    console.log(e.target.value);
     this.val = e.target.value;
   }
-  _getAxisValues(values) {
+  _getAxisLabels(values) {
     console.log("a", values);
     return values.split(",");
+    // return values.split(",");
   }
 }
 customElements.define("rux-slider", RuxSlider);

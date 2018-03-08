@@ -1,7 +1,6 @@
 .rux-slider {
   display: flex;
   flex-direction: column;
-  outline: 1px solid green;
 }
 
 .rux-slider__label {
@@ -13,7 +12,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  outline: 1px solid red;
   flex-grow: 1;
 }
 
@@ -148,6 +146,27 @@ input[type="range"]:focus {
     #81a8c7 100%
   );
 }
+
+.rux-slider__control__labels {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0 0.1rem;
+  margin: 0.5em 0 0 0;
+
+  color: rgb(131, 137, 142);
+  font-size: 0.875rem;
+}
+
+/* 
+Fake tick marks, sort of works, but label using flex are imprecise
+.rux-slider__control__labels li::before {
+  position: absolute;
+  content: "|";
+  font-size: 0.5rem;
+  top: -100%;
+} */
 
 input[type="range"]::-moz-focus-outer {
   border: 0;

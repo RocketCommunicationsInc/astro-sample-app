@@ -33,9 +33,9 @@ export class AstroModemDetail extends PolymerElement {
       <div class="modem-detail__settings">
         <form>
           <rux-slider
-            label=[[selectedModem.txPower]]
-            min=-100
-            max=100
+            label="Set Power"
+            min=-0
+            max=30
             step=1
             input=true
             axis-labels="0, 5, 10, 15, 20, 25, 30"
