@@ -16,6 +16,7 @@ import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
+import { RuxNotification } from "../astro-components/rux-notification/rux-notification.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";

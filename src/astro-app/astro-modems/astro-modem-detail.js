@@ -50,12 +50,14 @@ export class AstroModemDetail extends PolymerElement {
 
      
 
-      <div class="modem-detail__detail open" hidden="[[!selectedModem]]">
-        <h1>Modem [[selectedModem.modemId]]</h1>
+      <div class="modem-detail__detail" hidden="[[!selectedModem]]">
+        
+        <h1 id="test">Modem [[selectedModem.modemId]]</h1>
         
         <section class="modem-detail__detail__section">
           <header>
             <h1>Tx</h1>
+            <rux-button on-click='do'>Show Notification</rux-button>
           </header>
           <dl>
             <dt>Power</dt>
@@ -78,6 +80,10 @@ export class AstroModemDetail extends PolymerElement {
             <dd>[[selectedModem.rxSymbolRate]]<span class="label">samples/sec</span></dd>
           </dl>
         </section>
+
+        <rux-notification
+          message="Hello There">
+        </rux-notification>
       </div>
     `;
   }
@@ -89,6 +95,14 @@ export class AstroModemDetail extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     console.log(this.selectedModem);
+  }
+
+  do() {
+    console.log("do");
+    const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
+    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
+
+    _pane[0].classList.toggle("show");
   }
 
   disconnectedCallback() {

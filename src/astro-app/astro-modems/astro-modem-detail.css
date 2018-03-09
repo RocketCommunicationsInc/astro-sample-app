@@ -79,6 +79,8 @@
 }
 
 .modem-detail__detail {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
