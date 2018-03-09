@@ -1,4 +1,5 @@
 .rux-notification {
+  box-sizing: border-box;
   position: absolute;
 
   display: flex;
@@ -8,10 +9,9 @@
   align-items: center;
   align-content: center;
 
-  top: 0;
-  left: 0;
-
   width: 100%;
+  top: -4.125rem;
+  left: 0;
 
   padding: 0 2rem;
   height: 4.125rem;
@@ -21,6 +21,10 @@
   box-shadow: rgb(0, 0, 0) 0px 1px 0px 0px;
 }
 
+.rux-notification.opened {
+  top: 0;
+}
+
 .rux-notification__message {
   font-size: 2.2rem;
   color: rgba(255, 255, 255, 0.6);
@@ -28,6 +32,10 @@
   margin: 0;
 
   white-space: nowrap;
+}
+
+.rux-notification rux-button {
+  margin-left: auto;
 }
 
 .rux-notification::after {

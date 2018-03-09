@@ -11,39 +11,45 @@ export class RuxNotification extends PolymerElement {
       message: {
         type: String
       },
-      button: {
-        type: Object,
-        value: null
-      },
-      target: {
-        type: Object
-      },
-      type: {
+      opened: {
         type: String,
-        value: "default"
-      },
-      hidden: {
-        type: Boolean,
-        value: false
+        value: false,
+        reflectToAttribute: true
       }
     };
   }
   static get template() {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-notification/rux-notification.css">
-      <div class="rux-notification" hidden=[[hidden]]>
-        <div class="rux-notification__message">Modem 4 Power was updated[[message]]</div>
+      <div class$="rux-notification {{opened}}">
+        <div class="rux-notification__message">[[message]]</div>
+        <rux-button on-click="_dismiss">Ok</rux-button>
       </div>
       `;
   }
   constructor() {
     super();
+
+    this._notificationListener = this._showNotification(this);
   }
   connectedCallback() {
     super.connectedCallback();
+    console.log(this);
+    console.log(this.opened);
+    console.log(this.message);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _showNotification() {
+    console.log(this);
+    console.log(this.opened);
+    console.log(this.message);
+    this.opened = true;
+  }
+  _dismiss() {
+    this.opened = false;
   }
 }
 customElements.define("rux-notification", RuxNotification);

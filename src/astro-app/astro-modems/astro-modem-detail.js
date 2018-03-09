@@ -51,12 +51,15 @@ export class AstroModemDetail extends PolymerElement {
      
 
       <div class="modem-detail__detail" hidden="[[!selectedModem]]">
-        <rux-notification></rux-notification>
+        <rux-notification 
+          message=[[notificationObj.message]]
+          opened=[[notificationObj.opened]]></rux-notification>
         <h1>Modem [[selectedModem.modemId]]</h1>
         
         <section class="modem-detail__detail__section">
           <header>
             <h1>Tx</h1>
+            <rux-button on-click="notify">Notify</rux-button>
           </header>
           <dl>
             <dt>Power</dt>
@@ -85,6 +88,19 @@ export class AstroModemDetail extends PolymerElement {
 
   constructor() {
     super();
+
+    this.notificationObj = {
+      opened: false,
+      message: "Sing a song"
+    };
+
+    this.sliderObjTwo = {
+      value: 0,
+      min: -10,
+      max: 10,
+      step: 0.1,
+      labels: "min,mid,max"
+    };
   }
 
   connectedCallback() {
@@ -94,6 +110,16 @@ export class AstroModemDetail extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  notify() {
+    this.notificationObj.message = "Hellow there";
+    this.notificationObj.opened = "opened";
+    // const _notification = this.shadowRoot.querySelectorAll(
+    //   "rux-notification"
+    // )[0];
+
+    // _notification.setAttribute("opened", "");
   }
 
   togglePane() {
