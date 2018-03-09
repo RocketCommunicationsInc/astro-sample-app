@@ -1,0 +1,42 @@
+.rux-notification {
+  position: absolute;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  align-items: center;
+  align-content: center;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  padding: 0 2rem;
+  height: 4.125rem;
+  background-color: #1a6600;
+  transition: all 0.5s ease;
+
+  box-shadow: rgb(0, 0, 0) 0px 1px 0px 0px;
+}
+
+.rux-notification__message {
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  margin: 0;
+
+  white-space: nowrap;
+}
+
+.rux-notification::after {
+  position: relative;
+  display: block;
+  content: "";
+  height: 60px;
+}
+
+.visible {
+  margin-top: 0;
+}

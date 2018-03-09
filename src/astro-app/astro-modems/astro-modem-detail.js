@@ -50,7 +50,8 @@ export class AstroModemDetail extends PolymerElement {
 
      
 
-      <div class="modem-detail__detail open" hidden="[[!selectedModem]]">
+      <div class="modem-detail__detail" hidden="[[!selectedModem]]">
+        <rux-notification></rux-notification>
         <h1>Modem [[selectedModem.modemId]]</h1>
         
         <section class="modem-detail__detail__section">
