@@ -1,6 +1,11 @@
 :host {
   display: flex;
   box-sizing: border-box;
+  outline: 1px solid green;
+}
+
+.rux-timeline-component {
+  width: 100%;
 }
 
 ol {
@@ -67,7 +72,6 @@ rux-status {
 }
 
 .tasks-container {
-  width: 100%;
   padding: 1.3rem;
   background: rgba(0, 0, 0, 0.2);
 }

@@ -17,6 +17,7 @@ import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-men
 import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
 import { RuxNotification } from "../astro-components/rux-notification/rux-notification.js";
+import { RuxTimeline } from "../astro-components/rux-timeline/rux-timeline.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
@@ -67,9 +68,9 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
         <rux-tab id="tab-telemetry">Telemetry</rux-tab>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>

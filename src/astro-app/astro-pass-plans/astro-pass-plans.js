@@ -20,8 +20,18 @@ export class AstroPassPlans extends PolymerElement {
     
 
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
+    
+
+
     <div class="rux-timeline-component">
-      <div class="rux-timelne"><img src="/public/img/timeline.svg" /></div>
+      <rux-timeline
+        label="Timeline"
+        type="realtime"
+        data=[[timeline]]
+        playback-controls="footer"
+        zoom-control=true
+        catch-playhead-control=false>
+      </rux-timeline>
 
 
       <div class="rux-timeline__controls">
@@ -61,22 +71,87 @@ export class AstroPassPlans extends PolymerElement {
   }
   constructor() {
     super();
-  }
 
-  _getPower(p) {
-    return p.power;
-  }
+    const today = new Date();
 
-  _getThermal(t) {
-    return t.thermal;
+    this.timeline = {
+      duration: 86400000,
+      tracks: [
+        {
+          label: "Track Title",
+          regions: [
+            {
+              label: "Satellite 1",
+              status: "ok",
+              startTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                9,
+                0,
+                0
+              ),
+              endTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                11,
+                0,
+                0
+              )
+            },
+            {
+              label: "Satellite 2",
+              status: "ok",
+              startTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                13,
+                0,
+                0
+              ),
+              endTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                13,
+                30,
+                0
+              )
+            },
+            {
+              label: "Satellite 3",
+              status: "error",
+              startTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                15,
+                0,
+                0
+              ),
+              endTime: new Date(
+                today.getUTCFullYear,
+                today.getUTCMonth,
+                today.getUTCDay,
+                17,
+                0,
+                0
+              )
+            }
+          ]
+        }
+      ]
+    };
   }
 
   connectedCallback() {
     super.connectedCallback();
   }
 
-  ready() {
-    super.ready();
+  disconnectedCallback() {
+    super.disconnectedCallback();
   }
 }
 customElements.define("astro-pass-plans", AstroPassPlans);

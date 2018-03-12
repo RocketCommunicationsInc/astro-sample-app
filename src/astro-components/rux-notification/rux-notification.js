@@ -34,18 +34,12 @@ export class RuxNotification extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    console.log(this);
-    console.log(this.opened);
-    console.log(this.message);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
   }
 
   _showNotification() {
-    console.log(this);
-    console.log(this.opened);
-    console.log(this.message);
     this.opened = true;
   }
   _dismiss() {

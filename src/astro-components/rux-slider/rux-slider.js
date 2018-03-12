@@ -64,8 +64,6 @@ export class RuxSlider extends PolymerElement {
     this.val = e.target.value;
   }
   _getAxisLabels(values) {
-    console.log("a", values);
-    return values.split(",");
     // return values.split(",");
   }
 }
