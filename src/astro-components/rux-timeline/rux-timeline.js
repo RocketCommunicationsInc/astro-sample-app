@@ -37,7 +37,17 @@ export class RuxTimeline extends PolymerElement {
       },
       _scale: {
         type: Number,
-        value: 1
+        value: 100,
+        notify: true
+      },
+      _scaleAsPercent: {
+        type: String,
+        value: function() {
+          return _scale * 100 + "%";
+        }
+      },
+      _ticks: {
+        type: Array
       }
     };
   }
@@ -49,12 +59,13 @@ export class RuxTimeline extends PolymerElement {
         <header class="rux-timeline__header">
           <rux-status status="ok"></rux-status>
           <h1>[[label]]</h1>
-          <rux-slider></rux-slider>
+          <rux-slider
+            min=100
+            max=1000
+            val={{_scale}}></rux-slider>
         </header>
         <section class="rux-timeline__viewport">
-          <ul class="rux-timeline__viewport__ruler">
-            
-          </ul>
+          <div class="x" style$="width: [[_scale]]%;"></div>
         </section>
       
       `;
@@ -70,6 +81,11 @@ export class RuxTimeline extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _getScale() {
+    console.log(this._scale);
+    return this._scale * 100 + "%";
   }
 }
 customElements.define("rux-timeline", RuxTimeline);
