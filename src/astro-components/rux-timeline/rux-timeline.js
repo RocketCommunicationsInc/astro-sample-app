@@ -39,15 +39,6 @@ export class RuxTimeline extends PolymerElement {
         type: Number,
         value: 100,
         notify: true
-      },
-      _scaleAsPercent: {
-        type: String,
-        value: function() {
-          return _scale * 100 + "%";
-        }
-      },
-      _ticks: {
-        type: Array
       }
     };
   }
@@ -64,7 +55,7 @@ export class RuxTimeline extends PolymerElement {
             max=1000
             val={{_scale}}></rux-slider>
         </header>
-        <section class="rux-timeline__viewport">
+        <section class="rux-timeline__viewport" on-wheel="_scroll">
           <div class="x" style$="width: [[_scale]]%;"></div>
         </section>
       
@@ -83,6 +74,14 @@ export class RuxTimeline extends PolymerElement {
     super.disconnectedCallback();
   }
 
+  /*
+  **
+  ** Mostly a dev feature, but maybe useful to end users. Scroll the timeline with the mouse wheel
+  **
+  */
+  _scroll(e) {
+    e.currentTarget.scrollLeft += e.deltaY;
+  }
   _getScale() {
     console.log(this._scale);
     return this._scale * 100 + "%";
