@@ -51,8 +51,8 @@ export class RuxTimeline extends PolymerElement {
           <rux-status status="ok"></rux-status>
           <h1>[[label]]</h1>
           <rux-slider
-            min=100
-            max=1000
+            min=[[_minScale]]
+            max=[[_maxScale]]
             val={{_scale}}></rux-slider>
         </header>
         <section class="rux-timeline__viewport" on-wheel="_scroll">
@@ -67,7 +67,9 @@ export class RuxTimeline extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    console.log(this.data);
+
+    this._minScale = 100;
+    this._maxScale = 150;
   }
 
   disconnectedCallback() {
@@ -80,7 +82,19 @@ export class RuxTimeline extends PolymerElement {
   **
   */
   _scroll(e) {
-    e.currentTarget.scrollLeft += e.deltaY;
+    if (e.altKey) {
+      // This is super ugly. Fix it.
+      let _delta = (this._scale += Math.floor(e.deltaY / 10));
+      if (_delta < this._minScale) {
+        this._scale = this._minScale;
+      } else if (_delta > this._maxScale) {
+        this._scale = this._maxScale;
+      } else {
+        this._scale = _delta;
+      }
+    } else {
+      e.currentTarget.scrollLeft += Math.floor(e.deltaY);
+    }
   }
   _getScale() {
     console.log(this._scale);
