@@ -27,6 +27,7 @@
 }
 
 .x {
+  position: relative;
   height: 10px;
   width: 100%;
   margin-right: 2em;
@@ -47,4 +48,23 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 10px;
+}
+
+.rux-timeline__viewport__labels li {
+  margin: 0;
+  padding: 0;
+  height: 20px;
+  width: 1px;
+  display: none;
+  /* background-color: red; */
+}
+
+#rux-timeline__playhead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 1px;
+  background-color: orange;
 }
