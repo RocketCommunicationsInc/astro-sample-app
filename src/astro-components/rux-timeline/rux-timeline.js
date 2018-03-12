@@ -57,6 +57,13 @@ export class RuxTimeline extends PolymerElement {
         </header>
         <section class="rux-timeline__viewport" on-wheel="_scroll">
           <div class="x" style$="width: [[_scale]]%;"></div>
+          <ol class="rux-timeline__viewport__labels" style$="width: [[_scale]]%;">
+            <dom-repeat id="rux-timeline__viewport__labels" items=[[_getLabels()]]>
+              <template>
+                <li>[[item]]</li>
+              </template>
+            </dom-repeat>
+          </ol>
         </section>
       
       `;
@@ -76,6 +83,9 @@ export class RuxTimeline extends PolymerElement {
     super.disconnectedCallback();
   }
 
+  _getLabels() {
+    return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+  }
   /*
   **
   ** Mostly a dev feature, but maybe useful to end users. Scroll the timeline with the mouse wheel
