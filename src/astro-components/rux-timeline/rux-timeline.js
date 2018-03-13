@@ -38,8 +38,7 @@ export class RuxTimeline extends PolymerElement {
       _scale: {
         type: Number,
         value: 100,
-        notify: true,
-        observer: "_isScaling"
+        observer: "_updateTics"
       }
     };
   }
@@ -51,25 +50,22 @@ export class RuxTimeline extends PolymerElement {
         <header class="rux-timeline__header">
           <rux-status status="ok"></rux-status>
           <h1>[[label]]</h1>
+
+
           <rux-slider
             min=[[_minScale]]
             max=[[_maxScale]]
             val={{_scale}}></rux-slider>
+          <rux-button on-click="_catchPlayhead">P</rux-button>
         </header>
 
         
         <section class="rux-timeline__viewport" on-wheel="_scroll">
           
-          <div id="x" class="x" style$="width: [[_scale]]%;">
+          <div id="x" class="x">
             <div id="rux-timeline__playhead"></div>
           </div>
-          <ol class="rux-timeline__viewport__labels" style$="width: [[_scale]]%;">
-            <dom-repeat id="rux-timeline__viewport__labels" items=[[_getLabels()]]>
-              <template>
-                <li>[[item]]</li>
-              </template>
-            </dom-repeat>
-          </ol>
+          
         </section>
       
       `;
@@ -90,14 +86,12 @@ export class RuxTimeline extends PolymerElement {
     this._duration = this.data.duration;
     this._minScale = 100;
     this._maxScale = 500;
-
-    this._timeIncementLabels;
+    console.log(this._scale);
 
     const _timer = setInterval(() => {
       this._updatePlayhead();
     }, 10);
 
-    console.log(this._duration);
     this._tics = new Array();
     this._setTics();
   }
@@ -106,76 +100,44 @@ export class RuxTimeline extends PolymerElement {
     super.disconnectedCallback();
   }
 
+  _catchPlayhead() {
+    console.log("catch playhead");
+
+    // if(this._playhead.offsetLeft > 1000) {
+    //   this.
+    // }
+  }
+
   _getLabels() {
     return [
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23"
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00",
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
     ];
-
-    // return [
-    //   "00:00",
-    //   "01:00",
-    //   "02:00",
-    //   "03:00",
-    //   "04:00",
-    //   "05:00",
-    //   "06:00",
-    //   "07:00",
-    //   "08:00",
-    //   "09:00",
-    //   "10:00",
-    //   "11:00",
-    //   "12:00",
-    //   "13:00",
-    //   "14:00",
-    //   "15:00",
-    //   "16:00",
-    //   "17:00",
-    //   "18:00",
-    //   "19:00",
-    //   "20:00",
-    //   "21:00",
-    //   "22:00",
-    //   "23:00"
-    // ];
   }
 
   _updatePlayhead(timestamp) {
-    // if(!this._running) this._running = timestamp;
-    // const progress = timestamp - this._running;
-    // this._playhead.style.left = Math.min('')
-    // const delta = (playHead.style.left += 1);
-    // console.log(delta);
-    // playHead.style.left = delta + "px";
-    // console.log(playHead.style.left);
-
-    // get current width of the timeline
-    // console.log(this._track.offsetWidth);
-    // then figure out how many milliseconds are in it based on the duration
-    // console.log(this._track.offsetWidth / this._duration * 10);
-
     const now = new Date();
     const then = new Date(
       now.getFullYear(),
@@ -191,19 +153,18 @@ export class RuxTimeline extends PolymerElement {
     const place = dif / this._duration;
     const loc = this._track.offsetWidth * place;
 
-    // console.log("pps", dif); ((3600000*1011)/86400000)
-    //(3600000*1011)/86400000
-
-    // console.log(this._playheadProgress);
-
-    // this._playheadProgress += pixelsPerSecond;
-    this._playhead.style.left = dif * this._track.offsetWidth / 86400000 + "px";
+    this._playhead.style.left =
+      dif * this._track.offsetWidth / this._duration + "px";
   }
 
   _updateTics() {
     if (!this._tics) return;
+
+    this._scale = Number(this._scale);
+    this._track.style.width = this._scale + "%";
     this._tics.forEach((tic, i) => {
-      tic.style.left = 3600000 * i * this._track.offsetWidth / 86400000 + "px";
+      tic.style.left =
+        3600000 * i * this._track.offsetWidth / this._duration + "px";
     });
   }
 
@@ -215,13 +176,15 @@ export class RuxTimeline extends PolymerElement {
     y.forEach(tic => {
       let z = document.createElement("div");
       z.style.position = "absolute";
+      z.style.fontSize = "9px";
       z.style.top = "10px";
       z.style.width = "1px";
       z.style.height = "20px";
       z.style.backgroundColor = "blue";
-      z.style.overflow = "hidden";
-      z.style.left = 3600000 * i * this._track.offsetWidth / 86400000 + "px";
-      z.innerHTML = i;
+      // z.style.overflow = "hidden";
+      z.style.left =
+        3600000 * i * this._track.offsetWidth / this._duration + "px";
+      z.innerHTML = y[i];
 
       this._track.appendChild(z);
       this._tics[i] = z;
@@ -231,8 +194,8 @@ export class RuxTimeline extends PolymerElement {
   }
 
   _isScaling() {
-    console.log("is scaling");
-    this._updateTics();
+    // console.log(`_scale is ${this._scale}`);
+    // this._updateTics();
   }
 
   /*
@@ -243,21 +206,28 @@ export class RuxTimeline extends PolymerElement {
   _scroll(e) {
     if (e.altKey) {
       // This is super ugly. Fix it.
-      let _delta = (this._scale += Math.floor(e.deltaY / 10));
+      console.log(typeof this._scale);
+      // this._scale = Number(this._scale);
+      // console.log(typeof this._scale);
+      let _delta = Number((this._scale += Math.floor(e.deltaY / 10)));
+      console.log(
+        `${_delta} is scale (${this._scale}) += (${
+          e.deltaY
+        } / 10) or ${Math.floor(e.deltaY / 10)}`
+      );
       if (_delta < this._minScale) {
+        console.log("use min scale");
         this._scale = this._minScale;
       } else if (_delta > this._maxScale) {
+        console.log("use max scale");
         this._scale = this._maxScale;
       } else {
+        console.log("use _delta scale");
         this._scale = _delta;
       }
     } else {
       e.currentTarget.scrollLeft += Math.floor(e.deltaY);
     }
-  }
-  _getScale() {
-    console.log(this._scale);
-    return this._scale * 100 + "%";
   }
 }
 customElements.define("rux-timeline", RuxTimeline);
