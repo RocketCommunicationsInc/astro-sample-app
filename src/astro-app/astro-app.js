@@ -89,9 +89,7 @@ export class AstroApp extends PolymerElement {
         </dom-repeat>
       </ul>
 
-      <rux-button
-        type="icon"
-        icon="default:settings">Settings</rux-button>
+      
       
       <rux-button
         type="large"

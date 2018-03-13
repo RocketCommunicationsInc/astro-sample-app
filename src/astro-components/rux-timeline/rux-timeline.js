@@ -91,7 +91,6 @@ export class RuxTimeline extends PolymerElement {
     this._tracks = this.data.tracks;
     this._regions = this.data.tracks[0].regions;
     this._regionEls = new Array();
-    // console.log(this._regions);
 
     const _timer = setInterval(() => {
       this._updatePlayhead();
@@ -109,15 +108,12 @@ export class RuxTimeline extends PolymerElement {
   }
 
   _catchPlayhead() {
-    console.log("catch playhead");
-
     // if(this._playhead.offsetLeft > 1000) {
     //   this.
     // }
   }
 
   _setRegions() {
-    console.log(this._regions);
     var now = new Date();
     var today = new Date(
       now.getFullYear(),
@@ -137,16 +133,10 @@ export class RuxTimeline extends PolymerElement {
         (region.startTime.getTime() - today.getTime()) *
         this._track.offsetWidth /
         this._duration;
-      console.log(`Width is ${_regionWidth} and Start is ${_regionStart}`);
 
       let g = document.createElement("div");
-      g.style.position = "absolute";
-      g.style.fontSize = "9px";
-      g.style.top = "0";
+      g.classList.add("rux-timeline__track__region");
       g.style.width = _regionWidth;
-      g.style.height = "33px";
-      g.style.backgroundColor = "purple";
-      // z.style.overflow = "hidden";
       g.style.left = _regionStart + "px";
       g.innerHTML = region.label;
 
@@ -221,7 +211,6 @@ export class RuxTimeline extends PolymerElement {
       0
     );
     this._regionEls.forEach((region, i) => {
-      console.log(this._regions[i]);
       let _regionDuration =
         this._regions[i].endTime.getTime() -
         this._regions[i].startTime.getTime();
@@ -232,7 +221,6 @@ export class RuxTimeline extends PolymerElement {
         (this._regions[i].startTime.getTime() - today.getTime()) *
         this._track.offsetWidth /
         this._duration;
-      console.log(`Width is ${_regionWidth} and Start is ${_regionStart}`);
 
       region.style.width = _regionWidth;
       region.style.left = _regionStart + "px";
@@ -254,32 +242,19 @@ export class RuxTimeline extends PolymerElement {
   _setTics() {
     if (!this._track) return;
     let y = this._getLabels();
-    let i = 0;
 
-    console.log(this._track.childNodes);
-
-    y.forEach(tic => {
+    y.forEach((tic, i) => {
       let z = document.createElement("div");
-      z.style.position = "absolute";
-      z.style.fontSize = "9px";
-      z.style.top = "10px";
-      z.style.width = "1px";
-      z.style.height = "20px";
-      // z.style.backgroundColor = "blue";
-      // z.style.overflow = "hidden";
       z.style.left =
         3600000 * i * this._track.offsetWidth / this._duration + "px";
       z.innerHTML = y[i];
 
       this._ruler.appendChild(z);
       this._tics[i] = z;
-
-      i++;
     });
   }
 
   _isScaling() {
-    // console.log(`_scale is ${this._scale}`);
     // this._updateTics();
   }
 
@@ -290,8 +265,6 @@ export class RuxTimeline extends PolymerElement {
   */
 
   _scroll(e) {
-    let a = "b";
-
     if (e.altKey) {
       let _delta = (this._scale += Math.floor(e.deltaY / 10));
 
