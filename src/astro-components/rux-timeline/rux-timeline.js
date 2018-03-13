@@ -38,7 +38,8 @@ export class RuxTimeline extends PolymerElement {
       _scale: {
         type: Number,
         value: 100,
-        notify: true
+        notify: true,
+        observer: "_isScaling"
       }
     };
   }
@@ -88,7 +89,7 @@ export class RuxTimeline extends PolymerElement {
     // console.log("track", this._track);
     this._duration = this.data.duration;
     this._minScale = 100;
-    this._maxScale = 10000;
+    this._maxScale = 500;
 
     this._timeIncementLabels;
 
@@ -97,25 +98,8 @@ export class RuxTimeline extends PolymerElement {
     }, 10);
 
     console.log(this._duration);
-
-    let y = this._getLabels();
-    let i = 0;
-    console.log(y);
-    y.forEach(tic => {
-      let z = document.createElement("div");
-      z.style.position = "absolute";
-      z.style.top = "10px";
-      z.style.width = "1px";
-      z.style.height = "20px";
-      z.style.backgroundColor = "blue";
-      z.style.overflow = "hidden";
-      z.style.left = 3600000 * i * 1011 / 86400000 + "px";
-      z.innerHTML = i;
-
-      this._track.appendChild(z);
-
-      i++;
-    });
+    this._tics = new Array();
+    this._setTics();
   }
 
   disconnectedCallback() {
@@ -213,8 +197,44 @@ export class RuxTimeline extends PolymerElement {
     // console.log(this._playheadProgress);
 
     // this._playheadProgress += pixelsPerSecond;
-    this._playhead.style.left = 3600000 * 5 * 1011 / 86400000 + "px";
+    this._playhead.style.left = dif * this._track.offsetWidth / 86400000 + "px";
   }
+
+  _updateTics() {
+    if (!this._tics) return;
+    this._tics.forEach((tic, i) => {
+      tic.style.left = 3600000 * i * this._track.offsetWidth / 86400000 + "px";
+    });
+  }
+
+  _setTics() {
+    if (!this._track) return;
+    let y = this._getLabels();
+    let i = 0;
+    console.log(y);
+    y.forEach(tic => {
+      let z = document.createElement("div");
+      z.style.position = "absolute";
+      z.style.top = "10px";
+      z.style.width = "1px";
+      z.style.height = "20px";
+      z.style.backgroundColor = "blue";
+      z.style.overflow = "hidden";
+      z.style.left = 3600000 * i * this._track.offsetWidth / 86400000 + "px";
+      z.innerHTML = i;
+
+      this._track.appendChild(z);
+      this._tics[i] = z;
+
+      i++;
+    });
+  }
+
+  _isScaling() {
+    console.log("is scaling");
+    this._updateTics();
+  }
+
   /*
   **
   ** Mostly a dev feature, but maybe useful to end users. Scroll the timeline with the mouse wheel
