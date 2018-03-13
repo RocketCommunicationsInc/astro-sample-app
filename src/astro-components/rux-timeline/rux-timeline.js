@@ -54,18 +54,24 @@ export class RuxTimeline extends PolymerElement {
             min=[[_minScale]]
             max=[[_maxScale]]
             val={{_scale}}></rux-slider>
-          <rux-button on-click="_catchPlayhead">P</rux-button>
+          <!-- <rux-button on-click="_catchPlayhead">P</rux-button> //-->
         </header>
 
         
         
         <section class="rux-timeline__viewport" on-wheel="_scroll">
-          <div id="x" class="x">
+          
+
+          <div id="x" class="rux-timeline__viewport__track-container">
             <div id="rux-timeline__playhead"></div>
+            <div class="track"></div>
+          <div class="track"></div>
+          <div class="track"></div>
           </div>  
+          <footer id="rux-timeline__ruler" class="rux-timeline__ruler"></footer>
         </section>
 
-        <footer class="rux-timeline__footer"></footer>
+        <footer class="rux-timeline__footer">Footer FPO</footer>
       `;
   }
   constructor() {
@@ -91,6 +97,7 @@ export class RuxTimeline extends PolymerElement {
       this._updatePlayhead();
     }, 10);
 
+    this._ruler = this.shadowRoot.getElementById("rux-timeline__ruler");
     this._tics = new Array();
     this._setTics();
 
@@ -135,9 +142,9 @@ export class RuxTimeline extends PolymerElement {
       let g = document.createElement("div");
       g.style.position = "absolute";
       g.style.fontSize = "9px";
-      g.style.top = "-10px";
+      g.style.top = "0";
       g.style.width = _regionWidth;
-      g.style.height = "20px";
+      g.style.height = "33px";
       g.style.backgroundColor = "purple";
       // z.style.overflow = "hidden";
       g.style.left = _regionStart + "px";
@@ -237,6 +244,7 @@ export class RuxTimeline extends PolymerElement {
 
     this._scale = Number(this._scale);
     this._track.style.width = this._scale + "%";
+    this._ruler.style.width = this._scale + "%";
     this._tics.forEach((tic, i) => {
       tic.style.left =
         3600000 * i * this._track.offsetWidth / this._duration + "px";
@@ -248,6 +256,8 @@ export class RuxTimeline extends PolymerElement {
     let y = this._getLabels();
     let i = 0;
 
+    console.log(this._track.childNodes);
+
     y.forEach(tic => {
       let z = document.createElement("div");
       z.style.position = "absolute";
@@ -255,13 +265,13 @@ export class RuxTimeline extends PolymerElement {
       z.style.top = "10px";
       z.style.width = "1px";
       z.style.height = "20px";
-      z.style.backgroundColor = "blue";
+      // z.style.backgroundColor = "blue";
       // z.style.overflow = "hidden";
       z.style.left =
         3600000 * i * this._track.offsetWidth / this._duration + "px";
       z.innerHTML = y[i];
 
-      this._track.appendChild(z);
+      this._ruler.appendChild(z);
       this._tics[i] = z;
 
       i++;
