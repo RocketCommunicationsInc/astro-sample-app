@@ -38,7 +38,7 @@ export class RuxTimeline extends PolymerElement {
       _scale: {
         type: Number,
         value: 100,
-        observer: "_updateTics"
+        observer: "_updateTimelineScale"
       }
     };
   }
@@ -84,6 +84,7 @@ export class RuxTimeline extends PolymerElement {
 
     this._tracks = this.data.tracks;
     this._regions = this.data.tracks[0].regions;
+    this._regionEls = new Array();
     // console.log(this._regions);
 
     const _timer = setInterval(() => {
@@ -142,6 +143,7 @@ export class RuxTimeline extends PolymerElement {
       g.style.left = _regionStart + "px";
       g.innerHTML = region.label;
 
+      this._regionEls[i] = g;
       this._track.appendChild(g);
     });
   }
@@ -193,6 +195,41 @@ export class RuxTimeline extends PolymerElement {
 
     this._playhead.style.left =
       dif * this._track.offsetWidth / this._duration + "px";
+  }
+
+  _updateTimelineScale() {
+    this._updateTics();
+    this._updateRegionScale();
+  }
+
+  _updateRegionScale() {
+    if (!this._regions) return;
+    var now = new Date();
+    var today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      0,
+      0,
+      0
+    );
+    this._regionEls.forEach((region, i) => {
+      console.log(this._regions[i]);
+      let _regionDuration =
+        this._regions[i].endTime.getTime() -
+        this._regions[i].startTime.getTime();
+      let _regionWidth =
+        _regionDuration * this._track.offsetWidth / this._duration + "px";
+
+      let _regionStart =
+        (this._regions[i].startTime.getTime() - today.getTime()) *
+        this._track.offsetWidth /
+        this._duration;
+      console.log(`Width is ${_regionWidth} and Start is ${_regionStart}`);
+
+      region.style.width = _regionWidth;
+      region.style.left = _regionStart + "px";
+    });
   }
 
   _updateTics() {
