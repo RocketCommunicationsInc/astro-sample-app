@@ -101,9 +101,9 @@ export class RuxTimeline extends PolymerElement {
     this._regions = this.data.tracks[0].regions;
     this._regionEls = new Array();
 
-    const _timer = setInterval(() => {
-      this._updatePlayhead();
-    }, 10);
+    // const _timer = setInterval(() => {
+    //   this._updatePlayhead();
+    // }, 10);
 
     this._ruler = this.shadowRoot.getElementById("rux-timeline__ruler");
     this._tics = new Array();
@@ -174,34 +174,6 @@ export class RuxTimeline extends PolymerElement {
     // this._updateRegionScale();
   }
 
-  _updateRegionScale() {
-    if (!this._regions) return;
-    var now = new Date();
-    var today = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      0,
-      0,
-      0
-    );
-    this._regionEls.forEach((region, i) => {
-      let _regionDuration =
-        this._regions[i].endTime.getTime() -
-        this._regions[i].startTime.getTime();
-      let _regionWidth =
-        _regionDuration * this._track.offsetWidth / this._duration + "px";
-
-      let _regionStart =
-        (this._regions[i].startTime.getTime() - today.getTime()) *
-        this._track.offsetWidth /
-        this._duration;
-
-      region.style.width = _regionWidth;
-      region.style.left = _regionStart + "px";
-    });
-  }
-
   _updateTics() {
     if (!this._tics) return;
 
@@ -241,7 +213,7 @@ export class RuxTimeline extends PolymerElement {
 
   _scroll(e) {
     if (e.altKey) {
-      let _delta = (this._scale += Math.floor(e.deltaY / 10));
+      let _delta = (this._scale += Math.floor(e.deltaY / 1));
 
       if (_delta < this._minScale) {
         _delta = this._minScale;

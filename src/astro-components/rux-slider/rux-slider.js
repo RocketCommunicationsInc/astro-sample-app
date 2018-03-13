@@ -37,10 +37,10 @@ export class RuxSlider extends PolymerElement {
       <div class="rux-slider">
         <div class="rux-slider__label">
           <label>[[label]]</label>
-          <input type="number" on-input="_updateValue" min=[[min]] max=[[max]] step=[[step]] value={{val}} />
+          <input type="number" on-input="_updateValue" on-change="_updateValue" min=[[min]] max=[[max]] step=[[step]] value={{val}} />
         </div>
         <div class="rux-slider__control">
-          <input type="range" on-input="_updateValue" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} disabled=[[disabled]] />
+          <input type="range" on-input="_updateValue" on-change="_updateValue" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} disabled=[[disabled]] />
           <ol class="rux-slider__control__labels" hidden=[[!axisLabels]]>
             <dom-repeat id="sliderAxisLabels" items=[[_getAxisLabels(axisLabels)]]>
               <template>
