@@ -84,17 +84,17 @@ export class AstroPassPlans extends PolymerElement {
               label: "Satellite 1",
               status: "ok",
               startTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 9,
                 0,
                 0
               ),
               endTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 11,
                 0,
                 0
@@ -104,17 +104,17 @@ export class AstroPassPlans extends PolymerElement {
               label: "Satellite 2",
               status: "ok",
               startTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 13,
                 0,
                 0
               ),
               endTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 13,
                 30,
                 0
@@ -124,17 +124,17 @@ export class AstroPassPlans extends PolymerElement {
               label: "Satellite 3",
               status: "error",
               startTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 15,
                 0,
                 0
               ),
               endTime: new Date(
-                today.getUTCFullYear,
-                today.getUTCMonth,
-                today.getUTCDay,
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate(),
                 17,
                 0,
                 0

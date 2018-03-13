@@ -50,8 +50,6 @@ export class RuxTimeline extends PolymerElement {
         <header class="rux-timeline__header">
           <rux-status status="ok"></rux-status>
           <h1>[[label]]</h1>
-
-
           <rux-slider
             min=[[_minScale]]
             max=[[_maxScale]]
@@ -60,14 +58,14 @@ export class RuxTimeline extends PolymerElement {
         </header>
 
         
+        
         <section class="rux-timeline__viewport" on-wheel="_scroll">
-          
           <div id="x" class="x">
             <div id="rux-timeline__playhead"></div>
-          </div>
-          
+          </div>  
         </section>
-      
+
+        <footer class="rux-timeline__footer"></footer>
       `;
   }
   constructor() {
@@ -77,16 +75,16 @@ export class RuxTimeline extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this._running = false;
     this._playhead = this.shadowRoot.getElementById("rux-timeline__playhead");
     this._track = this.shadowRoot.getElementById("x");
-    this._playheadProgress = 0;
 
-    // console.log("track", this._track);
     this._duration = this.data.duration;
     this._minScale = 100;
     this._maxScale = 500;
-    console.log(this._scale);
+
+    this._tracks = this.data.tracks;
+    this._regions = this.data.tracks[0].regions;
+    // console.log(this._regions);
 
     const _timer = setInterval(() => {
       this._updatePlayhead();
@@ -94,6 +92,8 @@ export class RuxTimeline extends PolymerElement {
 
     this._tics = new Array();
     this._setTics();
+
+    this._setRegions();
   }
 
   disconnectedCallback() {
@@ -106,6 +106,44 @@ export class RuxTimeline extends PolymerElement {
     // if(this._playhead.offsetLeft > 1000) {
     //   this.
     // }
+  }
+
+  _setRegions() {
+    console.log(this._regions);
+    var now = new Date();
+    var today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      0,
+      0,
+      0
+    );
+    this._regions.forEach((region, i) => {
+      let _regionDuration =
+        region.endTime.getTime() - region.startTime.getTime();
+      let _regionWidth =
+        _regionDuration * this._track.offsetWidth / this._duration + "px";
+
+      let _regionStart =
+        (region.startTime.getTime() - today.getTime()) *
+        this._track.offsetWidth /
+        this._duration;
+      console.log(`Width is ${_regionWidth} and Start is ${_regionStart}`);
+
+      let g = document.createElement("div");
+      g.style.position = "absolute";
+      g.style.fontSize = "9px";
+      g.style.top = "-10px";
+      g.style.width = _regionWidth;
+      g.style.height = "20px";
+      g.style.backgroundColor = "purple";
+      // z.style.overflow = "hidden";
+      g.style.left = _regionStart + "px";
+      g.innerHTML = region.label;
+
+      this._track.appendChild(g);
+    });
   }
 
   _getLabels() {
@@ -172,7 +210,7 @@ export class RuxTimeline extends PolymerElement {
     if (!this._track) return;
     let y = this._getLabels();
     let i = 0;
-    console.log(y);
+
     y.forEach(tic => {
       let z = document.createElement("div");
       z.style.position = "absolute";
@@ -203,28 +241,20 @@ export class RuxTimeline extends PolymerElement {
   ** Mostly a dev feature, but maybe useful to end users. Scroll the timeline with the mouse wheel
   **
   */
+
   _scroll(e) {
+    let a = "b";
+
     if (e.altKey) {
-      // This is super ugly. Fix it.
-      console.log(typeof this._scale);
-      // this._scale = Number(this._scale);
-      // console.log(typeof this._scale);
-      let _delta = Number((this._scale += Math.floor(e.deltaY / 10)));
-      console.log(
-        `${_delta} is scale (${this._scale}) += (${
-          e.deltaY
-        } / 10) or ${Math.floor(e.deltaY / 10)}`
-      );
+      let _delta = (this._scale += Math.floor(e.deltaY / 10));
+
       if (_delta < this._minScale) {
-        console.log("use min scale");
-        this._scale = this._minScale;
+        _delta = this._minScale;
       } else if (_delta > this._maxScale) {
-        console.log("use max scale");
-        this._scale = this._maxScale;
-      } else {
-        console.log("use _delta scale");
-        this._scale = _delta;
+        _delta = this._maxScale;
       }
+
+      this._scale = _delta;
     } else {
       e.currentTarget.scrollLeft += Math.floor(e.deltaY);
     }
