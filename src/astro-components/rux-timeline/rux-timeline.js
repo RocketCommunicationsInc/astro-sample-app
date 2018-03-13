@@ -61,12 +61,21 @@ export class RuxTimeline extends PolymerElement {
         
         <section class="rux-timeline__viewport" on-wheel="_scroll">
           
-
+        
           <div id="x" class="rux-timeline__viewport__track-container">
+            <dom-repeat id="rux-timeline-tracks" items=[[tracks]]>
+              <template>
+              <rux-timeline-track 
+                label=[[item.label]]
+                regions=[[item.regions]]
+                scale=[[_scale]]
+                duration=[[_duration]]></rux-timeline-track>
+              </template>
+            </dom-repeat>
+            
+            
             <div id="rux-timeline__playhead"></div>
-            <div class="track"></div>
-          <div class="track"></div>
-          <div class="track"></div>
+          
           </div>  
           <footer id="rux-timeline__ruler" class="rux-timeline__ruler"></footer>
         </section>
@@ -88,7 +97,7 @@ export class RuxTimeline extends PolymerElement {
     this._minScale = 100;
     this._maxScale = 500;
 
-    this._tracks = this.data.tracks;
+    this.tracks = this.data.tracks;
     this._regions = this.data.tracks[0].regions;
     this._regionEls = new Array();
 
@@ -99,8 +108,6 @@ export class RuxTimeline extends PolymerElement {
     this._ruler = this.shadowRoot.getElementById("rux-timeline__ruler");
     this._tics = new Array();
     this._setTics();
-
-    this._setRegions();
   }
 
   disconnectedCallback() {
@@ -111,38 +118,6 @@ export class RuxTimeline extends PolymerElement {
     // if(this._playhead.offsetLeft > 1000) {
     //   this.
     // }
-  }
-
-  _setRegions() {
-    var now = new Date();
-    var today = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      0,
-      0,
-      0
-    );
-    this._regions.forEach((region, i) => {
-      let _regionDuration =
-        region.endTime.getTime() - region.startTime.getTime();
-      let _regionWidth =
-        _regionDuration * this._track.offsetWidth / this._duration + "px";
-
-      let _regionStart =
-        (region.startTime.getTime() - today.getTime()) *
-        this._track.offsetWidth /
-        this._duration;
-
-      let g = document.createElement("div");
-      g.classList.add("rux-timeline__track__region");
-      g.style.width = _regionWidth;
-      g.style.left = _regionStart + "px";
-      g.innerHTML = region.label;
-
-      this._regionEls[i] = g;
-      this._track.appendChild(g);
-    });
   }
 
   _getLabels() {
@@ -196,7 +171,7 @@ export class RuxTimeline extends PolymerElement {
 
   _updateTimelineScale() {
     this._updateTics();
-    this._updateRegionScale();
+    // this._updateRegionScale();
   }
 
   _updateRegionScale() {
