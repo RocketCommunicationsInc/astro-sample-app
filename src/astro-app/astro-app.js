@@ -3,7 +3,6 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
-
 /* Rux Components */
 import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
 import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
@@ -16,7 +15,7 @@ import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
 import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
 import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
-
+import { RuxSpectrumAnalyzer } from "../astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
 import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
@@ -24,7 +23,6 @@ import { AstroModems } from "./astro-modems/astro-modems.js";
 import { AstroModemList } from "./astro-modems/astro-modem-list.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
 import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
-
 /**
  * @polymer
  * @extends HTMLElement
@@ -57,8 +55,6 @@ export class AstroApp extends PolymerElement {
         margin: 0;
         display: flex;
       }
-      
-
     </style>
     
     <rux-global-status-bar
@@ -134,14 +130,11 @@ export class AstroApp extends PolymerElement {
       
     `;
   }
-
   constructor() {
     super();
     this.name = "3.0 preview";
-
     this.chart1 = {};
     this.chart2 = {};
-
     this.astroModem = {
       _id: { $oid: "570cef10e4b0cbcd095d473b" },
       modemId: 1,
@@ -164,9 +157,7 @@ export class AstroApp extends PolymerElement {
       codeLock: true,
       allocated: false
     };
-
-    this.modems = [
-      {
+    this.modems = [{
         _id: { $oid: "570cef10e4b0cbcd095d473b" },
         modemId: 1,
         modulatorResource: { sliceId: "255.255.255.004", resourceId: 92976 },
@@ -749,11 +740,9 @@ export class AstroApp extends PolymerElement {
         power: true
       }
     ];
-
     this.satellite1 = {
       label: "Satellite 1",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "ok"
         },
@@ -778,8 +767,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "caution"
         },
@@ -807,8 +795,7 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite 2",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "off"
         },
@@ -833,8 +820,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "ok"
         },
@@ -860,13 +846,10 @@ export class AstroApp extends PolymerElement {
         }
       ]
     };
-
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
-
     // emulate a JSON object for advanced status
-    this.statusIndicators = [
-      {
+    this.statusIndicators = [{
         label: "Power",
         status: "ok",
         icon: "advanced-status-egs:propulsion-power",
@@ -880,7 +863,6 @@ export class AstroApp extends PolymerElement {
       }
     ];
   }
-
   static get properties() {
     return {
       prop1: {
@@ -897,22 +879,17 @@ export class AstroApp extends PolymerElement {
       }
     };
   }
-
   connectedCallback() {
     super.connectedCallback();
   }
-
   disconnectedCallback() {
     suer.disconnectedCallback();
   }
-
   _getSatelliteData(id) {
     return this.telemetryDataObj[id];
   }
-
   ready() {
     super.ready();
   }
 }
-
 customElements.define("astro-app", AstroApp);

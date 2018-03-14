@@ -10,10 +10,16 @@ import {
  */
 export class RuxSpectrumAnalyzer extends PolymerElement {
   static get template() {
-    return `
-      <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
-      <link rel="stylesheet" href="src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.css">
-    `;
+    `
+    <style>
+      .bar {
+        fill: "steelblue"
+      }
+      text {
+        fill: "gray"
+      }
+    </style>
+    `
   }
   static get properties() {
     return {
@@ -56,75 +62,56 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     // let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
-    let margin = { top: 20, right: 30, bottom: 50, left: 90 };
-    let width = this.width - margin.left - margin.right;
-    let height = this.height - margin.top - margin.bottom;
-    var xScale = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
-    var yScale = d3.scale.linear().range([height, 0]);
-    var xAxis = d3.svg
-      .axis()
-      .scale(xScale)
-      .orient("bottom");
-    var yAxis = d3.svg
-      .axis()
-      .scale(yScale)
-      .orient("left")
-      .ticks(10);
-    var xScaleDomain = this._buildXDomain(
-      this.xScaleMin,
-      this.xScaleMax,
-      this.xScaleStep
-    );
-    xScale.domain(xScaleDomain);
-    yScale.domain([this.yScaleMin, this.yScaleMax]);
-    const svg = d3
-      .select(this.root)
-      .append("svg")
+    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+    width = 500 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
+    // set the ranges
+    var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.1);
+    var y = d3.scaleLinear()
+      .range([height, 0]);
+    // append the svg object to the body of the page
+    // append a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select(this.parentNode).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-      .attr("class", "chart");
-    // text label for the x axis
-    svg
-      .append("text")
-      .attr(
-        "transform",
-        "translate(" +
-          (width / 2 + margin.left / 2) +
-          " ," +
-          (height + margin.top + 35) +
-          ")"
-      )
-      .attr("class", "y axis-label")
-      .text(this.chartLegendX);
-    // text label for the y axis
-    svg
-      .append("text")
-      .attr("y", 100)
-      .attr("x", 0)
-      .attr("class", "axis-label")
-      .text(this.chartLegendY);
-    const chart = svg
       .append("g")
-      .attr("class", "graph")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-    chart
-      .append("g")
-      .attr("class", "x axis")
-      .attr("transform", `translate(0,${height})`)
-      .call(xAxis);
-    chart
-      .append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
-    // // clean up the labeling of the x-axis
-    var ticks = svg.selectAll(".x .tick text");
-    ticks.attr("class", function(d, i) {
-      if (i === 0 || i % 4 != 0) {
-        d3.select(this).remove();
+      .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+    // get the data
+    d3.csv("./src/astro-components/rux-spectrum-analyzer/frequency-power.csv", function(error, data) {
+      if (error) {
+        throw error;
       }
+      // format the data
+      data.forEach(function(d) {
+        d.power = +d.power;
+      });
+      // Scale the range of the data in the domains
+      x.domain(data.map(function(d) { return d.frequency; }));
+      y.domain([-30, 0]);
+      // append the rectangles for the bar chart
+      svg.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.frequency); })
+        .attr("width", x.bandwidth())
+        .attr("y", function(d) { return y(d.power); })
+        .attr("height", function(d) { return height - y(d.power); });
+      // add the x Axis
+      svg.append("g")
+        .attr("class", "axis xaxis")
+        .attr("transform", "translate(0," + height + ")")
+        .style("display", "none")
+        .call(d3.axisBottom(x));
+      // add the y Axis
+      svg.append("g")
+        .call(d3.axisLeft(y)
+          .ticks(5));
     });
-    //      reference to the graph
-    this.graph = d3.select(this.root.querySelector(".graph"));
   }
   disconnectedCallback() {
     super.disconnectedCallback();
