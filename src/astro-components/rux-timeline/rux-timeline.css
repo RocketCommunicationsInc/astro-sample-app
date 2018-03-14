@@ -63,10 +63,10 @@
   width: auto;
 }
 
-.track:nth-child(even) {
+rux-timeline-track:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.01);
 }
-.track:nth-child(odd) {
+rux-timeline-track:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
@@ -74,17 +74,18 @@
   display: block;
   position: relative;
   margin-top: auto;
+  color: #bdc3c9;
   background-color: rgba(0, 0, 0, 0.15);
   height: 2em;
 }
 
 .rux-timeline__ruler div {
-  font-size: 9px;
+  font-size: 0.675rem;
   top: 0;
   height: 20px;
   position: absolute;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0 0 0 0.25rem;
+  padding: 0.35rem 0 0 0.35rem;
 }
 
 #rux-timeline__playhead {

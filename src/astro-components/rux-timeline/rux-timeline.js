@@ -80,7 +80,7 @@ export class RuxTimeline extends PolymerElement {
           <footer id="rux-timeline__ruler" class="rux-timeline__ruler"></footer>
         </section>
 
-        <footer class="rux-timeline__footer">Footer FPO</footer>
+        <!--<footer class="rux-timeline__footer">Footer FPO</footer>//-->
       `;
   }
   constructor() {

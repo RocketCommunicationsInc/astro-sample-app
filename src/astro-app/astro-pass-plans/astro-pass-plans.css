@@ -1,7 +1,6 @@
 :host {
   display: flex;
   box-sizing: border-box;
-  outline: 1px solid green;
 }
 
 .rux-timeline-component {

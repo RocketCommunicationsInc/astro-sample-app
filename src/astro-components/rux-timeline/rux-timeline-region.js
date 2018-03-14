@@ -39,8 +39,8 @@ export class RuxTimelineRegion extends PolymerElement {
         <div>[[title]]</div>
       </div>
       <div class="rux-timeline__region__time">
-        <span class="rux-timeline__region__time__start-time">[[startTime]]</span>
-        <span class="rux-timeline__region__time__end-time">[[endTime]]</span>
+        <span class="rux-timeline__region__time__start-time">[[_formatTime(startTime)]]</span>
+        <span class="rux-timeline__region__time__end-time">[[_formatTime(endTime)]]</span>
       </div>
 
       `;
@@ -55,6 +55,15 @@ export class RuxTimelineRegion extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _formatTime(time) {
+    if (isNaN(time)) return false;
+
+    return new Date(time).toLocaleTimeString(this.locale, {
+      hour12: false,
+      timeZone: "UTC"
+    });
   }
 
   _updateRegion() {

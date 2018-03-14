@@ -1,9 +1,9 @@
 :host {
   position: relative;
   display: block;
-  height: 42px;
+  height: 48px;
   width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+
   /* background-color: red; */
 }
 
@@ -20,7 +20,7 @@
   padding-left: 1rem;
   width: 7.875rem;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background-color: #0e202e;
   font-size: 0.875rem;
   display: flex;
   justify-content: flex-start;
