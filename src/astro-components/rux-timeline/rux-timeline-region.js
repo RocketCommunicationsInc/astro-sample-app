@@ -67,7 +67,6 @@ export class RuxTimelineRegion extends PolymerElement {
   }
 
   _updateRegion() {
-    // console.log("left == ", this.left);
     this.style.left = this.left + "px";
     this.style.width = this.width + "px";
   }

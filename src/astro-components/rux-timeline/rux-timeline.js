@@ -98,8 +98,6 @@ export class RuxTimeline extends PolymerElement {
     this._maxScale = 500;
 
     this.tracks = this.data.tracks;
-    this._regions = this.data.tracks[0].regions;
-    this._regionEls = new Array();
 
     const _timer = setInterval(() => {
       this._updatePlayhead();
@@ -180,6 +178,7 @@ export class RuxTimeline extends PolymerElement {
     this._scale = Number(this._scale);
     this._track.style.width = this._scale + "%";
     this._ruler.style.width = this._scale + "%";
+
     this._tics.forEach((tic, i) => {
       tic.style.left =
         3600000 * i * this._track.offsetWidth / this._duration + "px";
@@ -213,7 +212,7 @@ export class RuxTimeline extends PolymerElement {
 
   _scroll(e) {
     if (e.altKey) {
-      let _delta = (this._scale += Math.floor(e.deltaY / 1));
+      let _delta = (this._scale += e.deltaY / 10);
 
       if (_delta < this._minScale) {
         _delta = this._minScale;

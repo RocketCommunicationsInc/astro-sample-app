@@ -56,9 +56,7 @@ export class RuxTimelineTrack extends MutableData(PolymerElement) {
   connectedCallback() {
     super.connectedCallback();
 
-    let x = this.shadowRoot.querySelectorAll(".rux-timeline__track");
-
-    this._base = x[0];
+    this._base = this.shadowRoot.querySelectorAll(".rux-timeline__track")[0];
 
     this._setRegions();
   }
