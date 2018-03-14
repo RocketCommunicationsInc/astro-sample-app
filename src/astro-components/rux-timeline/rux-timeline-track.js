@@ -1,5 +1,6 @@
 import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { RuxTimelineRegion } from "./rux-timeline-region.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -28,6 +29,22 @@ export class RuxTimelineTrack extends PolymerElement {
       <link rel="stylesheet" href="src/astro-components/rux-timeline/rux-timeline-track.css">
       <div class="rux-timeline__track">
         <div class="rux-timeline__track__label">[[label]]</div>
+        <ol>
+          <dom-repeat id="rux-timeline-regions" items=[[regions]]>
+            <template>
+              <li>
+                <rux-timeline-region class="rux-timeline-region"
+                  title=[[item.title]]
+                  status=[[item.status]]
+                  start-time=[[item.startTime]]
+                  end-time=[[item.endTime]]
+                  left=[[item._left]]
+                  width=[[item._width]]>
+                </rux-timeline-region>
+              </li>
+            </template>
+          </dom-repeat>
+        <ol>
       </div>
 
       `;
@@ -44,7 +61,8 @@ export class RuxTimelineTrack extends PolymerElement {
     this._base = x[0];
     this._regionEls = new Array();
 
-    this._setRegions();
+    // this._setRegions();
+    this._init();
   }
 
   disconnectedCallback() {
@@ -78,6 +96,28 @@ export class RuxTimelineTrack extends PolymerElement {
     });
   }
 
+  _init() {
+    var now = new Date();
+    var today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      0,
+      0,
+      0
+    );
+
+    this.regions.forEach((region, i) => {
+      const _duration = region.endTime.getTime() - region.startTime.getTime();
+      region._width = _duration * this._base.offsetWidth / this.duration;
+
+      region._left =
+        (region.startTime.getTime() - today.getTime()) *
+        this._base.offsetWidth /
+        this.duration;
+    });
+  }
+
   _setRegions() {
     var now = new Date();
     var today = new Date(
@@ -99,7 +139,7 @@ export class RuxTimelineTrack extends PolymerElement {
         this._base.offsetWidth /
         this.duration;
 
-      let g = document.createElement("div");
+      let g = document.createElement("rux-timeline-region");
       g.classList.add("rux-timeline__track__region");
       g.style.width = _regionWidth;
       g.style.left = _regionStart + "px";

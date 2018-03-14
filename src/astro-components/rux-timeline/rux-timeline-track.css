@@ -28,10 +28,9 @@
   z-index: 200;
 }
 
-.rux-timeline__track__region {
-  position: absolute;
-  font-size: 9px;
-  top: 0;
-  height: 100%;
-  background-color: black;
+ol {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

@@ -14,15 +14,35 @@ export class RuxTimelineRegion extends PolymerElement {
         type: String,
         value: "off"
       },
-      time: {
+      startTime: {
         type: Date
+      },
+      endTime: {
+        type: Date
+      },
+      left: {
+        type: Number,
+        observer: "_updateRegion"
+      },
+      width: {
+        type: Number,
+        observer: "_updateRegion"
       }
     };
   }
 
   static get template() {
     return html`
-      <link rel="stylesheet" href="src/astro-components/rux-timeline/rux-timeline.css">
+      <link rel="stylesheet" href="src/astro-components/rux-timeline/rux-timeline-region.css">
+      <div class="rux-timeline__region__header">
+        <rux-status status=[[status]]></rux-status>
+        <div>[[title]]
+      </div>
+      <div class="rux-timeline__region__time">
+        <span class="rux-timeline__region__time__start-time">[[startTime]]</span>
+        <span class="rux-timeline__region__time__end-time">[[endTime]]</span>
+      </div>
+
       `;
   }
   constructor() {
@@ -35,6 +55,13 @@ export class RuxTimelineRegion extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _updateRegion() {
+    console.log(this.left);
+    this.style.left = this.left + "px";
+    this.style.width = this.width + "px";
+    // console.log(this.shadowRstyle);
   }
 }
 customElements.define("rux-timeline-region", RuxTimelineRegion);
