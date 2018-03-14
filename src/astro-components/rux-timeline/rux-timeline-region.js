@@ -36,7 +36,7 @@ export class RuxTimelineRegion extends PolymerElement {
       <link rel="stylesheet" href="src/astro-components/rux-timeline/rux-timeline-region.css">
       <div class="rux-timeline__region__header">
         <rux-status status=[[status]]></rux-status>
-        <div>[[title]]
+        <div>[[title]]</div>
       </div>
       <div class="rux-timeline__region__time">
         <span class="rux-timeline__region__time__start-time">[[startTime]]</span>
@@ -58,10 +58,9 @@ export class RuxTimelineRegion extends PolymerElement {
   }
 
   _updateRegion() {
-    console.log(this.left);
+    // console.log("left == ", this.left);
     this.style.left = this.left + "px";
     this.style.width = this.width + "px";
-    // console.log(this.shadowRstyle);
   }
 }
 customElements.define("rux-timeline-region", RuxTimelineRegion);

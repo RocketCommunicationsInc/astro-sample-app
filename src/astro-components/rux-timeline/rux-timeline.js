@@ -101,9 +101,9 @@ export class RuxTimeline extends PolymerElement {
     this._regions = this.data.tracks[0].regions;
     this._regionEls = new Array();
 
-    // const _timer = setInterval(() => {
-    //   this._updatePlayhead();
-    // }, 10);
+    const _timer = setInterval(() => {
+      this._updatePlayhead();
+    }, 10);
 
     this._ruler = this.shadowRoot.getElementById("rux-timeline__ruler");
     this._tics = new Array();
