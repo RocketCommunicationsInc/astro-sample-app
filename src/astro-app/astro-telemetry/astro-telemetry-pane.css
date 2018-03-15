@@ -69,8 +69,18 @@ h3 {
 
 .bar {
   fill: #4586be;
+  top: stroke-dasharray(0,50,150);
 }
 
-text {
-  fill: rgba(255,255,255,.3);
+text, .rux-spectrum-analyzer__main-chart-label {
+  fill: #BDC3C9;
 }
+
+.rux-spectrum-analyzer__main-chart-label {
+  font-size: 12px;
+}
+
+.tick line {
+  display: none;
+}
+

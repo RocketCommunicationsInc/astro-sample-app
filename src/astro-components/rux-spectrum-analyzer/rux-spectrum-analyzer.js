@@ -52,8 +52,8 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     super.connectedCallback();
     // let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-      width = 500 - margin.left - margin.right,
-      height = 250 - margin.top - margin.bottom;
+      width = this.width - margin.left - margin.right,
+      height = this.height - margin.top - margin.bottom;
     // set the ranges
     var x = d3.scaleBand()
       .range([0, width])
@@ -61,9 +61,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     var y = d3.scaleLinear()
       .range([height, 0]);
 
-
-    // var p = d3.select(this.parentNode).select('rux-spectrum-analyzer');
-    // console.log(p);
     // append the svg object to the rux-spectrum-analyzer custom tag
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
@@ -100,10 +97,38 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("transform", "translate(0," + height + ")")
         .style("display", "none")
         .call(d3.axisBottom(x));
+
       // add the y Axis
       svg.append("g")
         .call(d3.axisLeft(y)
           .ticks(5));
+
+      // Add main chart label
+      svg.append("text")
+        .attr("x", 10)
+        .attr("y", -10)
+        .attr("text-anchor", "left")
+        .attr("class", "rux-spectrum-analyzer__main-chart-label")
+        .text("Signals");
+
+      // Add x axis label
+      svg.append("text")
+        .attr("x", -30)
+        .attr("y", 186)
+        .attr("text-anchor", "right")
+        .attr("fill","white")
+        .attr("style","font-size: 10px; font-weight: bold")
+        .text("PWR");
+
+      // Add y axis label
+      svg.append("text")
+        .attr("x", 30)
+        .attr("y", 220)
+        .attr("text-anchor", "right")
+        .attr("fill","white")
+        .attr("style","font-size: 10px; font-weight: bold")
+        .text("FREQ")
+
     });
   }
   disconnectedCallback() {
