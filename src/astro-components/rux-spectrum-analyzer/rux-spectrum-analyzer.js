@@ -9,18 +9,7 @@ import {
  * @extends HTMLElement
  */
 export class RuxSpectrumAnalyzer extends PolymerElement {
-  static get template() {
-    `
-    <style>
-      .bar {
-        fill: "steelblue"
-      }
-      text {
-        fill: "gray"
-      }
-    </style>
-    `
-  }
+  static get template() {}
   static get properties() {
     return {
       chartData: {
@@ -63,18 +52,22 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     super.connectedCallback();
     // let ws = new WebSocket('ws://dev-dv.rocketcom.com:40510');
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-    width = 500 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+      width = 500 - margin.left - margin.right,
+      height = 250 - margin.top - margin.bottom;
     // set the ranges
     var x = d3.scaleBand()
       .range([0, width])
       .padding(0.1);
     var y = d3.scaleLinear()
       .range([height, 0]);
-    // append the svg object to the body of the page
+
+
+    // var p = d3.select(this.parentNode).select('rux-spectrum-analyzer');
+    // console.log(p);
+    // append the svg object to the rux-spectrum-analyzer custom tag
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select(this.parentNode).append("svg")
+    var svg = d3.select(this.parentNode).select('rux-spectrum-analyzer').append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -118,7 +111,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
   }
   ready() {
     super.ready();
-    console.log("d3", d3);
   }
   _update(data) {
     this._clear();
