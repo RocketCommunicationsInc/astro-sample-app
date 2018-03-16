@@ -67,6 +67,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     var svg = d3.select(this.parentNode).select('rux-spectrum-analyzer').append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .attr("style","background-color: #1B3044")
       .append("g")
       .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
@@ -98,7 +99,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("class","bar-tip")
         .attr("x", function(d) { return x(d.frequency); })
         .attr("width", x.bandwidth())
-        .attr("y", function(d) { return y(d.power); })
+        .attr("y", function(d) { return y(d.power) - 2; })
         .attr("height", 2);
 
 
@@ -110,6 +111,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
 
       // add the y Axis
       svg.append("g")
+        .attr("class","rux-spectrum-analyzer__axis-label")
         .call(d3.axisLeft(y)
           .ticks(5));
 

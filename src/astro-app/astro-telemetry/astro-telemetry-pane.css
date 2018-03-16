@@ -83,6 +83,10 @@ text, .rux-spectrum-analyzer__main-chart-label {
   font-size: 12px;
 }
 
+g.rux-spectrum-analyzer__axis-label line  {
+  stroke: none;
+}
+
 .tick line {
   display: none;
 }
