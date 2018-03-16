@@ -89,14 +89,24 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("class", "bar")
         .attr("x", function(d) { return x(d.frequency); })
         .attr("width", x.bandwidth())
+        .attr("y", function(d) { return y(d.power) -  2; })
+        .attr("height", function(d) { return height - y(d.power) - 2; });
+
+      svg.selectAll(".bar-tip")
+        .data(data)
+        .enter().append("rect")
+        .attr("class","bar-tip")
+        .attr("x", function(d) { return x(d.frequency); })
+        .attr("width", x.bandwidth())
         .attr("y", function(d) { return y(d.power); })
-        .attr("height", function(d) { return height - y(d.power); });
-      // add the x Axis
-      svg.append("g")
-        .attr("class", "axis xaxis")
-        .attr("transform", "translate(0," + height + ")")
-        .style("display", "none")
-        .call(d3.axisBottom(x));
+        .attr("height", 2);
+
+
+      // // add the x Axis
+      // svg.append("g")
+      //   .attr("class", "axis xaxis")
+      //   .attr("transform", "translate(0," + height + ")")
+      //   .call(d3.axisBottom(x));
 
       // add the y Axis
       svg.append("g")
@@ -127,7 +137,14 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("text-anchor", "right")
         .attr("fill","white")
         .attr("style","font-size: 10px; font-weight: bold")
-        .text("FREQ")
+        .text("FREQ");
+
+      // Clean up x axis
+      var xTicks = svg
+        .selectAll("g.xaxis")
+        .selectAll("g.tick");
+
+
 
     });
   }
@@ -166,16 +183,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
           return this.height - data.power;
         })
         .attr("width", 10);
-      // this is the original x/y/height data with the xScale/yScale applied
-      // couldnâ€™t get thsoe functions to return.
-      //
-      // Side note, not knowing anything about d3, but rather than replacing
-      // the bars is it possible to transition them?
-      /*
-        .attr("x", function(d) { return xScale(d.frequency); })
-        .attr("y", function(d) { return yScale(d.power); })
-        .attr("height", function(d) { return height - yScale(d.power); })
-        */
     });
   }
   _buildXDomain(min, max, step) {

@@ -69,7 +69,10 @@ h3 {
 
 .bar {
   fill: #4586be;
-  top: stroke-dasharray(0,50,150);
+}
+
+.bar-tip {
+  fill: #b2bac0;
 }
 
 text, .rux-spectrum-analyzer__main-chart-label {
