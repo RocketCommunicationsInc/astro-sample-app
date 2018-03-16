@@ -81,7 +81,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       });
       // Scale the range of the data in the domains
       x.domain(data.map(function(d) { return d.frequency; }));
-      y.domain([-30, 0]);
+      y.domain([-25, 0]);
       // append the rectangles for the bar chart
       svg.selectAll(".bar")
         .data(data)
@@ -123,7 +123,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
 
       // Add x axis label
       svg.append("text")
-        .attr("x", -30)
+        .attr("x", -25)
         .attr("y", 186)
         .attr("text-anchor", "right")
         .attr("fill","white")
