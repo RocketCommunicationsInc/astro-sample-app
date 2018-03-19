@@ -14,12 +14,18 @@ export class RuxPopUpMenu extends PolymerElement {
       orientation: {
         type: String
       },
+      opened: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+        notify: true
+      },
       target: {
         type: Object,
         observer: "_targetChanged"
       },
-      menu: {
-        type: Object
+      menuItems: {
+        type: Array
       }
     };
   }
@@ -28,15 +34,14 @@ export class RuxPopUpMenu extends PolymerElement {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-pop-up-menu/rux-pop-up-menu.css">
 
-      <div class$="rux-pop-up rux-pop-up--[[orientation]]">
+      
+      <nav role="menu">
         <ul>
-          <dom-repeat id="pop-up-menu" items="{{menu}}">
-            <template>
-                <li>{{item.label}}</li>
-            </template>
-          </dom-repeat>
+          <template is="dom-repeat" id="pop-up-menu" items="{{menuItems}}">
+            <li><a>{{item.label}}</a></li>
+          </template>
         </ul>
-      </div>
+      </nav>
     `;
   }
 
@@ -56,8 +61,16 @@ export class RuxPopUpMenu extends PolymerElement {
     super.ready();
   }
 
+  _outsideClick(e) {
+    console.log("outside click");
+    console.log("target", e.target);
+    console.log("currentTarget", e.currentTarget);
+    window.removeEventListener("click", this._outsideClick);
+  }
+
   _targetChanged(e) {
-    console.log(e);
+    console.log(typeof e);
+    if (e == "null") return;
     const _target =
       typeof e === "string" ? this.getRootNode().getElementById(e) : e;
     console.log(_target);
@@ -81,10 +94,14 @@ export class RuxPopUpMenu extends PolymerElement {
     // generate CSS for position of the element
     const _css = `
             position: fixed; 
-            top: ${_top}px; 
-            left: ${_left}px;`;
+            top: 0px; 
+            left: 0px;
+            z-index: 10000`;
 
     this.setAttribute("style", _css);
+    this.opened = true;
+
+    window.addEventListener("click", this._outsideClick);
   }
 }
 

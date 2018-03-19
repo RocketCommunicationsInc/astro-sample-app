@@ -63,6 +63,10 @@ export class AstroApp extends PolymerElement {
 
     </style>
     
+    <rux-pop-up-menu
+    menu-items=[[_popMenuItems]]
+    target=[[_popMenuTarget]]></rux-pop-up-menu>
+
     <rux-global-status-bar
       appname="Astro App"
       version="2.0a">
@@ -83,14 +87,15 @@ export class AstroApp extends PolymerElement {
                 status=[[item.status]]
                 label=[[item.label]]
                 icon=[[item.icon]]
-                notifications=[[item.notifications]]></rux-status>
+                notifications=[[item.notifications]]
+                on-click="_showPopUp"></rux-status>
             </li>
           </template>
         </dom-repeat>
       </ul>
 
       
-      
+
       <rux-button
         type="large"
         icon="default:caution">Master Off</rux-button>
@@ -131,13 +136,33 @@ export class AstroApp extends PolymerElement {
 
     </rux-tab-panels>
 
-      
+    
     `;
+  }
+
+  _showPopUp(e) {
+    console.log("show popup", e);
+    console.log("show popup", e.target);
+    console.log("show popup", e.currentTarget);
+    this.popTrigger = true;
+    this._popMenuTarget = e.currentTarget;
   }
 
   constructor() {
     super();
     this.name = "3.0 preview";
+
+    this._popMenuItems = [
+      {
+        label: "Menu Item 1",
+        action: "doSomething"
+      },
+      {
+        label: "Menu Item 2",
+        action: "doSomethingElse"
+      }
+    ];
+    // this._popMenuTarget = null;
 
     this.chart1 = {};
     this.chart2 = {};
