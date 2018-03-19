@@ -39,7 +39,8 @@ export class AstroPassPlans extends PolymerElement {
         <rux-status
           icon="advanced-status:satellite-transmit"
           label="Sat 1"
-          status="ok"></rux-status>
+          status="ok"
+          on-click="_showPopUp"></rux-status>
 
         <div class="rux-button-group">
           <rux-button
@@ -69,8 +70,23 @@ export class AstroPassPlans extends PolymerElement {
       
     `;
   }
+
+  _showPopUp(e) {
+    this._popMenuTarget = e.currentTarget;
+  }
   constructor() {
     super();
+
+    this._popMenuItems = [
+      {
+        label: "Menu Item 1",
+        action: "doSomething"
+      },
+      {
+        label: "Menu Item 2",
+        action: "doSomethingElse"
+      }
+    ];
 
     const today = new Date();
 

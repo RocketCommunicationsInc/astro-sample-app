@@ -10,6 +10,11 @@
 
   border-top: 3px solid #047cdc;
   z-index: 10000;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 :host([opened]) {
   display: block;

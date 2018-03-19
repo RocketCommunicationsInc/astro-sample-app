@@ -63,9 +63,7 @@ export class AstroApp extends PolymerElement {
 
     </style>
     
-    <rux-pop-up-menu
-    menu-items=[[_popMenuItems]]
-    target=[[_popMenuTarget]]></rux-pop-up-menu>
+    
 
     <rux-global-status-bar
       appname="Astro App"
@@ -136,15 +134,13 @@ export class AstroApp extends PolymerElement {
 
     </rux-tab-panels>
 
-    
+    <rux-pop-up-menu
+    menu-items=[[_popMenuItems]]
+    target=[[_popMenuTarget]]></rux-pop-up-menu>
     `;
   }
 
   _showPopUp(e) {
-    console.log("show popup", e);
-    console.log("show popup", e.target);
-    console.log("show popup", e.currentTarget);
-    this.popTrigger = true;
     this._popMenuTarget = e.currentTarget;
   }
 

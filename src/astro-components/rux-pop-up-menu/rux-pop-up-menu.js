@@ -61,19 +61,23 @@ export class RuxPopUpMenu extends PolymerElement {
     super.ready();
   }
 
-  _outsideClick(e) {
-    console.log("outside click");
-    console.log("target", e.target);
-    console.log("currentTarget", e.currentTarget);
-    window.removeEventListener("click", this._outsideClick);
-  }
-
   _targetChanged(e) {
-    console.log(typeof e);
     if (e == "null") return;
     const _target =
       typeof e === "string" ? this.getRootNode().getElementById(e) : e;
-    console.log(_target);
+    const _hit = document.createElement("div");
+    _hit.setAttribute("id", "pop-up-overlay");
+    const _hitCSS = `
+          position: fixed; 
+          top: 0; 
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: transparent;
+          z-index: 9999`;
+    _hit.setAttribute("style", _hitCSS);
+    console.log();
+    document.getElementsByClassName("dark-theme")[0].appendChild(_hit);
 
     const _targetBounds = _target.getBoundingClientRect();
     const _popUpBounds = this.getBoundingClientRect();
@@ -91,17 +95,32 @@ export class RuxPopUpMenu extends PolymerElement {
       _top = window.innerHeight - _popUpBounds.height;
     }
 
+    _hit.addEventListener(
+      "mousedown",
+      event => {
+        console.log("event", event);
+        console.log("target", event.target);
+        console.log("currentTarget", event.currentTarget);
+        console.log("_target", _target);
+        console.log("this", this);
+
+        this.opened = false;
+        const _close = document.getElementById("pop-up-overlay");
+        console.log(_close);
+        _close.remove();
+      },
+      false
+    );
+
     // generate CSS for position of the element
     const _css = `
             position: fixed; 
-            top: 0px; 
-            left: 0px;
+            top: ${_top}px; 
+            left: ${_left}px;
             z-index: 10000`;
 
     this.setAttribute("style", _css);
     this.opened = true;
-
-    window.addEventListener("click", this._outsideClick);
   }
 }
 
