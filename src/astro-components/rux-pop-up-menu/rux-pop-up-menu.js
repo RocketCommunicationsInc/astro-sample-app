@@ -63,22 +63,9 @@ export class RuxPopUpMenu extends PolymerElement {
 
   _targetChanged(e) {
     if (e == "null") return;
+
     const _target =
       typeof e === "string" ? this.getRootNode().getElementById(e) : e;
-    const _hit = document.createElement("div");
-    _hit.setAttribute("id", "pop-up-overlay");
-    const _hitCSS = `
-          position: fixed; 
-          top: 0; 
-          left: 0;
-          height: 100%;
-          width: 100%;
-          background-color: transparent;
-          z-index: 9999`;
-    _hit.setAttribute("style", _hitCSS);
-    console.log();
-    document.getElementsByClassName("dark-theme")[0].appendChild(_hit);
-
     const _targetBounds = _target.getBoundingClientRect();
     const _popUpBounds = this.getBoundingClientRect();
 
@@ -95,24 +82,6 @@ export class RuxPopUpMenu extends PolymerElement {
       _top = window.innerHeight - _popUpBounds.height;
     }
 
-    _hit.addEventListener(
-      "mousedown",
-      event => {
-        console.log("event", event);
-        console.log("target", event.target);
-        console.log("currentTarget", event.currentTarget);
-        console.log("_target", _target);
-        console.log("this", this);
-
-        this.opened = false;
-        const _close = document.getElementById("pop-up-overlay");
-        console.log(_close);
-        _close.remove();
-      },
-      false
-    );
-
-    // generate CSS for position of the element
     const _css = `
             position: fixed; 
             top: ${_top}px; 
@@ -120,6 +89,27 @@ export class RuxPopUpMenu extends PolymerElement {
             z-index: 10000`;
 
     this.setAttribute("style", _css);
+
+    const _underlay = document.createElement("div");
+    _underlay.setAttribute("id", "test");
+    _underlay.setAttribute(
+      "style",
+      `position: fixed; 
+          top: 0; 
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: transparent;
+          z-index: 9999`
+    );
+
+    this.parentNode.append(_underlay);
+    _underlay.addEventListener("mousedown", event => {
+      _underlay.removeEventListener("mousedown", event);
+      _underlay.remove();
+      this.opened = false;
+    });
+
     this.opened = true;
   }
 }
