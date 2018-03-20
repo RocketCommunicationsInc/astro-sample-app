@@ -2,10 +2,8 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
-
 /* <div class="modem-detail__modem-settings">
  */
-
 /**
  * @polymer
  * @extends HTMLElement
@@ -18,9 +16,8 @@ export class AstroModemDetail extends PolymerElement {
       }
     };
   }
-
   static get template() {
-    return html`
+    return html `
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       
@@ -80,20 +77,16 @@ export class AstroModemDetail extends PolymerElement {
       </div>
     `;
   }
-
   constructor() {
     super();
   }
-
   connectedCallback() {
     super.connectedCallback();
     console.log(this.selectedModem);
   }
-
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-
   togglePane() {
     console.log("opening pane");
     console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
@@ -102,5 +95,4 @@ export class AstroModemDetail extends PolymerElement {
     _pane[0].classList.toggle("open");
   }
 }
-
 customElements.define("astro-modem-detail", AstroModemDetail);

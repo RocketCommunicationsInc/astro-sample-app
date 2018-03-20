@@ -5,7 +5,6 @@ import {
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
 // import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
-
 /**
  * @polymer
  * @extends HTMLElement
@@ -28,11 +27,11 @@ export class AstroTelemetryPane extends PolymerElement {
     };
   }
   static get template() {
-    return html`
+    return html `
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry-pane.css">
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <img src="/public/img/speca.svg" width="100%" />
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="250" width="500" x-scale-min="900" x-scale-max="2301" x-scale-step="50" y-scale-min="-30" y-scale-max="0"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status">
         <h2 class="astro-telemetry-pane__status__header">Telemetry</h2>        
@@ -65,12 +64,10 @@ export class AstroTelemetryPane extends PolymerElement {
   constructor() {
     super();
   }
-
   connectedCallback() {
     super.connectedCallback();
     if (!this.telemetryData) return;
   }
-
   ready() {
     super.ready();
   }
