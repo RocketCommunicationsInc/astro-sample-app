@@ -21,9 +21,8 @@ export class AstroModemList extends PolymerElement {
       }
     };
   }
-
   static get template() {
-    return html`
+    return html `
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
 
       <!-- <div class="modem-list"> //-->
@@ -59,27 +58,21 @@ export class AstroModemList extends PolymerElement {
       <!-- </div> //-->
     `;
   }
-
   constructor() {
     super();
   }
-
   connectedCallback() {
     super.connectedCallback();
   }
-
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-
   _selectModem(e) {
     this._reset();
-
     e.currentTarget.setAttribute("selected", "");
     this.selectedModem = e.model.item;
     this.notifyPath("slectedModem.selected");
   }
-
   _reset() {
     const _modems = this.shadowRoot.querySelectorAll(
       "li.modem-list__list-item"
@@ -88,19 +81,16 @@ export class AstroModemList extends PolymerElement {
       modem.removeAttribute("selected");
     });
   }
-
   /*
-  **
-  ** Measure data passed in against operation paramaters and respond with
-  ** either an "ok" or "caution" status
-  **
-  */
+   **
+   ** Measure data passed in against operation paramaters and respond with
+   ** either an "ok" or "caution" status
+   **
+   */
   _getStatus(val, type) {
     let _status = null;
-
     // if power is off return off to everything?
     if (val.power) return "off";
-
     switch (type) {
       case "tx":
         _status = val.txPower <= 55 && val.txPower >= 37 ? "ok" : "caution";
@@ -121,5 +111,4 @@ export class AstroModemList extends PolymerElement {
     return _status;
   }
 }
-
 customElements.define("astro-modem-list", AstroModemList);

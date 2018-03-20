@@ -44,9 +44,8 @@ export class RuxClock extends PolymerElement {
       }
     };
   }
-
   static get template() {
-    return html`
+    return html `
       <style>
         *[hidden] {
           display: none !important;
@@ -114,43 +113,34 @@ export class RuxClock extends PolymerElement {
   }
   constructor() {
     super();
-
     // set value of one day in milliseconds
     this._oneDay = 86400000;
   }
-
   connectedCallback() {
     super.connectedCallback();
-
     // start the time
     const _timer = setInterval(() => {
       this._updateTime();
     }, 1000);
-
     // show time immediately instead of waiting for setInterval to call
     this._updateTime();
   }
-
   disconnectedCallback() {
     super.disconnectedCallback();
-
     _timer = null;
   }
-
   /*
-  **
-  ** Format AOS/LOS in the appropriate time
-  **
-  */
+   **
+   ** Format AOS/LOS in the appropriate time
+   **
+   */
   formatTime(time) {
     if (isNaN(time)) return false;
-
     return new Date(time).toLocaleTimeString(this.locale, {
       hour12: false,
       timeZone: this.timezone
     });
   }
-
   /*
    **
    ** Set the options for toLocalTimeString. Essentially
@@ -162,45 +152,37 @@ export class RuxClock extends PolymerElement {
       hour12: false,
       timeZone: this.timezone
     };
-
     // explicitly optin to hide the timzone label
     if (!hideTimezone) {
       _timeOptions.timeZoneName = "short";
     }
     return _timeOptions;
   }
-
   /*
-  **
-  ** Calculate the ordinal day of the year
-  **
-  */
+   **
+   ** Calculate the ordinal day of the year
+   **
+   */
   _getDayOfYear() {
     let _now = new Date();
     let _year = new Date(_now.getFullYear(), 0, 0);
-
     // reframe _year and _now to UTC
     if (this.timezone.toLowerCase() === "utc") {
       _year = new Date(_now.getUTCFullYear(), 0, 0);
       _now = this._getUTCDateFrom(_now);
     }
-
     let _day = Math.floor((_now - _year) / this._oneDay);
-
     // May need to polyfill or find an alternate option for .padStart IE11 doesnâ€™t support
     return _day.toString().padStart(3, "000");
   }
-
   _getUTCDateFrom(date) {
     return new Date(date.getFullYear(), date.getUTCMonth(), date.getUTCDate());
   }
-
   _updateTime() {
     this._currentTime = new Date().toLocaleTimeString(
       this.locale,
       this.timeOptions
     );
-
     // update the date
     this._getDayOfYear();
   }

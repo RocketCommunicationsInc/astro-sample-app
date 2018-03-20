@@ -67,27 +67,34 @@ h3 {
   font-weight: 300;
 }
 
-.bar {
+/* Start Spectrum Analyzer */
+
+.rux-spectrum-analyzer__bar {
   fill: #4586be;
 }
 
-.bar-tip {
+.rux-spectrum-analyzer__bar-tip {
   fill: #b2bac0;
 }
 
-text, .rux-spectrum-analyzer__main-chart-label {
+text,
+.rux-spectrum-analyzer__main-chart-label {
   fill: #BDC3C9;
 }
 
 .rux-spectrum-analyzer__main-chart-label {
   font-size: 12px;
+  text-transform: capitalize;
 }
 
-g.rux-spectrum-analyzer__axis-label line  {
+.rux-spectrum-analyzer__chart-legend {
+  text-transform: uppercase;
+}
+
+g.rux-spectrum-analyzer__axis-label line {
   stroke: none;
 }
 
 .tick line {
   display: none;
 }
-
