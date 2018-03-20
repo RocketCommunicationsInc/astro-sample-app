@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   padding: 0 1em;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #1f3246;
 }
 
 .rux-timeline__header h1 {
@@ -64,10 +64,10 @@
 }
 
 rux-timeline-track:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.01);
+  background-color: #1f3246;
 }
 rux-timeline-track:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: #23384e;
 }
 
 .rux-timeline__ruler {
@@ -75,7 +75,8 @@ rux-timeline-track:nth-child(odd) {
   position: relative;
   margin-top: auto;
   color: #bdc3c9;
-  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: rgba(0, 0, 0, 0.15); */
+  background-color: #1f3246;
   height: 2em;
 }
 
@@ -85,6 +86,7 @@ rux-timeline-track:nth-child(odd) {
   height: 20px;
   position: absolute;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
+
   padding: 0.35rem 0 0 0.35rem;
 }
 
