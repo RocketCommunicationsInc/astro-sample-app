@@ -111,6 +111,9 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       var data = scrubbedArray;
       x.domain(data.map(function(d) { return d.frequency; }));
       y.domain([-27, 0]);
+      // clear old bars and tips
+      svg.selectAll(".rux-spectrum-analyzer__bar").remove();
+      svg.selectAll(".rux-spectrum-analyzer__bar-tip").remove();
       // append the rectangles for the bar chart
       svg.selectAll(".bar")
         .data(data)
