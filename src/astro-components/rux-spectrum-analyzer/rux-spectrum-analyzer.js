@@ -94,7 +94,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       .attr("class", "rux-spectrum-analyzer__chart-legend")
       .text(this.chartLegendX);
     // start animation
-    var ws = new WebSocket("ws://localhost:5100");
+    var ws = new WebSocket("ws://dev-ws.rocketcom.com:5100");
     ws.addEventListener('message', function(event) {
       var dataArray = event.data.split('|');
       var scrubbedArray = [];
