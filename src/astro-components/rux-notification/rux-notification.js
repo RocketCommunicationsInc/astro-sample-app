@@ -22,7 +22,7 @@ export class RuxNotification extends PolymerElement {
         type: String,
         value: "default"
       },
-      hidden: {
+      opened: {
         type: Boolean,
         value: false
       }
@@ -31,9 +31,8 @@ export class RuxNotification extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="src/astro-components/rux-notification/rux-notification.css">
-      <div class="rux-notification" hidden=[[hidden]]>
-        <div class="rux-notification__message">[[message]]</div>
-      </div>
+      
+      <div class="rux-notification__message">[[message]]</div>
       `;
   }
   constructor() {
@@ -42,36 +41,36 @@ export class RuxNotification extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    console.log("root", this.parentNode);
+    // console.log("root", this.parentNode);
 
-    const _container = document.createElement("div");
-    _container.classList.add("notification-container");
-    _container.style.position = "absolute";
-    _container.style.backgroundColor = "red";
-    _container.style.height = "60px";
-    _container.style.width = "100%";
-    _container.style.top = "0";
-    _container.style.left = "0";
-    _container.style.width = "100%";
-    _container.style.display = "block";
+    // const _container = document.createElement("div");
+    // _container.classList.add("notification-container");
+    // _container.style.position = "absolute";
+    // _container.style.backgroundColor = "red";
+    // _container.style.height = "60px";
+    // _container.style.width = "100%";
+    // _container.style.top = "0";
+    // _container.style.left = "0";
+    // _container.style.width = "100%";
+    // _container.style.display = "block";
 
-    this.parentNode.insertBefore(_container, this.parentNode.firstChild);
+    // this.parentNode.insertBefore(_container, this.parentNode.firstChild);
 
-    const _buffer = document.createElement("div");
-    _buffer.classList.add("notification-buffer");
-    _buffer.style.position = "relative";
-    _buffer.style.outline = "1px solid green";
-    _buffer.style.webkitBorderTopRightRadius = "60px";
-    _buffer.style.height = "60px";
-    _buffer.style.width = "100%";
-    _buffer.style.marginLeft = "0";
-    _buffer.style.display = "block";
-    _buffer.style.zIndex = 10;
+    // const _buffer = document.createElement("div");
+    // _buffer.classList.add("notification-buffer");
+    // _buffer.style.position = "relative";
+    // _buffer.style.outline = "1px solid green";
+    // _buffer.style.webkitBorderTopRightRadius = "60px";
+    // _buffer.style.height = "60px";
+    // _buffer.style.width = "100%";
+    // _buffer.style.marginLeft = "0";
+    // _buffer.style.display = "block";
+    // _buffer.style.zIndex = 10;
 
-    this.parentNode.insertBefore(_buffer, this.parentNode.firstChild);
+    // this.parentNode.insertBefore(_buffer, this.parentNode.firstChild);
 
-    console.log("_container.offsetTop", _container.offsetTop);
-    console.log("_buffer.offsetTop", _buffer.top);
+    // console.log("_container.offsetTop", _container.offsetTop);
+    // console.log("_buffer.offsetTop", _buffer.top);
 
     // if (!this.parentNode.style.position) {
     //   this.parentNode.style.position = "relative";

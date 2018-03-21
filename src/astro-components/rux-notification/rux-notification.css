@@ -1,19 +1,50 @@
-.rux-notification {
+:host {
   position: absolute;
-  display: none;
+  display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   flex-grow: 1;
   align-items: center;
   align-content: center;
 
-  top: 0;
+  top: -4.125rem;
   left: 0;
+
+  height: 4.125rem;
+  width: 100%;
 
   padding: 0.7rem 1rem;
   background-color: #1a6600;
   transition: all 0.5s ease;
+
+  box-sizing: border-box;
 }
+
+:host([opened]) {
+  top: 0;
+}
+
+/* .rux-notification {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  align-items: center;
+  align-content: center;
+
+  top: -4.125rem;
+  left: 0;
+
+  height: 4.125rem;
+  width: 100%;
+
+  padding: 0.7rem 1rem;
+  background-color: #1a6600;
+  transition: all 0.5s ease;
+
+  box-sizing: border-box;
+} */
 
 .rux-notification::after {
   position: relative;

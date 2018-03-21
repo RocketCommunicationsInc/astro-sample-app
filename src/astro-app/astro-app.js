@@ -94,9 +94,13 @@ export class AstroApp extends PolymerElement {
       
       <rux-button
         type="large"
-        icon="default:caution">Master Off</rux-button>
+        icon="default:caution"
+        on-click="showNotification">Master Off</rux-button>
     </rux-global-status-bar>
-
+    
+    <rux-notification
+      message="Hello There">
+    </rux-notification>
 
 
     <rux-tab-panels>
@@ -913,6 +917,18 @@ export class AstroApp extends PolymerElement {
 
   ready() {
     super.ready();
+  }
+
+  showNotification() {
+    const _notification = this.shadowRoot.querySelectorAll(
+      "rux-notification"
+    )[0];
+    console.log(_notification);
+    if (_notification.hasAttribute("opened")) {
+      _notification.removeAttribute("opened");
+    } else {
+      _notification.setAttribute("opened", "");
+    }
   }
 }
 
