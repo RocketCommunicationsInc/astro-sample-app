@@ -2,10 +2,12 @@
 @import url("_typography.css");
 @import url("_app.css");
 
+
 /* 
-**	This is as close as we get to a CSS reset in Astro, moving everything to 
-**	the old IE border-box model of including padding in the overall size.
+**  This is as close as we get to a CSS reset in Astro, moving everything to 
+**  the old IE border-box model of including padding in the overall size.
 */
+
 html {
   box-sizing: border-box;
   height: 100%;
@@ -18,11 +20,13 @@ html {
   box-sizing: inherit;
 }
 
+
 /*
 **
 **
 **
 */
+
 body {
   height: 100%;
   width: 100%;
@@ -39,13 +43,16 @@ body {
   background-attachment: fixed;
 }
 
+
 /*
 ** Disable user selection of input labels and navigation elements
 */
+
 button {
   --disable-selection: none !important;
 }
 
+
 /* Fallback support for non-browsers*/
-@supports (-css: variables) {
-}
+
+@supports (-css: variables) {}

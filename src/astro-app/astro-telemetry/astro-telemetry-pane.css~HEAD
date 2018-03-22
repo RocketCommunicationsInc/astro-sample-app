@@ -67,11 +67,7 @@ h3 {
   font-weight: 300;
 }
 
-
 /* Start Spectrum Analyzer */
-svg {
-  background-color: #1b3044;
-}
 
 .rux-spectrum-analyzer__bar {
   fill: #4586be;
@@ -83,50 +79,22 @@ svg {
 
 text,
 .rux-spectrum-analyzer__main-chart-label {
-  fill: #bdc3c9;
+  fill: #BDC3C9;
 }
 
 .rux-spectrum-analyzer__main-chart-label {
-  font-family: "Open Sans Light";
-  font-size: 20px;
+  font-size: 12px;
   text-transform: capitalize;
 }
 
 .rux-spectrum-analyzer__chart-legend {
   text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-  fill: #BDC3C9;
 }
-
 
 g.rux-spectrum-analyzer__axis-label line {
   stroke: none;
 }
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
-
-.grid line {
-  stroke: pink;
-  stroke-opacity: 0.7;
-  shape-rendering: crispEdges;
-}
-
-.grid path {
-  stroke-width: 0;
-}
-
 .tick line {
   display: none;
-}
-
-.tick text {
-  font-family: "Open Sans Light";
-  font-size: 12px;
-  color: #bdc3c9;
-  font-weight: 300;
 }
