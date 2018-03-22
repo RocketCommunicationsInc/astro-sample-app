@@ -1,3 +1,7 @@
+*[hidden] {
+  display: none !important;
+}
+
 .rux-slider {
   display: flex;
   flex-direction: column;
@@ -42,6 +46,10 @@ input[type="range"]:focus {
   cursor: pointer;
 
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.66));
+}
+
+.rux-slider__control__range:active::-webkit-slider-thumb {
+  filter: none;
 }
 
 .rux-slider__control__range::-moz-range-thumb {

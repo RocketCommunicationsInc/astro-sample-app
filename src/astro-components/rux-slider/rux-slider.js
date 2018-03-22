@@ -8,9 +8,18 @@ import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 export class RuxSlider extends PolymerElement {
   static get properties() {
     return {
-      min: Number,
-      max: Number,
-      step: Number,
+      min: {
+        type: Number,
+        value: 0
+      },
+      max: {
+        type: Number,
+        value: 100
+      },
+      step: {
+        type: Number,
+        value: 1
+      },
       label: String,
       axisLabels: String,
       disabled: Boolean,
@@ -24,7 +33,7 @@ export class RuxSlider extends PolymerElement {
           return `slider-${Math.floor(Math.random() * 1000)}`;
         }
       },
-      input: {
+      hideInput: {
         type: Boolean,
         value: false
       }
@@ -36,11 +45,11 @@ export class RuxSlider extends PolymerElement {
 
       <div class="rux-slider">
         <div class="rux-slider__label">
-          <label>[[label]]</label>
-          <input type="number" on-input="_updateValue" on-change="_updateValue" min=[[min]] max=[[max]] step=[[step]] value={{val}} />
+          <label id=[[_name]] hidden=[[!label]]>[[label]]</label>
+          <input type="number" on-input="_updateValue" min=[[min]] max=[[max]] step=[[step]] value={{val}} aria-labeledby=[[_name]] hidden=[[hideInput]] />
         </div>
         <div class="rux-slider__control">
-          <input type="range" on-input="_updateValue" on-change="_updateValue" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} disabled=[[disabled]] />
+          <input type="range" on-input="_updateValue" class="rux-slider__control__range type="range" min=[[min]] max=[[max]] step=[[step]] value={{val}} aria-labeledby=[[_name]] disabled=[[disabled]] />
           <ol class="rux-slider__control__labels" hidden=[[!axisLabels]]>
             <dom-repeat id="sliderAxisLabels" items=[[_getAxisLabels(axisLabels)]]>
               <template>
@@ -64,7 +73,7 @@ export class RuxSlider extends PolymerElement {
     this.val = e.target.value;
   }
   _getAxisLabels(values) {
-    // return values.split(",");
+    return values.split(",");
   }
 }
 customElements.define("rux-slider", RuxSlider);

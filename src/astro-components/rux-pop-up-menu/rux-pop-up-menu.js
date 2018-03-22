@@ -22,6 +22,7 @@ export class RuxPopUpMenu extends PolymerElement {
       },
       target: {
         type: Object,
+        notify: true,
         observer: "_targetChanged"
       },
       menuItems: {
@@ -37,8 +38,8 @@ export class RuxPopUpMenu extends PolymerElement {
       
       <nav role="menu">
         <ul>
-          <template is="dom-repeat" id="pop-up-menu" items="{{menuItems}}">
-            <li><a>{{item.label}}</a></li>
+          <template is="dom-repeat" id="pop-up-menu" items="[[menuItems]]">
+            <li><a data-action$=[[item.action]] on-click="_menuClick">[[item.label]]</a></li>
           </template>
         </ul>
       </nav>
@@ -47,6 +48,8 @@ export class RuxPopUpMenu extends PolymerElement {
 
   constructor() {
     super();
+
+    this._underlay = null;
   }
 
   connectedCallback() {
@@ -61,13 +64,42 @@ export class RuxPopUpMenu extends PolymerElement {
     super.ready();
   }
 
-  _targetChanged(e) {
-    if (e == "null") return;
+  _closeMenu() {
+    this._underlay.removeEventListener("mousedown", event);
+    this._underlay.remove();
+    this.opened = false;
+    this.target = null;
+  }
 
+  _menuClick(e) {
+    // just in case in the future we want to do any
+    // manipulation of the defined action prior to
+    // dispatching an event
+    const menuAction = e.currentTarget.dataset;
+
+    window.dispatchEvent(
+      new CustomEvent("pop-up-menu-event", {
+        detail: menuAction
+      })
+    );
+
+    this._closeMenu();
+  }
+
+  _targetChanged(target) {
+    if (target == null) return;
+
+    /* 
+    Toying with the idea of a different method of passing in a target
     const _target =
-      typeof e === "string" ? this.getRootNode().getElementById(e) : e;
-    const _targetBounds = _target.getBoundingClientRect();
+      typeof target === "string"
+        ? this.getRootNode().getElementById(target)
+        : target; */
+    const _targetBounds = target.getBoundingClientRect();
     const _popUpBounds = this.getBoundingClientRect();
+    const _mouse = target.clientX;
+
+    console.log("_mouse", _mouse);
 
     let _left = _targetBounds.left;
     let _top = _targetBounds.bottom;
@@ -90,9 +122,9 @@ export class RuxPopUpMenu extends PolymerElement {
 
     this.setAttribute("style", _css);
 
-    const _underlay = document.createElement("div");
-    _underlay.setAttribute("id", "test");
-    _underlay.setAttribute(
+    this._underlay = document.createElement("div");
+    this._underlay.setAttribute("id", "test");
+    this._underlay.setAttribute(
       "style",
       `position: fixed; 
           top: 0; 
@@ -103,11 +135,9 @@ export class RuxPopUpMenu extends PolymerElement {
           z-index: 9999`
     );
 
-    this.parentNode.append(_underlay);
-    _underlay.addEventListener("mousedown", event => {
-      _underlay.removeEventListener("mousedown", event);
-      _underlay.remove();
-      this.opened = false;
+    this.parentNode.append(this._underlay);
+    this._underlay.addEventListener("mousedown", event => {
+      this._closeMenu();
     });
 
     this.opened = true;

@@ -6,6 +6,7 @@
   margin: 1em;
 
   min-width: 15em;
+  max-width: 20em;
   position: relative;
 
   border-top: 3px solid #047cdc;
@@ -63,10 +64,18 @@
   padding: 0.5em;
   color: #000;
   text-decoration: none;
+
+  min-width: 15em;
+  max-width: 20em;
+
+  word-wrap: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 :host a:hover {
-  font-weight: 700;
+  /* font-weight: 700; */
   background-color: #b1d5f2;
 }
 

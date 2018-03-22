@@ -79,8 +79,13 @@
 }
 
 .modem-detail__detail {
+<<<<<<< HEAD
   overflow: hidden;
   position: relative;
+=======
+  position: relative;
+  overflow: hidden;
+>>>>>>> notification
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
