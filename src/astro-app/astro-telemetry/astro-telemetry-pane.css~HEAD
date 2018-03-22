@@ -45,6 +45,7 @@
   flex-shrink: 0;
   margin: 0.5rem 0 1rem 0;
 }
+
 .astro-telemetry-pane__status__group ul {
   padding: 0;
   margin: 0 auto;
@@ -66,7 +67,66 @@ h3 {
   font-weight: 300;
 }
 
-rux-spectrum-analyzer {
-  width: 100%;
-  height: 600px;
+
+/* Start Spectrum Analyzer */
+svg {
+  background-color: #1b3044;
+}
+
+.rux-spectrum-analyzer__bar {
+  fill: #4586be;
+}
+
+.rux-spectrum-analyzer__bar-tip {
+  fill: #b2bac0;
+}
+
+text,
+.rux-spectrum-analyzer__main-chart-label {
+  fill: #bdc3c9;
+}
+
+.rux-spectrum-analyzer__main-chart-label {
+  font-family: "Open Sans Light";
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.rux-spectrum-analyzer__chart-legend {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  fill: #BDC3C9;
+}
+
+
+g.rux-spectrum-analyzer__axis-label line {
+  stroke: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.grid line {
+  stroke: pink;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.tick line {
+  display: none;
+}
+
+.tick text {
+  font-family: "Open Sans Light";
+  font-size: 12px;
+  color: #bdc3c9;
+  font-weight: 300;
 }

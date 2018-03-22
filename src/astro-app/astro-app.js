@@ -16,6 +16,9 @@ import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-men
 import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
 import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
 import { RuxSpectrumAnalyzer } from "../astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+import { RuxNotification } from "../astro-components/rux-notification/rux-notification.js";
+import { RuxTimeline } from "../astro-components/rux-timeline/rux-timeline.js";
+
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
 import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
@@ -57,14 +60,16 @@ export class AstroApp extends PolymerElement {
       }
     </style>
     
+    
+
     <rux-global-status-bar
       appname="Astro App"
       version="2.0a">
       
       <rux-tabs>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
         <rux-tab id="tab-telemetry">Telemetry</rux-tab>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -77,21 +82,22 @@ export class AstroApp extends PolymerElement {
                 status=[[item.status]]
                 label=[[item.label]]
                 icon=[[item.icon]]
-                notifications=[[item.notifications]]></rux-status>
+                notifications=[[item.notifications]]
+                on-click="_showPopUp"></rux-status>
             </li>
           </template>
         </dom-repeat>
       </ul>
 
-      <rux-button
-        type="icon"
-        icon="default:settings">Settings</rux-button>
       
+
       <rux-button
         type="large"
-        icon="default:caution">Master Off</rux-button>
+        icon="default:caution"
+        on-click="showNotification">Master Off</rux-button>
     </rux-global-status-bar>
-
+    
+    
 
 
     <rux-tab-panels>
@@ -103,7 +109,7 @@ export class AstroApp extends PolymerElement {
           modems=[[modems]]>
 
           <astro-modem-list modems={{modems}} selected-modem={{astroModem}}></astro-modem-list>
-          <astro-modem-detail selected-modem=[[astroModem]] slot-name="detail"></astro-modem-detail>
+          <astro-modem-detail selected-modem={{astroModem}} slot-name="detail"></astro-modem-detail>
           
         </astro-modems>
       </rux-tab-panel>
@@ -127,18 +133,44 @@ export class AstroApp extends PolymerElement {
 
     </rux-tab-panels>
 
-      
+    <rux-pop-up-menu
+    menu-items=[[_popMenuItems]]
+    target=[[_popMenuTarget]]></rux-pop-up-menu>
     `;
   }
+
+  _showPopUp(e) {
+    this._popMenuTarget = e.currentTarget;
+  }
+
   constructor() {
     super();
     this.name = "3.0 preview";
+
+    this._popMenuItems = [
+      {
+        label: "Menu Item 1",
+        action: "doSomething"
+      },
+      {
+        label: "Menu Item 2",
+        action: "doSomethingElse"
+      }
+    ];
+    // this._popMenuTarget = null;
+
     this.chart1 = {};
     this.chart2 = {};
+
     this.astroModem = {
-      _id: { $oid: "570cef10e4b0cbcd095d473b" },
+      _id: {
+        $oid: "570cef10e4b0cbcd095d473b"
+      },
       modemId: 1,
-      modulatorResource: { sliceId: "255.255.255.004", resourceId: 92976 },
+      modulatorResource: {
+        sliceId: "255.255.255.004",
+        resourceId: 92976
+      },
       txModType: "MOD_TYPE_BPSK",
       txSymbolRate: 3900,
       txCoding: "CODING_UNCODED",
@@ -146,7 +178,10 @@ export class AstroApp extends PolymerElement {
       txPower: 55,
       txPath: 3,
       txEnabled: true,
-      demodulatorResource: { sliceId: "255.255.255.003", resourceId: 61204 },
+      demodulatorResource: {
+        sliceId: "255.255.255.003",
+        resourceId: 61204
+      },
       rxSymbolRate: 0,
       rxFreq: 0,
       rxPower: -10,
@@ -157,10 +192,17 @@ export class AstroApp extends PolymerElement {
       codeLock: true,
       allocated: false
     };
-    this.modems = [{
-        _id: { $oid: "570cef10e4b0cbcd095d473b" },
+
+    this.modems = [
+      {
+        _id: {
+          $oid: "570cef10e4b0cbcd095d473b"
+        },
         modemId: 1,
-        modulatorResource: { sliceId: "255.255.255.004", resourceId: 92976 },
+        modulatorResource: {
+          sliceId: "255.255.255.004",
+          resourceId: 92976
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 3900,
         txCoding: "CODING_UNCODED",
@@ -168,7 +210,10 @@ export class AstroApp extends PolymerElement {
         txPower: 55,
         txPath: 3,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.003", resourceId: 61204 },
+        demodulatorResource: {
+          sliceId: "255.255.255.003",
+          resourceId: 61204
+        },
         rxSymbolRate: 0,
         rxFreq: 0,
         rxPower: -10,
@@ -180,9 +225,14 @@ export class AstroApp extends PolymerElement {
         allocated: false
       },
       {
-        _id: { $oid: "570cefbfe4b0cbcd095d47cb" },
+        _id: {
+          $oid: "570cefbfe4b0cbcd095d47cb"
+        },
         modemId: 2,
-        modulatorResource: { sliceId: "255.255.255.003", resourceId: 21279 },
+        modulatorResource: {
+          sliceId: "255.255.255.003",
+          resourceId: 21279
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 9100,
         txCoding: "CODING_UNCODED",
@@ -190,7 +240,10 @@ export class AstroApp extends PolymerElement {
         txPower: 73,
         txPath: 1,
         txEnabled: false,
-        demodulatorResource: { sliceId: "255.255.255.001", resourceId: 63645 },
+        demodulatorResource: {
+          sliceId: "255.255.255.001",
+          resourceId: 63645
+        },
         rxSymbolRate: 1100,
         rxFreq: 0,
         rxPower: 25,
@@ -203,9 +256,14 @@ export class AstroApp extends PolymerElement {
         power: false
       },
       {
-        _id: { $oid: "570cefd5e4b0cbcd095d47cd" },
+        _id: {
+          $oid: "570cefd5e4b0cbcd095d47cd"
+        },
         modemId: 3,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 500,
         txCoding: 500,
@@ -213,7 +271,10 @@ export class AstroApp extends PolymerElement {
         txPower: 54,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 2250,
         rxPower: -14,
@@ -228,9 +289,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cefece4b0cbcd095d47d2" },
+        _id: {
+          $oid: "570cefece4b0cbcd095d47d2"
+        },
         modemId: 4,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -238,7 +304,10 @@ export class AstroApp extends PolymerElement {
         txPower: 33,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 2050,
         rxPath: 0,
@@ -252,9 +321,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf002e4b0cbcd095d47da" },
+        _id: {
+          $oid: "570cf002e4b0cbcd095d47da"
+        },
         modemId: 5,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -262,7 +336,10 @@ export class AstroApp extends PolymerElement {
         txPower: 65,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1110,
         rxPath: 0,
@@ -276,9 +353,14 @@ export class AstroApp extends PolymerElement {
         power: false
       },
       {
-        _id: { $oid: "570cf019e4b0cbcd095d47dd" },
+        _id: {
+          $oid: "570cf019e4b0cbcd095d47dd"
+        },
         modemId: 6,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 10,
         txCoding: 10,
@@ -286,7 +368,10 @@ export class AstroApp extends PolymerElement {
         txPower: 25,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 50,
         rxFreq: 1500,
         rxPath: 0,
@@ -300,9 +385,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf03de4b0cbcd095d47e3" },
+        _id: {
+          $oid: "570cf03de4b0cbcd095d47e3"
+        },
         modemId: 7,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 10,
         txCoding: 10,
@@ -310,7 +400,10 @@ export class AstroApp extends PolymerElement {
         txPower: 60,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 50,
         rxFreq: 1250,
         rxPath: 0,
@@ -325,9 +418,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf059e4b0cbcd095d47e9" },
+        _id: {
+          $oid: "570cf059e4b0cbcd095d47e9"
+        },
         modemId: 8,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: "100",
         txCoding: "100",
@@ -335,7 +433,10 @@ export class AstroApp extends PolymerElement {
         txPower: 25,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: "100",
         rxFreq: "2450",
         rxPath: 0,
@@ -350,9 +451,14 @@ export class AstroApp extends PolymerElement {
         allocated: false
       },
       {
-        _id: { $oid: "570cf084e4b0cbcd095d47ee" },
+        _id: {
+          $oid: "570cf084e4b0cbcd095d47ee"
+        },
         modemId: 9,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 0,
         txCoding: 100,
@@ -360,7 +466,10 @@ export class AstroApp extends PolymerElement {
         txPower: 53,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 100,
         rxFreq: 1200,
         rxPath: 0,
@@ -375,16 +484,24 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf09ee4b0cbcd095d47f1" },
+        _id: {
+          $oid: "570cf09ee4b0cbcd095d47f1"
+        },
         modemId: 10,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txSymbolRate: 500,
         txCoding: 500,
         txFreq: 1250,
         txPower: 51,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -399,9 +516,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf0aee4b0cbcd095d47f3" },
+        _id: {
+          $oid: "570cf0aee4b0cbcd095d47f3"
+        },
         modemId: 11,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -409,7 +531,10 @@ export class AstroApp extends PolymerElement {
         txPower: 55,
         txPath: 2,
         txEnabled: false,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -424,9 +549,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf0bfe4b0cbcd095d47f4" },
+        _id: {
+          $oid: "570cf0bfe4b0cbcd095d47f4"
+        },
         modemId: 12,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 0,
         txCoding: 100,
@@ -434,7 +564,10 @@ export class AstroApp extends PolymerElement {
         txPower: 34,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 100,
         rxFreq: 1200,
         rxPath: 0,
@@ -449,9 +582,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf0cfe4b0cbcd095d47f8" },
+        _id: {
+          $oid: "570cf0cfe4b0cbcd095d47f8"
+        },
         modemId: 13,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: "1",
         txCoding: "1",
@@ -459,7 +597,10 @@ export class AstroApp extends PolymerElement {
         txPower: 64,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: "100",
         rxFreq: "950",
         rxPath: 0,
@@ -474,9 +615,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf0dfe4b0cbcd095d47f9" },
+        _id: {
+          $oid: "570cf0dfe4b0cbcd095d47f9"
+        },
         modemId: 14,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -484,7 +630,10 @@ export class AstroApp extends PolymerElement {
         txPower: 54,
         txPath: 2,
         txEnabled: false,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -499,9 +648,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf0ede4b0cbcd095d47fb" },
+        _id: {
+          $oid: "570cf0ede4b0cbcd095d47fb"
+        },
         modemId: 15,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 0,
         txCoding: 100,
@@ -509,7 +663,10 @@ export class AstroApp extends PolymerElement {
         txPower: 21,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 100,
         rxFreq: 1200,
         rxPath: 0,
@@ -524,9 +681,14 @@ export class AstroApp extends PolymerElement {
         power: false
       },
       {
-        _id: { $oid: "570cf0fee4b0cbcd095d47fd" },
+        _id: {
+          $oid: "570cf0fee4b0cbcd095d47fd"
+        },
         modemId: 16,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -534,7 +696,10 @@ export class AstroApp extends PolymerElement {
         txPower: 54,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -549,9 +714,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf10de4b0cbcd095d47fe" },
+        _id: {
+          $oid: "570cf10de4b0cbcd095d47fe"
+        },
         modemId: 17,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -559,7 +729,10 @@ export class AstroApp extends PolymerElement {
         txPower: 10,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -574,9 +747,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf11de4b0cbcd095d47ff" },
+        _id: {
+          $oid: "570cf11de4b0cbcd095d47ff"
+        },
         modemId: 18,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "",
         txSymbolRate: 500,
         txCoding: 500,
@@ -584,7 +762,10 @@ export class AstroApp extends PolymerElement {
         txPower: 13,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -599,9 +780,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf130e4b0cbcd095d4802" },
+        _id: {
+          $oid: "570cf130e4b0cbcd095d4802"
+        },
         modemId: 19,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 4900,
         txCoding: "CODING_UNCODED",
@@ -609,7 +795,10 @@ export class AstroApp extends PolymerElement {
         txPower: 54,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 0,
         rxFreq: 0,
         rxPower: 10,
@@ -621,9 +810,14 @@ export class AstroApp extends PolymerElement {
         allocated: false
       },
       {
-        _id: { $oid: "570cf150e4b0cbcd095d4805" },
+        _id: {
+          $oid: "570cf150e4b0cbcd095d4805"
+        },
         modemId: 20,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 10,
         txCoding: 10,
@@ -631,7 +825,10 @@ export class AstroApp extends PolymerElement {
         txPower: 55,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: "10",
         rxFreq: "10",
         rxPath: 0,
@@ -646,9 +843,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf16ee4b0cbcd095d4807" },
+        _id: {
+          $oid: "570cf16ee4b0cbcd095d4807"
+        },
         modemId: 21,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 0,
         txCoding: 100,
@@ -656,7 +858,10 @@ export class AstroApp extends PolymerElement {
         txPower: 55,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 100,
         rxFreq: 1200,
         rxPath: 0,
@@ -671,9 +876,14 @@ export class AstroApp extends PolymerElement {
         power: true
       },
       {
-        _id: { $oid: "570cf18ee4b0cbcd095d4809" },
+        _id: {
+          $oid: "570cf18ee4b0cbcd095d4809"
+        },
         modemId: 22,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 4900,
         txCoding: "CODING_UNCODED",
@@ -681,7 +891,10 @@ export class AstroApp extends PolymerElement {
         txPower: 20,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 0,
         rxFreq: 0,
         rxPower: 10,
@@ -693,9 +906,14 @@ export class AstroApp extends PolymerElement {
         allocated: true
       },
       {
-        _id: { $oid: "570cf1a9e4b0cbcd095d480e" },
+        _id: {
+          $oid: "570cf1a9e4b0cbcd095d480e"
+        },
         modemId: 23,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 4900,
         txCoding: "CODING_UNCODED",
@@ -703,7 +921,10 @@ export class AstroApp extends PolymerElement {
         txPower: 15,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 0,
         rxFreq: 0,
         rxPower: 10,
@@ -715,9 +936,14 @@ export class AstroApp extends PolymerElement {
         allocated: true
       },
       {
-        _id: { $oid: "570cf1c0e4b0cbcd095d480f" },
+        _id: {
+          $oid: "570cf1c0e4b0cbcd095d480f"
+        },
         modemId: 24,
-        modulatorResource: { sliceId: "255.255.255.002", resourceId: 42120 },
+        modulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 42120
+        },
         txModType: "MOD_TYPE_BPSK",
         txSymbolRate: 500,
         txCoding: 500,
@@ -725,7 +951,10 @@ export class AstroApp extends PolymerElement {
         txPower: 15,
         txPath: 2,
         txEnabled: true,
-        demodulatorResource: { sliceId: "255.255.255.002", resourceId: 47454 },
+        demodulatorResource: {
+          sliceId: "255.255.255.002",
+          resourceId: 47454
+        },
         rxSymbolRate: 500,
         rxFreq: 1250,
         rxPath: 0,
@@ -740,9 +969,11 @@ export class AstroApp extends PolymerElement {
         power: true
       }
     ];
+
     this.satellite1 = {
       label: "Satellite 1",
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "ok"
         },
@@ -767,7 +998,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "caution"
         },
@@ -795,7 +1027,8 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite 2",
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "off"
         },
@@ -820,7 +1053,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "ok"
         },
@@ -849,7 +1083,8 @@ export class AstroApp extends PolymerElement {
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
     // emulate a JSON object for advanced status
-    this.statusIndicators = [{
+    this.statusIndicators = [
+      {
         label: "Power",
         status: "ok",
         icon: "advanced-status-egs:propulsion-power",
@@ -890,6 +1125,18 @@ export class AstroApp extends PolymerElement {
   }
   ready() {
     super.ready();
+  }
+
+  showNotification() {
+    const _notification = this.shadowRoot.querySelectorAll(
+      "rux-notification"
+    )[0];
+    console.log(_notification);
+    if (_notification.hasAttribute("opened")) {
+      _notification.removeAttribute("opened");
+    } else {
+      _notification.setAttribute("opened", "");
+    }
   }
 }
 customElements.define("astro-app", AstroApp);

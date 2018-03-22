@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
+<<<<<<< HEAD
 }
 
 astro-telemetry-pane {
@@ -22,3 +23,13 @@ astro-telemetry-pane:last-child {
   margin-right: 0;
 }
 
+=======
+}
+
+astro-telemetry-pane {
+  margin-right: 0.5rem;
+}
+astro-telemetry-pane:last-child {
+  margin-right: 0;
+}
+>>>>>>> dm

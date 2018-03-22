@@ -20,8 +20,8 @@ export class AstroTelemetry extends PolymerElement {
     };
   }
   static get template() {
-    return html `
-    <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
+    return html`
+		<link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <div class="astro-telemetry-panes">
     <dom-repeat items="[[telemetryData]]">
       <template>
@@ -32,7 +32,7 @@ export class AstroTelemetry extends PolymerElement {
           thermal=[[item.thermal]]></astro-telemetry-pane>
       </template>
     </dom-repeat>
-    </div>
+		</div>
     `;
   }
   constructor() {

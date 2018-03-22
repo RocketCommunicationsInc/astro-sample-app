@@ -22,7 +22,7 @@ export class AstroModemList extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
 
       <!-- <div class="modem-list"> //-->
@@ -58,21 +58,27 @@ export class AstroModemList extends PolymerElement {
       <!-- </div> //-->
     `;
   }
+
   constructor() {
     super();
   }
+
   connectedCallback() {
     super.connectedCallback();
   }
+
   disconnectedCallback() {
     super.disconnectedCallback();
   }
+
   _selectModem(e) {
     this._reset();
+
     e.currentTarget.setAttribute("selected", "");
     this.selectedModem = e.model.item;
     this.notifyPath("slectedModem.selected");
   }
+
   _reset() {
     const _modems = this.shadowRoot.querySelectorAll(
       "li.modem-list__list-item"

@@ -2,8 +2,10 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
+
 /* <div class="modem-detail__modem-settings">
  */
+
 /**
  * @polymer
  * @extends HTMLElement
@@ -17,7 +19,7 @@ export class AstroModemDetail extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       
@@ -31,11 +33,12 @@ export class AstroModemDetail extends PolymerElement {
         <form>
           <rux-slider
             label="Set Power"
-            min=0
+            min=-0
             max=30
             step=1
             input=true
-            value=[[selectedModem.power]]><rux-slider>
+            axis-labels="0, 5, 10, 15, 20, 25, 30"
+            val=[[selectedModem.txPower]]><rux-slider>
 
           <div class="rux-button-group">
             <rux-button>Apply</rux-button>
@@ -47,11 +50,16 @@ export class AstroModemDetail extends PolymerElement {
      
 
       <div class="modem-detail__detail" hidden="[[!selectedModem]]">
-        <h1>Modem [[selectedModem.modemId]]</h1>
+        <rux-notification 
+          message="Modem 1 has been activated"></rux-notification>
+        
+        
+        <h1 id="test">Modem [[selectedModem.modemId]]</h1>
         
         <section class="modem-detail__detail__section">
           <header>
             <h1>Tx</h1>
+            <rux-button on-click='_showNotification'>Show Notification</rux-button>
           </header>
           <dl>
             <dt>Power</dt>
@@ -74,24 +82,58 @@ export class AstroModemDetail extends PolymerElement {
             <dd>[[selectedModem.rxSymbolRate]]<span class="label">samples/sec</span></dd>
           </dl>
         </section>
+
+        
       </div>
     `;
   }
   constructor() {
     super();
+
+    this.notificationObj = {
+      opened: false,
+      message: "Sing a song"
+    };
+
+    this.sliderObjTwo = {
+      value: 0,
+      min: -10,
+      max: 10,
+      step: 0.1,
+      labels: "min,mid,max"
+    };
   }
   connectedCallback() {
     super.connectedCallback();
     console.log(this.selectedModem);
   }
+
+  do() {
+    console.log("do");
+    const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
+    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
+
+    _pane[0].classList.toggle("show");
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
   }
+
+  _showNotification() {
+    const _notification = this.shadowRoot.querySelectorAll(
+      "rux-notification"
+    )[0];
+    console.log(_notification);
+    if (_notification.hasAttribute("opened")) {
+      _notification.removeAttribute("opened");
+    } else {
+      _notification.setAttribute("opened", "");
+    }
+  }
+
   togglePane() {
-    console.log("opening pane");
-    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
     const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
-    console.log(_pane[0]);
     _pane[0].classList.toggle("open");
   }
 }
