@@ -104,7 +104,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
 
     // Add y axis label
     svg.append("text")
-      .attr("x", 75)
+      .attr("x", 71)
       .attr("y", 342)
       .attr("class", "rux-spectrum-analyzer__chart-legend")
       .text(this.chartLegendX);
