@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+.rux-timeline-component {
+  width: 100%;
+}
+
 ol {
   counter-reset: tasks;
   list-style-position: inside;
@@ -67,7 +71,6 @@ rux-status {
 }
 
 .tasks-container {
-  width: 100%;
   padding: 1.3rem;
   background: rgba(0, 0, 0, 0.2);
 }

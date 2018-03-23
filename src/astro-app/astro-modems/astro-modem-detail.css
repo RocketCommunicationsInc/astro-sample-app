@@ -71,7 +71,10 @@
   flex-direction: column;
 
   margin: 2em 2.5rem;
+<<<<<<< HEAD
   outline: 1px solid red;
+=======
+>>>>>>> dm
 }
 
 .modem-detail__settings .rux-button-group {
@@ -80,6 +83,13 @@
 }
 
 .modem-detail__detail {
+<<<<<<< HEAD
+  overflow: hidden;
+  position: relative;
+=======
+  position: relative;
+  overflow: hidden;
+>>>>>>> notification
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

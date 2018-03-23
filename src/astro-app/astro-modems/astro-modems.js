@@ -15,7 +15,8 @@ export class AstroModems extends PolymerElement {
         type: Object
       },
       selectedModem: {
-        type: Object
+        type: Object,
+        observer: "selectedModemChanged"
       }
     };
   }
@@ -38,6 +39,8 @@ export class AstroModems extends PolymerElement {
   disconnectedCallback() {
     super.disconnectedCallback();
   }
+
+  selectedModemChanged() {}
 
   ready() {
     super.ready();
