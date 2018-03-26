@@ -110,25 +110,14 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       .text(this.chartLegendX);
 
     // start animation
-    var ws = new WebSocket("ws://dev-ws.rocketcom.com:5100");
+    var ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
 
     ws.addEventListener('message', function(event) {
-      var dataArray = event.data.split('|');
-      var scrubbedArray = [];
-      dataArray.shift(); // data comes with an extra pipe in the front
+      var payload = JSON.parse(event.data);
+      var graph = payload.graph;
 
-      for (var c = 0; c < dataArray.length; c++) {
-        var datum = dataArray[c];
-        var datumArray = datum.split(':');
-        var d = {};
-        d.frequency = datumArray[0];
-        d.power = datumArray[1];
-        d.value = parseInt(datumArray[0]);
-        scrubbedArray.push(d);
-      }
-
-      var data = scrubbedArray;
-      x.domain(data.map(function(d) { return d.frequency; }));
+      var data = graph;
+      x.domain(data.map(function(d) { return d.f; }));
       y.domain([-27, 0]);
 
       // clear old bars and tips
@@ -140,48 +129,48 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .data(data)
         .enter().append("rect")
         .attr("class", "rux-spectrum-analyzer__bar")
-        .attr("x", function(d) { return x(d.frequency); })
+        .attr("x", function(d) { return x(d.f); })
         .attr("width", x.bandwidth())
-        .attr("y", function(d) { return y(d.power) - 2; })
-        .attr("height", function(d) { return height - y(d.power) - 2; });
+        .attr("y", function(d) { return y(d.p) - 2; })
+        .attr("height", function(d) { return height - y(d.p) - 2; });
 
       svg.selectAll(".bar-tip")
         .data(data)
         .enter().append("rect")
         .attr("class", "rux-spectrum-analyzer__bar-tip")
-        .attr("x", function(d) { return x(d.frequency); })
+        .attr("x", function(d) { return x(d.f); })
         .attr("width", x.bandwidth())
-        .attr("y", function(d) { return y(d.power) - 2; })
+        .attr("y", function(d) { return y(d.p) - 2; })
         .attr("height", 2);
 
-     //  // add the X gridlines
-     //  svg.append("g")
-     //    .attr("class", "grid")
-     //    .attr("transform", "translate(0," + height + ")")
-     //    .call(make_x_gridlines()
-     //      .tickSize(-height)
-     //      .tickFormat("")
-     //    )
+    //    // add the X gridlines
+    //    svg.append("g")
+    //      .attr("class", "grid")
+    //      .attr("transform", "translate(0," + height + ")")
+    //      .call(make_x_gridlines()
+    //        .tickSize(-height)
+    //        .tickFormat("")
+    //      )
 
-     //  // add the Y gridlines
-     //  svg.append("g")
-     //    .attr("class", "grid")
-     //    .call(make_y_gridlines()
-     //      .tickSize(-width)
-     //      .tickFormat("")
-     //    )
+    //    // add the Y gridlines
+    //    svg.append("g")
+    //      .attr("class", "grid")
+    //      .call(make_y_gridlines()
+    //        .tickSize(-width)
+    //        .tickFormat("")
+    //      )
 
-     //  // gridlines in x axis function
-     //  function make_x_gridlines() {
-     //    return d3.axisBottom(x)
-     //      .ticks(5)
-     //  }
+    //    // gridlines in x axis function
+    //    function make_x_gridlines() {
+    //      return d3.axisBottom(x)
+    //        .ticks(5)
+    //    }
 
-     //  // gridlines in y axis function
-     // function make_y_gridlines() {
-     //    return d3.axisLeft(y)
-     //      .ticks(5)
-     //  }
+    //    // gridlines in y axis function
+    //   function make_y_gridlines() {
+    //      return d3.axisLeft(y)
+    //        .ticks(5)
+    //    }
     });
 
   }
