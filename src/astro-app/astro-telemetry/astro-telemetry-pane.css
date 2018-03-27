@@ -30,6 +30,7 @@
   padding: 0 1em 1em 1em;
   margin: 1%;
   width: 48%;
+  border: 2px solid #000;
   /* outline: 1px solid red; */
 }
 
@@ -48,7 +49,7 @@
 
 .astro-telemetry-pane__status__group ul {
   padding: 0;
-  margin: 0 auto;
+  margin: 0 0;
   list-style: none;
   color: #bdc3c9;
 }
@@ -69,10 +70,12 @@ h3 {
 
 
 
+
 /* Start Spectrum Analyzer */
 
 svg {
   background-color: #1b3044;
+  border: 2px solid black;
 }
 
 .rux-spectrum-analyzer__bar {
@@ -113,17 +116,9 @@ g.rux-spectrum-analyzer__axis-label line {
 }
 
 .grid line {
-  stroke: pink;
+  stroke: #455d6e;
   stroke-opacity: 0.7;
   shape-rendering: crispEdges;
-}
-
-.grid path {
-  stroke-width: 0;
-}
-
-.tick line {
-  display: none;
 }
 
 .tick text {

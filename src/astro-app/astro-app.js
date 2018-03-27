@@ -69,7 +69,7 @@ export class AstroApp extends PolymerElement {
       <rux-tabs>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-telemetry">Telemetry</rux-tab>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -124,7 +124,7 @@ export class AstroApp extends PolymerElement {
 
 
 
-      <rux-tab-panel aria-labeledby="tab-telemetry">
+      <rux-tab-panel aria-labeledby="tab-satellites">
         <astro-telemetry
           telemetry-data=[[telemetryDataObj]]>
         </astro-telemetry>
@@ -147,8 +147,7 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
-    this._popMenuItems = [
-      {
+    this._popMenuItems = [{
         label: "Menu Item 1",
         action: "doSomething"
       },
@@ -193,8 +192,7 @@ export class AstroApp extends PolymerElement {
       allocated: false
     };
 
-    this.modems = [
-      {
+    this.modems = [{
         _id: {
           $oid: "570cef10e4b0cbcd095d473b"
         },
@@ -972,8 +970,7 @@ export class AstroApp extends PolymerElement {
 
     this.satellite1 = {
       label: "Satellite 1",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "ok"
         },
@@ -998,8 +995,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "caution"
         },
@@ -1027,8 +1023,7 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite 2",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "off"
         },
@@ -1053,8 +1048,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "ok"
         },
@@ -1083,8 +1077,7 @@ export class AstroApp extends PolymerElement {
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
     // emulate a JSON object for advanced status
-    this.statusIndicators = [
-      {
+    this.statusIndicators = [{
         label: "Power",
         status: "ok",
         icon: "advanced-status-egs:propulsion-power",

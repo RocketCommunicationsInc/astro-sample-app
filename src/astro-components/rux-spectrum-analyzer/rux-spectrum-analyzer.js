@@ -82,6 +82,33 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
+    // gridlines in x axis function
+    function make_x_gridlines() {
+      return d3.axisBottom(x)
+        .ticks(5)
+    }
+
+    // gridlines in y axis function
+    function make_y_gridlines() {
+      return d3.axisLeft(y)
+        .ticks(5)
+    }
+    // add the X gridlines
+    svg.append("g")
+      .attr("class", "grid x-grid-lines")
+      .attr("transform", "translate(0," + height + ")")
+      .call(make_x_gridlines()
+        .tickSize(-height)
+        .tickFormat("")
+      )
+
+    // add the Y gridlines
+    svg.append("g")
+      .attr("class", "grid y-grid-lines")
+      .call(make_y_gridlines()
+        .tickSize(-width)
+        .tickFormat(""));
+
     // add the y Axis
     svg.append("g")
       .attr("class", "rux-spectrum-analyzer__axis-label")
@@ -143,34 +170,34 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("y", function(d) { return y(d.p) - 2; })
         .attr("height", 2);
 
-    //    // add the X gridlines
-    //    svg.append("g")
-    //      .attr("class", "grid")
-    //      .attr("transform", "translate(0," + height + ")")
-    //      .call(make_x_gridlines()
-    //        .tickSize(-height)
-    //        .tickFormat("")
-    //      )
+      //    // add the X gridlines
+      //    svg.append("g")
+      //      .attr("class", "grid")
+      //      .attr("transform", "translate(0," + height + ")")
+      //      .call(make_x_gridlines()
+      //        .tickSize(-height)
+      //        .tickFormat("")
+      //      )
 
-    //    // add the Y gridlines
-    //    svg.append("g")
-    //      .attr("class", "grid")
-    //      .call(make_y_gridlines()
-    //        .tickSize(-width)
-    //        .tickFormat("")
-    //      )
+      //    // add the Y gridlines
+      //    svg.append("g")
+      //      .attr("class", "grid")
+      //      .call(make_y_gridlines()
+      //        .tickSize(-width)
+      //        .tickFormat("")
+      //      )
 
-    //    // gridlines in x axis function
-    //    function make_x_gridlines() {
-    //      return d3.axisBottom(x)
-    //        .ticks(5)
-    //    }
+      //    // gridlines in x axis function
+      //    function make_x_gridlines() {
+      //      return d3.axisBottom(x)
+      //        .ticks(5)
+      //    }
 
-    //    // gridlines in y axis function
-    //   function make_y_gridlines() {
-    //      return d3.axisLeft(y)
-    //        .ticks(5)
-    //    }
+      //    // gridlines in y axis function
+      //   function make_y_gridlines() {
+      //      return d3.axisLeft(y)
+      //        .ticks(5)
+      //    }
     });
 
   }
