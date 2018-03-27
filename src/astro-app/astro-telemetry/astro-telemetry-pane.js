@@ -10,7 +10,7 @@ import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
  * @polymer
  * @extends HTMLElement
  */
-export class AstroTelemetryPane extends MutableData(PolymerElement) {
+export class AstroTelemetryPane extends PolymerElement {
   static get properties() {
     return {
       title: {

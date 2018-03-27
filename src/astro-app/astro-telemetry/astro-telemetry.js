@@ -25,15 +25,14 @@ export class AstroTelemetry extends MutableData(PolymerElement) {
     return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <div class="astro-telemetry-panes">
-    <dom-repeat items="[[telemetryData]]">
-      <template>
-        <astro-telemetry-pane
-          title=[[item.label]]
-          chart=[[item.chart]]
-          power=[[item.power]]
-          thermal=[[item.temperature]]></astro-telemetry-pane>
-      </template>
-    </dom-repeat>
+    <template is="dom-repeat" items="[[telemetryData]]" mutable-data>
+      <astro-telemetry-pane
+        title=[[item.label]]
+        chart=[[item.chart]]
+        power=[[item.power]]
+        thermal=[[item.temperature]]></astro-telemetry-pane>
+    </template>
+    
     </div>
     `;
   }

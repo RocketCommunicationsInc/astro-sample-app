@@ -304,11 +304,6 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
-    // ws.addEventListener("message", event => {
-    //   // console.log(event);
-    // });
-
     const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
     ws.addEventListener("message", event => {
       const data = JSON.parse(event.data);
