@@ -3,12 +3,14 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroTelemetryPane } from "/src/astro-app/astro-telemetry/astro-telemetry-pane.js";
 /**
  * @polymer
  * @extends HTMLElement
  */
-export class AstroTelemetry extends PolymerElement {
+
+export class AstroTelemetry extends MutableData(PolymerElement) {
   static get properties() {
     return {
       title: {
@@ -20,7 +22,7 @@ export class AstroTelemetry extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <div class="astro-telemetry-panes">
     <dom-repeat items="[[telemetryData]]">
@@ -29,7 +31,7 @@ export class AstroTelemetry extends PolymerElement {
           title=[[item.label]]
           chart=[[item.chart]]
           power=[[item.power]]
-          thermal=[[item.thermal]]></astro-telemetry-pane>
+          thermal=[[item.temperature]]></astro-telemetry-pane>
       </template>
     </dom-repeat>
     </div>
@@ -37,12 +39,24 @@ export class AstroTelemetry extends PolymerElement {
   }
   constructor() {
     super();
+
+    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    // ws.addEventListener("message", event => {
+    //   const data = JSON.parse(event.data);
+
+    //   console.log(this.telemetryData[0].power);
+
+    //   this.telemetryData[0].power = data.power;
+    //   this.notifyPath("telemetryData.0.power");
+    // });
   }
   connectedCallback() {
     super.connectedCallback();
+
+    console.log("title", this.title);
   }
-  ready() {
-    super.ready();
+  disconnectedCallback() {
+    super.disconnectedCallback();
   }
 }
 customElements.define("astro-telemetry", AstroTelemetry);
