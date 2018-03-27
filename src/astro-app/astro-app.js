@@ -968,8 +968,7 @@ export class AstroApp extends PolymerElement {
       }
     ];
 
-=======
->>>>>>> 9c6cbd6ba2fe438d1c4fbc648cf90b18208b0531
+
     this.satellite1 = {
       label: "Satellite 1",
       power: [{
@@ -1024,14 +1023,9 @@ export class AstroApp extends PolymerElement {
       ]
     };
     this.satellite2 = {
-<<<<<<< HEAD
-      label: "Satellite 2",
-      power: [{
-=======
       label: "Satellite A",
       power: [
         {
->>>>>>> 9c6cbd6ba2fe438d1c4fbc648cf90b18208b0531
           label: "Power 1",
           status: "off"
         },
