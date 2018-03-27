@@ -158,7 +158,6 @@ export class AstroApp extends PolymerElement {
     ];
     // this._popMenuTarget = null;
 
-<<<<<<< HEAD
     this.chart1 = {};
     this.chart2 = {};
 
