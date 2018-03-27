@@ -3,14 +3,13 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
-import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroTelemetryPane } from "/src/astro-app/astro-telemetry/astro-telemetry-pane.js";
 /**
  * @polymer
  * @extends HTMLElement
  */
 
-export class AstroTelemetry extends MutableData(PolymerElement) {
+export class AstroTelemetry extends PolymerElement {
   static get properties() {
     return {
       title: {
@@ -26,7 +25,7 @@ export class AstroTelemetry extends MutableData(PolymerElement) {
     return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <div class="astro-telemetry-panes">
-    <template is="dom-repeat" items="[[telemetryData]]" mutable-data>
+    <template is="dom-repeat" items="[[telemetryData]]">
       <astro-telemetry-pane
         title=[[item.label]]
         chart=[[item.chart]]

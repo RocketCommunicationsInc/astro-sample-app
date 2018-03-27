@@ -304,28 +304,38 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
+    //
     // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
     // ws.addEventListener("message", event => {
     //   const data = JSON.parse(event.data);
 
-    //   console.log(data.temperature);
-
+    // loop through each item in telemetryDataObj
+    // this doesn’t make sense with a socket connection
+    // that only has on sateelite’s worth of data
     //   this.telemetryDataObj.forEach(sat => {
+    // set power and temp data
     //     sat.power = data.power;
     //     sat.temperature = data.temperature;
 
+    // notify the object it’s been updated
     //     this.set("telemetryDataObj.*", data);
     //   });
     // });
 
     const ws1 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
     ws1.addEventListener("message", event => {
+      // convert data to JSON
       const data = JSON.parse(event.data);
+
+      // assign power and temp data to the correct array index
       this.telemetryDataObj[0].power = data.power;
       this.telemetryDataObj[0].temperature = data.temperature;
+
+      // notify the object it’s been updated and with what
       this.set("telemetryDataObj.0", data);
     });
 
+    // Same as above, but with
     const ws2 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
     ws2.addEventListener("message", event => {
       const data = JSON.parse(event.data);
