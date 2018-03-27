@@ -2,6 +2,7 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
 // import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
@@ -27,7 +28,7 @@ export class AstroTelemetryPane extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry-pane.css">
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>

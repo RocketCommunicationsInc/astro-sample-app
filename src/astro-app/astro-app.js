@@ -67,9 +67,9 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -995,7 +995,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "caution"
         },
@@ -1022,8 +1023,9 @@ export class AstroApp extends PolymerElement {
       ]
     };
     this.satellite2 = {
-      label: "Satellite 2",
-      power: [{
+      label: "Satellite A",
+      power: [
+        {
           label: "Power 1",
           status: "off"
         },
@@ -1091,24 +1093,62 @@ export class AstroApp extends PolymerElement {
       }
     ];
   }
+
   static get properties() {
     return {
       prop1: {
         type: String,
         value: "astro-app"
       },
-      sat2: {
+      telemetryDataObj: {
         type: Object,
-        computed: "_getSatelliteData(0)"
-      },
-      sat1: {
-        type: Object,
-        computed: "_getSatelliteData(1)"
+        notify: true
       }
     };
   }
+
   connectedCallback() {
     super.connectedCallback();
+
+    //
+    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    // ws.addEventListener("message", event => {
+    //   const data = JSON.parse(event.data);
+
+    // loop through each item in telemetryDataObj
+    // this doesn’t make sense with a socket connection
+    // that only has on sateelite’s worth of data
+    //   this.telemetryDataObj.forEach(sat => {
+    // set power and temp data
+    //     sat.power = data.power;
+    //     sat.temperature = data.temperature;
+
+    // notify the object it’s been updated
+    //     this.set("telemetryDataObj.*", data);
+    //   });
+    // });
+
+    const ws1 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws1.addEventListener("message", event => {
+      // convert data to JSON
+      const data = JSON.parse(event.data);
+
+      // assign power and temp data to the correct array index
+      this.telemetryDataObj[0].power = data.power;
+      this.telemetryDataObj[0].temperature = data.temperature;
+
+      // notify the object it’s been updated and with what
+      this.set("telemetryDataObj.0", data);
+    });
+
+    // Same as above, but with
+    const ws2 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws2.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
+      this.telemetryDataObj[1].power = data.power;
+      this.telemetryDataObj[1].temperature = data.temperature;
+      this.set("telemetryDataObj.1", data);
+    });
   }
   disconnectedCallback() {
     suer.disconnectedCallback();
@@ -1121,15 +1161,13 @@ export class AstroApp extends PolymerElement {
   }
 
   showNotification() {
-    const _notification = this.shadowRoot.querySelectorAll(
-      "rux-notification"
-    )[0];
-    console.log(_notification);
-    if (_notification.hasAttribute("opened")) {
-      _notification.removeAttribute("opened");
-    } else {
-      _notification.setAttribute("opened", "");
-    }
+    console.log(this.telemetryDataObj);
+    this.telemetryDataObj[0].label = "Sat B";
+    this.notifyPath("telemetryDataObj");
+    this.notifyPath("telemetryData");
+    this.notifyPath("telemetry-data-obj");
+    this.notifyPath("telemetry-data");
+    console.log(this.telemetryDataObj);
   }
 }
 customElements.define("astro-app", AstroApp);
