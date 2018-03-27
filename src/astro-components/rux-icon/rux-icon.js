@@ -47,6 +47,11 @@ export class RuxIcon extends PolymerElement {
   //
   _updateIcon(icon) {
     // get the icon library and icon name
+
+    if (this.shadowRoot.querySelectorAll("svg")[0]) {
+      this.shadowRoot.removeChild(this.shadowRoot.querySelectorAll("svg")[0]);
+    }
+
     const parts = icon.split(":");
     this._iconName = parts.pop();
     this._iconLibrary = parts.pop();
