@@ -67,9 +67,9 @@ export class AstroApp extends PolymerElement {
       version="2.0a">
       
       <rux-tabs>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -158,6 +158,7 @@ export class AstroApp extends PolymerElement {
     ];
     // this._popMenuTarget = null;
 
+<<<<<<< HEAD
     this.chart1 = {};
     this.chart2 = {};
 
@@ -968,6 +969,8 @@ export class AstroApp extends PolymerElement {
       }
     ];
 
+=======
+>>>>>>> 9c6cbd6ba2fe438d1c4fbc648cf90b18208b0531
     this.satellite1 = {
       label: "Satellite 1",
       power: [{
@@ -1022,8 +1025,14 @@ export class AstroApp extends PolymerElement {
       ]
     };
     this.satellite2 = {
+<<<<<<< HEAD
       label: "Satellite 2",
       power: [{
+=======
+      label: "Satellite A",
+      power: [
+        {
+>>>>>>> 9c6cbd6ba2fe438d1c4fbc648cf90b18208b0531
           label: "Power 1",
           status: "off"
         },
@@ -1091,24 +1100,37 @@ export class AstroApp extends PolymerElement {
       }
     ];
   }
+
   static get properties() {
     return {
       prop1: {
         type: String,
         value: "astro-app"
       },
-      sat2: {
+      telemetryDataObj: {
         type: Object,
-        computed: "_getSatelliteData(0)"
-      },
-      sat1: {
-        type: Object,
-        computed: "_getSatelliteData(1)"
+        notify: true
       }
     };
   }
+
   connectedCallback() {
     super.connectedCallback();
+
+    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    // ws.addEventListener("message", event => {
+    //   // console.log(event);
+    // });
+
+    const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
+
+      console.log(data.temperature);
+
+      this.telemetryDataObj[0] = data;
+      this.notifyPath("telemetryDataObj.0");
+    });
   }
   disconnectedCallback() {
     suer.disconnectedCallback();
@@ -1121,15 +1143,13 @@ export class AstroApp extends PolymerElement {
   }
 
   showNotification() {
-    const _notification = this.shadowRoot.querySelectorAll(
-      "rux-notification"
-    )[0];
-    console.log(_notification);
-    if (_notification.hasAttribute("opened")) {
-      _notification.removeAttribute("opened");
-    } else {
-      _notification.setAttribute("opened", "");
-    }
+    console.log(this.telemetryDataObj);
+    this.telemetryDataObj[0].label = "Sat B";
+    this.notifyPath("telemetryDataObj");
+    this.notifyPath("telemetryData");
+    this.notifyPath("telemetry-data-obj");
+    this.notifyPath("telemetry-data");
+    console.log(this.telemetryDataObj);
   }
 }
 customElements.define("astro-app", AstroApp);
