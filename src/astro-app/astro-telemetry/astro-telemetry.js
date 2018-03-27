@@ -17,7 +17,8 @@ export class AstroTelemetry extends MutableData(PolymerElement) {
         type: String
       },
       telemetryData: {
-        type: Array
+        type: Array,
+        observer: "_changed"
       }
     };
   }
@@ -48,6 +49,10 @@ export class AstroTelemetry extends MutableData(PolymerElement) {
     //   this.telemetryData[0].power = data.power;
     //   this.notifyPath("telemetryData.0.power");
     // });
+  }
+
+  _changed() {
+    console.log("changed");
   }
   connectedCallback() {
     super.connectedCallback();

@@ -187,7 +187,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
+      temperature: [
         {
           label: "Thermal 1",
           status: "caution"
@@ -242,7 +242,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
+      temperature: [
         {
           label: "Thermal 1",
           status: "ok"
@@ -304,14 +304,34 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
-    ws.addEventListener("message", event => {
+    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    // ws.addEventListener("message", event => {
+    //   const data = JSON.parse(event.data);
+
+    //   console.log(data.temperature);
+
+    //   this.telemetryDataObj.forEach(sat => {
+    //     sat.power = data.power;
+    //     sat.temperature = data.temperature;
+
+    //     this.set("telemetryDataObj.*", data);
+    //   });
+    // });
+
+    const ws1 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws1.addEventListener("message", event => {
       const data = JSON.parse(event.data);
+      this.telemetryDataObj[0].power = data.power;
+      this.telemetryDataObj[0].temperature = data.temperature;
+      this.set("telemetryDataObj.0", data);
+    });
 
-      console.log(data.temperature);
-
-      this.telemetryDataObj[0] = data;
-      this.notifyPath("telemetryDataObj.0");
+    const ws2 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws2.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
+      this.telemetryDataObj[1].power = data.power;
+      this.telemetryDataObj[1].temperature = data.temperature;
+      this.set("telemetryDataObj.1", data);
     });
   }
   disconnectedCallback() {
