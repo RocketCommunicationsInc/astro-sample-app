@@ -32,7 +32,7 @@ export class AstroTelemetryPane extends PolymerElement {
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry-pane.css">
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="374" width="834" x-scale-min="900" x-scale-max="2301" x-scale-step="50" y-scale-min="-30" y-scale-max="0"></rux-spectrum-analyzer>
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="850" x-scale-min="900" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">

@@ -29,7 +29,7 @@
   align-items: stretch;
   padding: 0 1em 1em 1em;
   margin: 1%;
-  width: 48%;
+  width: 414px;
   border: 2px solid #000;
   /* outline: 1px solid red; */
 }
@@ -72,11 +72,13 @@ h3 {
 
 
 
+
 /* Start Spectrum Analyzer */
 
 svg {
   background-color: #1b3044;
   border: 2px solid black;
+  margin: 0px 0px 0px 10px;
 }
 
 .rux-spectrum-analyzer__bar {

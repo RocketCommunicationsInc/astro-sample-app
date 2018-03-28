@@ -53,17 +53,22 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     //this._drawInitialGraph();
-    var margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    var margin = { top: 40, right: 20, bottom: 30, left: 40 };
     var width = this.width - margin.left - margin.right;
     var height = this.height - margin.top - margin.bottom;
+
+    var xDomain = [];
+    for ( var c = this.xScaleMin; c < this.xScaleMax; c += this.xScaleStep) {
+      xDomain.push(c);
+    }
 
     // set the ranges
     var x = d3.scaleBand()
       .range([0, width])
-      .domain([900, 1075, 1250, 1425, 1600, 1775, 1950, 2125, 2300])
+      .domain(xDomain)
       .padding(0);
     var y = d3.scaleLinear()
-      .domain([-30, 0])
+      .domain([this.yScaleMin, 0])
       .range([height, 0]);
 
     // append the svg object to the rux-spectrum-analyzer custom tag
@@ -118,21 +123,21 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     // Add main chart label
     svg.append("text")
       .attr("x", 5)
-      .attr("y", 5)
+      .attr("y", -5)
       .attr("class", "rux-spectrum-analyzer__main-chart-label")
       .text(this.chartTitle);
 
-    // Add x axis label
+    // Add y axis label
     svg.append("text")
       .attr("x", -35)
-      .attr("y", 300)
+      .attr("y", 292)
       .attr("class", "rux-spectrum-analyzer__chart-legend")
       .text(this.chartLegendY);
 
-    // Add y axis label
+    // Add c axis label
     svg.append("text")
       .attr("x", 71)
-      .attr("y", 342)
+      .attr("y", 332)
       .attr("class", "rux-spectrum-analyzer__chart-legend")
       .text(this.chartLegendX);
 
@@ -208,6 +213,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
   ready() {
     super.ready();
   }
+
 
 }
 customElements.define("rux-spectrum-analyzer", RuxSpectrumAnalyzer);
