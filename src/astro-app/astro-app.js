@@ -33,6 +33,7 @@ import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 export class AstroApp extends PolymerElement {
   static get template() {
     return `
+    <script src="../astro-config/config.js"></script>
     <style>
       :host {
         
@@ -995,8 +996,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "caution"
         },
@@ -1024,8 +1024,7 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite A",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "off"
         },
@@ -1110,24 +1109,6 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    //
-    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
-    // ws.addEventListener("message", event => {
-    //   const data = JSON.parse(event.data);
-
-    // loop through each item in telemetryDataObj
-    // this doesn’t make sense with a socket connection
-    // that only has on sateelite’s worth of data
-    //   this.telemetryDataObj.forEach(sat => {
-    // set power and temp data
-    //     sat.power = data.power;
-    //     sat.temperature = data.temperature;
-
-    // notify the object it’s been updated
-    //     this.set("telemetryDataObj.*", data);
-    //   });
-    // });
-
     const ws1 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
     ws1.addEventListener("message", event => {
       // convert data to JSON
@@ -1142,7 +1123,7 @@ export class AstroApp extends PolymerElement {
     });
 
     // Same as above, but with
-    const ws2 = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    const ws2 = new WebSocket("ws://dev-wss.rocketcom.com:6002");
     ws2.addEventListener("message", event => {
       const data = JSON.parse(event.data);
       this.telemetryDataObj[1].power = data.power;

@@ -28,7 +28,7 @@ export class AstroTelemetryPane extends PolymerElement {
     };
   }
   static get template() {
-    return html`
+    return html `
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry-pane.css">
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>

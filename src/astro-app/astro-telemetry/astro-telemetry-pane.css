@@ -56,6 +56,7 @@
 
 .astro-telemetry-pane__status__group li {
   margin-bottom: 1em;
+  text-transform: capitalize;
 }
 
 .astro-telemetry-pane__status__group rux-status {
