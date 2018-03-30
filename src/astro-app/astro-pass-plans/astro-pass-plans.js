@@ -11,6 +11,17 @@ export class AstroPassPlans extends PolymerElement {
     return {
       title: {
         type: String
+      },
+      timelineTracks: {
+        type: Array
+      },
+      timelineSelectedRegion: {
+        type: Object,
+        value: {
+          title: "off",
+          status: "off"
+        },
+        observer: "_changed"
       }
     };
   }
@@ -20,26 +31,31 @@ export class AstroPassPlans extends PolymerElement {
 
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
     
+    <style>
+
+    *[hidden] {
+      display: none !important;
+    }
+
+    </style>
 
 
     <div class="rux-timeline-component">
       <rux-timeline
-        label="Timeline"
-        type="realtime"
-        data=[[timeline]]
-        playback-controls="footer"
-        zoom-control=true
-        catch-playhead-control=false>
-      </rux-timeline>
+        label="Satellite Pass Plans"
+        initial-scale=100
+				tracks=[[tracks]]
+				zoom-control=true
+				selected-region={{timelineSelectedRegion}}>
+			</rux-timeline>
 
 
-      <div class="rux-timeline__controls">
+      <div class="rux-timeline__controls" hidden$=[[!timelineSelectedRegion]]>
         
         <rux-status
           icon="advanced-status:satellite-transmit"
-          label="Sat 1"
-          status="ok"
-          on-click="_showPopUp"></rux-status>
+          label=[[timelineSelectedRegion.title]]
+          status=[[timelineSelectedRegion.status]]></rux-status>
 
         <div class="rux-button-group">
           <rux-button
@@ -47,8 +63,8 @@ export class AstroPassPlans extends PolymerElement {
           <rux-button
             icon="media-controls:pause">Pause</rux-button>
         </div>
-
-        <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[0]]</b> of <b>[[7]]</b></span> Tasks Complete</div>
+        
+        <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[timelineSelectedRegion.detail.tasks.length]]</b> of <b>7</b></span> Tasks Complete</div>
       </div>
 
       <div class="tasks-container">
@@ -70,6 +86,10 @@ export class AstroPassPlans extends PolymerElement {
     `;
   }
 
+  _changed() {
+    console.log("changed");
+    console.log(this.timelineSelectedRegion);
+  }
   _showPopUp(e) {
     this._popMenuTarget = e.currentTarget;
   }
@@ -84,200 +104,88 @@ export class AstroPassPlans extends PolymerElement {
   constructor() {
     super();
 
-    this._popMenuItems = [
-      {
-        label: "Menu Item 1",
-        action: "doSomething"
-      },
-      {
-        label: "Menu Item 2",
-        action: "doSomethingElse"
-      }
-    ];
-
     const today = new Date();
 
-    this.timeline = {
-      duration: 86400000,
-      tracks: [
-        {
-          label: "Huey",
-          regions: [
-            {
-              label: "Satellite 1",
-              status: "ok",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                9,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                11,
-                0,
-                0
-              )
+    // Set up the timeline track data, it‘s just an array of objects
+    // for the demo
+    this.tracks = [
+      {
+        label: "LEO",
+        regions: [
+          {
+            label: "Satellite 1",
+            status: "caution",
+            detail: {
+              tasks: [0, 1, 2]
             },
-            {
-              label: "Satellite 2",
-              status: "ok",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                13,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                13,
-                30,
-                0
-              )
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              7,
+              30,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              8,
+              30,
+              0
+            )
+          },
+          {
+            label: "Satellite 2",
+            status: "ok",
+            detail: {
+              tasks: [0, 1, 2, 3, 4, 5, 6]
             },
-            {
-              label: "Satellite 3",
-              status: "error",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                15,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                17,
-                0,
-                0
-              )
-            }
-          ]
-        },
-        {
-          label: "Dewey",
-          regions: [
-            {
-              label: "Satellite 4",
-              status: "ok",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                7,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                10,
-                0,
-                0
-              )
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              10,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              13,
+              0,
+              0
+            )
+          },
+          {
+            label: "Satellite 3",
+            status: "error",
+            detail: {
+              tasks: [0]
             },
-            {
-              label: "Satellite 5",
-              status: "error",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                13,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                14,
-                30,
-                0
-              )
-            },
-            {
-              label: "Satellite 6",
-              status: "off",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                19,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                10,
-                0,
-                0
-              )
-            }
-          ]
-        },
-        {
-          label: "Louie",
-          regions: [
-            {
-              label: "Satellite 7",
-              status: "ok",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                4,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                4,
-                15,
-                0
-              )
-            },
-            {
-              label: "Satellite 8",
-              status: "caution",
-              startTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                16,
-                0,
-                0
-              ),
-              endTime: new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate(),
-                17,
-                0,
-                0
-              )
-            }
-          ]
-        }
-      ]
-    };
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              15,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              20,
+              30,
+              0
+            )
+          }
+        ]
+      }
+    ];
   }
+
   connectedCallback() {
     super.connectedCallback();
   }
