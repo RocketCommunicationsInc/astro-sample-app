@@ -4,6 +4,10 @@
   /* This improves CSS performance see: https://developers.google.com/web/updates/2016/06/css-containment */
 }
 
+*[hidden] {
+  display: none !important;
+}
+
 .rux-button {
   display: inline-block;
   position: relative;
@@ -49,7 +53,6 @@
 .rux-button--icon .rux-icon--button {
   height: 43px;
   width: 43px;
-  margin: 0 0 0.5rem 0;
 }
 
 .rux-button--icon:hover {

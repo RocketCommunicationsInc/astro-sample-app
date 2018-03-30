@@ -1,6 +1,5 @@
 :host {
   display: inline-block;
-
   max-width: 64px;
 }
 
@@ -16,11 +15,9 @@
 
 .rux-advanced-status {
   position: relative;
-
   margin: 0 0.75rem;
   line-height: 0;
   max-width: 40px;
-
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -31,7 +28,6 @@
   position: relative;
   display: flex;
   justify-content: center;
-
   /* border: 1px solid red;
 
   background-image: linear-gradient(
@@ -57,7 +53,6 @@
   font-stretch: condensed;
   line-height: 1.2;
   margin-top: 1rem;
-
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
@@ -78,21 +73,15 @@
   display: block;
   position: absolute;
   z-index: 2;
-
   bottom: -1em;
   right: -1em;
-
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 3px;
-
   padding: 0.65rem 0.25rem;
-
   font-size: 0.775rem;
   text-align: center;
   color: #fff;
-
   background-color: #000;
-
   overflow: hidden;
   text-overflow: ellipsis;
   /* max-width: 72%; */

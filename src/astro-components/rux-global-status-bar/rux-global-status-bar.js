@@ -15,7 +15,7 @@ export class RuxGlobalStatusBar extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
     <link rel="stylesheet" href="/src/astro-components/rux-global-status-bar/rux-global-status-bar.css">
 
       <header>

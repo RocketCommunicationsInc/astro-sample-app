@@ -15,7 +15,7 @@ export class RuxButton extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
       <link rel="stylesheet" href="/src/astro-components/rux-button/rux-button.css">
 
       <button class$="rux-button rux-button--[[type]] [[default]]" disabled$="[[disabled]]">

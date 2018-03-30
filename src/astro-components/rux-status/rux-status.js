@@ -100,7 +100,7 @@ export class RuxStatus extends PolymerElement {
     let _message = _n;
 
     if (_trillion >= 1) {
-      _message = "âˆž";
+      _message = "∞";
     } else if (_billion >= 1) {
       _message = _billion.toFixed(1).toString() + "b";
     } else if (_million >= 1) {
