@@ -58,7 +58,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     var height = this.height - margin.top - margin.bottom;
 
     var xDomain = [];
-    for ( var c = this.xScaleMin; c < this.xScaleMax; c += this.xScaleStep) {
+    for (var c = this.xScaleMin; c < this.xScaleMax; c += this.xScaleStep) {
       xDomain.push(c);
     }
 
@@ -163,7 +163,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("class", "rux-spectrum-analyzer__bar")
         .attr("x", function(d) { return x(d.f); })
         .attr("width", x.bandwidth())
-        .attr("y", function(d) { return y(d.p) - 2; })
+        .attr("y", function(d) { return y(d.p); })
         .attr("height", function(d) { return height - y(d.p) - 2; });
 
       svg.selectAll(".bar-tip")
@@ -175,34 +175,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
         .attr("y", function(d) { return y(d.p) - 2; })
         .attr("height", 2);
 
-      //    // add the X gridlines
-      //    svg.append("g")
-      //      .attr("class", "grid")
-      //      .attr("transform", "translate(0," + height + ")")
-      //      .call(make_x_gridlines()
-      //        .tickSize(-height)
-      //        .tickFormat("")
-      //      )
-
-      //    // add the Y gridlines
-      //    svg.append("g")
-      //      .attr("class", "grid")
-      //      .call(make_y_gridlines()
-      //        .tickSize(-width)
-      //        .tickFormat("")
-      //      )
-
-      //    // gridlines in x axis function
-      //    function make_x_gridlines() {
-      //      return d3.axisBottom(x)
-      //        .ticks(5)
-      //    }
-
-      //    // gridlines in y axis function
-      //   function make_y_gridlines() {
-      //      return d3.axisLeft(y)
-      //        .ticks(5)
-      //    }
     });
 
   }
@@ -213,7 +185,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
   ready() {
     super.ready();
   }
-
 
 }
 customElements.define("rux-spectrum-analyzer", RuxSpectrumAnalyzer);

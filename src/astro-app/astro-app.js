@@ -33,7 +33,6 @@ import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 export class AstroApp extends PolymerElement {
   static get template() {
     return `
-    <script src="/public/js/astro-config.js"></script>
     <style>
       :host {
         
