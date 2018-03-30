@@ -20,11 +20,11 @@ ol {
 ol li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   line-height: 1;
   height: 2.45rem;
   padding: 0 1rem;
   margin: 0 0 0.325rem 0;
-
   font-size: 1.125rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
