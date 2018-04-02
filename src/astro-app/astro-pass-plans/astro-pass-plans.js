@@ -3,6 +3,8 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
+import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
 import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
 /**
  * @polymer
@@ -19,10 +21,7 @@ export class AstroPassPlans extends PolymerElement {
       },
       selectedSatellite: {
         type: Object,
-        value: {
-          title: "off",
-          status: "off"
-        },
+        value: false,
         observer: "_selectedSatelliteChanged"
       },
       completedTasks: {
@@ -43,19 +42,19 @@ export class AstroPassPlans extends PolymerElement {
     }
 
     .complete {
-      border: 1px solid green;
+      /* border: 1px solid green; */
     }
 
     .incomplete {
-      border: 1px solid orange;
+      opacity: 0.5;
     }
 
     .pass {
-      background-color: green;
+     /*  background-color: green; */
     }
 
     .fail {
-      background-color: red;
+      /* background-color: red; */
     }
 
     rux-icon {
@@ -79,30 +78,43 @@ export class AstroPassPlans extends PolymerElement {
 			</rux-timeline>
 
 
-      <div class="rux-timeline__controls" hidden$=[[!selectedSatellite]]>
-        
-        <rux-status
-          icon="advanced-status:satellite-transmit"
-          label=[[selectedSatellite.title]]
-          status=[[selectedSatellite.status]]></rux-status>
+      <template is="dom-if" if=[[selectedSatellite]]>
+        <div class="rux-timeline__controls">
+          
+          <rux-status
+            icon="advanced-status:satellite-transmit"
+            label=[[selectedSatellite.title]]
+            status=[[selectedSatellite.status]]></rux-status>
 
-        <div class="rux-button-group">
-          <rux-button
-            icon="media-controls:play">Play</rux-button>
-          <rux-button
-            icon="media-controls:pause">Pause</rux-button>
+          <div class="rux-button-group">
+            <rux-button
+              icon="media-controls:play">Play</rux-button>
+            <rux-button
+              icon="media-controls:pause">Pause</rux-button>
+          </div>
+          
+          <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
         </div>
-        
-        <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
-      </div>
 
-      <div class="tasks-container">
-        <ol class="tasks">
-          <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
-            <li><span class="task">[[item.title]]</span><span class="task-complete"><rux-icon icon="advanced-status:mission"></rux-icon></span></li>
-          </template>
-        </ol>
-      </div>
+        
+        <div class="tasks-container">
+          <ol class="tasks">
+            <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
+              <astro-pass-plan-task
+                title=item.title
+                status=item.status
+                pass=item.pass
+                complete=item.complete
+                ></astro-pass-plan-task>
+            </template>
+          </ol>
+        </div>
+      </template>
+
+      <template is="dom-if" if=[[!selectedSatellite]]>
+        <h1>No Satellites selected</h1>
+
+      </template>
     </div>  
     `;
   }
@@ -116,9 +128,9 @@ export class AstroPassPlans extends PolymerElement {
     return val ? "pass" : "fail";
   }
   _selectedSatelliteChanged(e) {
-    console.log(e);
+    console.log("satellite changed", e);
 
-    // need better data detection
+    /*  // need better data detection
     if (!this.selectedSatellite.detail) return;
 
     const _taskCheckList = e.detail.tasks;
@@ -136,18 +148,24 @@ export class AstroPassPlans extends PolymerElement {
       this.completedTasks = _completedTasks.length;
 
       _taskCheckList.forEach((task, index) => {
+        this.tasks[index].status = "off";
         _listItems[index].classList = "";
         _listItems[index].classList.add(
           this._getComplete(task.complete),
           this._getPass(task.pass)
         );
       });
-    }
+      this.notifyPath("tasks", this.tasks);
+    } */
   }
 
   constructor() {
     super();
 
+    // Hard coded tasks. In a real world use case it these tasks might be attached
+    // to individual elements (using their detail object property to pass both the
+    // title of the task and its status, or possibly in an init of the app sending
+    // a single task list. In this instance it’s the same tasks for all regions)
     this.tasks = [
       { title: "Acquire and confirm signal" },
       { title: "Confirm telemetry data reception" },
@@ -161,7 +179,8 @@ export class AstroPassPlans extends PolymerElement {
     const today = new Date();
 
     // Set up the timeline track data, it‘s just an array of objects
-    // for the demo
+    // for the demo. In a real world example it would be attached to
+    // a web service.
     this.tracks = [
       {
         label: "LEO",
