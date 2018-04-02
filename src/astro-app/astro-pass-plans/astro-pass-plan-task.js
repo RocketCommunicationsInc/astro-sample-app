@@ -82,7 +82,18 @@ export class AstroPassPlanTask extends PolymerElement {
   }
 
   _updateStatus() {
-    this._status = this.pass ? "ok" : "caution";
+    if (!this.complete) {
+      this._status = "null";
+    } else {
+      this._status = this.pass ? "ok" : "caution";
+    }
+
+    // if the task has passed then show
+    //
+
+    // this._status = this.complete ? this._status : "null";
+
+    // this._status = this.compelete ? (this.pass ? "ok" : "caution") : "null";
   }
 }
 

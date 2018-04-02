@@ -22,7 +22,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       },
       selectedSatellite: {
         type: Object,
-        observer: "_selectedSatelliteChanged"
+        observer: "_selectedSatelliteChanged",
+        value: false
       },
       completedTasks: {
         type: Number
@@ -69,6 +70,19 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       margin-right: auto;
     }
 
+    .no-selection {
+      display: flex;
+      height: 200%;
+      justify-content: center;
+      align-items: center;
+      /* outline: 1px solid red; */
+    }
+
+    .no-selection h1 {
+      font
+      font-weight: 300;
+    }
+
     </style>
 
 
@@ -104,7 +118,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
         <div class="tasks-container">
           <ol class="tasks">
             <template is="dom-repeat" id="pass-plan-tasks" items={{tasks}} mutable-data>
-              <li>
+              <li class$=[[_isComplete(item.complete)]]>
                 <astro-pass-plan-task
                   title=[[item.title]]
                   status=[[item.status]]
@@ -117,7 +131,9 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       </template>
 
       <template is="dom-if" if=[[!selectedSatellite]]>
-        <h1>No Satellites selected</h1>
+        <div class="no-selection">
+          <h1>No Pass Selected</h1>
+        </div>
 
       </template>
     </div>  
@@ -125,6 +141,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
   }
 
   _selectedSatelliteChanged(e) {
+    if (!this.selectedSatellite) return;
     // get the task list from the selected satellite
     const _taskCheckList = e.detail.tasks;
 
@@ -278,6 +295,10 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _isComplete(task) {
+    return task ? "complete" : "incomplete";
   }
 }
 customElements.define("astro-pass-plans", AstroPassPlans);
