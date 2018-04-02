@@ -99,7 +99,7 @@ export class AstroPassPlans extends PolymerElement {
       <div class="tasks-container">
         <ol class="tasks">
           <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
-            <li><span class="task">[[item.title]]</span><span class="task-complete"><rux-icon icon="advanced-status:mission"></rux-icon></span></li>
+            <li><span class="task">[[item.title]]</span><span class="task-complete"></span></li>
           </template>
         </ol>
       </div>
