@@ -14,12 +14,14 @@ export class AstroPassPlanTask extends PolymerElement {
       complete: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflectToAttribute: true,
+        observer: "_updateStatus"
       },
       pass: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflectToAttribute: true,
+        observer: "_updateStatus"
       },
       _status: {
         type: String,
@@ -73,16 +75,14 @@ export class AstroPassPlanTask extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-
-    this._status = this.pass ? "ok" : "caution";
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
   }
 
-  ready() {
-    super.ready();
+  _updateStatus() {
+    this._status = this.pass ? "ok" : "caution";
   }
 }
 
