@@ -14,18 +14,11 @@ export class AstroPassPlanTask extends PolymerElement {
       complete: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true,
-        observer: "_updateStatus"
+        reflectToAttribute: true
       },
-      pass: {
-        type: Boolean,
-        value: false,
-        reflectToAttribute: true,
-        observer: "_updateStatus"
-      },
-      _status: {
+      status: {
         type: String,
-        value: "ok"
+        value: "null"
       }
     };
   }
@@ -44,6 +37,7 @@ export class AstroPassPlanTask extends PolymerElement {
           height: 100%;
           width: 100%;
           align-items: center;
+          font-weight: 500;
         }
 
         :host[complete] {
@@ -60,7 +54,7 @@ export class AstroPassPlanTask extends PolymerElement {
       </style>
 
     
-      <rux-status status="[[_status]]"></rux-status>
+      <rux-status status="[[status]]"></rux-status>
       <span class="task">[[title]]</span>
       <span class="task-complete">
         <rux-icon hidden=[[!complete]] icon="default:checkmark" size="16" color="#fff"></rux-icon>
@@ -79,21 +73,6 @@ export class AstroPassPlanTask extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-  }
-
-  _updateStatus() {
-    if (!this.complete) {
-      this._status = "null";
-    } else {
-      this._status = this.pass ? "ok" : "caution";
-    }
-
-    // if the task has passed then show
-    //
-
-    // this._status = this.complete ? this._status : "null";
-
-    // this._status = this.compelete ? (this.pass ? "ok" : "caution") : "null";
   }
 }
 

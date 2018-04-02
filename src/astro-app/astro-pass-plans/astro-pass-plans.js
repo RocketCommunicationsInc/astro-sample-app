@@ -156,7 +156,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       // selected satellite
       _taskCheckList.forEach((task, index) => {
         this.tasks[index].complete = task.complete;
-        this.tasks[index].pass = task.pass;
+        this.tasks[index].status = task.status;
       });
 
       this.tasks = this.tasks.slice();
@@ -196,13 +196,13 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             status: "caution",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false }
+                { complete: true, status: "ok" },
+                { complete: true, status: "caution" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" }
               ]
             },
             startTime: new Date(
@@ -227,13 +227,13 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             status: "ok",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true }
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" }
               ]
             },
             startTime: new Date(
@@ -255,16 +255,16 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           },
           {
             label: "Satellite 3",
-            status: "error",
+            status: "null",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: false, pass: false },
-                { complete: false, pass: false },
-                { complete: true, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false }
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "error" },
+                { complete: true, status: "error" },
+                { complete: true, status: "caution" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" }
               ]
             },
             startTime: new Date(
