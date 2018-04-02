@@ -255,7 +255,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           },
           {
             label: "Satellite 3",
-            status: "null",
+            status: "error",
             detail: {
               tasks: [
                 { complete: true, status: "ok" },
