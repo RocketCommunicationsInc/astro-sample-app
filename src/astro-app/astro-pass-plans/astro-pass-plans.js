@@ -26,6 +26,10 @@ export class AstroPassPlans extends PolymerElement {
       },
       completedTasks: {
         type: Number
+      },
+      tasks: {
+        type: Array,
+        value: false
       }
     };
   }
@@ -100,12 +104,13 @@ export class AstroPassPlans extends PolymerElement {
         <div class="tasks-container">
           <ol class="tasks">
             <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
-              <astro-pass-plan-task
-                title=item.title
-                status=item.status
-                pass=item.pass
-                complete=item.complete
-                ></astro-pass-plan-task>
+              <li>
+                <astro-pass-plan-task
+                  title=[[item.title]]
+                  status=[[item.status]]
+                  pass=[[item.pass]]
+                  complete=[[item.complete]]></astro-pass-plan-task>
+              </li>
             </template>
           </ol>
         </div>
@@ -119,21 +124,28 @@ export class AstroPassPlans extends PolymerElement {
     `;
   }
 
-  _getComplete(val) {
-    console.log("val", val);
-    return val ? "complete" : "incomplete";
-  }
-
-  _getPass(val) {
-    return val ? "pass" : "fail";
-  }
   _selectedSatelliteChanged(e) {
     console.log("satellite changed", e);
-
-    /*  // need better data detection
     if (!this.selectedSatellite.detail) return;
 
     const _taskCheckList = e.detail.tasks;
+    if (_taskCheckList != undefined) {
+      const _completedTasks = _taskCheckList.filter(task => {
+        return task.complete;
+      });
+      this.completedTasks = _completedTasks.length;
+
+      _taskCheckList.forEach((task, index) => {
+        this.tasks[index].complete = task.complete;
+        this.tasks[index].pass = task.pass;
+      });
+    }
+    this.notifyPath("tasks", this.tasks);
+    /*  // need better data detection
+    if (!this.selectedSatellite.detail) return;
+
+
+    
     // still struggling with polymers array updates TBH. I don’t think
     // this is the best way to update the array. More preferable would
     // be changing the model the list is associated with

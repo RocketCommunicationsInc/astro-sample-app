@@ -144,7 +144,9 @@ $_documentContainer.innerHTML = `
 				<g id="off">
 					<path fill="#C6CCD1" d="M3 3h6v6H3z"></path>
 				</g>
-
+				<g id="null">
+					<path fill="#C6CCD1" d="M3 3h6v6H3z" opacity="0"></path>
+				</g>
 		</defs>
 	</svg>
 </rux-icon-library>`;
