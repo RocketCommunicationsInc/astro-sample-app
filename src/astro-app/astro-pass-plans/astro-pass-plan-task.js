@@ -74,9 +74,6 @@ export class AstroPassPlanTask extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    console.log("complete", this.complete);
-    console.log("pass", this.pass);
-
     this._status = this.pass ? "ok" : "caution";
   }
 

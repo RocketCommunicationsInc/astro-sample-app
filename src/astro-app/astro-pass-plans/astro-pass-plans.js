@@ -4,13 +4,14 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
 import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
 /**
  * @polymer
  * @extends HTMLElement
  */
-export class AstroPassPlans extends PolymerElement {
+export class AstroPassPlans extends MutableData(PolymerElement) {
   static get properties() {
     return {
       title: {
@@ -21,7 +22,6 @@ export class AstroPassPlans extends PolymerElement {
       },
       selectedSatellite: {
         type: Object,
-        value: false,
         observer: "_selectedSatelliteChanged"
       },
       completedTasks: {
@@ -103,7 +103,7 @@ export class AstroPassPlans extends PolymerElement {
         
         <div class="tasks-container">
           <ol class="tasks">
-            <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
+            <template is="dom-repeat" id="pass-plan-tasks" items={{tasks}} mutable-data>
               <li>
                 <astro-pass-plan-task
                   title=[[item.title]]
@@ -125,50 +125,27 @@ export class AstroPassPlans extends PolymerElement {
   }
 
   _selectedSatelliteChanged(e) {
-    console.log("satellite changed", e);
-    if (!this.selectedSatellite.detail) return;
-
+    // get the task list from the selected satellite
     const _taskCheckList = e.detail.tasks;
-    if (_taskCheckList != undefined) {
+
+    try {
+      // filter out incomplete tasks and update the task complete indicator
       const _completedTasks = _taskCheckList.filter(task => {
         return task.complete;
       });
       this.completedTasks = _completedTasks.length;
 
+      // update the tasks array with the information from the
+      // selected satellite
       _taskCheckList.forEach((task, index) => {
         this.tasks[index].complete = task.complete;
         this.tasks[index].pass = task.pass;
       });
+
+      this.tasks = this.tasks.slice();
+    } catch (err) {
+      console.log("This was an error", err);
     }
-    this.notifyPath("tasks", this.tasks);
-    /*  // need better data detection
-    if (!this.selectedSatellite.detail) return;
-
-
-    
-    // still struggling with polymers array updates TBH. I don’t think
-    // this is the best way to update the array. More preferable would
-    // be changing the model the list is associated with
-    const _listItems = this.shadowRoot.querySelectorAll(".tasks li");
-
-    // need better data detection
-    if (_taskCheckList != undefined) {
-      // filter out all the incomplete tasks to give us an integer
-      let _completedTasks = _taskCheckList.filter(task => {
-        return task.complete;
-      });
-      this.completedTasks = _completedTasks.length;
-
-      _taskCheckList.forEach((task, index) => {
-        this.tasks[index].status = "off";
-        _listItems[index].classList = "";
-        _listItems[index].classList.add(
-          this._getComplete(task.complete),
-          this._getPass(task.pass)
-        );
-      });
-      this.notifyPath("tasks", this.tasks);
-    } */
   }
 
   constructor() {
