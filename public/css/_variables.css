@@ -4,7 +4,6 @@
 :root {
   /* Initial Settings */
   --background: var(--background);
-  --pane-backgroud: var(--pane-background);
 
   /* Typography */
   --font-family: "Open Sans", sans-serif;
@@ -13,6 +12,7 @@
 
   --font-family-condensed: "Open Sans Condensed", sans-serif;
   --font-family-light: "Open Sans Light", sans-serif;
+  --font-family-mono: "Roboto Mono", monospace;
 
   --standard-transition-speed: 0.167s ease-in-out;
   /* --standard-transisiton-effect: ; */
