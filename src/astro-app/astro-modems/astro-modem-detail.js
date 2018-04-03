@@ -15,6 +15,9 @@ export class AstroModemDetail extends PolymerElement {
     return {
       selectedModem: {
         type: Object
+      },
+      selectedModemPower: {
+        type: Number
       }
     };
   }
@@ -26,23 +29,23 @@ export class AstroModemDetail extends PolymerElement {
 
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
-        <li><rux-icon on-click="togglePane" icon="modem-controls:set-power"></rux-icon><span class="label">Set Power</span></li>
+        <li><rux-icon on-click="togglePane" icon="astro-demo:set-power"></rux-icon><span class="label">Set Power</span></li>
       </ul>
 
       <div class="modem-detail__settings">
         <form>
           <rux-slider
             label="Set Power"
-            min=-0
-            max=30
+            min=-15
+            max=80
             step=1
             input=true
-            axis-labels="0, 5, 10, 15, 20, 25, 30"
-            val=[[selectedModem.txPower]]></rux-slider>
+            axis-labels="-15, 80"
+            val=[[selectedModemPower]]></rux-slider>
 
           <div class="rux-button-group">
-            <rux-button>Apply</rux-button>
-            <rux-button default>Cancel</rux-button>
+            <rux-button on-click="_updateModem">Apply</rux-button>
+            <rux-button on-click="_cancelChange" default>Cancel</rux-button>
           </div>
         </form>
       </div>
@@ -118,6 +121,10 @@ export class AstroModemDetail extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _updateModem() {
+    this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
   }
 
   _showNotification() {

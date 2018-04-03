@@ -4,6 +4,17 @@ const $_documentContainer = document.createElement("div");
 $_documentContainer.setAttribute("style", "display: none;");
 
 $_documentContainer.innerHTML = `
+<rux-icon-library name="astro-demo" size="114">
+	<svg>
+		<defs>
+			<g id="set-power" transform="translate(0 15)" fill="#329FFF" fill-rule="evenodd">
+				<path d="M21.509 43.019h10.755v6.453H21.509zM36.566 32.264h10.755v17.208H36.566zM51.623 21.509h10.755v27.962H51.623zM66.679 10.755h10.755v38.717H66.679zM81.736 0h10.755v49.472H81.736zM0 66.679h34.415v4.302H0zM60.226 66.679H114v4.302H60.226z"/>
+				<path d="M47.32 83.887c-8.315 0-15.056-6.741-15.056-15.057 0-8.315 6.741-15.056 15.057-15.056 8.315 0 15.056 6.74 15.056 15.056 0 8.316-6.74 15.057-15.056 15.057zm0-4.302c5.94 0 10.755-4.815 10.755-10.755S53.26 58.075 47.321 58.075c-5.94 0-10.755 4.816-10.755 10.755 0 5.94 4.815 10.755 10.755 10.755z"/>
+				<circle cx="47.321" cy="68.83" r="4.302"/>
+			</g>
+		</defs>
+	</svg>
+</rux-icon-library>
 <rux-icon-library name="media-controls" size="114">
 	<svg>
 		<defs>

@@ -209,7 +209,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     this.tracks = [{
       label: "LEO",
       regions: [{
-          label: "Satellite 1",
+          label: "DSP-1 F17",
           status: "caution",
           detail: {
             tasks: [{
@@ -260,7 +260,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           )
         },
         {
-          label: "Satellite 2",
+          label: "NROL-20",
           status: "ok",
           detail: {
             tasks: [{
@@ -311,7 +311,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           )
         },
         {
-          label: "Satellite 3",
+          label: "SBSS-1",
           status: "error",
           detail: {
             tasks: [{
@@ -365,9 +365,73 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     }];
   }
 
+  /*{
+        label: "HEO",
+        regions: [{
+            label: "GPS-IIR-15",
+            status: "caution",
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              1,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              4,
+              30,
+              0
+            )
+          },
+          {
+            label: "GPS-IIR-16",
+            status: "ok",
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              8,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              12,
+              0,
+              0
+            )
+          },
+          {
+            label: "GPS-IIR-16",
+            status: "error",
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              17,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              20,
+              30,
+              0
+            )
+          }
+        ]
+      },*/
+
   connectedCallback() {
     super.connectedCallback();
-    console.log('connected timeline')
   }
 
   disconnectedCallback() {
