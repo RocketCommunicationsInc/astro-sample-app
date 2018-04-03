@@ -38,7 +38,7 @@ export class AstroModemDetail extends PolymerElement {
             step=1
             input=true
             axis-labels="0, 5, 10, 15, 20, 25, 30"
-            val=[[selectedModem.txPower]]><rux-slider>
+            val=[[selectedModem.txPower]]></rux-slider>
 
           <div class="rux-button-group">
             <rux-button>Apply</rux-button>

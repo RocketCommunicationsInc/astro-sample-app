@@ -4,9 +4,15 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
-import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
-import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
-import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
+import {
+  MutableData
+} from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
+import {
+  AstroPassPlanTask
+} from "./astro-pass-plan-task.js";
+import {
+  RuxIcon
+} from "../../astro-components/rux-icon/rux-icon.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -35,7 +41,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     };
   }
   static get template() {
-    return html`
+    return html `
     
 
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
@@ -172,14 +178,27 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // to individual elements (using their detail object property to pass both the
     // title of the task and its status, or possibly in an init of the app sending
     // a single task list. In this instance it’s the same tasks for all regions)
-    this.tasks = [
-      { title: "Acquire and confirm signal" },
-      { title: "Confirm telemetry data reception" },
-      { title: "Analyze thermal data" },
-      { title: "Analyze payload data" },
-      { title: "Analyze battery levels" },
-      { title: "Upload commanding" },
-      { title: "Check ACOS" }
+    this.tasks = [{
+        title: "Acquire and confirm signal"
+      },
+      {
+        title: "Confirm telemetry data reception"
+      },
+      {
+        title: "Analyze thermal data"
+      },
+      {
+        title: "Analyze payload data"
+      },
+      {
+        title: "Analyze battery levels"
+      },
+      {
+        title: "Upload commanding"
+      },
+      {
+        title: "Check ACOS"
+      }
     ];
 
     const today = new Date();
@@ -187,110 +206,168 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // Set up the timeline track data, it‘s just an array of objects
     // for the demo. In a real world example it would be attached to
     // a web service.
-    this.tracks = [
-      {
-        label: "LEO",
-        regions: [
-          {
-            label: "Satellite 1",
-            status: "caution",
-            detail: {
-              tasks: [
-                { complete: true, status: "ok" },
-                { complete: true, status: "caution" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: false, status: "null" },
-                { complete: false, status: "null" },
-                { complete: false, status: "null" }
-              ]
-            },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              7,
-              30,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              8,
-              30,
-              0
-            )
+    this.tracks = [{
+      label: "LEO",
+      regions: [{
+          label: "Satellite 1",
+          status: "caution",
+          detail: {
+            tasks: [{
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "caution"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: false,
+                status: "null"
+              },
+              {
+                complete: false,
+                status: "null"
+              },
+              {
+                complete: false,
+                status: "null"
+              }
+            ]
           },
-          {
-            label: "Satellite 2",
-            status: "ok",
-            detail: {
-              tasks: [
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" }
-              ]
-            },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              10,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              13,
-              0,
-              0
-            )
+          startTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            7,
+            30,
+            0
+          ),
+          endTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            8,
+            30,
+            0
+          )
+        },
+        {
+          label: "Satellite 2",
+          status: "ok",
+          detail: {
+            tasks: [{
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              }
+            ]
           },
-          {
-            label: "Satellite 3",
-            status: "error",
-            detail: {
-              tasks: [
-                { complete: true, status: "ok" },
-                { complete: true, status: "ok" },
-                { complete: true, status: "error" },
-                { complete: true, status: "error" },
-                { complete: true, status: "caution" },
-                { complete: false, status: "null" },
-                { complete: false, status: "null" }
-              ]
-            },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              15,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              20,
-              30,
-              0
-            )
-          }
-        ]
-      }
-    ];
+          startTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            10,
+            0,
+            0
+          ),
+          endTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            13,
+            0,
+            0
+          )
+        },
+        {
+          label: "Satellite 3",
+          status: "error",
+          detail: {
+            tasks: [{
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "ok"
+              },
+              {
+                complete: true,
+                status: "error"
+              },
+              {
+                complete: true,
+                status: "error"
+              },
+              {
+                complete: true,
+                status: "caution"
+              },
+              {
+                complete: false,
+                status: "null"
+              },
+              {
+                complete: false,
+                status: "null"
+              }
+            ]
+          },
+          startTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            15,
+            0,
+            0
+          ),
+          endTime: new Date(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate(),
+            20,
+            30,
+            0
+          )
+        }
+      ]
+    }];
   }
 
   connectedCallback() {
     super.connectedCallback();
+    console.log('connected timeline')
   }
 
   disconnectedCallback() {

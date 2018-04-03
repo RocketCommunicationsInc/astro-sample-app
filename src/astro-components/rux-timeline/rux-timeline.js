@@ -95,8 +95,13 @@ export class RuxTimeline extends PolymerElement {
         align-items: center;
         padding: 0 1em;
         /* background-color: rgba(255, 255, 255, 0.1); */
-        background-color: hsl(204,53%,12%);
+        /* background-color: hsl(204,53%,12%); */
+        background-color: #24384d;
         z-index: 10;
+      }
+
+      .rux-timeline__header {
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       }
       
       .rux-timeline__header h1 {
@@ -114,17 +119,18 @@ export class RuxTimeline extends PolymerElement {
         display: none;
       }
       
-      .track {
-        height: 33px;
-        width: auto;
-        overflow: hidden;
-      }
       
+      rux-timeline-track {
+        height: 60px;
+        margin: 1px 0;
+      }
+
       rux-timeline-track:nth-child(even) {
         background-color: rgba(255, 255, 255, 0.01);
       }
       rux-timeline-track:nth-child(odd) {
-        background-color: rgba(255, 255, 255, 0.04);
+        /* background-color: rgba(255, 255, 255, 0.04); */
+        background-color: #1e2f41;
       }
       
       #rux-timeline__ruler {
@@ -132,8 +138,10 @@ export class RuxTimeline extends PolymerElement {
         position: relative;
         margin-top: auto;
         color: #bdc3c9;
-        background-color: rgba(0, 0, 0, 0.15);
+        /* background-color: rgba(0, 0, 0, 0.15); */
+        background-color: #24384d;
         height: 2em;
+        box-shadow: 0 -2px 6px rgba(0,0,0,0.2)
       }
       
       #rux-timeline__ruler div {
@@ -141,7 +149,7 @@ export class RuxTimeline extends PolymerElement {
         top: 0;
         height: 20px;
         position: absolute;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        /* border-left: 1px solid rgba(255, 255, 255, 0.1); */
         padding: 0.35rem 0 0 0.35rem;
       }
       
@@ -211,7 +219,8 @@ export class RuxTimeline extends PolymerElement {
           display: flex;
           justify-content: flex-start;
           align-items: center;
-          height: 48px;
+          height: 62px;
+          
         }
 
         .rux-timeline__viewport__labels {
@@ -285,8 +294,6 @@ export class RuxTimeline extends PolymerElement {
     this._scrollListener = this._scroll.bind(this);
 
     this._windowListener = this._onWindowResize.bind(this);
-
-    console.log;
   }
 
   connectedCallback() {
@@ -336,14 +343,12 @@ export class RuxTimeline extends PolymerElement {
 
     this._scale = this.initialScale;
 
-    /* 
-    Disabling playhead control for now. 
     if (this.playheadControl) {
       this._playhead.style.display = "block";
       const _playheadTimer = setInterval(() => {
         this._updatePlayhead();
       }, 10);
-    } */
+    }
 
     const _currentTimeTimer = setInterval(() => {
       this._updateCurrentTime();
