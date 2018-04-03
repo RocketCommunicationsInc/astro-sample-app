@@ -69,12 +69,21 @@
 }
 
 :host(.standard) .rux-region__title {
+  white-space: nowrap;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 }
 
 :host(.medium) .rux-region__title {
+  white-space: nowrap;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 }
 
 :host(.small) .rux-region__title {
+  white-space: nowrap;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
   width: 45px;
 }
 

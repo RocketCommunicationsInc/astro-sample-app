@@ -27,7 +27,7 @@ export class AstroModemList extends PolymerElement {
 
       <!-- <div class="modem-list"> //-->
 
-        <ul class="modem-list">
+        <ul class="modem-list modem-list--compact">
           <li class="modem-list__list-item modem-list__header">
             <ul>
               <li></li>

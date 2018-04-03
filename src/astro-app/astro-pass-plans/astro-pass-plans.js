@@ -3,12 +3,15 @@ import {
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
+import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
 import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
 /**
  * @polymer
  * @extends HTMLElement
  */
-export class AstroPassPlans extends PolymerElement {
+export class AstroPassPlans extends MutableData(PolymerElement) {
   static get properties() {
     return {
       title: {
@@ -19,14 +22,15 @@ export class AstroPassPlans extends PolymerElement {
       },
       selectedSatellite: {
         type: Object,
-        value: {
-          title: "off",
-          status: "off"
-        },
-        observer: "_selectedSatelliteChanged"
+        observer: "_selectedSatelliteChanged",
+        value: false
       },
       completedTasks: {
         type: Number
+      },
+      tasks: {
+        type: Array,
+        value: false
       }
     };
   }
@@ -43,19 +47,19 @@ export class AstroPassPlans extends PolymerElement {
     }
 
     .complete {
-      border: 1px solid green;
+      /* border: 1px solid green; */
     }
 
     .incomplete {
-      border: 1px solid orange;
+      opacity: 0.5;
     }
 
     .pass {
-      background-color: green;
+     /*  background-color: green; */
     }
 
     .fail {
-      background-color: red;
+      /* background-color: red; */
     }
 
     rux-icon {
@@ -64,6 +68,19 @@ export class AstroPassPlans extends PolymerElement {
 
     .task {
       margin-right: auto;
+    }
+
+    .no-selection {
+      display: flex;
+      height: 200%;
+      justify-content: center;
+      align-items: center;
+      /* outline: 1px solid red; */
+    }
+
+    .no-selection h1 {
+      font
+      font-weight: 300;
     }
 
     </style>
@@ -79,23 +96,46 @@ export class AstroPassPlans extends PolymerElement {
 			</rux-timeline>
 
 
-      <div class="rux-timeline__controls" hidden$=[[!selectedSatellite]]>
-        
-        <rux-status
-          icon="advanced-status:satellite-transmit"
-          label=[[selectedSatellite.title]]
-          status=[[selectedSatellite.status]]></rux-status>
+      <template is="dom-if" if=[[selectedSatellite]]>
+        <div class="rux-timeline__controls">
+          
+          <rux-status
+            icon="advanced-status:satellite-transmit"
+            label=[[selectedSatellite.title]]
+            status=[[selectedSatellite.status]]></rux-status>
 
-        <div class="rux-button-group">
-          <rux-button
-            icon="media-controls:play">Play</rux-button>
-          <rux-button
-            icon="media-controls:pause">Pause</rux-button>
+          <div class="rux-button-group">
+            <rux-button
+              icon="media-controls:play">Play</rux-button>
+            <rux-button
+              icon="media-controls:pause">Pause</rux-button>
+          </div>
+          
+          <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
         </div>
-        
-        <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
-      </div>
 
+        
+        <div class="tasks-container">
+          <ol class="tasks">
+            <template is="dom-repeat" id="pass-plan-tasks" items={{tasks}} mutable-data>
+              <li class$=[[_isComplete(item.complete)]]>
+                <astro-pass-plan-task
+                  title=[[item.title]]
+                  status=[[item.status]]
+                  pass=[[item.pass]]
+                  complete=[[item.complete]]></astro-pass-plan-task>
+              </li>
+            </template>
+          </ol>
+        </div>
+      </template>
+
+      <template is="dom-if" if=[[!selectedSatellite]]>
+        <div class="no-selection">
+          <h1>No Pass Selected</h1>
+        </div>
+
+<<<<<<< HEAD
       <div class="tasks-container">
         <ol class="tasks">
           <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
@@ -103,51 +143,45 @@ export class AstroPassPlans extends PolymerElement {
           </template>
         </ol>
       </div>
+=======
+      </template>
+>>>>>>> dm
     </div>  
     `;
   }
 
-  _getComplete(val) {
-    console.log("val", val);
-    return val ? "complete" : "incomplete";
-  }
-
-  _getPass(val) {
-    return val ? "pass" : "fail";
-  }
   _selectedSatelliteChanged(e) {
-    console.log(e);
-
-    // need better data detection
-    if (!this.selectedSatellite.detail) return;
-
+    if (!this.selectedSatellite) return;
+    // get the task list from the selected satellite
     const _taskCheckList = e.detail.tasks;
-    // still struggling with polymers array updates TBH. I don’t think
-    // this is the best way to update the array. More preferable would
-    // be changing the model the list is associated with
-    const _listItems = this.shadowRoot.querySelectorAll(".tasks li");
 
-    // need better data detection
-    if (_taskCheckList != undefined) {
-      // filter out all the incomplete tasks to give us an integer
-      let _completedTasks = _taskCheckList.filter(task => {
+    try {
+      // filter out incomplete tasks and update the task complete indicator
+      const _completedTasks = _taskCheckList.filter(task => {
         return task.complete;
       });
       this.completedTasks = _completedTasks.length;
 
+      // update the tasks array with the information from the
+      // selected satellite
       _taskCheckList.forEach((task, index) => {
-        _listItems[index].classList = "";
-        _listItems[index].classList.add(
-          this._getComplete(task.complete),
-          this._getPass(task.pass)
-        );
+        this.tasks[index].complete = task.complete;
+        this.tasks[index].status = task.status;
       });
+
+      this.tasks = this.tasks.slice();
+    } catch (err) {
+      console.log("This was an error", err);
     }
   }
 
   constructor() {
     super();
 
+    // Hard coded tasks. In a real world use case it these tasks might be attached
+    // to individual elements (using their detail object property to pass both the
+    // title of the task and its status, or possibly in an init of the app sending
+    // a single task list. In this instance it’s the same tasks for all regions)
     this.tasks = [
       { title: "Acquire and confirm signal" },
       { title: "Confirm telemetry data reception" },
@@ -161,7 +195,8 @@ export class AstroPassPlans extends PolymerElement {
     const today = new Date();
 
     // Set up the timeline track data, it‘s just an array of objects
-    // for the demo
+    // for the demo. In a real world example it would be attached to
+    // a web service.
     this.tracks = [
       {
         label: "LEO",
@@ -171,13 +206,13 @@ export class AstroPassPlans extends PolymerElement {
             status: "caution",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false }
+                { complete: true, status: "ok" },
+                { complete: true, status: "caution" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" }
               ]
             },
             startTime: new Date(
@@ -202,13 +237,13 @@ export class AstroPassPlans extends PolymerElement {
             status: "ok",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: true, pass: true }
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" }
               ]
             },
             startTime: new Date(
@@ -233,13 +268,13 @@ export class AstroPassPlans extends PolymerElement {
             status: "error",
             detail: {
               tasks: [
-                { complete: true, pass: true },
-                { complete: true, pass: true },
-                { complete: false, pass: false },
-                { complete: false, pass: false },
-                { complete: true, pass: false },
-                { complete: false, pass: false },
-                { complete: false, pass: false }
+                { complete: true, status: "ok" },
+                { complete: true, status: "ok" },
+                { complete: true, status: "error" },
+                { complete: true, status: "error" },
+                { complete: true, status: "caution" },
+                { complete: false, status: "null" },
+                { complete: false, status: "null" }
               ]
             },
             startTime: new Date(
@@ -270,6 +305,10 @@ export class AstroPassPlans extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _isComplete(task) {
+    return task ? "complete" : "incomplete";
   }
 }
 customElements.define("astro-pass-plans", AstroPassPlans);
