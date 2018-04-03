@@ -28,6 +28,10 @@ export class RuxTimeline extends PolymerElement {
         type: Date,
         value: false
       },
+      status: {
+        type: String,
+        value: "null"
+      },
       tracks: {
         type: Array
       },
@@ -241,7 +245,7 @@ export class RuxTimeline extends PolymerElement {
         </style>
       
         <header class="rux-timeline__header">
-          <rux-status status="ok"></rux-status>
+          <rux-status status="[[status]]"></rux-status>
           <h1>[[label]]</h1>
           <rux-slider
             min=[[_minScale]]

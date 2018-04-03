@@ -94,10 +94,11 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
     <div class="rux-timeline-component">
       <rux-timeline
+        status="error"
         label="Satellite Pass Plans"
         initial-scale=100
 				tracks=[[tracks]]
-				zoom-control=true
+        zoom-control=true
 				selected-region={{selectedSatellite}}>
 			</rux-timeline>
 
@@ -107,15 +108,9 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           
           <rux-status
             icon="advanced-status:satellite-transmit"
-            label=[[selectedSatellite.title]]
             status=[[selectedSatellite.status]]></rux-status>
 
-          <div class="rux-button-group">
-            <rux-button
-              icon="media-controls:play">Play</rux-button>
-            <rux-button
-              icon="media-controls:pause">Pause</rux-button>
-          </div>
+            <h2>[[selectedSatellite.title]]</h2>
           
           <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
         </div>
@@ -141,7 +136,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           <h1>No Pass Selected</h1>
         </div>
 
-<<<<<<< HEAD
+
       <div class="tasks-container">
         <ol class="tasks">
           <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
@@ -149,9 +144,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           </template>
         </ol>
       </div>
-=======
+
       </template>
->>>>>>> dm
     </div>  
     `;
   }
@@ -217,162 +211,215 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // for the demo. In a real world example it would be attached to
     // a web service.
     this.tracks = [{
-      label: "LEO",
-      regions: [{
-          label: "DSP-1 F17",
-          status: "caution",
-          detail: {
-            tasks: [{
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "caution"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: false,
-                status: "null"
-              },
-              {
-                complete: false,
-                status: "null"
-              },
-              {
-                complete: false,
-                status: "null"
-              }
-            ]
+        label: "LEO",
+        regions: [{
+            label: "DSP-1 F16",
+            status: "ok",
+            detail: {
+              tasks: [{
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                }
+              ]
+            },
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              2,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              2,
+              45,
+              0
+            )
           },
-          startTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            7,
-            30,
-            0
-          ),
-          endTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            8,
-            30,
-            0
-          )
-        },
-        {
-          label: "NROL-20",
-          status: "ok",
-          detail: {
-            tasks: [{
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              }
-            ]
+          {
+            label: "DSP-1 F17",
+            status: "caution",
+            detail: {
+              tasks: [{
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "caution"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                }
+              ]
+            },
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              7,
+              30,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              8,
+              30,
+              0
+            )
           },
-          startTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            10,
-            0,
-            0
-          ),
-          endTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            13,
-            0,
-            0
-          )
-        },
-        {
-          label: "SBSS-1",
-          status: "error",
-          detail: {
-            tasks: [{
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "ok"
-              },
-              {
-                complete: true,
-                status: "error"
-              },
-              {
-                complete: true,
-                status: "error"
-              },
-              {
-                complete: true,
-                status: "caution"
-              },
-              {
-                complete: false,
-                status: "null"
-              },
-              {
-                complete: false,
-                status: "null"
-              }
-            ]
+          {
+            label: "NROL-20",
+            status: "ok",
+            detail: {
+              tasks: [{
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                }
+              ]
+            },
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              10,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              13,
+              0,
+              0
+            )
           },
-          startTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            15,
-            0,
-            0
-          ),
-          endTime: new Date(
-            today.getUTCFullYear(),
-            today.getUTCMonth(),
-            today.getUTCDate(),
-            20,
-            30,
-            0
-          )
-        }
-      ]
-    }];
+          {
+            label: "SBSS-1",
+            status: "error",
+            detail: {
+              tasks: [{
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "ok"
+                },
+                {
+                  complete: true,
+                  status: "error"
+                },
+                {
+                  complete: true,
+                  status: "error"
+                },
+                {
+                  complete: true,
+                  status: "caution"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                },
+                {
+                  complete: false,
+                  status: "null"
+                }
+              ]
+            },
+            startTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              15,
+              0,
+              0
+            ),
+            endTime: new Date(
+              today.getUTCFullYear(),
+              today.getUTCMonth(),
+              today.getUTCDate(),
+              20,
+              30,
+              0
+            )
+          }
+        ]
+      },
+
+    ];
   }
 
   /*{

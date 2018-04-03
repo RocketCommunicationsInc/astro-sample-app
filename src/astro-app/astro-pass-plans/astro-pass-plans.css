@@ -50,12 +50,15 @@ ol li::before {
 .rux-timeline__controls {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   padding: 1rem 0;
+  margin: 2px;
 }
 
 .rux-timeline__tasks-status {
+  margin-left: auto;
+  margin-right: 0;
 }
 
 rux-status {
@@ -68,13 +71,13 @@ rux-status {
 }
 
 .rux-timeline__tasks-status {
-  margin-right: auto;
   font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.8);
 }
 .rux-timeline__tasks-status__count {
   font-size: 1.75rem;
   color: rgba(255, 255, 255, 1);
+  margin-right: 0.2rem;
 }
 
 .tasks-container {
