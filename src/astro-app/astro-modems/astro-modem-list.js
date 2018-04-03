@@ -27,7 +27,7 @@ export class AstroModemList extends PolymerElement {
 
       <!-- <div class="modem-list"> //-->
 
-        <ul class="modem-list">
+        <ul class="modem-list modem-list--compact">
           <li class="modem-list__list-item modem-list__header">
             <ul>
               <li></li>
@@ -48,7 +48,7 @@ export class AstroModemList extends PolymerElement {
                 <li><rux-status status=[[_getStatus(item,'carrier')]]></rux-status></li>
                 <li><rux-status status=[[_getStatus(item,'code')]]></rux-status></li>
                 <li class="modem-list__reading">[[item.txPower]]</li>
-                <li class="modem-list__reading">[[item.errorVectorMagnitude]]dB</li>
+                <li class="modem-list__reading">[[item.errorVectorMagnitude]]</li>
               </ul>
             </li>
           </template>

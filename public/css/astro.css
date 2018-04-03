@@ -2,7 +2,6 @@
 @import url("_typography.css");
 @import url("_app.css");
 
-
 /* 
 **  This is as close as we get to a CSS reset in Astro, moving everything to 
 **  the old IE border-box model of including padding in the overall size.
@@ -19,7 +18,6 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
 
 /*
 **
@@ -43,6 +41,12 @@ body {
   background-attachment: fixed;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Open Sans Light" !important;
+}
 
 /*
 ** Disable user selection of input labels and navigation elements
@@ -52,7 +56,7 @@ button {
   --disable-selection: none !important;
 }
 
-
 /* Fallback support for non-browsers*/
 
-@supports (-css: variables) {}
+@supports (-css: variables) {
+}

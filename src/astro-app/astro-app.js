@@ -4,68 +4,28 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 /* Rux Components */
-import {
-  RuxGlobalStatusBar
-} from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
-import {
-  RuxSegmentedButton
-} from "../astro-components/rux-segmented-button/rux-segmented-button.js";
-import {
-  RuxComponent
-} from "../astro-components/rux-component/rux-component.js";
-import {
-  RuxProgress
-} from "../astro-components/rux-progress/rux-progress.js";
-import {
-  RuxButton
-} from "../astro-components/rux-button/rux-button.js";
-import {
-  RuxStatus
-} from "../astro-components/rux-status/rux-status.js";
-import {
-  RuxIcon
-} from "../astro-components/rux-icon/rux-icon.js";
-import {
-  RuxTabs
-} from "../astro-components/rux-tabs/rux-tabs.js";
-import {
-  RuxPopUpMenu
-} from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
-import {
-  RuxClock
-} from "../astro-components/rux-clock/rux-clock.js";
-import {
-  RuxSlider
-} from "../astro-components/rux-slider/rux-slider.js";
-import {
-  RuxSpectrumAnalyzer
-} from "../astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
-import {
-  RuxNotification
-} from "../astro-components/rux-notification/rux-notification.js";
-import {
-  RuxTimeline
-} from "../astro-components/rux-timeline/rux-timeline.js";
+import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
+import { RuxSegmentedButton } from "../astro-components/rux-segmented-button/rux-segmented-button.js";
+import { RuxComponent } from "../astro-components/rux-component/rux-component.js";
+import { RuxProgress } from "../astro-components/rux-progress/rux-progress.js";
+import { RuxButton } from "../astro-components/rux-button/rux-button.js";
+import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
+import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
+import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
+import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
+import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
+import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
+import { RuxSpectrumAnalyzer } from "../astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+import { RuxNotification } from "../astro-components/rux-notification/rux-notification.js";
+import { RuxTimeline } from "../astro-components/rux-timeline/rux-timeline.js";
 
 /* Astro App */
-import {
-  AstroTelemetry
-} from "./astro-telemetry/astro-telemetry.js";
-import {
-  AstroTelemetryPane
-} from "./astro-telemetry/astro-telemetry-pane.js";
-import {
-  AstroModems
-} from "./astro-modems/astro-modems.js";
-import {
-  AstroModemList
-} from "./astro-modems/astro-modem-list.js";
-import {
-  AstroModemDetail
-} from "./astro-modems/astro-modem-detail.js";
-import {
-  AstroPassPlans
-} from "./astro-pass-plans/astro-pass-plans.js";
+import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
+import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
+import { AstroModems } from "./astro-modems/astro-modems.js";
+import { AstroModemList } from "./astro-modems/astro-modem-list.js";
+import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
+import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -108,8 +68,8 @@ export class AstroApp extends PolymerElement {
       
       <rux-tabs>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
       <rux-clock></rux-clock>
@@ -187,7 +147,8 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
-    this._popMenuItems = [{
+    this._popMenuItems = [
+      {
         label: "Menu Item 1",
         action: "doSomething"
       },
@@ -232,7 +193,8 @@ export class AstroApp extends PolymerElement {
       allocated: false
     };
 
-    this.modems = [{
+    this.modems = [
+      {
         _id: {
           $oid: "570cef10e4b0cbcd095d473b"
         },
@@ -1010,7 +972,8 @@ export class AstroApp extends PolymerElement {
 
     this.satellite1 = {
       label: "Satellite 1",
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "ok"
         },
@@ -1035,7 +998,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "caution"
         },
@@ -1063,7 +1027,8 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite A",
-      power: [{
+      power: [
+        {
           label: "Power 1",
           status: "off"
         },
@@ -1088,7 +1053,8 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [{
+      thermal: [
+        {
           label: "Thermal 1",
           status: "ok"
         },
@@ -1117,7 +1083,8 @@ export class AstroApp extends PolymerElement {
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
     // emulate a JSON object for advanced status
-    this.statusIndicators = [{
+    this.statusIndicators = [
+      {
         label: "Power",
         status: "ok",
         icon: "advanced-status-egs:propulsion-power",

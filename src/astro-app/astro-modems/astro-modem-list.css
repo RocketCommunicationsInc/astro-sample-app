@@ -5,11 +5,6 @@
 }
 
 .modem-list {
-  width: 100%;
-  overflow-y: scroll;
-}
-
-.modem-list {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -18,7 +13,15 @@
   list-style: none;
   padding: 0;
   margin: 0.75rem;
-  /* outline: 1px solid orange; */
+
+  width: 100%;
+  height: 50%;
+  overflow-y: scroll;
+  outline: 1px solid orange;
+}
+
+.modem-list--compact .modem-list__list-item {
+  height: 2.35rem;
 }
 
 .modem-list__list-item {
@@ -41,6 +44,9 @@
 .modem-list__header {
   height: 2.3rem;
   font-size: 0.875rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .modem-list__list-item:not(.modem-list__header)::before {
