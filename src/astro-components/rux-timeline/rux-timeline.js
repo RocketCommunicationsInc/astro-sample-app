@@ -174,10 +174,10 @@ export class RuxTimeline extends PolymerElement {
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
+        height: calc(100% - 32px);
         width: 1px;
         background-color: #5cb3ff;
-        z-index: 100;
+        z-index: 200;
         display: none;
       }
       #rux-timeline__current-time::before {
