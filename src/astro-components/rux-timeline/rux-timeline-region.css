@@ -2,10 +2,11 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+
   font-size: 0.875rem;
   top: 0;
   height: 100%;
-  background-color: black;
+  background-color: #324e69;
 
   overflow: hidden;
 
@@ -15,10 +16,11 @@
   user-select: none;
   box-sizing: border-box;
 
-  border: 1px solid #000;
-  transition: border 0.667s ease-in-out;
+  border: 1px solid #324e69;
+  /* transition: border 0.667s ease-in-out; */
 
   box-sizing: border-box;
+  height: 60px;
   /* background-color: red; */
 }
 
@@ -46,12 +48,17 @@
 }
 
 :host([selected]) {
-  background-color: red;
+  border: 1px solid #4dacff;
+  background-color: black;
 }
 
 .rux-region__segment {
+  display: flex;
+  align-items: center;
   padding: 0 1em;
   margin: 0;
+  height: 30px !important;
+  line-height: 1;
 }
 
 .rux-region__header {
@@ -69,21 +76,12 @@
 }
 
 :host(.standard) .rux-region__title {
-  white-space: nowrap;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
 }
 
 :host(.medium) .rux-region__title {
-  white-space: nowrap;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
 }
 
 :host(.small) .rux-region__title {
-  white-space: nowrap;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
   width: 45px;
 }
 

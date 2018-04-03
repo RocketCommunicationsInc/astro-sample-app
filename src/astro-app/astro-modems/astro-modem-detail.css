@@ -70,26 +70,22 @@
   display: flex;
   flex-direction: column;
 
-  margin: 2em 2.5rem;
-<<<<<<< HEAD
-  outline: 1px solid red;
-=======
->>>>>>> dm
+  margin: 5em 2.5rem 0 2.5rem;
 }
 
 .modem-detail__settings .rux-button-group {
-  outline: 1px solid blue;
-  padding: 1em;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.rux-button-group rux-button {
+  margin-left: 5px;
 }
 
 .modem-detail__detail {
-<<<<<<< HEAD
-  overflow: hidden;
-  position: relative;
-=======
   position: relative;
   overflow: hidden;
->>>>>>> notification
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
