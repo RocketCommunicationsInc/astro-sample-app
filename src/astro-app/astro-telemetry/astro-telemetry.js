@@ -22,7 +22,7 @@ export class AstroTelemetry extends PolymerElement {
     };
   }
   static get template() {
-    return html `
+    return html`
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
     <div class="astro-telemetry-panes">
     <template is="dom-repeat" items="[[telemetryData]]">
@@ -51,12 +51,12 @@ export class AstroTelemetry extends PolymerElement {
   }
 
   _changed() {
-    console.log("changed");
+    // console.log("changed");
   }
   connectedCallback() {
     super.connectedCallback();
 
-    console.log("title", this.title);
+    // console.log("title", this.title);
   }
   disconnectedCallback() {
     super.disconnectedCallback();

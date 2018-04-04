@@ -108,13 +108,13 @@ export class AstroModemDetail extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    console.log(this.selectedModem);
+    // console.log(this.selectedModem);
   }
 
   do() {
-    console.log("do");
+    // console.log("do");
     const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
-    console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
+    // console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
 
     _pane[0].classList.toggle("show");
   }
