@@ -61,6 +61,7 @@ export class AstroApp extends PolymerElement {
         padding: 0;
         margin: 0;
         display: flex;
+        justify-content: center;
       }
     </style>
     
@@ -83,7 +84,7 @@ export class AstroApp extends PolymerElement {
           <template>
             <li>
               <rux-status
-                status=[[item.status]]
+                status="ok"
                 label=[[item.label]]
                 icon=[[item.icon]]
                 notifications=[[item.notifications]]
