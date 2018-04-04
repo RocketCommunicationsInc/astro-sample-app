@@ -42,7 +42,7 @@ export class AstroApp extends PolymerElement {
         width: 100%;
         margin: 0 auto;
         padding: 0 2.625rem;
-        min-width: 1920px;
+        min-width: 1620px;
         box-sizing: border-box; 
         overflow: hidden;
       }
@@ -68,12 +68,12 @@ export class AstroApp extends PolymerElement {
     
 
     <rux-global-status-bar
-      appname="Astro App"
+      appname="Astro"
       version="2.0a">
       
       <rux-tabs>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 

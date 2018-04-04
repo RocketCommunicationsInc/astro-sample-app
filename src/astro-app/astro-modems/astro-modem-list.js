@@ -26,7 +26,10 @@ export class AstroModemList extends PolymerElement {
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
 
       <!-- <div class="modem-list"> //-->
-
+        <div class="modem-header">
+          <h2>Modems</h2>
+          <div>[[modemCount]]/[[totalModems]]</div>
+        </div>
         <ul class="modem-list modem-list--compact">
           <li class="modem-list__list-item modem-list__header">
             <ul>
