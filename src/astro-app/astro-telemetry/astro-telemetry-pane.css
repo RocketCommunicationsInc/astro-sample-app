@@ -17,6 +17,7 @@
   flex-wrap: wrap;
   align-content: stretch;
   align-items: stretch;
+  width: 920px;
 }
 
 .astro-telemetry-pane__status__group {
@@ -26,7 +27,7 @@
   flex-wrap: wrap;
   align-content: stretch;
   align-items: stretch;
-/*  padding: 0 1em 1em 1em;*/
+  /*  padding: 0 1em 1em 1em;*/
   margin: 1%;
   width: 414px;
   border: 2px solid #000;
@@ -52,7 +53,7 @@
   padding: 0rem 0rem 0rem .5rem;
   margin: 0 0;
   list-style: none;
-  color: #bdc3c9;
+  color: #fff;
 }
 
 .astro-telemetry-pane__status__group li {
@@ -64,11 +65,16 @@
   margin-right: 0.5rem;
 }
 
+.astro-telemetry-pane h1 {
+  margin-left: 0.7rem;
+}
+
 h1,
 h2,
 h3 {
   font-weight: 300;
 }
+
 
 
 
@@ -107,7 +113,7 @@ text,
   text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;
-  fill: #BDC3C9;
+  fill: #fff;
 }
 
 
@@ -123,7 +129,7 @@ g.rux-spectrum-analyzer__axis-label line {
 
 .grid line {
   stroke: #455d6e;
-  stroke-opacity: 0.7;
+  stroke-opacity: 0.3;
   shape-rendering: crispEdges;
 }
 
