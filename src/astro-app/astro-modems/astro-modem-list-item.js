@@ -13,13 +13,19 @@ export class AstroModemListItem extends PolymerElement {
     return {
       modem: {
         type: Object
+      },
+      selected: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+        notify: true
       }
     };
   }
   static get template() {
     return html`
 
-			<link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
+			
 			<style>
 				:host {
 					display: flex;
@@ -28,8 +34,7 @@ export class AstroModemListItem extends PolymerElement {
 					font-size: 1.375rem;
 					color: rgba(255, 255, 255, 0.8);
 					background-color: #0f1a24;
-					background-color: blue;
-					margin: 0;
+					margin: 0 0 0.625rem 0;
 					height: 3.5rem;
 					min-height: 2rem;
 					position: relative;
@@ -39,7 +44,7 @@ export class AstroModemListItem extends PolymerElement {
 					cursor: pointer;
         }
 
-        :host:before {
+        :host::before {
 					content: "";
 					width: 6px;
 					display: block;
@@ -53,6 +58,16 @@ export class AstroModemListItem extends PolymerElement {
           height: 2.35rem;
         }
 
+        :host([selected]) {
+          background-color: #004368;
+          box-shadow: 0 1px 0 #000;
+          color: #fff;
+        }
+
+        :host([selected])::before {
+          background-color: #0080f4;
+        }
+
       				
 
 				ul {
@@ -61,7 +76,6 @@ export class AstroModemListItem extends PolymerElement {
           margin: 0 0 0 0.5rem;
         
           display: flex;
-          outline: 1px solid orange;
         }
 
         li {
@@ -71,19 +85,19 @@ export class AstroModemListItem extends PolymerElement {
           justify-content: center;
           align-items: center;
           width: 14%;
+          
         }
 
         .modem-list__reading {
           justify-content: flex-end;
           text-align: right;
           margin-right: 1rem;
-          /* outline: 1px solid red; */
         }
         
         
 			</style>
       
-
+        
 			<ul>
 				<li>[[modem.modemId]]</li>
 				<li><rux-status status=[[_getStatus(modem,'tx')]]></rux-status></li>

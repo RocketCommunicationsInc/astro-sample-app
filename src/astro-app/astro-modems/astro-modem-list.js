@@ -26,60 +26,88 @@ export class AstroModemList extends PolymerElement {
   static get template() {
     return html`
         <style>
-        :host {
-          display: flex;
-          flex-direction: column;
-          min-width: 450px;
-        
-          margin-right: 3.125rem;
-          margin: 1.75rem;
-        
-          padding-bottom: 1rem;
-          overflow: hidden;
-        }
-        
-        .modem-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          padding: 0;
-          margin-bottom: 1rem;
-        }
-        
-        .modem-header h2 {
-          font-weight: 300;
-          font-size: 2rem;
-          color: #bdc3c9;
-        }
-        
-        .modem-header__modem-count {
-          font-size: 1.25rem;
-          color: #bdc3c9;
-        }
+          :host {
+            min-width: 450px;
+            margin: 0.75rem 3.75rem 0.75rem 0.75rem;
+          }
+          
+          .modem-header {
+            display: flex;
+            padding: 0;
+            margin: 1rem 0 0.5rem 0;
+            justify-content: space-between;
+            align-items: baseline;
+            
 
-        .modem-list__header {
-          display: flex;
-          flex-shrink: 1;
-          justify-content: flex-start;
-          font-size: 1.375rem;
-          color: rgba(255, 255, 255, 0.8);
-          background-color: #0f1a24;
-          margin: 0 0 0.625rem 0;
+          }
+          
+          .modem-header h2 {
+            margin: 0;
+            font-weight: 300;
+            font-size: 2rem;
+            color: #bdc3c9;
+          }
+          
+          .modem-header__modem-count {
+            font-size: 1.25rem;
+            color: #bdc3c9;
+          }
 
-          height: 2.3rem;
-          font-size: 0.875rem;
-          position: sticky;
-          top: 0;
-          z-index: 100;
-        }
+          .modem-list,
+          .modem-list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
 
-        .modem-list {
-          list-style: none;
-          outline: 1px solid red;
-        }
+          .modem-list__header {
+            
+            font-size: 0.875rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background-color: red;
+            
+          }
+
+          .modem-list__header:before {
+            content: "";
+            width: 6px;
+            display: block;
+            position: absolute;
+            top: 0;
+            
+            height: 100%;
+            background-color: rgba(216, 216, 216, 1);
+          }
+
+          .modem-list__header ul {
+            flex-grow: 1;
+            padding: 0;
+            margin: 0;
+            outline: 1px solid green;
+          
+            display: flex;
+          }
+  
+          .modem-list__header li {
+            padding: 0;
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 14%;
+            
+          }
+  
+          .modem-list__header .modem-list__reading {
+            justify-content: flex-end;
+            text-align: right;
+            margin-right: 1rem;
+          }
         
-        
-      </style>        
+        </style>        
 
       
         <div class="modem-header">
@@ -87,10 +115,10 @@ export class AstroModemList extends PolymerElement {
           <div class="modem-header__modem-count">[[modemCount]]/[[modemTotal]]</div>
         </div>
         
-        <ul class="modem-list modem-list--compact">
+        <ul class="modem-list">
           <li class="modem-list__header">
             <ul>
-              <li></li>
+              <li>1</li>
               <li>Tx</li>
               <li>Rx</li>
               <li>Carrier</li>
@@ -101,9 +129,11 @@ export class AstroModemList extends PolymerElement {
           </li>
 
           <template is="dom-repeat" id="modem-list" items=[[modems]]>
-            <li on-click="_selectModem">
+            <li>
               <astro-modem-list-item
-                modem=[[item]] compact></astro-modem-list-item>
+                modem=[[item]]
+                on-click="_selectModem"
+                compact></astro-modem-list-item>
             </li>
           </template>
         </ul>
@@ -138,9 +168,7 @@ export class AstroModemList extends PolymerElement {
   }
 
   _reset() {
-    const _modems = this.shadowRoot.querySelectorAll(
-      "li.modem-list__list-item"
-    );
+    const _modems = this.shadowRoot.querySelectorAll(["astro-modem-list-item"]);
     _modems.forEach(modem => {
       modem.removeAttribute("selected");
     });
