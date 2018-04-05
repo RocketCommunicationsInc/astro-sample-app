@@ -28,8 +28,8 @@ export class AstroModemListItem extends PolymerElement {
 					font-size: 1.375rem;
 					color: rgba(255, 255, 255, 0.8);
 					background-color: #0f1a24;
-					/* background-color: blue; */
-					margin: 0 0 0.625rem 0;
+					background-color: blue;
+					margin: 0;
 					height: 3.5rem;
 					min-height: 2rem;
 					position: relative;
@@ -37,9 +37,9 @@ export class AstroModemListItem extends PolymerElement {
 					box-shadow: 0 1px 0 #000;
 				
 					cursor: pointer;
-				}
+        }
 
-				:host:before {
+        :host:before {
 					content: "";
 					width: 6px;
 					display: block;
@@ -48,21 +48,43 @@ export class AstroModemListItem extends PolymerElement {
 					height: 100%;
 					background-color: rgba(216, 216, 216, 0.1);
 				}
+        
+        :host([compact]) {
+          height: 2.35rem;
+        }
 
-				:host ul {
-					list-style: none;
-					border: 1px solid orange;
-					padding: 0;
-					margin: 0;
-					
-				}
+      				
+
+				ul {
+          flex-grow: 1;
+          padding: 0;
+          margin: 0 0 0 0.5rem;
+        
+          display: flex;
+          outline: 1px solid orange;
+        }
+
+        li {
+          padding: 0;
+        
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 14%;
+        }
+
+        .modem-list__reading {
+          justify-content: flex-end;
+          text-align: right;
+          margin-right: 1rem;
+          /* outline: 1px solid red; */
+        }
+        
+        
 			</style>
       
 
 			<ul>
-				<li>[[modem.modemId]]</li>
-				
-				<!--
 				<li>[[modem.modemId]]</li>
 				<li><rux-status status=[[_getStatus(modem,'tx')]]></rux-status></li>
 				<li><rux-status status=[[_getStatus(modem,'rx')]]></rux-status></li>
@@ -70,8 +92,6 @@ export class AstroModemListItem extends PolymerElement {
 				<li><rux-status status=[[_getStatus(modem,'code')]]></rux-status></li>
 				<li class="modem-list__reading">[[modem.txPower]]</li>
 				<li class="modem-list__reading">[[modem.errorVectorMagnitude]]</li>
-
-				//-->
 			</ul>
 			
     `;

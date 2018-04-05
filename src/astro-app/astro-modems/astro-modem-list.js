@@ -25,15 +25,70 @@ export class AstroModemList extends PolymerElement {
   }
   static get template() {
     return html`
-      <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
+        <style>
+        :host {
+          display: flex;
+          flex-direction: column;
+          min-width: 450px;
+        
+          margin-right: 3.125rem;
+          margin: 1.75rem;
+        
+          padding-bottom: 1rem;
+          overflow: hidden;
+        }
+        
+        .modem-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          padding: 0;
+          margin-bottom: 1rem;
+        }
+        
+        .modem-header h2 {
+          font-weight: 300;
+          font-size: 2rem;
+          color: #bdc3c9;
+        }
+        
+        .modem-header__modem-count {
+          font-size: 1.25rem;
+          color: #bdc3c9;
+        }
+
+        .modem-list__header {
+          display: flex;
+          flex-shrink: 1;
+          justify-content: flex-start;
+          font-size: 1.375rem;
+          color: rgba(255, 255, 255, 0.8);
+          background-color: #0f1a24;
+          margin: 0 0 0.625rem 0;
+
+          height: 2.3rem;
+          font-size: 0.875rem;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+
+        .modem-list {
+          list-style: none;
+          outline: 1px solid red;
+        }
+        
+        
+      </style>        
 
       
         <div class="modem-header">
           <h2>Modems</h2>
           <div class="modem-header__modem-count">[[modemCount]]/[[modemTotal]]</div>
         </div>
+        
         <ul class="modem-list modem-list--compact">
-          <li class="modem-list__list-item modem-list__header">
+          <li class="modem-list__header">
             <ul>
               <li></li>
               <li>Tx</li>
@@ -44,30 +99,14 @@ export class AstroModemList extends PolymerElement {
               <li class="modem-list__reading">EVM</li>
             </ul>
           </li>
-          <template is="dom-repeat" id="modem-list" items=[[modems]]>
-            <li class="modem-list__list-item" on-click="_selectModem">
-              <astro-modem-list-item
-                modem=[[item]]></astro-modem-list-item>
-            </li>
-            <!--
-            
-              <ul>
-                <li>[[item.modemId]]</li>
-                <li><rux-status status=[[_getStatus(item,'tx')]]></rux-status></li>
-                <li><rux-status status=[[_getStatus(item,'rx')]]></rux-status></li>
-                <li><rux-status status=[[_getStatus(item,'carrier')]]></rux-status></li>
-                <li><rux-status status=[[_getStatus(item,'code')]]></rux-status></li>
-                <li class="modem-list__reading">[[item.txPower]]</li>
-                <li class="modem-list__reading">[[item.errorVectorMagnitude]]</li>
-              </ul>
-            </li>
 
-            //-->
+          <template is="dom-repeat" id="modem-list" items=[[modems]]>
+            <li on-click="_selectModem">
+              <astro-modem-list-item
+                modem=[[item]] compact></astro-modem-list-item>
+            </li>
           </template>
         </ul>
-
-        
-      <!-- </div> //-->
     `;
   }
 

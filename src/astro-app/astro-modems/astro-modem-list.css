@@ -30,17 +30,14 @@
 }
 
 .modem-list {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  position: relative;
-
-  list-style: none;
+  /* list-style: none; */
   padding: 0;
   margin: 0;
-
+  display: block;
+  height: 100%;
   width: 100%;
   overflow-y: scroll;
+  outline: 1px solid red;
 }
 
 .modem-list--compact .modem-list__list-item {
@@ -85,18 +82,16 @@
   background-color: rgba(216, 216, 216, 0.1); */
 }
 
-.modem-list__list-item[selected] {
+/* .modem-list__list-item[selected] {
   background-color: #004368;
   box-shadow: 0 1px 0 #000;
   color: #fff;
-}
+} */
 
-.modem-list__list-item[selected]::before {
+/* .modem-list__list-item[selected]::before {
   background-color: #0080f4;
-}
+} */
 
-.modem-list--condensed {
-}
 .modem-list__list-item ul {
   flex-grow: 1;
   padding: 0;
