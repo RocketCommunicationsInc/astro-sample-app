@@ -17,7 +17,8 @@ export class AstroModemDetail extends PolymerElement {
         type: Object
       },
       selectedModemPower: {
-        type: Number
+        type: Number,
+        observer: "_powerChanged"
       }
     };
   }
@@ -41,11 +42,11 @@ export class AstroModemDetail extends PolymerElement {
             step=1
             input=true
             axis-labels="-15, 80"
-            val=[[selectedModemPower]]></rux-slider>
+            val={{selectedModemPower}}></rux-slider>
 
           <div class="rux-button-group">
-            <rux-button on-click="_updateModem">Apply</rux-button>
-            <rux-button on-click="_cancelChange" default>Cancel</rux-button>
+            <rux-button on-click="_cancelChange">[[closeButtonLabel]]</rux-button>
+            <rux-button on-click="_updateModem" default disabled=[[applyButtonDisabled]]>Apply</rux-button>
           </div>
         </form>
       </div>
@@ -93,18 +94,8 @@ export class AstroModemDetail extends PolymerElement {
   constructor() {
     super();
 
-    this.notificationObj = {
-      opened: false,
-      message: "Sing a song"
-    };
-
-    this.sliderObjTwo = {
-      value: 0,
-      min: -10,
-      max: 10,
-      step: 0.1,
-      labels: "min,mid,max"
-    };
+    this.closeButtonLabel = "Close";
+    this.applyButtonDisabled = true;
   }
   connectedCallback() {
     super.connectedCallback();
@@ -123,7 +114,15 @@ export class AstroModemDetail extends PolymerElement {
     super.disconnectedCallback();
   }
 
+  _powerChanged(e) {
+    if (e != this.selectedModem.txPower) {
+      this.closeButtonLabel = "Cancel";
+      this.applyButtonDisabled = false;
+    }
+  }
+
   _updateModem() {
+    this.selectedModem.txPower = this.selectedModemPower;
     this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
   }
 
