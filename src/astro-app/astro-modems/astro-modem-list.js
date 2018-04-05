@@ -2,6 +2,7 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 import "/node_modules/@polymer/polymer/lib/elements/array-selector.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import "./astro-modem-list-item.js";
@@ -10,7 +11,7 @@ import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
  * @polymer
  * @extends HTMLElement
  */
-export class AstroModemList extends PolymerElement {
+export class AstroModemList extends MutableData(PolymerElement) {
   static get properties() {
     return {
       modems: {
@@ -18,8 +19,7 @@ export class AstroModemList extends PolymerElement {
       },
       selectedModem: {
         type: Object,
-        notify: true,
-        observer: "_listChanged"
+        notify: true
       }
     };
   }
@@ -111,7 +111,7 @@ export class AstroModemList extends PolymerElement {
 
       
         <div class="modem-header">
-          <h2>Modems</h2>
+          <h2 on-click="test">Modems</h2>
           <div class="modem-header__modem-count">[[modemCount]]/[[modemTotal]]</div>
         </div>
         
@@ -128,15 +128,16 @@ export class AstroModemList extends PolymerElement {
             </ul>
           </li>
 
-          <template is="dom-repeat" id="modem-list" items=[[modems]]>
+          <template is="dom-repeat" id="modemList" items=[[modems]]>
             <li>
               <astro-modem-list-item
-                modem=[[item]]
+                modem={{item}}
                 on-click="_selectModem"
                 compact></astro-modem-list-item>
             </li>
           </template>
         </ul>
+        <array-selector id="selector" items="{{modems}}" selected="{{selected}}"></array-selector>
     `;
   }
 
@@ -155,16 +156,18 @@ export class AstroModemList extends PolymerElement {
     super.disconnectedCallback();
   }
 
-  _listChanged() {
-    console.log("list changed");
+  _selectModem(e) {
+    let modem = this.$.modemList.itemForElement(e.target);
+    this.$.selector.select(modem);
+    this.selectedModem = modem;
+    this.notifyPath("selectedModem");
+
+    this._reset();
+    e.currentTarget.setAttribute("selected", "");
   }
 
-  _selectModem(e) {
-    this._reset();
-
-    e.currentTarget.setAttribute("selected", "");
-    this.selectedModem = e.model.item;
-    this.notifyPath("slectedModem.selected");
+  test(e) {
+    console.log("test", this.selectedModem);
   }
 
   _reset() {

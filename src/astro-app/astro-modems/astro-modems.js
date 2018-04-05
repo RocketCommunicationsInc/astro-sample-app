@@ -24,7 +24,8 @@ export class AstroModems extends PolymerElement {
   static get template() {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modems.css">
-      <slot></slot>
+      <astro-modem-list modems={{modems}} selected-modem={{selectedModem}}></astro-modem-list>
+      <astro-modem-detail selected-modem={{selectedModem}} slot-name="detail"></astro-modem-detail>
     `;
   }
 
@@ -40,7 +41,9 @@ export class AstroModems extends PolymerElement {
     super.disconnectedCallback();
   }
 
-  selectedModemChanged() {}
+  selectedModemChanged(e) {
+    console.log("sm changed", e);
+  }
 
   ready() {
     super.ready();

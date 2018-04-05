@@ -2,6 +2,7 @@ import {
   html,
   Element as PolymerElement
 } from "/node_modules/@polymer/polymer/polymer-element.js";
+import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
 
 /* <div class="modem-detail__modem-settings">
  */
@@ -15,8 +16,8 @@ export class AstroModemDetail extends PolymerElement {
     return {
       selectedModem: {
         type: Object,
-        observer: "_selectedModemChanged",
-        value: false
+        notify: true,
+        observer: "_selectedModemChanged"
       },
       selectedModemPower: {
         type: Number,
@@ -29,7 +30,7 @@ export class AstroModemDetail extends PolymerElement {
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       
-
+      <template is="dom-if" if=[[selectedModem]]>
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
         <li><rux-icon on-click="togglePane" icon="astro-demo:set-power"></rux-icon><span class="label">Set Power</span></li>
@@ -91,6 +92,7 @@ export class AstroModemDetail extends PolymerElement {
 
         
       </div>
+      </template>
     `;
   }
   constructor() {
@@ -112,6 +114,10 @@ export class AstroModemDetail extends PolymerElement {
     this.togglePane();
   }
 
+  _selectedModemChanged(e) {
+    this.selectedModemPower = this.selectedModem.txPower;
+  }
+
   _powerChanged(e) {
     if (e != this.selectedModem.txPower) {
       this.closeButtonLabel = "Cancel";
@@ -119,13 +125,10 @@ export class AstroModemDetail extends PolymerElement {
     }
   }
 
-  _selectedModemChanged(e) {
-    this.selectedModemPower = this.selectedModem.txPower;
-  }
-
   _updateModem() {
-    this.selectedModem.txPower = this.selectedModemPower;
-    this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
+    // this.selectedModem.txPower = this.selectedModemPower;
+    this.set("selectedModem.txPower", this.selectedModemPower);
+    // this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
     this.modemUpdatedMessage = `Modem ${
       this.selectedModem.modemId
     }’s txPower has been updated to ${this.selectedModem.txPower}dBm`;

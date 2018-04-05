@@ -111,12 +111,7 @@ export class AstroApp extends PolymerElement {
         
         <astro-modems
           title="Modems"
-          selected-modem={{astroModem}}
-          modems=[[modems]]>
-
-          <astro-modem-list modems={{modems}} selected-modem={{astroModem}}></astro-modem-list>
-          <astro-modem-detail selected-modem={{astroModem}} slot-name="detail"></astro-modem-detail>
-          
+          modems={{modems}}>
         </astro-modems>
       </rux-tab-panel>
 

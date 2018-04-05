@@ -117,7 +117,6 @@ export class AstroModemListItem extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    console.log("modem", this.modem.modemId);
   }
 
   disconnectedCallback() {
