@@ -25,10 +25,10 @@ export class AstroModemList extends PolymerElement {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-list.css">
 
-      <!-- <div class="modem-list"> //-->
+      
         <div class="modem-header">
           <h2>Modems</h2>
-          <div>[[modemCount]]/[[totalModems]]</div>
+          <div class="modem-header__modem-count">[[modemCount]]/[[modemTotal]]</div>
         </div>
         <ul class="modem-list modem-list--compact">
           <li class="modem-list__list-item modem-list__header">
@@ -68,6 +68,9 @@ export class AstroModemList extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+    this.modemCount = 24;
+    this.modemTotal = 24;
   }
 
   disconnectedCallback() {

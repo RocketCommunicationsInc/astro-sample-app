@@ -370,7 +370,7 @@ export class RuxTimeline extends PolymerElement {
     // console.log("timeline", this.hidden);
     // console.log("track", this._track.offsetParent);
 
-    this._parentObserver = new MutationObserver(mutations => {
+    /* this._parentObserver = new MutationObserver(mutations => {
       // console.log("hello there");
       var self = this;
       mutations.forEach(mutant => {
@@ -395,7 +395,7 @@ export class RuxTimeline extends PolymerElement {
     };
 
     const targetNode = this._track;
-    this._parentObserver.observe(targetNode, observerConfig);
+    this._parentObserver.observe(targetNode, observerConfig); */
   }
 
   disconnectedCallback() {

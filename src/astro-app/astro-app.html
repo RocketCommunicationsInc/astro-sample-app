@@ -24,19 +24,18 @@ console.log(AstroAppConfig);
       }
 
 
-      
-			/* :host:before,
+
+      /* :host:before,
 			:host:after {
 				box-sizing: border-box;
 			}	 */
 
-
       .rux-status-bar-group {
-        display: flex; 
-        flex-direction: row; 
+        display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        list-style:none; 
+        list-style: none;
         padding: 0;
         margin: 0;
       }
@@ -63,15 +62,16 @@ console.log(AstroAppConfig);
       }
 
 
+      rux-tab-panel {
+        border: 5px solid green;
+      }
 
     </style>
 
 
 
-    
-    <rux-global-status-bar
-      appname="Astro App"
-      version="v1.022a">
+
+    <rux-global-status-bar appname="Astro App" version="v1.022a">
 
 
 
@@ -88,68 +88,48 @@ console.log(AstroAppConfig);
 
 
       <!-- status icons //-->
-      <ul class="rux-status-bar-group"
-          slot="status-bar">
-          <li><rux-status
-            status="emergency"
-            label="Netcom"
-            sublabel="Ok"
-            notifications="10"
-            icon="advanced-status:netcom"></rux-status></li>
-          <li><rux-status
-            status="emergency"
-            label="Advanced Status"
-            notifications="1"
-            sublabel="Error"
-            icon="advanced-status:thermal"></rux-status></li>
-          <li><rux-status
-            status="standby"
-            label="Standby"
-            sublabel="Standby"
-            notifications="100000"
-            icon="advanced-status:propulsion-power"></rux-status></li>
-        </ul>
+      <ul class="rux-status-bar-group" slot="status-bar">
+        <li>
+          <rux-status status="emergency" label="Netcom" sublabel="Ok" notifications="10" icon="advanced-status:netcom"></rux-status>
+        </li>
+        <li>
+          <rux-status status="emergency" label="Advanced Status" notifications="1" sublabel="Error" icon="advanced-status:thermal"></rux-status>
+        </li>
+        <li>
+          <rux-status status="standby" label="Standby" sublabel="Standby" notifications="100000" icon="advanced-status:propulsion-power"></rux-status>
+        </li>
+      </ul>
       </ul>
 
 
       <!-- toolbar items //-->
       <ul class="rux-tool-bar-group" slot="tool-bar">
         <li>
-          <rux-button
-            type="icon"
-            icon="default:settings">Settings</rux-button>
+          <rux-button type="icon" icon="default:settings">Settings</rux-button>
         </li>
         <li>
-          <rux-button
-            type="icon"
-            icon="default:notifications">Notifications</rux-button>
+          <rux-button type="icon" icon="default:notifications">Notifications</rux-button>
         </li>
         <li>
-            <rux-user></rux-user>
+          <rux-user></rux-user>
         </li>
         <li>
-          <rux-button
-					  type="large"
-					  icon="advanced-status:netcom">Master Off</rux-button>
-          </li>
+          <rux-button type="large" icon="advanced-status:netcom">Master Off</rux-button>
+        </li>
       </ul>
-      
+
     </rux-global-status-bar>
-    
+
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">
         <h1>Modems</h1>
-          <rux-button>Cancel</rux-button>
-          <rux-button on-click="graph" default>Ok</rux-button>
-        
-            
-        <rux-button
-          type="icon"
-          icon="default:notifications">Notifications</rux-button>
-        <rux-button
-          type="icon"
-          icon="default:settings">Settings</rux-button>
-            
+        <rux-button>Cancel</rux-button>
+        <rux-button on-click="graph" default>Ok</rux-button>
+
+
+        <rux-button type="icon" icon="default:notifications">Notifications</rux-button>
+        <rux-button type="icon" icon="default:settings">Settings</rux-button>
+
         <rux-button icon="advanced-status:netcom">Master Off</rux-button>
 
       </rux-tab-panel>
@@ -161,23 +141,14 @@ console.log(AstroAppConfig);
       <rux-tab-panel aria-labeledby="tab-telemetry">
         <h1 id="rux-spec-a-sat-name">Sat 1 Signals</h1>
         <!--  -->
-        <rux-spectrum-analysis
-          chart-data="[[chartData]]"
-          chart-legend-x="Frequency (mHz)"
-          chart-legend-y="Power (dBm)"
-          x-scale-min = 900
-          x-scale-max = 2350
-          x-scale-step = 50
-          y-scale-min = -30
-          y-scale-max = 0
-          height="250"
-          width="480">
+        <rux-spectrum-analysis chart-data="[[chartData]]" chart-legend-x="Frequency (mHz)" chart-legend-y="Power (dBm)" x-scale-min=9
+          00 x-scale-max=2 350 x-scale-step=5 0 y-scale-min=- 30 y-scale-max=0 height="250" width="480">
         </rux-spectrum-analysis>
-        
-        
+
+
       </rux-tab-panel>
-      
-  </rux-tab-panels>
+
+    </rux-tab-panels>
 
   </template>
 
@@ -187,7 +158,9 @@ console.log(AstroAppConfig);
      * @polymer
      */
     class AstroApp extends Polymer.Element {
-      static get is() { return 'astro-app'; }
+      static get is() {
+        return 'astro-app';
+      }
       static get properties() {
         return {
           prop1: {
@@ -218,13 +191,13 @@ console.log(AstroAppConfig);
 
 
       // This should probably exist in a separate component outside of
-        // astro-app and outside of rux-spectrum-analysis
+      // astro-app and outside of rux-spectrum-analysis
       _dataToJsonObjArray(data) {
-        
+
         let dataArray = data.split('|');
         let scrubbedArray = [];
         dataArray.shift(); // data comes with an extra pipe in the front
-        for (let c = 0; c < dataArray.length; c++ ) {
+        for (let c = 0; c < dataArray.length; c++) {
           let datum = dataArray[c];
           let datumArray = datum.split(':');
           let d = {};
@@ -234,11 +207,12 @@ console.log(AstroAppConfig);
           scrubbedArray.push(d);
         }
         return scrubbedArray;
-      }    
+      }
 
-      
+
     }
 
     window.customElements.define(AstroApp.is, AstroApp);
+
   </script>
 </dom-module>
