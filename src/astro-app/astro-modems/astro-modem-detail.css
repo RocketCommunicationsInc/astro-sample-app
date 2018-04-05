@@ -170,3 +170,11 @@
   margin: 0;
   padding: 0;
 }
+
+.modem-detail__detail__section dt {
+  margin-bottom: 0/5rem;
+}
+
+.modem-detail__detail__section .label {
+  margin-left: 0.35rem;
+}

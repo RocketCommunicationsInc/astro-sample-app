@@ -14,7 +14,8 @@ export class AstroModemDetail extends PolymerElement {
   static get properties() {
     return {
       selectedModem: {
-        type: Object
+        type: Object,
+        observer: "_selectedModemChanged"
       },
       selectedModemPower: {
         type: Number,
@@ -55,7 +56,8 @@ export class AstroModemDetail extends PolymerElement {
 
       <div class="modem-detail__detail" hidden="[[!selectedModem]]">
         <rux-notification 
-          message="Modem 1 has been activated"></rux-notification>
+          close-after=10
+          message=[[modemUpdatedMessage]]></rux-notification>
         
         
         <h1 id="test">Modem [[selectedModem.modemId]]</h1>
@@ -63,7 +65,6 @@ export class AstroModemDetail extends PolymerElement {
         <section class="modem-detail__detail__section">
           <header>
             <h1>Tx</h1>
-            <rux-button on-click='_showNotification'>Show Notification</rux-button>
           </header>
           <dl>
             <dt>Power</dt>
@@ -102,16 +103,12 @@ export class AstroModemDetail extends PolymerElement {
     // console.log(this.selectedModem);
   }
 
-  do() {
-    // console.log("do");
-    const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
-    // console.log(this.shadowRoot.querySelectorAll(".modem-detail__detail"));
-
-    _pane[0].classList.toggle("show");
-  }
-
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _cancelChange(e) {
+    this.togglePane();
   }
 
   _powerChanged(e) {
@@ -121,16 +118,22 @@ export class AstroModemDetail extends PolymerElement {
     }
   }
 
+  _selectedModemChanged(e) {
+    this.selectedModemPower = this.selectedModem.txPower;
+  }
+
   _updateModem() {
     this.selectedModem.txPower = this.selectedModemPower;
     this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
-  }
+    this.modemUpdatedMessage = `Modem ${
+      this.selectedModem.modemId
+    }’s txPower has been updated to ${this.selectedModem.txPower}`;
 
-  _showNotification() {
+    this.togglePane();
+
     const _notification = this.shadowRoot.querySelectorAll(
       "rux-notification"
     )[0];
-    console.log(_notification);
     if (_notification.hasAttribute("opened")) {
       _notification.removeAttribute("opened");
     } else {
