@@ -1,22 +1,22 @@
 import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
-
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
 /**
  * @polymer
  * @extends HTMLElement
  */
-export class AstroModems extends PolymerElement {
+export class AstroModems extends MutableData(PolymerElement) {
   static get properties() {
     return {
       title: {
         type: String
       },
       modems: {
-        type: Object
+        type: Array,
+        observer: "modemListChanged"
       },
       selectedModem: {
-        type: Object,
-        observer: "selectedModemChanged"
+        type: Object
       }
     };
   }
@@ -25,7 +25,7 @@ export class AstroModems extends PolymerElement {
     return html`
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modems.css">
       <astro-modem-list modems={{modems}} selected-modem={{selectedModem}}></astro-modem-list>
-      <astro-modem-detail selected-modem={{selectedModem}} slot-name="detail"></astro-modem-detail>
+      <astro-modem-detail modems={{modems}} selected-modem={{selectedModem}}></astro-modem-detail>
     `;
   }
 
@@ -41,7 +41,7 @@ export class AstroModems extends PolymerElement {
     super.disconnectedCallback();
   }
 
-  selectedModemChanged(e) {
+  modemListChanged(e) {
     console.log("sm changed", e);
   }
 

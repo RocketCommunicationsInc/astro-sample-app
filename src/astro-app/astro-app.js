@@ -46,7 +46,7 @@ export class AstroApp extends PolymerElement {
         min-width: 1620px;
         box-sizing: border-box; 
         overflow: hidden;
-        border: 10px solid orange;
+        
       }
 
       *,

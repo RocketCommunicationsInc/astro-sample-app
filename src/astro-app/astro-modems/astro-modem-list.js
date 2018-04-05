@@ -15,7 +15,8 @@ export class AstroModemList extends MutableData(PolymerElement) {
   static get properties() {
     return {
       modems: {
-        type: Array
+        type: Array,
+        observer: "_modemsChanged"
       },
       selectedModem: {
         type: Object,
@@ -128,10 +129,10 @@ export class AstroModemList extends MutableData(PolymerElement) {
             </ul>
           </li>
 
-          <template is="dom-repeat" id="modemList" items=[[modems]]>
+          <template is="dom-repeat" id="modemList" items={{modems}}>
             <li>
               <astro-modem-list-item
-                modem={{item}}
+                modem=[[item]]
                 on-click="_selectModem"
                 compact></astro-modem-list-item>
             </li>
@@ -156,6 +157,11 @@ export class AstroModemList extends MutableData(PolymerElement) {
     super.disconnectedCallback();
   }
 
+  _modemsChanged(e) {
+    console.log("modemds changed", this.modems);
+    // console.log(this.modems);
+  }
+
   _selectModem(e) {
     let modem = this.$.modemList.itemForElement(e.target);
     this.$.selector.select(modem);
@@ -164,10 +170,6 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
     this._reset();
     e.currentTarget.setAttribute("selected", "");
-  }
-
-  test(e) {
-    console.log("test", this.selectedModem);
   }
 
   _reset() {
