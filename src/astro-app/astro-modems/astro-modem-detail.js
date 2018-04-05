@@ -15,7 +15,8 @@ export class AstroModemDetail extends PolymerElement {
     return {
       selectedModem: {
         type: Object,
-        observer: "_selectedModemChanged"
+        observer: "_selectedModemChanged",
+        value: false
       },
       selectedModemPower: {
         type: Number,
@@ -127,7 +128,7 @@ export class AstroModemDetail extends PolymerElement {
     this.notifyPath("selectedModem.txPower", this.selectedModem.txPower);
     this.modemUpdatedMessage = `Modem ${
       this.selectedModem.modemId
-    }’s txPower has been updated to ${this.selectedModem.txPower}`;
+    }’s txPower has been updated to ${this.selectedModem.txPower}dBm`;
 
     this.togglePane();
 

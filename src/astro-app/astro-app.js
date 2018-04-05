@@ -24,6 +24,7 @@ import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
 import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
 import { AstroModems } from "./astro-modems/astro-modems.js";
 import { AstroModemList } from "./astro-modems/astro-modem-list.js";
+import { AstroModemListItem } from "./astro-modems/astro-modem-list-item.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
 import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 /**
@@ -166,37 +167,6 @@ export class AstroApp extends PolymerElement {
 
     this.chart1 = {};
     this.chart2 = {};
-
-    this.astroModem = {
-      _id: {
-        $oid: "570cef10e4b0cbcd095d473b"
-      },
-      modemId: 1,
-      modulatorResource: {
-        sliceId: "255.255.255.004",
-        resourceId: 92976
-      },
-      txModType: "MOD_TYPE_BPSK",
-      txSymbolRate: 3900,
-      txCoding: "CODING_UNCODED",
-      txFreq: 1200,
-      txPower: 55,
-      txPath: 3,
-      txEnabled: true,
-      demodulatorResource: {
-        sliceId: "255.255.255.003",
-        resourceId: 61204
-      },
-      rxSymbolRate: 0,
-      rxFreq: 0,
-      rxPower: -10,
-      rxPath: 0,
-      rxEnabled: true,
-      errorVectorMagnitude: 95,
-      carrierLock: true,
-      codeLock: true,
-      allocated: false
-    };
 
     this.modems = [
       {
@@ -974,6 +944,8 @@ export class AstroApp extends PolymerElement {
         power: true
       }
     ];
+
+    this.astroModem = this.modems[0];
 
     this.satellite1 = {
       label: "Satellite 1",

@@ -4,6 +4,7 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/array-selector.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import "./astro-modem-list-item.js";
 import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
 /**
  * @polymer
@@ -17,7 +18,8 @@ export class AstroModemList extends PolymerElement {
       },
       selectedModem: {
         type: Object,
-        notify: true
+        notify: true,
+        observer: "_listChanged"
       }
     };
   }
@@ -44,6 +46,11 @@ export class AstroModemList extends PolymerElement {
           </li>
           <template is="dom-repeat" id="modem-list" items=[[modems]]>
             <li class="modem-list__list-item" on-click="_selectModem">
+              <astro-modem-list-item
+                modem=[[item]]></astro-modem-list-item>
+            </li>
+            <!--
+            
               <ul>
                 <li>[[item.modemId]]</li>
                 <li><rux-status status=[[_getStatus(item,'tx')]]></rux-status></li>
@@ -54,6 +61,8 @@ export class AstroModemList extends PolymerElement {
                 <li class="modem-list__reading">[[item.errorVectorMagnitude]]</li>
               </ul>
             </li>
+
+            //-->
           </template>
         </ul>
 
@@ -75,6 +84,10 @@ export class AstroModemList extends PolymerElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  _listChanged() {
+    console.log("list changed");
   }
 
   _selectModem(e) {

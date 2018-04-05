@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   min-width: 450px;
+
   margin-right: 3.125rem;
-  margin: 0.75rem;
+  margin: 1.75rem;
 
   padding-bottom: 1rem;
   overflow: hidden;
@@ -14,7 +15,7 @@
   justify-content: space-between;
   align-items: baseline;
   padding: 0;
-  line-height: 0;
+  margin-bottom: 1rem;
 }
 
 .modem-header h2 {
@@ -43,24 +44,27 @@
 }
 
 .modem-list--compact .modem-list__list-item {
-  height: 2.35rem;
+  /* height: 2.35rem; */
 }
 
 .modem-list__list-item {
-  display: flex;
-  flex-shrink: 1;
-  justify-content: flex-start;
-  font-size: 1.375rem;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #0f1a24;
-  margin: 0 0 0.625rem 0;
-  height: 3.5rem;
-  min-height: 2rem;
+  display: block;
+  /* display: flex; */
+  /* flex-shrink: 1; */
+  /* justify-content: flex-start; */
+  /* font-size: 1.375rem; */
+  /* color: rgba(255, 255, 255, 0.8); */
+  /* background-color: #0f1a24; */
+  /* margin: 0 0 0.625rem 0; */
+  /* height: 3.5rem; */
+  /* min-height: 2rem; */
   position: relative;
+  padding: 0 !important;
 
-  box-shadow: 0 1px 0 #000;
+  /* box-shadow: 0 1px 0 #000; */
+  border: 1px solid green;
 
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .modem-list__header {
@@ -72,13 +76,13 @@
 }
 
 .modem-list__list-item:not(.modem-list__header)::before {
-  content: "";
+  /* content: "";
   width: 6px;
   display: block;
   position: absolute;
   top: 0;
   height: 100%;
-  background-color: rgba(216, 216, 216, 0.1);
+  background-color: rgba(216, 216, 216, 0.1); */
 }
 
 .modem-list__list-item[selected] {
@@ -106,10 +110,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12%;
+  width: 14%;
 }
 
 .modem-list__list-item li.modem-list__reading {
-  width: 22%;
+  justify-content: flex-end;
   text-align: right;
+  margin-right: 1rem;
+  /* outline: 1px solid red; */
 }
