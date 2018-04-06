@@ -39,10 +39,6 @@ export class AstroModems extends MutableData(PolymerElement) {
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-
-  ready() {
-    super.ready();
-  }
 }
 
 customElements.define("astro-modems", AstroModems);

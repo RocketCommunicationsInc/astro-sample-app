@@ -1,6 +1,7 @@
 :host {
   display: flex;
   box-sizing: border-box;
+  height: 960px;
 }
 
 *,
@@ -54,6 +55,10 @@ ol li::before {
 
   padding: 1rem 0;
   margin: 2px;
+}
+
+.rux-timeline__controls h2 {
+  font-weight: 300;
 }
 
 .rux-timeline__tasks-status {

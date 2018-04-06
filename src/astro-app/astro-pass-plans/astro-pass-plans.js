@@ -4,15 +4,9 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
-import {
-  MutableData
-} from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
-import {
-  AstroPassPlanTask
-} from "./astro-pass-plan-task.js";
-import {
-  RuxIcon
-} from "../../astro-components/rux-icon/rux-icon.js";
+import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
+import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
+import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -41,7 +35,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     };
   }
   static get template() {
-    return html `
+    return html`
     
 
     <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
@@ -76,16 +70,15 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       margin-right: auto;
     }
 
-    .no-selection {
+    .no-pass {
+      width: 100%;
+      height: 50%;
       display: flex;
-      height: 200%;
-      justify-content: center;
       align-items: center;
-      /* outline: 1px solid red; */
+      justify-content: center;
     }
-
-    .no-selection h1 {
-      font
+    
+    .no-pass h1 {
       font-weight: 300;
     }
 
@@ -132,19 +125,9 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       </template>
 
       <template is="dom-if" if=[[!selectedSatellite]]>
-        <div class="no-selection">
+        <div class="no-pass">
           <h1>No Pass Selected</h1>
         </div>
-
-
-      <div class="tasks-container">
-        <ol class="tasks">
-          <template is="dom-repeat" id="pass-plan-tasks" items=[[tasks]]>
-            <li><span class="task">[[item.title]]</span><span class="task-complete"></span></li>
-          </template>
-        </ol>
-      </div>
-
       </template>
     </div>  
     `;
@@ -182,7 +165,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // to individual elements (using their detail object property to pass both the
     // title of the task and its status, or possibly in an init of the app sending
     // a single task list. In this instance it’s the same tasks for all regions)
-    this.tasks = [{
+    this.tasks = [
+      {
         title: "Acquire and confirm signal"
       },
       {
@@ -210,13 +194,16 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // Set up the timeline track data, it‘s just an array of objects
     // for the demo. In a real world example it would be attached to
     // a web service.
-    this.tracks = [{
+    this.tracks = [
+      {
         label: "LEO",
-        regions: [{
+        regions: [
+          {
             label: "DSP-1 F16",
             status: "ok",
             detail: {
-              tasks: [{
+              tasks: [
+                {
                   complete: true,
                   status: "ok"
                 },
@@ -267,7 +254,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             label: "DSP-1 F17",
             status: "caution",
             detail: {
-              tasks: [{
+              tasks: [
+                {
                   complete: true,
                   status: "ok"
                 },
@@ -318,7 +306,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             label: "NROL-20",
             status: "ok",
             detail: {
-              tasks: [{
+              tasks: [
+                {
                   complete: true,
                   status: "ok"
                 },
@@ -369,7 +358,8 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             label: "SBSS-1",
             status: "error",
             detail: {
-              tasks: [{
+              tasks: [
+                {
                   complete: true,
                   status: "ok"
                 },
@@ -417,8 +407,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             )
           }
         ]
-      },
-
+      }
     ];
   }
 
