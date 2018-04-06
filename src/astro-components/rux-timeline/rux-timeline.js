@@ -228,6 +228,7 @@ export class RuxTimeline extends PolymerElement {
         }
 
         .rux-timeline__viewport__labels {
+          flex-shrink: 0;
           position: relative;
           width: 7.875rem;
           z-index: 200;
@@ -256,7 +257,7 @@ export class RuxTimeline extends PolymerElement {
         }
         </style>
       
-        <header class="rux-timeline__header">
+        <header class="rux-timeline__header" on-click="_setParams">
           <rux-status status="[[status]]"></rux-status>
           <h1>[[label]]</h1>
           <rux-slider
@@ -317,6 +318,8 @@ export class RuxTimeline extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
+    console.log("offsetParent", this.offsetParent);
+
     // hard coded min/max scale (for now)
     this._minScale = 100;
     this._maxScale = 500;
@@ -374,6 +377,37 @@ export class RuxTimeline extends PolymerElement {
 
     this._tics = new Array();
     this._setTics();
+
+    /*
+    if the timeline isn't visible, likely because it’s in a tab
+     or similar interface we’ll need to init the timeline physical
+     properties.
+     
+     This is very much a work in progress and quite possibly not
+     the ideal way to handle this, but the demo is coming
+    */
+    if (!this.offsetParent) {
+      // crate a new mutation obvserver
+      this._parentObserver = new MutationObserver(mutations => {
+        mutations.forEach(mutant => {
+          // the target’s offsetParent is not null then the timeline
+          // is visible
+          if (mutant.target.offsetParent) {
+            // effectively do the same thing as a window resize
+            this._setParams();
+
+            // disconnect the observer
+            this._parentObserver.disconnect();
+          }
+        });
+      });
+
+      // observe
+      this._parentObserver.observe(this._track, {
+        subtree: true,
+        attributeOldValue: true
+      });
+    }
 
     window.addEventListener("resize", this._windowListener);
   }
@@ -483,12 +517,37 @@ export class RuxTimeline extends PolymerElement {
 
   _updateTimelineScale() {
     // scale tracks container
+    console.log("tracks", this._tracks);
     this._tracks.style.width = Number(this._scale) + "%";
+    this._track.style.width = Number(this._scale) + "%";
 
     if (!this._tics) return;
     this._tics.forEach((tic, i) => {
       tic.style.left =
         3600000 * i * this._ruler.offsetWidth / this._duration + "px";
+    });
+  }
+
+  /*
+    This is a quick and dirty hack for hidden timelines on load (e.g., in a tab)
+    It’s duplicating a bunch of stuff from the window resize event and could
+    likely be coupled with that and/or since it’s duplicating a dispatch event
+    that’s getting dispatched for the playhead anyway just do it there -- except
+    of course in instances where no playhead exists 
+  */
+  _setParams() {
+    console.log("set params");
+    this._updateTimelineScale();
+    // This is a very ugly way of targeting grandchildren form a parent
+    // but for demo it’ll have to do.
+    const _t = this.shadowRoot.querySelectorAll("rux-timeline-track");
+    _t.forEach(track => {
+      track.dispatchEvent(new CustomEvent("update"));
+      var _r = track.shadowRoot.querySelectorAll("rux-timeline-region");
+
+      _r.forEach(region => {
+        region.dispatchEvent(new CustomEvent("update"));
+      });
     });
   }
 
