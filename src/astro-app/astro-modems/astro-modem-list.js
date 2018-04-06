@@ -32,10 +32,12 @@ export class AstroModemList extends MutableData(PolymerElement) {
             min-width: 450px;
             margin: 0.75rem 1.75rem 0.75rem 0.75rem;
             padding-right: 1rem;
+            padding-top: 0;
             box-sizing: border-box;
 
-            height: 95%;
+            height: auto;
             overflow: scroll;
+            
           }
           
           *,
@@ -46,10 +48,17 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
           .modem-header {
             display: flex;
-            padding: 0;
-            margin: 1rem 0 0.5rem 0;
+            flex-wrap: wrap;
+            padding: 1rem 0 0 0;
+            margin: 0 0 0.5rem 0;
             justify-content: space-between;
             align-items: baseline;
+            
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #0f1a24;
             
 
           }
@@ -66,6 +75,10 @@ export class AstroModemList extends MutableData(PolymerElement) {
             color: #bdc3c9;
           }
 
+          .modem-header ul {
+            width: 100%;
+          }
+
           .modem-list,
           .modem-list ul {
             list-style: none;
@@ -74,8 +87,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
           }
 
           .modem-list__header {
-            position: -webkit-sticky;
-            position: sticky;
+            
             display: flex;
             font-size: 0.875rem;
             top: 0px;
@@ -126,9 +138,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
         <div class="modem-header">
           <h2 on-click="test">Modems</h2>
           <div class="modem-header__modem-count">[[modems.length]]/[[modems.length]]</div>
-        </div>
-        
-        <ul class="modem-list">
+          <ul class="modem-list">
           <li class="modem-list__header">
             <ul>
               <li></li>
@@ -140,7 +150,10 @@ export class AstroModemList extends MutableData(PolymerElement) {
               <li class="modem-list__reading">EVM</li>
             </ul>
           </li>
-
+          </ul>
+        </div>
+        
+        <ul class="modem-list">
           <template is="dom-repeat" id="modemList" items=[[modems]]>
             <li>
               <astro-modem-list-item

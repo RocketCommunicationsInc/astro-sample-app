@@ -64,6 +64,11 @@ export class AstroApp extends PolymerElement {
         display: flex;
         justify-content: center;
       }
+
+      rux-tab-panels {
+        height: calc(100% - 140px);
+
+      }
     </style>
     
     
@@ -105,7 +110,9 @@ export class AstroApp extends PolymerElement {
     
     
 
-
+    <rux-pop-up-menu
+    menu-items=[[_popMenuItems]]
+    target=[[_popMenuTarget]]></rux-pop-up-menu>
     <rux-tab-panels>
       <rux-tab-panel aria-labeledby="tab-modems">  
         
@@ -133,10 +140,6 @@ export class AstroApp extends PolymerElement {
       </rux-tab-panel>
 
     </rux-tab-panels>
-
-    <rux-pop-up-menu
-    menu-items=[[_popMenuItems]]
-    target=[[_popMenuTarget]]></rux-pop-up-menu>
     `;
   }
 
