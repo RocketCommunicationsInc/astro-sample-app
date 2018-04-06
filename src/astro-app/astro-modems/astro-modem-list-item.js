@@ -41,7 +41,14 @@ export class AstroModemListItem extends PolymerElement {
 				
 					box-shadow: 0 1px 0 #000;
 				
-					cursor: pointer;
+          cursor: pointer;
+          box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
         }
 
         :host::before {
@@ -68,14 +75,11 @@ export class AstroModemListItem extends PolymerElement {
           background-color: #0080f4;
         }
 
-      				
-
 				ul {
+          display: flex;
           flex-grow: 1;
           padding: 0;
           margin: 0 0 0 0.5rem;
-        
-          display: flex;
         }
 
         li {
@@ -91,7 +95,7 @@ export class AstroModemListItem extends PolymerElement {
         .modem-list__reading {
           justify-content: flex-end;
           text-align: right;
-          margin-right: 1rem;
+          /* margin-right: 1rem; */
         }
         
         

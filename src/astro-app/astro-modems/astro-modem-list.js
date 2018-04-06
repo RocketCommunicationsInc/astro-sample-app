@@ -31,8 +31,15 @@ export class AstroModemList extends MutableData(PolymerElement) {
           :host {
             min-width: 450px;
             margin: 0.75rem 3.75rem 0.75rem 0.75rem;
+            box-sizing: border-box;
           }
           
+          *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
+        }
+
           .modem-header {
             display: flex;
             padding: 0;
@@ -63,14 +70,15 @@ export class AstroModemList extends MutableData(PolymerElement) {
           }
 
           .modem-list__header {
-            
+            display: flex;
             font-size: 0.875rem;
             position: sticky;
             top: 0;
+            height: 2rem;
+            background-color: #0f1a24;
             z-index: 100;
-
-            background-color: red;
-            
+            margin: 0 0 0.625rem 0;
+					
           }
 
           .modem-list__header:before {
@@ -79,24 +87,22 @@ export class AstroModemList extends MutableData(PolymerElement) {
             display: block;
             position: absolute;
             top: 0;
-            
-            height: 100%;
-            background-color: rgba(216, 216, 216, 1);
           }
 
           .modem-list__header ul {
-            flex-grow: 1;
-            padding: 0;
-            margin: 0;
-            outline: 1px solid green;
-          
             display: flex;
+            flex-grow: 1;
+            
+            padding: 0;
+            margin: 0 0 0 8px;
+            
+            
+            
           }
   
           .modem-list__header li {
-            padding: 0;
-          
             display: flex;
+            padding: 0;
             justify-content: center;
             align-items: center;
             width: 14%;
@@ -106,7 +112,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
           .modem-list__header .modem-list__reading {
             justify-content: flex-end;
             text-align: right;
-            margin-right: 1rem;
+            /* margin-right: 1rem; */
           }
         
         </style>        
@@ -120,7 +126,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
         <ul class="modem-list">
           <li class="modem-list__header">
             <ul>
-              <li>1</li>
+              <li></li>
               <li>Tx</li>
               <li>Rx</li>
               <li>Carrier</li>

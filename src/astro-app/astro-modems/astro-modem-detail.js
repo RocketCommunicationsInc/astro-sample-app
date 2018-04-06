@@ -122,10 +122,6 @@ export class AstroModemDetail extends PolymerElement {
     this.selectedModemPower = this.selectedModem.txPower;
   }
 
-  _modemListChanged(e) {
-    // console.log("modems", this.modems);
-    // console.log("modelist changed", e);
-  }
   _powerChanged(e) {
     if (e != this.selectedModem.txPower) {
       this.closeButtonLabel = "Cancel";
@@ -134,13 +130,9 @@ export class AstroModemDetail extends PolymerElement {
   }
 
   _updateModem() {
-    // this.selectedModem.txPower = this.selectedModemPower;
     this.set("selectedModem.txPower", this.selectedModemPower);
-    // console.log(this.selectedModem);
-    // this.set(`modems.${0}.txPower`, "100");
     this.set("modems", this.modems.slice());
 
-    // this.notifyPath("modems", this.modems.slice());
     this.modemUpdatedMessage = `Modem ${
       this.selectedModem.modemId
     }: Tx Power has been updated to ${this.selectedModem.txPower}dBm`;
