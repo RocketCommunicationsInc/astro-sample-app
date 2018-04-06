@@ -12,7 +12,8 @@ export class AstroModemListItem extends PolymerElement {
   static get properties() {
     return {
       modem: {
-        type: Object
+        type: Object,
+        value: false
       },
       selected: {
         type: Boolean,
@@ -104,10 +105,10 @@ export class AstroModemListItem extends PolymerElement {
         
 			<ul>
 				<li>[[modem.modemId]]</li>
-				<li><rux-status status=[[_getStatus(modem,'tx')]]></rux-status></li>
-				<li><rux-status status=[[_getStatus(modem,'rx')]]></rux-status></li>
-				<li><rux-status status=[[_getStatus(modem,'carrier')]]></rux-status></li>
-				<li><rux-status status=[[_getStatus(modem,'code')]]></rux-status></li>
+				<li><rux-status status=[[_getStatus(modem.txEnabled,'tx')]]></rux-status></li>
+				<li><rux-status status=[[_getStatus(modem.rxEnabled,'rx')]]></rux-status></li>
+				<li><rux-status status=[[_getStatus(modem.carrierLock,'carrier')]]></rux-status></li>
+				<li><rux-status status=[[_getStatus(modem.codeLock,'code')]]></rux-status></li>
 				<li class="modem-list__reading">[[modem.txPower]]</li>
 				<li class="modem-list__reading">[[modem.errorVectorMagnitude]]</li>
 			</ul>
@@ -134,27 +135,7 @@ export class AstroModemListItem extends PolymerElement {
    **
    */
   _getStatus(val, type) {
-    let _status = null;
-    // if power is off return off to everything?
-    if (val.power) return "off";
-    switch (type) {
-      case "tx":
-        _status = val.txPower <= 55 && val.txPower >= 37 ? "ok" : "caution";
-        break;
-      case "rx":
-        _status = val.rxPower <= 15 && val.rxPower >= -15 ? "ok" : "caution";
-        break;
-      case "carrier":
-        _status = val.carrierLock ? "ok" : "caution";
-        break;
-      case "code":
-        _status = val.codeLock ? "ok" : "caution";
-        break;
-      default:
-        _status = "off";
-        break;
-    }
-    return _status;
+    return val ? "ok" : "caution";
   }
 }
 customElements.define("astro-modem-list-item", AstroModemListItem);

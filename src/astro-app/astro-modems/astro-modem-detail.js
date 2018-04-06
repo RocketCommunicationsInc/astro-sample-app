@@ -4,9 +4,6 @@ import {
 } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
 
-/* <div class="modem-detail__modem-settings">
- */
-
 /**
  * @polymer
  * @extends HTMLElement
@@ -79,6 +76,7 @@ export class AstroModemDetail extends PolymerElement {
         <section class="modem-detail__detail__section">
           <header>
             <h1>Tx</h1>
+            <rux-status status="[[getStatus(selectedModem.txEnabled)]]"</rux-status>
           </header>
           <dl>
             <dt>Power</dt>
@@ -93,6 +91,7 @@ export class AstroModemDetail extends PolymerElement {
         <section class="modem-detail__detail__section">
           <header>
             <h1>Rx</h1>
+            <rux-status status="[[getStatus(selectedModem.rxEnabled)]]"</rux-status>
           </header>
           <dl>
             <dt>Frequency</dt>
@@ -115,11 +114,14 @@ export class AstroModemDetail extends PolymerElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    // console.log(this.selectedModem);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
+  }
+
+  getStatus(ofModem) {
+    return ofModem ? "ok" : "caution";
   }
 
   _cancelChange(e) {

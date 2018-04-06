@@ -517,7 +517,7 @@ export class RuxTimeline extends PolymerElement {
 
   _updateTimelineScale() {
     // scale tracks container
-    console.log("tracks", this._tracks);
+
     this._tracks.style.width = Number(this._scale) + "%";
     this._track.style.width = Number(this._scale) + "%";
 

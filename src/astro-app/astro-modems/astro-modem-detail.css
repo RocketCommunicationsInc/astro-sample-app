@@ -131,6 +131,9 @@
 }
 
 .modem-detail__detail__section header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   margin: 0 0 2px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
