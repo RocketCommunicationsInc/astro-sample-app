@@ -105,7 +105,7 @@ export class AstroApp extends PolymerElement {
       <rux-button
         type="large"
         icon="default:caution"
-        on-click="showNotification">Master Off</rux-button>
+        on-click="goFullScreen">Master Off</rux-button>
     </rux-global-status-bar>
     
     
@@ -141,6 +141,14 @@ export class AstroApp extends PolymerElement {
 
     </rux-tab-panels>
     `;
+  }
+
+  goFullScreen() {
+    if (document.fullScreenEnabled) {
+      document.webkitExitFullscreen();
+    } else {
+      document.documentElement.webkitRequestFullscreen();
+    }
   }
 
   _showPopUp(e) {
