@@ -16,6 +16,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
     return {
       modems: {
         type: Array,
+        notify: true,
         observer: "_modemsChanged"
       },
       selectedModem: {
@@ -113,7 +114,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
       
         <div class="modem-header">
           <h2 on-click="test">Modems</h2>
-          <div class="modem-header__modem-count">[[modemCount]]/[[modemTotal]]</div>
+          <div class="modem-header__modem-count">[[modems.length]]/[[modems.length]]</div>
         </div>
         
         <ul class="modem-list">
@@ -129,7 +130,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             </ul>
           </li>
 
-          <template is="dom-repeat" id="modemList" items={{modems}}>
+          <template is="dom-repeat" id="modemList" items=[[modems]]>
             <li>
               <astro-modem-list-item
                 modem=[[item]]
@@ -148,9 +149,6 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
   connectedCallback() {
     super.connectedCallback();
-
-    this.modemCount = 24;
-    this.modemTotal = 24;
   }
 
   disconnectedCallback() {
@@ -158,14 +156,26 @@ export class AstroModemList extends MutableData(PolymerElement) {
   }
 
   _modemsChanged(e) {
-    console.log("modemds changed", this.modems);
-    // console.log(this.modems);
+    if (!this.selectedModem) return;
+    this.notifyPath(
+      `modems.${this.selectedModem.index}.txPower`,
+      this.selectedModem.txPower
+    );
   }
 
   _selectModem(e) {
     let modem = this.$.modemList.itemForElement(e.target);
+
+    // major short cut time. Getting the index of the selected modem
+    // in the modems array and assigning that to the selected modem
+    // object, so the modem list can update, because for the life of
+    // me I cannot figure out how to update dom-repeat of an array of
+    // objects
+    modem.index = this.$.modemList.indexForElement(e.target);
+
     this.$.selector.select(modem);
     this.selectedModem = modem;
+
     this.notifyPath("selectedModem");
 
     this._reset();

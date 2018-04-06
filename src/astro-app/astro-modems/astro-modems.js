@@ -12,8 +12,7 @@ export class AstroModems extends MutableData(PolymerElement) {
         type: String
       },
       modems: {
-        type: Array,
-        observer: "modemListChanged"
+        type: Array
       },
       selectedModem: {
         type: Object
@@ -39,10 +38,6 @@ export class AstroModems extends MutableData(PolymerElement) {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-  }
-
-  modemListChanged(e) {
-    console.log("sm changed", e);
   }
 
   ready() {

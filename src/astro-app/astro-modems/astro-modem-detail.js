@@ -21,8 +21,7 @@ export class AstroModemDetail extends PolymerElement {
       },
       modems: {
         type: Array,
-        notify: true,
-        observer: "_modemListChanged"
+        notify: true
       },
       selectedModemPower: {
         type: Number,
@@ -137,14 +136,14 @@ export class AstroModemDetail extends PolymerElement {
   _updateModem() {
     // this.selectedModem.txPower = this.selectedModemPower;
     this.set("selectedModem.txPower", this.selectedModemPower);
-    console.log(this.selectedModem);
-    this.set(`modems.${0}.txPower`, "100");
-    // this.set("modems", this.modems.slice());
+    // console.log(this.selectedModem);
+    // this.set(`modems.${0}.txPower`, "100");
+    this.set("modems", this.modems.slice());
 
-    this.notifyPath("modems", this.modems.slice());
+    // this.notifyPath("modems", this.modems.slice());
     this.modemUpdatedMessage = `Modem ${
       this.selectedModem.modemId
-    }’s txPower has been updated to ${this.selectedModem.txPower}dBm`;
+    }: Tx Power has been updated to ${this.selectedModem.txPower}dBm`;
 
     this.togglePane();
 
