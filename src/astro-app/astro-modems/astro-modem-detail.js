@@ -17,6 +17,7 @@ export class AstroModemDetail extends PolymerElement {
       selectedModem: {
         type: Object,
         notify: true,
+        value: false,
         observer: "_selectedModemChanged"
       },
       modems: {
@@ -34,6 +35,13 @@ export class AstroModemDetail extends PolymerElement {
       <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modem-detail.css">
 
       
+      <template is="dom-if" if=[[!selectedModem]]>
+        <div class="no-modems">
+          <h1>No Modem Selected</h1>
+        </div>
+      </template>
+
+
       <template is="dom-if" if=[[selectedModem]]>
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">

@@ -178,3 +178,14 @@
 .modem-detail__detail__section .label {
   margin-left: 0.35rem;
 }
+
+.no-modems {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-modems h1 {
+  font-weight: 300;
+}

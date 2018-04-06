@@ -30,8 +30,12 @@ export class AstroModemList extends MutableData(PolymerElement) {
         <style>
           :host {
             min-width: 450px;
-            margin: 0.75rem 3.75rem 0.75rem 0.75rem;
+            margin: 0.75rem 1.75rem 0.75rem 0.75rem;
+            padding-right: 1rem;
             box-sizing: border-box;
+
+            height: 95%;
+            overflow: scroll;
           }
           
           *,
@@ -70,10 +74,11 @@ export class AstroModemList extends MutableData(PolymerElement) {
           }
 
           .modem-list__header {
+            position: -webkit-sticky;
+            position: sticky;
             display: flex;
             font-size: 0.875rem;
-            position: sticky;
-            top: 0;
+            top: 0px;
             height: 2rem;
             background-color: #0f1a24;
             z-index: 100;
