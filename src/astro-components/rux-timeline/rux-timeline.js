@@ -365,37 +365,6 @@ export class RuxTimeline extends PolymerElement {
     this._setTics();
 
     window.addEventListener("resize", this._windowListener);
-
-    // console.log("timeline", this);
-    // console.log("timeline", this.hidden);
-    // console.log("track", this._track.offsetParent);
-
-    /* this._parentObserver = new MutationObserver(mutations => {
-      // console.log("hello there");
-      var self = this;
-      mutations.forEach(mutant => {
-        // console.log("mutant", mutant.target.offsetParent);
-        if (mutant.target.offsetParent) {
-          // this._updateTimelineScale();
-          // this._scale = 100.1;
-          this._scale = 200;
-          console.log(this);
-          this._parentObserver.disconnect();
-        }
-      });
-    });
-
-    const observerConfig = {
-      attributes: true,
-      characterData: true,
-      childList: true,
-      subtree: true,
-      attributeOldValue: true,
-      characterDataOldValue: true
-    };
-
-    const targetNode = this._track;
-    this._parentObserver.observe(targetNode, observerConfig); */
   }
 
   disconnectedCallback() {
