@@ -134,6 +134,14 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
   }
 
   _selectedSatelliteChanged(e) {
+    console.log("selected satellite", this.selectedSatellite);
+    console.log("e", e);
+
+    if (Object.keys(e).length === 0 && e.constructor === Object) {
+      this.selectedSatellite = false;
+      return;
+    }
+
     if (!this.selectedSatellite) return;
     // get the task list from the selected satellite
     const _taskCheckList = e.detail.tasks;
