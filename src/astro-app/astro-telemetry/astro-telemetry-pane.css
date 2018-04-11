@@ -30,7 +30,6 @@
   /*  padding: 0 1em 1em 1em;*/
   margin: 1%;
   width: 414px;
-  border: 2px solid #000;
   /* outline: 1px solid red; */
 }
 
@@ -46,7 +45,7 @@
   flex-shrink: 0;
   margin: 0.5rem 0 1rem 0;
   padding: 0rem 0 .5rem .5rem;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px #005a8f;
   color: #bdc3c9;
 }
 
@@ -80,7 +79,6 @@ h3 {
 
 svg {
   background-color: #1b3044;
-  border: 2px solid black;
   margin: 0px 0px 0px 10px;
 }
 
