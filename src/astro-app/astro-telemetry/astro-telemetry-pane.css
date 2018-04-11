@@ -29,7 +29,7 @@
   align-items: stretch;
   margin: 1%;
   width: 414px;
-  padding-left: 37px;
+  padding-left: 11px;
 }
 
 .astro-telemetry-pane__status__header {
@@ -44,7 +44,7 @@
   flex-shrink: 0;
   margin: 0.5rem 0 1rem 0;
   padding: 0rem 0 .5rem .5rem;
-  border-bottom: 2px #005a8f;
+  border-bottom: 2px #ff0000;
   color: #bdc3c9;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .astro-telemetry-pane h1 {
-  margin-left: 3.5rem;
+  margin-left: 1.8rem;
 }
 
 h1,
