@@ -74,7 +74,7 @@ export class AstroApp extends PolymerElement {
     
 
     <rux-global-status-bar
-      appname="Astro"
+      appname="Astro App"
       version="2.0a">
       
       <rux-tabs>
@@ -159,8 +159,7 @@ export class AstroApp extends PolymerElement {
     super();
     this.name = "3.0 preview";
 
-    this._popMenuItems = [
-      {
+    this._popMenuItems = [{
         label: "Menu Item 1",
         action: "doSomething"
       },
@@ -173,8 +172,7 @@ export class AstroApp extends PolymerElement {
 
     this.satellite1 = {
       label: "Satellite 1",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "ok"
         },
@@ -199,8 +197,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "caution"
         },
@@ -228,8 +225,7 @@ export class AstroApp extends PolymerElement {
     };
     this.satellite2 = {
       label: "Satellite A",
-      power: [
-        {
+      power: [{
           label: "Power 1",
           status: "off"
         },
@@ -254,8 +250,7 @@ export class AstroApp extends PolymerElement {
           status: "error"
         }
       ],
-      thermal: [
-        {
+      thermal: [{
           label: "Thermal 1",
           status: "ok"
         },
@@ -284,8 +279,7 @@ export class AstroApp extends PolymerElement {
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
     // emulate a JSON object for advanced status
-    this.statusIndicators = [
-      {
+    this.statusIndicators = [{
         label: "Power",
         status: "ok",
         icon: "advanced-status-egs:propulsion-power",

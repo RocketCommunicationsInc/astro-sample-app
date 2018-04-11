@@ -47,6 +47,7 @@
   margin: 0.5rem 0 1rem 0;
   padding: 0rem 0 .5rem .5rem;
   border-bottom: 2px solid #000;
+  color: #bdc3c9;
 }
 
 .astro-telemetry-pane__status__group ul {
@@ -75,13 +76,6 @@ h3 {
   font-weight: 300;
 }
 
-
-
-
-
-
-
-
 /* Start Spectrum Analyzer */
 
 svg {
@@ -104,7 +98,8 @@ text,
 }
 
 .rux-spectrum-analyzer__main-chart-label {
-  font-family: "Open Sans Light";
+  font-family: "Open Sans";
+  font-weight: 300;
   font-size: 20px;
   text-transform: capitalize;
 }
@@ -134,7 +129,8 @@ g.rux-spectrum-analyzer__axis-label line {
 }
 
 .tick text {
-  font-family: "Open Sans Light";
+  font-family: "Open Sans";
+  font-weight: 300;
   font-size: 12px;
   color: #bdc3c9;
   font-weight: 300;
