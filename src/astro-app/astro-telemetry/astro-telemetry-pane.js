@@ -37,7 +37,7 @@ export class AstroTelemetryPane extends PolymerElement {
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">
           <h3>Power</h3>
-          <ul><br>
+          <ul>
             <dom-repeat items="[[power]]">
             <template>
               <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
@@ -47,7 +47,7 @@ export class AstroTelemetryPane extends PolymerElement {
 
         <div class="astro-telemetry-pane__status__group">
           <h3>Thermal</h3>
-          <ul><br>
+          <ul>
             <dom-repeat items="[[thermal]]">
             <template>
               <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>

@@ -59,6 +59,10 @@
   border-top: 1px solid #122231;
 }
 
+.astro-telemetry-pane__status__group li:nth-child(1) {
+  padding-top: 10px;
+}
+
 .astro-telemetry-pane__status__group li {
   margin-bottom: 1em;
   margin-left: .5rem;
