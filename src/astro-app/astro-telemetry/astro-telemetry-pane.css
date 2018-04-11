@@ -27,10 +27,9 @@
   flex-wrap: wrap;
   align-content: stretch;
   align-items: stretch;
-  /*  padding: 0 1em 1em 1em;*/
   margin: 1%;
   width: 414px;
-  /* outline: 1px solid red; */
+  padding-left: 37px;
 }
 
 .astro-telemetry-pane__status__header {
@@ -66,7 +65,7 @@
 }
 
 .astro-telemetry-pane h1 {
-  margin-left: 0.7rem;
+  margin-left: 3.5rem;
 }
 
 h1,
@@ -100,6 +99,7 @@ text,
   font-weight: 300;
   font-size: 20px;
   text-transform: capitalize;
+  margin-bottom: 5px;
 }
 
 .rux-spectrum-analyzer__chart-legend {

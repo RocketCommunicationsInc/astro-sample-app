@@ -52,7 +52,6 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    //this._drawInitialGraph();
     var margin = { top: 40, right: 20, bottom: 30, left: 40 };
     var width = this.width - margin.left - margin.right;
     var height = this.height - margin.top - margin.bottom;
@@ -123,7 +122,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
     // Add main chart label
     svg.append("text")
       .attr("x", 5)
-      .attr("y", -5)
+      .attr("y", -13)
       .attr("class", "rux-spectrum-analyzer__main-chart-label")
       .text(this.chartTitle);
 
