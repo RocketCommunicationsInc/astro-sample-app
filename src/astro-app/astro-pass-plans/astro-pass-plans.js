@@ -105,7 +105,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
             <h2>[[selectedSatellite.title]]</h2>
           
-          <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count"><b>[[completedTasks]]</b> of <b>7</b></span> Tasks Complete</div>
+          <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count">[[completedTasks]] of 7</span> Tasks Complete</div>
         </div>
 
         
