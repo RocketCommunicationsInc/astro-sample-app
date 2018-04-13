@@ -1,6 +1,7 @@
 import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
 import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
 import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import { RuxIcon } from "../rux-icon/rux-icon.js";
 import { RuxStatus } from "../rux-status/rux-status.js";
 import { RuxSlider } from "../rux-slider/rux-slider.js";
 import { RuxTimelineTrack } from "./rux-timeline-track.js";
@@ -517,7 +518,7 @@ export class RuxTimeline extends PolymerElement {
 
   _updateTimelineScale() {
     // scale tracks container
-
+    console.log("tracks", this._tracks);
     this._tracks.style.width = Number(this._scale) + "%";
     this._track.style.width = Number(this._scale) + "%";
 
