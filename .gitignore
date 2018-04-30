@@ -41,6 +41,13 @@
 #
 # -----------------------------------------------------------------
 
+# ignore socket server--separate project
+astro-web-socket-server/
+
+
+# ignore config file--it is environment-specific
+config.json
+astro-config.js
 # ignore all files starting with . or ~
 .*
 ~*

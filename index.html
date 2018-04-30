@@ -1,41 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Astro Demo App</title>
-    <meta name="description" content="Sample application using the Astro Design System">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <!-- Global Styles //-->
-    <link rel="stylesheet" href="/public/css/astro.css">
+  <title>Astro Demo App</title>
+  <meta name="description" content="Sample application using the Astro Design System">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+  <!-- Global Styles //-->
+  <link rel="stylesheet" href="/public/css/astro.css">
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- Load WebComponent Polyfill //-->
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <link rel="import" href="/src/astro-app/astro-app.html">
+  <!-- Load Astro App //-->
+  <script type="module" src="src/astro-app/astro-app.js"></script>
+  <script src="//d3js.org/d3.v4.min.js"></script>
 
-    <!-- Polymer Based Web Component //-->
-    <!-- <link rel="import" href="src/astro-components/polymer-rux-button.html"> -->
+</head>
 
-    <!-- Vanilla Based Web Component //-->
-    <!-- <script type="module" src="src/astro-components/rux-button.js"></script> -->
-    <script>
-      
-      addEventListener('clicked', function(payload) {
-	      console.log('Dispatched Event from Web Component',payload);
-      });
+<body class="dark-theme">
+  <astro-app></astro-app>
+</body>
 
-    </script>
-
-  </head>
-  <body class="dark-theme">    
-    <astro-app>
-
-    </astro-app>
-    <!-- <rux-button>Component Button  in Index</rux-button> -->
-
-  </body>
 </html>
