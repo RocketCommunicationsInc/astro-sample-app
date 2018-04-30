@@ -7,7 +7,7 @@
   "description": "Sample application using the Astro Design System",
   "main": "index.html",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0-pre.9",
+    "@polymer/polymer": "3.0.0-pre.9",
     "@webcomponents/webcomponentsjs": "^1.1.0"
   },
   "devDependencies": {
