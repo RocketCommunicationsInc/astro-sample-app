@@ -1,6 +1,5 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
+import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
+import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 /**
  * @polymer
  * @extends HTMLElement

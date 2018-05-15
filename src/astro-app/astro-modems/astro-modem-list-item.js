@@ -1,8 +1,5 @@
-import {
-  html,
-  Element as PolymerElement
-} from "/node_modules/@polymer/polymer/polymer-element.js";
-import "/node_modules/@polymer/polymer/lib/elements/array-selector.js";
+import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
+import "@polymer/polymer/lib/elements/array-selector.js";
 import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
 /**
  * @polymer

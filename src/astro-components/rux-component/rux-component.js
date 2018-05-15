@@ -1,5 +1,4 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { PolymerElement, html } from "@polymer/polymer/polymer-element.js";
 
 /**
  * @polymer
@@ -17,7 +16,15 @@ export class RuxComponent extends PolymerElement {
 
   static get template() {
     return html`
-      <link rel="stylesheet" href="/src/astro-components/rux-component/rux-component.css">
+      <style>
+      .rux-component {
+        padding: 1em;
+        margin: 1em auto;
+        max-width: 15em;
+        border: 1px solid red;
+      }
+      </style>
+      
       <div class="rux-component">This is a blank component template written in Polymer 3. Use me as a starting point for a new Component</div>`;
   }
 

@@ -1,4 +1,4 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -66,6 +66,7 @@ export class RuxIconLibrary extends PolymerElement {
 
       if (!this.size) this.size = "114";
       let content = sourceSvg.cloneNode(true);
+
       if (_icon.color) {
         content.setAttribute("fill", _icon.color);
       }

@@ -1,10 +1,7 @@
-import {
-  html,
-  Element as PolymerElement
-} from "/node_modules/@polymer/polymer/polymer-element.js";
-import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
-import "/node_modules/@polymer/polymer/lib/elements/dom-if.js";
-import { MutableData } from "/node_modules/@polymer/polymer/lib/mixins/mutable-data.js";
+import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
+import "@polymer/polymer/lib/elements/dom-repeat.js";
+import "@polymer/polymer/lib/elements/dom-if.js";
+import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
 import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
 /**

@@ -1,5 +1,4 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { PolymerElement, html } from "@polymer/polymer/polymer-element.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -7,7 +6,7 @@ import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
 export class RuxTimelineRegion extends PolymerElement {
   static get properties() {
     return {
-      title: {
+      label: {
         type: String
       },
       status: {
@@ -138,24 +137,24 @@ export class RuxTimelineRegion extends PolymerElement {
         height: 50%;
       }
       
-      :host .rux-region__title {
+      :host .rux-region__label {
         white-space: nowrap;
         overflow: hidden;
 
         text-overflow: ellipsis;
       }
       
-      :host(.standard) .rux-region__title {
+      :host(.standard) .rux-region__label {
       }
       
-      :host(.medium) .rux-region__title {
+      :host(.medium) .rux-region__label {
       }
       
-      :host(.small) .rux-region__title {
+      :host(.small) .rux-region__label {
         width: 45px;
       }
       
-      :host(.compact) .rux-region__title {
+      :host(.compact) .rux-region__label {
         display: none;
       }
       
@@ -201,10 +200,10 @@ export class RuxTimelineRegion extends PolymerElement {
         margin-right: 0.25rem;
       }
 </style>      
-      <div class="container" title="[[title]]: [[_formatTime(_startTime)]]-[[_formatTime(_endTime)]]">
+      <div class="container" label="[[label]]: [[_formatTime(_startTime)]]-[[_formatTime(_endTime)]]">
         <div class="rux-region__segment rux-region__header rux-region__segment rux-region__header">
           <rux-status status=[[status]]></rux-status>
-          <div class="rux-region__title">[[title]]</div>
+          <div class="rux-region__label">[[label]]</div>
         </div>
         <div class="rux-region__segment rux-region__time">
           <span class="rux-region__time__start-time">[[_formatTime(_startTime)]]</span>
@@ -243,10 +242,6 @@ export class RuxTimelineRegion extends PolymerElement {
     window.removeEventListener("resize");
   }
 
-  _handleClick(e) {
-    this.selected = true;
-  }
-
   _setDefaultSize() {
     // console.log("set default size");
     const now = new Date();
@@ -276,7 +271,7 @@ export class RuxTimelineRegion extends PolymerElement {
       scale: this.scale
     };
 
-    console.log("track width", this.trackWidth);
+    // console.log("track width", this.trackWidth);
     this._updateRegion();
   }
 
@@ -314,7 +309,7 @@ export class RuxTimelineRegion extends PolymerElement {
           composed: true,
           detail: {
             id: this._id,
-            title: this.title,
+            label: this.label,
             status: this.status,
             data: this.data
           }
@@ -369,10 +364,10 @@ export class RuxTimelineRegion extends PolymerElement {
       // this is a mid sized widget without its time element
       this.classList.add("medium");
     } else if (_width < 140 && _width > 40) {
-      // this is a small widget without time or title
+      // this is a small widget without time or label
       this.classList.add("small");
     } else if (_width < 40) {
-      // this is a small widget without time or title
+      // this is a small widget without time or label
       this.classList.add("compact");
     }
   }

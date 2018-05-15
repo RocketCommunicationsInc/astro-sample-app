@@ -1,7 +1,6 @@
-import { Element as PolymerElement } from "/node_modules/@polymer/polymer/polymer-element.js";
-import { html } from "/node_modules/@polymer/polymer/polymer-element.js";
+import { PolymerElement, html } from "@polymer/polymer/polymer-element.js";
 import { RuxTimelineRegion } from "./rux-timeline-region.js";
-import "/node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
+import "@polymer/polymer/lib/elements/dom-repeat.js";
 
 /**
  * @polymer
@@ -68,7 +67,7 @@ export class RuxTimelineTrack extends PolymerElement {
           <template is="dom-repeat" id="regionsElements" items={{regions}}>
             <li>
               <rux-timeline-region class="rux-timeline-region"
-                title=[[item.label]]
+                label=[[item.label]]
                 status=[[item.status]]
                 start-time=[[item.startTime]]
                 end-time=[[item.endTime]]
@@ -127,7 +126,7 @@ export class RuxTimelineTrack extends PolymerElement {
       // set selected object for parent
       this.selectedRegion = {
         _id: e.currentTarget._id,
-        title: e.currentTarget.title,
+        label: e.currentTarget.label,
         status: e.currentTarget.status,
         startTime: e.currentTarget.startTime,
         endTime: e.currentTarget.endTime,
