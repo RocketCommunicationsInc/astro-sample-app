@@ -157,7 +157,7 @@ export class RuxSpectrumAnalyzer extends PolymerElement {
       .text(this.chartLegendX);
 
     // start animation
-    var ws = new WebSocket(this.dataSource);
+    var ws = new WebSocket("wss://satellite-1.astrouxds.com");
 
     ws.addEventListener("message", function(event) {
       var payload = JSON.parse(event.data);

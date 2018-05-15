@@ -1,4 +1,4 @@
-# \<astro\>
+# <astro\>
 
 Sample application using the Astro Design System
 
