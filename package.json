@@ -1,7 +1,7 @@
 {
   "name": "astro-app",
   "flat": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Rocket Communications",
   "private": false,
   "description": "Sample application using the Astro Design System",
