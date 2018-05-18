@@ -1,4 +1,4 @@
-Doe this make it to /tmp?
+Does this make it to /tmp?
 Does the post-build message appear in /tmp?
 Another polymer build test
 Polymer build test
