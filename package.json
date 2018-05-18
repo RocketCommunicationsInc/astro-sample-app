@@ -3,7 +3,7 @@
   "flat": true,
   "version": "1.0.0",
   "author": "Rocket Communications",
-  "private": true,
+  "private": false,
   "description": "Sample application using the Astro Design System",
   "main": "index.html",
   "dependencies": {
