@@ -1,3 +1,4 @@
+Does the post-build message appear in /tmp?
 Another polymer build test
 Polymer build test
 Yet another
