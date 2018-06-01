@@ -3,7 +3,7 @@ import "@polymer/polymer/lib/elements/dom-repeat.js";
 import "@polymer/polymer/lib/elements/dom-if.js";
 import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
-import { RuxIcon } from "../../astro-components/rux-icon/rux-icon.js";
+import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
 /**
  * @polymer
  * @extends HTMLElement

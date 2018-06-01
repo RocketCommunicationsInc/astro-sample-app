@@ -1,17 +1,17 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import "@polymer/polymer/lib/elements/dom-repeat.js";
 /* Rux Components */
-import { RuxGlobalStatusBar } from "../astro-components/rux-global-status-bar/rux-global-status-bar.js";
-import { RuxButton } from "../astro-components/rux-button/rux-button.js";
-import { RuxStatus } from "../astro-components/rux-status/rux-status.js";
-import { RuxIcon } from "../astro-components/rux-icon/rux-icon.js";
-import { RuxTabs } from "../astro-components/rux-tabs/rux-tabs.js";
-import { RuxPopUpMenu } from "../astro-components/rux-pop-up-menu/rux-pop-up-menu.js";
-import { RuxClock } from "../astro-components/rux-clock/rux-clock.js";
-import { RuxSlider } from "../astro-components/rux-slider/rux-slider.js";
-import { RuxSpectrumAnalyzer } from "../astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
-import { RuxNotification } from "../astro-components/rux-notification/rux-notification.js";
-import { RuxTimeline } from "../astro-components/rux-timeline/rux-timeline.js";
+import { RuxGlobalStatusBar } from "@astrouxds/rux-global-status-bar/rux-global-status-bar.js";
+import { RuxButton } from "@astrouxds/rux-button/rux-button.js";
+import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
+import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
+import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
+import { RuxPopUpMenu } from "@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js";
+import { RuxClock } from "@astrouxds/rux-clock/rux-clock.js";
+import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
+import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
+import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
