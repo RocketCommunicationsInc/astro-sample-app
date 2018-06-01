@@ -1,7 +1,7 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 import "@polymer/polymer/lib/elements/dom-repeat.js";
-import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
+import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
 // import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 /**
  * @polymer
@@ -29,7 +29,7 @@ export class AstroTelemetryPane extends PolymerElement {
     <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry-pane.css">
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="900" x-scale-min="900" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0"></rux-spectrum-analyzer>
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="900" x-scale-min="900" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">

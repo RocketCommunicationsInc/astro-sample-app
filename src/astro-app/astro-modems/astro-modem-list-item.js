@@ -1,6 +1,6 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import "@polymer/polymer/lib/elements/array-selector.js";
-import { RuxStatus } from "/src/astro-components/rux-status/rux-status.js";
+import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
 /**
  * @polymer
  * @extends HTMLElement
