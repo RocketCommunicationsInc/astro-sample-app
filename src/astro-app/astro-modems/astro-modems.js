@@ -827,15 +827,15 @@ export class AstroModems extends MutableData(PolymerElement) {
       : evm;
   }
 
-  _updateDasBlinkenLights() {
+  _updateModemLights() {
     return Math.random() > 0.7 ? false : true;
   }
 
   _updateModems() {
     this.modems.forEach((modem, index) => {
-      this.set(`modems.${index}.carrierLock`, this._updateDasBlinkenLights());
-      this.set(`modems.${index}.codeLock`, this._updateDasBlinkenLights());
-      this.set(`modems.${index}.codeLock`, this._updateDasBlinkenLights());
+      this.set(`modems.${index}.carrierLock`, this._updateModemLights());
+      this.set(`modems.${index}.codeLock`, this._updateModemLights());
+      this.set(`modems.${index}.codeLock`, this._updateModemLights());
       this.set(
         `modems.${index}.errorVectorMagnitude`,
         this._updateEVM(modem.errorVectorMagnitude)
