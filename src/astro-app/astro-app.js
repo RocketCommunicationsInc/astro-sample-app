@@ -36,7 +36,6 @@ export class AstroApp extends PolymerElement {
         height: 100%;
         width: 100%;
         margin: 0 auto;
-        padding: 0 2.625rem;
         min-width: 1620px;
         box-sizing: border-box; 
         overflow: hidden;
@@ -59,10 +58,21 @@ export class AstroApp extends PolymerElement {
         justify-content: center;
       }
 
-      rux-tab-panels {
-        height: calc(100% - 140px);
 
+      rux-global-status-bar {
+        padding: 0 2.625rem;
+        height: 110px;
+        margin-bottom: 1.3125rem
       }
+
+      rux-tab-panels {
+        height: 500px;
+        
+        padding: 0 2.625rem;
+      }
+
+
+      
     </style>
     
     
@@ -71,7 +81,9 @@ export class AstroApp extends PolymerElement {
       appname="Astro App"
       version="2.0a">
       
-      <rux-tabs>
+      <rux-tabs
+        main
+        transparent>
         <rux-tab id="tab-modems">Modems</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-satellites">Satellites</rux-tab>
@@ -86,6 +98,7 @@ export class AstroApp extends PolymerElement {
               <rux-status
                 status="ok"
                 label=[[item.label]]
+                sublabel="sub label"
                 icon=[[item.icon]]
                 notifications=[[item.notifications]]
                 on-click="_showPopUp"></rux-status>
@@ -107,7 +120,9 @@ export class AstroApp extends PolymerElement {
     <rux-pop-up-menu
     menu-items=[[_popMenuItems]]
     target=[[_popMenuTarget]]></rux-pop-up-menu>
-    <rux-tab-panels>
+    <rux-tab-panels
+      main
+      transparent>
       <rux-tab-panel aria-labeledby="tab-modems">  
         
         <astro-modems

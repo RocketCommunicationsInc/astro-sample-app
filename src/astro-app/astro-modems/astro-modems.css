@@ -6,5 +6,5 @@
 
   height: 960px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--colorSecondaryDarken3);
 }
