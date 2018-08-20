@@ -21,7 +21,19 @@ export class AstroModems extends MutableData(PolymerElement) {
 
   static get template() {
     return html`
-      <link rel="stylesheet" href="/src/astro-app/astro-modems/astro-modems.css">
+      <style>
+
+        :host {
+          display: flex;
+
+          box-sizing: border-box;
+          height: 100%;
+          background-color: var(--colorSecondaryDarken3);
+          border: 1px solid var(--colorTertiaryLighten1);
+        }
+      
+
+      </style>
       <astro-modem-list modems={{modems}} selected-modem={{selectedModem}}></astro-modem-list>
       <astro-modem-detail modems={{modems}} selected-modem={{selectedModem}}></astro-modem-detail>
     `;

@@ -34,7 +34,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
             height: auto;
             overflow: scroll;
-            
+          
           }
           
           *,
@@ -47,7 +47,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             display: flex;
             flex-wrap: wrap;
             padding: 1rem 0 0 0;
-            margin: 0 0 0.5rem 0;
+            margin: 0;
             justify-content: space-between;
             align-items: baseline;
             
@@ -55,7 +55,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             position: sticky;
             top: 0;
             z-index: 100;
-            background-color: #0f1a24;
+            background-color: var(--colorSecondaryDarken3);
             
 
           }
@@ -89,7 +89,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             font-size: 0.875rem;
             top: 0px;
             height: 2rem;
-            background-color: #0f1a24;
+            background-color: var(--colorTertiaryDarken2);
             z-index: 100;
             margin: 0 0 0.625rem 0;
 					
