@@ -31,17 +31,16 @@ export class AstroModemListItem extends PolymerElement {
 					justify-content: flex-start;
 					font-size: 1.375rem;
           
-          color: var(--colorWhite);
-          background-color: var(--colorTertiaryDarken2);
+          color: var(--textColor);
           
-          // border: 1px solid var(--colorTertiaryLighten1);
-
+          background-color: var(--modemListItemBackgroundColor);
+          
 					margin: 0 0 0.625rem 0;
 					height: 3.5rem;
 					min-height: 2rem;
 					position: relative;
 				
-					box-shadow: 0 1px 0 #000;
+					
 				
           cursor: pointer;
           box-sizing: border-box;
@@ -60,7 +59,8 @@ export class AstroModemListItem extends PolymerElement {
 					position: absolute;
 					top: 0;
 					height: 100%;
-					background-color: var(--colorTertiaryDarken1);
+          background-color: var(--modemListItemAccentColor);
+          
 				}
         
         :host([compact]) {
@@ -68,13 +68,12 @@ export class AstroModemListItem extends PolymerElement {
         }
 
         :host([selected]) {
-          background-color: var(--colorSecondary);
-          box-shadow: 0 1px 0 #000;
+          background-color: var(--modemListItemSelectedBackgroundColor);
           color: #fff;
         }
 
         :host([selected])::before {
-          background-color: #0080f4;
+          background-color: var(--modemListItemSelectedAccentColor);
         }
 
 				ul {

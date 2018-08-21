@@ -55,7 +55,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             position: sticky;
             top: 0;
             z-index: 100;
-            background-color: var(--colorSecondaryDarken3);
+            background-color: var(--paneBackgroundColor);
             
 
           }
@@ -64,7 +64,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             margin: 0;
             font-weight: 300;
             font-size: 2rem;
-            color: #bdc3c9;
+            color: var(--textColor, rgb(0,0,0));
           }
           
           .modem-header__modem-count {
@@ -89,7 +89,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             font-size: 0.875rem;
             top: 0px;
             height: 2rem;
-            background-color: var(--colorTertiaryDarken2);
+            background-color: var(--modemListItemBackgroundColor);
             z-index: 100;
             margin: 0 0 0.625rem 0;
 					

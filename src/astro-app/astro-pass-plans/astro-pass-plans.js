@@ -39,9 +39,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     
     <style>
 
-    :host {
-      background-color: var(--colorSecondaryDarken3);
-    }
+    
 
     :host {
       display: flex;

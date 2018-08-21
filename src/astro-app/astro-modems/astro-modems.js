@@ -28,7 +28,7 @@ export class AstroModems extends MutableData(PolymerElement) {
 
           box-sizing: border-box;
           height: 100%;
-          background-color: var(--colorSecondaryDarken3);
+          
           // border: 1px solid var(--colorTertiaryLighten1);
         }
       

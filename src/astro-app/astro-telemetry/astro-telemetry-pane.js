@@ -28,13 +28,11 @@ export class AstroTelemetryPane extends PolymerElement {
     return html`
     <style>
     :host {
-      background-color: var(--colorSecondaryDarken3);
       height: 100%;
       padding: 0rem 3rem 3rem 3rem;
       width: 100%;
       box-sizing: border-box;
-      height: 100% !important;
-      border: 1px solid red;
+      
     }
     
     *,

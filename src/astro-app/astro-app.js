@@ -67,10 +67,12 @@ export class AstroApp extends PolymerElement {
 
       rux-tab-panels {
         height: calc(100vh - 150px);
-        padding: 0 2.625rem;
-        border: 1px solid red;
+        margin: 0 2.625rem;
+        background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
       }
 
+
+     
 
       
     </style>
@@ -78,6 +80,7 @@ export class AstroApp extends PolymerElement {
     
 
     <rux-global-status-bar
+      class="dark-theme"
       appname="Astro App"
       version="2.0a">
       
