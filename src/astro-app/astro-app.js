@@ -68,6 +68,7 @@ export class AstroApp extends PolymerElement {
       rux-tab-panels {
         height: calc(100vh - 150px);
         padding: 0 2.625rem;
+        border: 1px solid red;
       }
 
 

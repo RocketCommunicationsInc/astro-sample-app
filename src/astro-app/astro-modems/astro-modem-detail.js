@@ -55,6 +55,8 @@ export class AstroModemDetail extends PolymerElement {
         width: 6rem;
         padding: 0;
         margin: 0;
+
+        
       
         background-color: var(--colorTertiaryDarken2);
       }
@@ -80,6 +82,10 @@ export class AstroModemDetail extends PolymerElement {
       
       .rux-tabs--vertical li:first-child {
         border-top: none;
+      }
+
+      .rux-tabs--vertical li:last-child {
+        box-shadow: 0 1px 0 rgba(255,255,255,0.1);
       }
       
       .rux-tabs--vertical .label {

@@ -31,7 +31,7 @@ export class AstroModemListItem extends PolymerElement {
 					justify-content: flex-start;
 					font-size: 1.375rem;
           
-          color: rgba(255, 255, 255, 0.8);
+          color: var(--colorWhite);
           background-color: var(--colorTertiaryDarken2);
           
           // border: 1px solid var(--colorTertiaryLighten1);
@@ -68,7 +68,7 @@ export class AstroModemListItem extends PolymerElement {
         }
 
         :host([selected]) {
-          background-color: #004368;
+          background-color: var(--colorSecondary);
           box-shadow: 0 1px 0 #000;
           color: #fff;
         }

@@ -39,6 +39,111 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     
     <style>
 
+    :host {
+      background-color: var(--colorSecondaryDarken3);
+    }
+
+    :host {
+      display: flex;
+      box-sizing: border-box;
+      height: 100%;
+    }
+    
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+    
+    .rux-timeline-component {
+      width: 100%;
+    }
+    
+    ol {
+      counter-reset: tasks;
+      list-style-position: inside;
+      list-style: none;
+    
+      color: var(--colorWhite);
+      margin: 0;
+      padding: 0;
+
+      border: 1px solid var(--colorTertiaryLighten1);
+    }
+    
+    ol li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 1;
+      height: 2.45rem;
+      padding: 0 1.65rem;
+      border-bottom: 1px solid var(--colorTertiaryLighten1);
+      // margin: 0 0 0.325rem 0;
+      margin: 0;
+      font-size: 1.125rem;
+      // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    
+      background-color: transparent;
+    }
+
+    ol li:last-child {
+      border-bottom: none;
+    }
+    
+    ol li::before {
+      counter-increment: tasks;
+      content: counter(tasks);
+      font-weight: bold;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 3.125rem;
+    }
+    
+    .rux-timeline__controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    
+      padding: 1rem 0;
+      margin: 2px;
+    }
+    
+    .rux-timeline__controls h2 {
+      font-weight: 300;
+    }
+    
+    .rux-timeline__tasks-status {
+      margin-left: auto;
+      margin-right: 0;
+    }
+    
+    rux-status {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+    .rux-button-group {
+      margin-left: 1em;
+      margin-right: auto;
+    }
+    
+    .rux-timeline__tasks-status {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .rux-timeline__tasks-status__count {
+      font-size: 1.75rem;
+      color: rgba(255, 255, 255, 1);
+      margin-right: 0.2rem;
+    }
+    
+    .tasks-container {
+      padding: 1.3rem;
+      /* background: rgba(0, 0, 0, 0.2); */
+    }
+
     *[hidden] {
       display: none !important;
     }

@@ -20,7 +20,33 @@ export class AstroTelemetry extends PolymerElement {
   }
   static get template() {
     return html`
-    <link rel="stylesheet" href="/src/astro-app/astro-telemetry/astro-telemetry.css">
+    <style>
+    :host {
+      box-sizing: border-box;
+      height: 100%;
+    }
+    
+    *,
+    *:after,
+    *:before {
+      box-sizing: inherit;
+    }
+    
+    .astro-telemetry-panes {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+    
+    astro-telemetry-pane {
+      margin-right: 0.5rem;
+    }
+    
+    astro-telemetry-pane:last-child {
+      margin-right: 0;
+    }
+    
+    </style>    
     <div class="astro-telemetry-panes">
     <template is="dom-repeat" items="[[telemetryData]]">
       <astro-telemetry-pane
