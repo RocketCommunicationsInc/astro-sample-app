@@ -27,14 +27,14 @@ export class AstroModemList extends MutableData(PolymerElement) {
         <style>
           :host {
             min-width: 450px;
-            margin: 0.75rem 1.75rem 0.75rem 0.75rem;
-            padding-right: 1rem;
-            padding-top: 0;
+            margin: 0 1.75rem 0 0.75rem;
+            padding: 1rem;
+            
             box-sizing: border-box;
 
             height: auto;
             overflow: scroll;
-          
+            background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
           }
           
           *,

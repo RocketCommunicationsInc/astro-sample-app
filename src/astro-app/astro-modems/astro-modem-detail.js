@@ -32,7 +32,7 @@ export class AstroModemDetail extends PolymerElement {
         display: flex;
         flex-grow: 1;
         box-sizing: border-box;
-        /* background-color: rgba(255, 0, 0, 0.2); */
+        background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
       }
       
       *,

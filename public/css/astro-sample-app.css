@@ -11,9 +11,9 @@
   --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
 
   /* Modem Detail */
-  --verticalTabBackgroundColor: var(--colorTertiaryDarken3);
+  --verticalTabBackgroundColor: var(--colorTertiaryDarken2);
 
-  --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken3);
+  --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken2);
   --modemDetailBackgroundColor: var(--colorSecondaryDarken3);
   --modemDetailSectionBackgroundColor: var(--colorTertiaryDarken2);
 }
@@ -31,9 +31,9 @@
   --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
 
   /* Modem Detail */
-  --verticalTabBackgroundColor: var(--colorTertiaryLighten1);
+  --verticalTabBackgroundColor: var(--colorTertiary);
 
-  --modemDetailSettingsBackgroundColor: var(--colorTertiaryLighten1);
+  --modemDetailSettingsBackgroundColor: var(--colorTertiary);
   --modemDetailBackgroundColor: var(--colorTertiaryLighten2);
   --modemDetailSectionBackgroundColor: var(--colorTertiaryLighten3);
 }

@@ -32,6 +32,7 @@ export class AstroTelemetryPane extends PolymerElement {
       padding: 0rem 3rem 3rem 3rem;
       width: 100%;
       box-sizing: border-box;
+      background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
       
     }
     
