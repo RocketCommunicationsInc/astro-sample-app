@@ -58,7 +58,7 @@ export class AstroModemDetail extends PolymerElement {
 
         
       
-        background-color: var(--colorTertiaryDarken2);
+        background-color: var(--verticalTabBackgroundColor);
       }
       
       .rux-tabs--vertical li {
@@ -74,10 +74,10 @@ export class AstroModemDetail extends PolymerElement {
         text-align: center;
       
         font-size: 0.875rem;
-        color: #5cb3ff;
+        color: var(--colorSecondary);
       
-        border-bottom: 1px solid rgba(0, 0, 0, 1);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        // border-bottom: 1px solid rgba(0, 0, 0, 1);
+        // border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
       
       .rux-tabs--vertical li:first-child {
@@ -98,7 +98,8 @@ export class AstroModemDetail extends PolymerElement {
         width: 415px;
         height: 100%;
         left: 96px;
-        background-color: var(--colorTertiaryDarken2);
+        background-color: var(--modemDetailSettingsBackgroundColor);
+        
       }
       
       .modem-detail__settings form {
@@ -127,13 +128,14 @@ export class AstroModemDetail extends PolymerElement {
         flex-grow: 1;
         align-content: flex-start;
         padding: 1.25rem 2rem;
-        background-color: var(--colorSecondaryDarken3);
+        background-color: var(--modemDetailBackgroundColor);
+        
         z-index: 1;
       
         /* filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.75)); */
         /* box-shadow: -6px 0 6px rgba(0, 0, 0, 0.75)); */
       
-        box-shadow: -3px 0 6px rgba(0, 0, 0, 0.33);
+        box-shadow: -4px 1px 4px rgba(0, 0, 0, 0.13);
         transition: margin-left 0.467s ease-in-out;
       }
       
@@ -169,9 +171,9 @@ export class AstroModemDetail extends PolymerElement {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: var(--modemDetailSectionBackgroundColor);
         margin: 0 0 2px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        // border-bottom: 1px solid rgba(0, 0, 0, 0.4);
       }
       
       .modem-detail__detail__section h1 {
@@ -187,14 +189,14 @@ export class AstroModemDetail extends PolymerElement {
       }
       
       .modem-detail__detail__section dl {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: var(--modemDetailSectionBackgroundColor);
       
         margin: 0;
         height: 100%;
       }
       
       .modem-detail__detail__section dd {
-        color: #fff;
+        color: var(--colorText);
         font-size: 2.5rem;
         line-height: 1;
         margin: 0 0 1.5rem 0;
@@ -203,7 +205,7 @@ export class AstroModemDetail extends PolymerElement {
       
       .modem-detail__detail__section dt,
       .modem-detail__detail__section .label {
-        color: #bdc3c9;
+        color: var(--colorText);
         font-size: 1.125rem;
         margin: 0;
         padding: 0;
@@ -240,7 +242,7 @@ export class AstroModemDetail extends PolymerElement {
       <template is="dom-if" if=[[selectedModem]]>
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
-        <li><rux-icon on-click="togglePane" icon="astro-demo:set-power"></rux-icon><span class="label">Set Power</span></li>
+        <li><rux-icon color="rgb(77, 172, 255)" on-click="togglePane" icon="astro-demo:set-power"></rux-icon><span class="label">Set Power</span></li>
       </ul>
 
       <div class="modem-detail__settings">

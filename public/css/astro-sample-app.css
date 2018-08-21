@@ -1,6 +1,7 @@
 .dark-theme {
   --paneBackgroundColor: var(--colorSecondaryDarken3, rgb(19, 43, 64));
 
+  /* Modem List */
   --modemListBackgroundColor: var(--colorTertiaryDarken2);
 
   --modemListItemBackgroundColor: var(--colorTertiaryDarken2);
@@ -8,11 +9,19 @@
 
   --modemListItemSelectedBackgroundColor: var(--colorSecondary);
   --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
+
+  /* Modem Detail */
+  --verticalTabBackgroundColor: var(--colorTertiaryDarken3);
+
+  --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken3);
+  --modemDetailBackgroundColor: var(--colorSecondaryDarken3);
+  --modemDetailSectionBackgroundColor: var(--colorTertiaryDarken2);
 }
 
 .light-theme {
   --paneBackgroundColor: var(--colorTertiaryLighten2, rgb(166, 214, 255));
 
+  /* Modem List */
   --modemListBackgroundColor: var(--colorTertiaryLighten3);
 
   --modemListItemBackgroundColor: var(--colorTertiaryLighten3);
@@ -20,4 +29,11 @@
 
   --modemListItemSelectedBackgroundColor: var(--colorSecondary);
   --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
+
+  /* Modem Detail */
+  --verticalTabBackgroundColor: var(--colorTertiaryLighten1);
+
+  --modemDetailSettingsBackgroundColor: var(--colorTertiaryLighten1);
+  --modemDetailBackgroundColor: var(--colorTertiaryLighten2);
+  --modemDetailSectionBackgroundColor: var(--colorTertiaryLighten3);
 }
