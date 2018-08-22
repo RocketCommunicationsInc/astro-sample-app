@@ -45,20 +45,24 @@ export class AstroTelemetryPane extends PolymerElement {
     .astro-telemetry-pane__status {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
       align-content: stretch;
       align-items: stretch;
-      width: 920px;
+      width: 100%;
+
+      margin-top: 1rem;
+      
     }
     
     .astro-telemetry-pane__status__group {
-      flex-grow: 1;
-      background-color: var(--colorTertiaryDarken2);
+      
+      background-color: var(--telemetryPaneBackgroundColor, rgb(255,255,255));
       display: flex;
       flex-wrap: wrap;
       align-content: stretch;
       align-items: stretch;
-      margin: 1%;
-      width: 414px;
+      
+      width: 48%;
     }
     
     .astro-telemetry-pane__status__group header {
@@ -74,19 +78,19 @@ export class AstroTelemetryPane extends PolymerElement {
     }
     
     .astro-telemetry-pane__status__group h3 {
-      width: 100%;
+      
       flex-shrink: 0;
       margin: 1rem;
-      color: #bdc3c9;
+      color: var(--fontColor, rgb(255,255,255));
     }
     
     .astro-telemetry-pane__status__group ul {
       padding: 0rem 0rem 0rem 0.5rem;
       margin: 0 0;
       list-style: none;
-      color: #fff;
+      color: var(--fontColor, rgb(255,255,255));
       width: 100%;
-      border-top: 1px solid #122231;
+      border-top: 1px solid var(--telemetryPaneBorderColor);
     }
     
     .astro-telemetry-pane__status__group li:nth-child(1) {
@@ -104,20 +108,20 @@ export class AstroTelemetryPane extends PolymerElement {
     }
     
     .astro-telemetry-pane h1 {
-      margin-left: 1.6rem;
+      // margin-left: 1.6rem;
     }
     
     h1,
     h2,
     h3 {
-      font-weight: 300;
+      font-weight: 500;
     }
     
     /* Start Spectrum Analyzer */
     
     svg {
       background-color: #1b3044;
-      margin: 0px 0px 0px 10px;
+      
     }
     
     .rux-spectrum-analyzer__bar {
@@ -174,7 +178,7 @@ export class AstroTelemetryPane extends PolymerElement {
     </style>    
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="900" x-scale-min="900" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer>
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="920" x-scale-min="920" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">

@@ -63,11 +63,11 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       list-style-position: inside;
       list-style: none;
     
-      color: var(--colorWhite);
-      margin: 0;
+      color: var(--fontColor, rgb(0,0,0));
+      margin: 0 1.5rem;
       padding: 0;
 
-      border: 1px solid var(--colorTertiaryLighten1);
+      border: 1px solid var(--passPlanListBorderColor);
     }
     
     ol li {
@@ -77,13 +77,13 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       line-height: 1;
       height: 2.45rem;
       padding: 0 1.65rem;
-      border-bottom: 1px solid var(--colorTertiaryLighten1);
+      border-bottom: 1px solid var(--passPlanListBorderColor);
       // margin: 0 0 0.325rem 0;
       margin: 0;
       font-size: 1.125rem;
       // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     
-      background-color: transparent;
+      background-color: var(--passPlanListBackgroundColor, transparent);
     }
 
     ol li:last-child {
@@ -96,7 +96,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       font-weight: bold;
       font-size: 1.65rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--fontColor, rgb(0,0,0));
       margin-right: 3.125rem;
     }
     
@@ -105,12 +105,12 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       align-items: center;
       justify-content: space-around;
     
-      padding: 1rem 0;
+      padding: 0.5rem 1.5rem;
       margin: 2px;
     }
     
     .rux-timeline__controls h2 {
-      font-weight: 300;
+      // font-weight: 500;
     }
     
     .rux-timeline__tasks-status {
@@ -119,7 +119,6 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     }
     
     rux-status {
-      margin-left: 1em;
       margin-right: 1em;
     }
     .rux-button-group {
@@ -130,11 +129,11 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     .rux-timeline__tasks-status {
       font-size: 1.25rem;
       font-weight: 300;
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--fontColor, rgb(255,255,255);
     }
     .rux-timeline__tasks-status__count {
       font-size: 1.75rem;
-      color: rgba(255, 255, 255, 1);
+      color: var(--fontColor, rgb(255,255,255);
       margin-right: 0.2rem;
     }
     
@@ -173,10 +172,12 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
     .no-pass {
       width: 100%;
-      height: 50%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      border: 1px solid red;
     }
     
     .no-pass h1 {
@@ -204,7 +205,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
             icon="advanced-status:satellite-transmit"
             status=[[selectedSatellite.status]]></rux-status>
 
-            <h2>[[selectedSatellite.title]]</h2>
+            <h2>[[selectedSatellite.label]]</h2>
           
           <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count">[[completedTasks]] of 7</span> Tasks Complete</div>
         </div>

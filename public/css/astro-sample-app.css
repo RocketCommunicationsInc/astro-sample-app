@@ -16,6 +16,12 @@
   --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken2);
   --modemDetailBackgroundColor: var(--colorSecondaryDarken3);
   --modemDetailSectionBackgroundColor: var(--colorTertiaryDarken2);
+
+  --passPlanListBorderColor: var(--colorTertiaryLighten1);
+  --passPlanListBackgroundColor: transparent;
+
+  --telemetryPaneBackgroundColor: var(--colorTertiaryDarken2);
+  --telemetryPaneBorderColor: var(--colorTertiary);
 }
 
 .light-theme {
@@ -36,4 +42,10 @@
   --modemDetailSettingsBackgroundColor: var(--colorTertiary);
   --modemDetailBackgroundColor: var(--colorTertiaryLighten2);
   --modemDetailSectionBackgroundColor: var(--colorTertiaryLighten3);
+
+  --passPlanListBorderColor: var(--colorTertiary, rgb(207, 214, 227));
+  --passPlanListBackgroundColor: var(--colorWhite, rgb(255, 255, 255));
+
+  --telemetryPaneBackgroundColor: var(--colorWhite);
+  --telemetryPaneBorderColor: var(--colorTertiary);
 }
