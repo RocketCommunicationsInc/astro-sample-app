@@ -6,7 +6,8 @@
     "public/css/*",
     "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js",
     "node_modules/@webcomponents/webcomponentsjs/bundles/*",
-    "node_modules/@astrouxds/*"
+    "node_modules/@astrouxds/*",
+    "node_modules/@polymer/*"
   ],
   "lint": {
     "rules": ["polymer-3"]
