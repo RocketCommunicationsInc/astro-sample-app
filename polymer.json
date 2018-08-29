@@ -1,6 +1,6 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/astro-app/astro-app.js",
+  "shell": "src/astro-app.js",
   "extraDependencies": [
     "public/fonts/*",
     "public/css/*",

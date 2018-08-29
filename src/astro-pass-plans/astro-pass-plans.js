@@ -33,10 +33,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
   }
   static get template() {
     return html`
-    
 
-    <link rel="stylesheet" href="/src/astro-app/astro-pass-plans/astro-pass-plans.css">
-    
     <style>
 
     

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>satellite-receive</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="satellite-receive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <ellipse id="Path" fill="#000000" cx="83.5" cy="74" rx="4.5" ry="4"></ellipse>
+        <circle id="Path" fill="#000000" cx="101" cy="87" r="6"></circle>
+        <circle id="Path" fill="#000000" cx="119.5" cy="103.5" r="8.5"></circle>
+        <polygon id="Satellite" fill="#000000" points="32 48.8673842 49.8009006 31 66 58.1564569 57.6538495 67"></polygon>
+        <polygon id="Satellite-L" fill="#000000" points="14.0324879 100 0 86.4038029 21.407915 64.7816634 37.878719 60 41 63.4550613 34.5745278 81.0826546"></polygon>
+        <polygon id="Satellite-R" fill="#000000" points="85.9675121 0 100 13.596197 78.592085 35.2183366 62.1212807 40 59 36.5449387 65.4254722 18.9173453"></polygon>
+    </g>
+</svg>

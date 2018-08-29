@@ -1,6 +1,6 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import "@polymer/polymer/lib/elements/dom-repeat.js";
-import { AstroTelemetryPane } from "/src/astro-app/astro-telemetry/astro-telemetry-pane.js";
+import { AstroTelemetryPane } from "./astro-telemetry-pane.js";
 /**
  * @polymer
  * @extends HTMLElement
