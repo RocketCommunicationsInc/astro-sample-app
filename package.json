@@ -14,7 +14,7 @@
     "@astrouxds/rux-notification": "^2.0.0",
     "@astrouxds/rux-pop-up-menu": "^2.0.0",
     "@astrouxds/rux-slider": "^2.0.0",
-    "@astrouxds/rux-spectrum-analyzer": "^2.0.0",
+    "@astrouxds/rux-spectrum-analyzer": "^1.0.0",
     "@astrouxds/rux-status": "^2.0.0",
     "@astrouxds/rux-tabs": "^2.0.0",
     "@astrouxds/rux-timeline": "^2.0.0",
