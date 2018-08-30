@@ -12,6 +12,7 @@ import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
 import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
 import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
+import { RuxToggle } from "@astrouxds/rux-toggle/rux-toggle.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
@@ -66,9 +67,23 @@ export class AstroApp extends PolymerElement {
       }
 
       rux-tab-panels {
-        height: calc(100vh - 150px);
+        height: calc(100vh - 200px);
         margin: 0 2.625rem;
         
+      }
+
+      .theme-switcher {
+        
+        margin: 0 2.725rem 0.5rem;
+        
+
+        display: flex;
+        justify-content: flex-end;
+
+      }
+
+      .theme-switcher * {
+        margin-left: 0.5rem;
       }
 
 
@@ -80,7 +95,6 @@ export class AstroApp extends PolymerElement {
     
 
     <rux-global-status-bar
-      class="dark-theme"
       appname="Astro App"
       version="2.0a">
       
@@ -110,6 +124,19 @@ export class AstroApp extends PolymerElement {
         </dom-repeat>
       </ul>
 
+      <ul class="astro-advanced-status-indicators">
+        
+        <li>
+          <rux-status
+            status="standby"
+            label="Notifications"
+            icon="default:notifications"
+            notifications=4></rux-status>
+        </li>
+      </ul>
+
+      
+
       
 
       <rux-button
@@ -123,9 +150,20 @@ export class AstroApp extends PolymerElement {
     <rux-pop-up-menu
     menu-items=[[_popMenuItems]]
     target=[[_popMenuTarget]]></rux-pop-up-menu>
+
+    <div class="theme-switcher">
+    
+    <div id="toggle1">Light Mode</div>
+    <rux-toggle aria-labeledby="toggle1" on-click="_setTheme"></rux-toggle>
+
+</div>
+
     <rux-tab-panels
       main
       transparent>
+     
+
+
       <rux-tab-panel aria-labeledby="tab-modems">  
         
         <astro-modems
@@ -360,14 +398,26 @@ export class AstroApp extends PolymerElement {
     super.ready();
   }
 
+  _setTheme(e) {
+    console.log("set theme", e.currentTarget.checked);
+
+    if (e.currentTarget.checked) {
+      document.body.classList.remove("light-theme");
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+      document.body.classList.add("light-theme");
+    }
+
+    console.log(document.body);
+  }
+
   showNotification() {
-    console.log(this.telemetryDataObj);
     this.telemetryDataObj[0].label = "Sat B";
     this.notifyPath("telemetryDataObj");
     this.notifyPath("telemetryData");
     this.notifyPath("telemetry-data-obj");
     this.notifyPath("telemetry-data");
-    console.log(this.telemetryDataObj);
   }
 }
 customElements.define("astro-app", AstroApp);

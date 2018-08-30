@@ -18,6 +18,7 @@
     "@astrouxds/rux-status": "^2.0.0",
     "@astrouxds/rux-tabs": "^2.0.0",
     "@astrouxds/rux-timeline": "^2.0.0",
+    "@astrouxds/rux-toggle": "^2.0.0",
     "@polymer/polymer": "^3.0.2",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "polymer-cli": "^1.7.2"
