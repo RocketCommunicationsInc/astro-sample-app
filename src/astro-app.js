@@ -1,18 +1,23 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import "@polymer/polymer/lib/elements/dom-repeat.js";
 /* Rux Components */
-import { RuxGlobalStatusBar } from "@astrouxds/rux-global-status-bar/rux-global-status-bar.js";
+
 import { RuxButton } from "@astrouxds/rux-button/rux-button.js";
-import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
-import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
-import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
-import { RuxPopUpMenu } from "@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js";
 import { RuxClock } from "@astrouxds/rux-clock/rux-clock.js";
+import { RuxGlobalStatusBar } from "@astrouxds/rux-global-status-bar/rux-global-status-bar.js";
+import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
+import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
+import { RuxModal } from "@astrouxds/rux-modal/rux-modal.js";
+import { RuxPopUpMenu } from "@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js";
+import { RuxProgress } from "@astrouxds/rux-progress/rux-progress.js";
+import { RuxSegmentedButton } from "@astrouxds/rux-segmented-button/rux-segmented-button.js";
 import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
 import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
-import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
+import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
+import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
 import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
 import { RuxToggle } from "@astrouxds/rux-toggle/rux-toggle.js";
+import { RuxTree } from "@astrouxds/rux-tree/rux-tree.js";
 
 /* Astro App */
 import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
@@ -22,6 +27,7 @@ import { AstroModemList } from "./astro-modems/astro-modem-list.js";
 import { AstroModemListItem } from "./astro-modems/astro-modem-list-item.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
 import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
+import { AstroElements } from "./astro-elements/astro-elements.js";
 /**
  * @polymer
  * @extends HTMLElement
@@ -29,6 +35,7 @@ import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
 export class AstroApp extends PolymerElement {
   static get template() {
     return html`
+    <link rel="stylesheet" type="text/css" href="./css/astro.css" />
     <style>
       :host {
         
@@ -54,11 +61,26 @@ export class AstroApp extends PolymerElement {
       .astro-advanced-status-indicators {
         list-style: none;
         padding: 0;
-        margin: 0;
+        
+        margin: 0 2rem;
         display: flex;
+        flex-grow: 1;
         justify-content: center;
+        
+
+
+        
+        height: 5.5rem;
       }
 
+      .astro-advanced-status-indicators li {
+        margin: 0 0.5rem;
+      }
+
+      .astro-advanced-status-indicators li:last-child  {
+        margin-right: 0;
+        margin-left: auto;
+      }
 
       rux-global-status-bar {
         padding: 0 2.625rem;
@@ -84,12 +106,7 @@ export class AstroApp extends PolymerElement {
 
       .theme-switcher * {
         margin-left: 0.5rem;
-      }
-
-
-     
-
-      
+      }      
     </style>
     
     
@@ -101,8 +118,9 @@ export class AstroApp extends PolymerElement {
       <rux-tabs
         main
         transparent>
+        <rux-tab id="tab-elements">Elements</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>
-        <rux-tab id="tab-pass-plans" selected>Pass Plans</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
@@ -120,20 +138,19 @@ export class AstroApp extends PolymerElement {
                 notifications=[[item.notifications]]
                 on-click="_showPopUp"></rux-status>
             </li>
+            
           </template>
         </dom-repeat>
-      </ul>
-
-      <ul class="astro-advanced-status-indicators">
-        
         <li>
           <rux-status
-            status="standby"
+            
             label="Notifications"
-            icon="default:notifications"
+            icon="default:fpo"
             notifications=4></rux-status>
         </li>
       </ul>
+
+
 
       
 
@@ -162,7 +179,9 @@ export class AstroApp extends PolymerElement {
       main
       transparent>
      
-
+      <rux-tab-panel aria-labeledby="tab-elements">
+        <astro-elements></astro-elements>
+      </rux-tab-panel>
 
       <rux-tab-panel aria-labeledby="tab-modems">  
         
