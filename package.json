@@ -10,7 +10,7 @@
     "@astrouxds/rux-button": "^2.0.0",
     "@astrouxds/rux-clock": "^2.0.0",
     "@astrouxds/rux-global-status-bar": "^2.0.0",
-    "@astrouxds/rux-icon": "^2.0.0",
+    "@astrouxds/rux-icon": "^2.0.1",
     "@astrouxds/rux-modal": "^2.0.0",
     "@astrouxds/rux-notification": "^2.0.0",
     "@astrouxds/rux-pop-up-menu": "^2.0.0",

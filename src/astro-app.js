@@ -9,10 +9,11 @@ import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
 import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
 import { RuxModal } from "@astrouxds/rux-modal/rux-modal.js";
 import { RuxPopUpMenu } from "@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js";
+import { RuxPushButton } from "@astrouxds/rux-push-button/rux-push-button.js";
 import { RuxProgress } from "@astrouxds/rux-progress/rux-progress.js";
 import { RuxSegmentedButton } from "@astrouxds/rux-segmented-button/rux-segmented-button.js";
 import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
-import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+// import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
 import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
 import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
@@ -62,7 +63,7 @@ export class AstroApp extends PolymerElement {
         list-style: none;
         padding: 0;
         
-        margin: 0 2rem;
+        margin: 0 5rem;
         display: flex;
         flex-grow: 1;
         justify-content: center;
@@ -77,7 +78,7 @@ export class AstroApp extends PolymerElement {
         margin: 0 0.5rem;
       }
 
-      .astro-advanced-status-indicators li:last-child  {
+      .astro-advanced-status-indicators li:nth-last-child(2)  {
         margin-right: 0;
         margin-left: auto;
       }
@@ -106,7 +107,13 @@ export class AstroApp extends PolymerElement {
 
       .theme-switcher * {
         margin-left: 0.5rem;
-      }      
+      }   
+      
+      rux-global-status-bar > *:not(:last-child) {
+        margin: 0 3rem;
+      }
+
+      
     </style>
     
     
@@ -131,7 +138,7 @@ export class AstroApp extends PolymerElement {
           <template>
             <li>
               <rux-status
-                status="ok"
+                status=[[item.status]]
                 label=[[item.label]]
                 sublabel="sub label"
                 icon=[[item.icon]]
@@ -143,10 +150,16 @@ export class AstroApp extends PolymerElement {
         </dom-repeat>
         <li>
           <rux-status
-            
             label="Notifications"
-            icon="default:fpo"
-            notifications=4></rux-status>
+            icon="default:notifications"
+            notifications=5
+            active></rux-status>
+        </li>
+        <li>
+            <rux-status
+              label="Settings"
+              icon="default:settings"></rux-status>
+          </li>
         </li>
       </ul>
 
@@ -356,7 +369,7 @@ export class AstroApp extends PolymerElement {
     this.statusIndicators = [
       {
         label: "Power",
-        status: "ok",
+        status: "caution",
         icon: "advanced-status-egs:propulsion-power",
         notifications: 1
       },
@@ -385,27 +398,27 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
-    ws1.addEventListener("message", event => {
-      // convert data to JSON
-      const data = JSON.parse(event.data);
+    // const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
+    // ws1.addEventListener("message", event => {
+    //   // convert data to JSON
+    //   const data = JSON.parse(event.data);
 
-      // assign power and temp data to the correct array index
-      this.telemetryDataObj[0].power = data.power;
-      this.telemetryDataObj[0].temperature = data.temperature;
+    //   // assign power and temp data to the correct array index
+    //   this.telemetryDataObj[0].power = data.power;
+    //   this.telemetryDataObj[0].temperature = data.temperature;
 
-      // notify the object it’s been updated and with what
-      this.set("telemetryDataObj.0", data);
-    });
+    //   // notify the object it’s been updated and with what
+    //   this.set("telemetryDataObj.0", data);
+    // });
 
-    // Same as above, but with
-    const ws2 = new WebSocket("wss://satellite-2.astrouxds.com");
-    ws2.addEventListener("message", event => {
-      const data = JSON.parse(event.data);
-      this.telemetryDataObj[1].power = data.power;
-      this.telemetryDataObj[1].temperature = data.temperature;
-      this.set("telemetryDataObj.1", data);
-    });
+    // // Same as above, but with
+    // const ws2 = new WebSocket("wss://satellite-2.astrouxds.com");
+    // ws2.addEventListener("message", event => {
+    //   const data = JSON.parse(event.data);
+    //   this.telemetryDataObj[1].power = data.power;
+    //   this.telemetryDataObj[1].temperature = data.temperature;
+    //   this.set("telemetryDataObj.1", data);
+    // });
   }
   disconnectedCallback() {
     suer.disconnectedCallback();

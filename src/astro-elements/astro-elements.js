@@ -1,7 +1,7 @@
 import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 import "@polymer/polymer/lib/elements/dom-repeat.js";
-import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
+// import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
 // import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 /**
  * @polymer
@@ -17,12 +17,12 @@ export class AstroElements extends PolymerElement {
     <style>
     :host {
       height: 100%;
-      padding: 0 3rem 3rem 3rem;
+      
       width: 100%;
       box-sizing: border-box;
       margin: 0;
       
-      
+     
     }
     
     *,
@@ -457,7 +457,7 @@ svg circle {
 }
 
 .rux-button:focus {
-  outline: none;
+  
 }
 .rux-button:not(.rux-button--outline) {
   border: 1px solid rgb(0, 90, 143);
@@ -2772,36 +2772,256 @@ input[type="range"]:focus {
 /* */
 .astro-elements-pane {
   background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
-  margin: 0.5rem;
+  
   padding: 0;
-
-  min-width: 10rem;
-  max-width: 100rem;
+  margin: 0;
+  overflow: hidden;
 }
 
+
+
 .astro-elements-pane__content {
-  padding: 0 1rem 1rem 1rem;
+  
+  padding: 0 1.5rem;
+  
+
+  
 }
 
 .astro-elements-pane h2 {
+  
+  
+  
   font-weight: 500;
   padding: 0.5rem;
   margin: 0 0 1rem 0;
   background-color: var(--colorTertiaryDarken2);
   color: var(--textColor);
+
+  position: -webkit-sticky;
+  position; absolutesticky;
+  top: 0;
+
+  
 }
+
+
 
 ol, ul {
   padding: 0;
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
+  padding: 0;
+  width: 100%;
+  height: calc(100% - 10px);
+  // outline: 1px solid red;
+  display: inline-grid;
+
+  grid-template-columns: 8%;
+  grid-template-rows: 64px;
+  grid-template-rows:    6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25%;
+  
+
+  grid-gap: 20px;
+
+  overflow-y: hidden;
+  
 }
+
+
+.controls {
+  
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.toggles {
+  
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+.text-fields {
+  
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 5;
+  grid-column-end: 7;
+  
+}
+
+.drop-downs {
+  
+  grid-row-start: 3;
+  grid-row-end: 6;
+  grid-column-start: 5;
+  grid-column-end: 7;
+  
+}
+
+.buttons {
+  
+  grid-row-start: 6;
+  grid-row-end: 9;
+  grid-column-start: 7;
+  grid-column-end: 12;
+  
+  
+}
+
+
+
+.clock {
+  
+  grid-row-start: 6;
+  grid-row-end: 9;
+  grid-column-start: 5;
+  grid-column-end: 7;
+  
+  
+}
+
+.progress {
+  
+  grid-row-start: 6;
+  grid-row-end: 9;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  
+  
+}
+
+.slider {
+  
+  grid-row-start: 6;
+  grid-row-end: 9;
+  grid-column-start: 1;
+  grid-column-end: 3; 
+}
+
+.tree {
+  
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 7;
+  grid-column-end: 9; 
+}
+
+.tabs {
+  
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 9;
+  grid-column-end: 12; 
+}
+
+
+.log {
+  
+  grid-row-start: 9;
+  grid-row-end: 15;
+  grid-column-start: 8;
+  grid-column-end: 12; 
+}
+
+.spectrum-analyzer {
+  display: none;
+}
+
+.notifications {
+  
+  grid-row-start:13;
+  grid-row-end: 15;
+  grid-column-start: 1;
+  grid-column-end: 7; 
+}
+
+.pop-ups {
+  
+  
+  grid-row-start: 12;
+  grid-row-end: 12;
+  grid-column-start: 3;
+  grid-column-end: 3; 
+}
+
+/* .astro-elements-pane:nth-child(15) {
+  display: none;
+  
+  grid-row-start: 12;
+  grid-row-end: 12;
+  grid-column-start: 4;
+  grid-column-end: 4; 
+} */
+
+.timeline-tile {
+  
+  
+  grid-row-start: 9;
+  grid-row-end: 13;
+  grid-column-start: 1;
+  grid-column-end: 8; 
+}
+
+.status-tile {
+  
+  
+  grid-row-start: 1;
+  grid-row-end: 15;
+  grid-column-start: 12;
+  grid-column-end: 12; 
+}
+
+
+.icon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.icon-list li {
+  margin: 2rem 1.5rem;
+}
+
 
 rux-tree {
   width: 300px;
+}
+
+.toggle-buttons {
+  width: 100%;
+  padding: 0;
+}
+
+.toggle-buttons li {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.toggle-buttons li::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: var(--colorTertiaryLighten1, rgba(255, 255, 255, 0.05));
+  margin: 0.66rem 0;
+}
+
+.toggle-buttons .rux-toggle {
+  margin: 0 0 0 auto;
+}
+
+.push-buttons-list {
+  list-style: none;
+  padding: 0;
 }
 
     </style>    
@@ -2809,7 +3029,7 @@ rux-tree {
 
     <div class="grid">
 
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane controls">
       <h2>Controls</h2>
       <div class="astro-elements-pane__content">
         <ol>
@@ -2834,6 +3054,9 @@ rux-tree {
           </li>
         </ol>
   
+        <br>
+        
+
         <ol>
           <li class="rux-radio-button">
             <input type="radio" name="radio1c" id="radio1c">
@@ -2858,10 +3081,40 @@ rux-tree {
       </div>
     </section>
   
-
-    <section class="astro-elements-pane">
-      <h2>Segmented Button</h2>
+    <section class="astro-elements-pane toggles">
+      <h2>Toggles/Pushbuttons/Segments</h2>
       <div class="astro-elements-pane__content">
+
+      <figure>
+      <ul class="toggle-buttons">
+                <li class="rux-form-field">
+                    <div id="toggle1">Toggle 1:</div>
+                    <rux-toggle aria-labeledby="toggle1"></rux-toggle>
+                </li>
+                <li class="rux-form-field">
+                    <div id="toggle3">Toggle 3:</div>
+                    <rux-toggle disabled aria-labeledby="toggle1"></rux-toggle>
+                </li>
+            </ul>
+      </figure>
+
+      <figure>
+      <ul class="push-buttons-list">
+      <li>
+          <rux-push-button>Tx</rux-push-button>
+      </li>
+      <li>
+          <rux-push-button checked>Rx</rux-push-button>
+      </li>
+      <li>
+          <rux-push-button disabled>Xx</rux-push-button>
+      </li>
+      <li>
+          <rux-push-button checked disabled>Yx</rux-push-button>
+      </li>
+  </ul>
+      </figure>
+
       <figure>
         <rux-segmented-button data={{segmentOne}}></rux-segmented-button>
       
@@ -2869,9 +3122,73 @@ rux-tree {
       </figure>
       </div>
     </section>
+
+
+    <section class="astro-elements-pane text-fields">
+      <h2>Input Fields</h2>
+      <div class="astro-elements-pane__content">
+        <input type="text"></input>
+        <input type="search"></input>
+        <input type="text" disabled></input>
+      </div>
+    </section>
     
+    <section class="astro-elements-pane drop-downs">
+      <h2>Drop Down/Select</h2>
+      <div class="astro-elements-pane__content">
+        <select class="rux-select" style="--value:Group One Option Three;">
+          <optgroup label="Group One">
+            <option>Group One Option One</option>
+            <option>Group One Option Two</option>
+            <option>Group One Option Three</option>
+            <option>Group One Option Four</option>
+          </optgroup>
+          <optgroup label="Group Two">
+            <option>Group Two Option One</option>
+            <option>Group Two Option Two</option>
+            <option>Group Two Option Three</option>
+            <option>Group Two Option Four</option>
+          </optgroup>
+        </select>
+
+        <br>
+        <br>
+
+        <select class="rux-select" disabled style="--value:Group One Option Three;">
+          <optgroup label="Group One">
+            <option>Group One Option One</option>
+            <option>Group One Option Two</option>
+            <option>Group One Option Three</option>
+            <option>Group One Option Four</option>
+          </optgroup>
+          <optgroup label="Group Two">
+            <option>Group Two Option One</option>
+            <option>Group Two Option Two</option>
+            <option>Group Two Option Three</option>
+            <option>Group Two Option Four</option>
+          </optgroup>
+        </select>
+      </div>
+    </section>
+
+    <section class="astro-elements-pane buttons">
+      <h2>Buttons</h2>
+      <div class="astro-elements-pane__content">
+        <rux-button type="small">Button</rux-button>
+        <rux-button>Button</rux-button>
+        <rux-button type="large">Button</rux-button>
+        <br>
+        <rux-button default type="small">Button</rux-button>
+        <rux-button default>Button</rux-button>
+        <rux-button default type="large">Button</rux-button>
+        <br>
+        <rux-button type="outline">Outline Button</rux-button>
+        
+
+      </div>
+    </section>
     
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane notifications">
       <h2>Notifications</h2>
       <div class="astro-elements-pane__content">
         <figure>
@@ -2890,7 +3207,15 @@ rux-tree {
     </section>
 
 
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane clock">
+    <h2>Clock</h2>
+    <div class="astro-elements-pane__content">
+      <rux-clock compact></rux-clock>
+      <rux-clock></rux-clock>
+    </div>
+  </section>
+
+    <section class="astro-elements-pane progress">
       <h2>Progress</h2>
       <div class="astro-elements-pane__content">
         <rux-progress value=50 label=true></rux-progress>
@@ -2899,11 +3224,11 @@ rux-tree {
     </section>
 
 
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane slider">
       <h2>Slider</h2>
       <div class="astro-elements-pane__content">
-      <rux-slider label="Label" val={{sliderObj.value}}></rux-slider>
-      <rux-slider min={{sliderObjTwo.min}} max={{sliderObjTwo.max}} step={{sliderObjTwo.step}} val={{sliderObjTwo.value}}></rux-slider>
+      <!-- <rux-slider label="Label" val={{sliderObj.value}}></rux-slider> //-->
+      <br>
       <rux-slider 
                     axis-labels=[[sliderObjThree.labels]] 
                     min=10
@@ -2913,58 +3238,34 @@ rux-tree {
     </section>
 
 
-    <section class="astro-elements-pane">
-      <h2>Clock</h2>
-      <div class="astro-elements-pane__content">
-        <rux-clock compact></rux-clock>
-        <rux-clock></rux-clock>
-      </div>
-    </section>
+   
 
 
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane tree">
       <h2>Tree</h2>
       <div class="astro-elements-pane__content">
         <rux-tree data={{treeData}}></rux-tree>
-        Selected Tree Element: [[treeData.selected.label]]
-        <br>Action for Tree Element: [[treeData.selected.payload.action]]
+        <!-- Selected Tree Element: [[treeData.selected.label]]
+        <br>Action for Tree Element: [[treeData.selected.payload.action]] //-->
       </div>
     </section>
     
     
     
-    <section class="astro-elements-pane">
-      <h2>Drop Down/Select</h2>
-      <div class="astro-elements-pane__content">
-        <select class="rux-select" style="--value:Group One Option Three;">
-          <optgroup label="Group One">
-            <option>Group One Option One</option>
-            <option>Group One Option Two</option>
-            <option>Group One Option Three</option>
-            <option>Group One Option Four</option>
-          </optgroup>
-          <optgroup label="Group Two">
-            <option>Group Two Option One</option>
-            <option>Group Two Option Two</option>
-            <option>Group Two Option Three</option>
-            <option>Group Two Option Four</option>
-          </optgroup>
-        </select>
-      </div>
-    </section>
+    
   
 
 
   
-    <section class="astro-elements-pane">
+    <section class="astro-elements-pane tabs">
       <h2>Tabs</h2>
       <div class="astro-elements-pane__content">
-        <rux-tabs id="main">
+        <!-- <rux-tabs id="main">
           <rux-tab id="a1" role="tab" selected>Tab 1</rux-tab>
           <rux-tab id="a2" role="tab">Tab with a Long Title</rux-tab>
           <rux-tab id="a3" role="tab" disabled>Tab 3</rux-tab>
           
-        </rux-tabs>
+        </rux-tabs> 
   
         <rux-tab-panels role="tablist" aria-labeledby="main">
           <rux-tab-panel aria-labeledby="a1" role="tabpanel">
@@ -2979,6 +3280,7 @@ rux-tree {
             <h3>Satellites</h3>
           </rux-tab-panel>
         </rux-tab-panels>
+        //-->
   
   
         <br>
@@ -3026,8 +3328,91 @@ rux-tree {
         </rux-tab-panels>
       </div>
     </section>
-  
+
+    <section class="astro-elements-pane log">
+      <h2>Log</h2>
+      <div class="astro-elements-pane__content">
+      </div>
+    </section>
+
+    <section class="astro-elements-pane spectrum-analyzer">
+      <h2>Spectrum Analyzer</h2>
+      <div class="astro-elements-pane__content">
+      </div>
+    </section>
+
+    
+
+    
+    
+    
+
+    <section class="astro-elements-pane status-tile">
+      <h2>Status</h2>
+      <div class="astro-elements-pane__content">
+      <ul class="icon-list">
+        <li>
+        <rux-status
+          status="off"
+          label="Mission"
+          icon="advanced-status:mission"
+          notifications=0
+          ></rux-status>
+        </li>
+        <li>
+        <rux-status
+          status="standby"
+          label="Equipment"
+          icon="advanced-status:equipment"
+          notifications=1
+          ></rux-status>
+        </li>
+        <li>
+        <rux-status
+          status="normal"
+          label="Processor"
+          icon="advanced-status:processor"
+          notifications=10
+          ></rux-status>
+        </li>
+        <li>
+        <rux-status
+          status="caution"
+          label="Antenna"
+          icon="advanced-status:antenna-off"
+          notifications=100
+          ></rux-status>
+        </li>
+        <li>
+        <rux-status
+          status="error"
+          label="Ant"
+          icon="advanced-status:antenna-transmit"
+          notifications=1000
+          active></rux-status>
+        </li>
+        <li>
+        <rux-status
+          status="critical"
+          label="Ant"
+          icon="advanced-status:antenna-receive"
+          notifications=1000000
+          active></rux-status>
+        </li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="astro-elements-pane timeline-tile">
+      <h2>Timeline</h2>
+      <div class="astro-elements-pane__content">
+      </div>
+    </section>
+
+    
   </div>
+
+  
     
       
     `;
@@ -3060,32 +3445,6 @@ rux-tree {
             _id: "i1-2",
             label: "Child 2",
             payload: { action: "… a method call to be interpreted" }
-          }
-        ]
-      },
-      {
-        _id: "i2",
-        label:
-          "A really long title to see what happens when someone adds a stupid long string",
-        payload: { action: "It gives developers the chance to add anything …" },
-        children: [
-          {
-            _id: "i2-1",
-            label: "And what about this in a child element?",
-            payload: { action: "… then react to that thing" }
-          },
-          {
-            _id: "i2-2",
-            label: "Child 1.2",
-            payload: {
-              action:
-                "… it can also be updated dynamically from outside the component"
-            }
-          },
-          {
-            _id: "i2-3",
-            label: "Child 1.3",
-            payload: { action: "… so functionality could change on the fly" }
           }
         ]
       },
