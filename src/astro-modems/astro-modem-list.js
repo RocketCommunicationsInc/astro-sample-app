@@ -35,8 +35,54 @@ export class AstroModemList extends MutableData(PolymerElement) {
             height: auto;
             // overflow: scroll;
             background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
+
+            scrollbar-face-color: rgb(58, 129, 191);
+            scrollbar-face-color: var(--scrollBarThumbBackgroundColor, rgb(58, 129, 191)); 
+            scrollbar-track-color: rgb(32, 50, 70); 
+            scrollbar-track-color: var(--scrollBarTrackCornerBackgroundColor, rgb(32, 50, 70)); 
           }
           
+
+
+::-webkit-scrollbar {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(46, 103, 153);
+  background-color: var(--scrollBarThumbBackgroundColor, rgb(46, 103, 153));
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+/* visually "centers" because the dark edge of the shadow gives the illusion this is offset */
+::-webkit-scrollbar-thumb:vertical { 
+  border-left-width: 4px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-top-width: 4px;
+}
+
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(58, 129, 191);
+  background-color: var(--scrollBarThumbBackgroundHoverColor, rgb(58, 129, 191)); 
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background-color: rgb(32, 50, 70);
+  background-color: var(--scrollBarTrackCornerBackgroundColor, rgb(32, 50, 70));
+}
+::-webkit-scrollbar-track:vertical {
+  -webkit-box-shadow: inset 2px 0 4px rgba(0,0,0,0.15);
+}
+::-webkit-scrollbar-track:horizontal {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
           *,
         *:before,
         *:after {
@@ -79,10 +125,10 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
           .modem-list {
             
-            height: 100%;
+            height: 92%;
             overflow-y: scroll;
-            padding-bottom: 5rem;
-            padding-right: 0.75rem;
+            padding-right: 0.5rem;
+            margin: 0 0.5rem;
           }
 
           .modem-list__header {
@@ -91,22 +137,23 @@ export class AstroModemList extends MutableData(PolymerElement) {
             font-size: 0.875rem;
             top: 0px;
             height: 2rem;
-            background-color: var(--modemListItemBackgroundColor);
+            
             z-index: 100;
             margin: 0 0 0.625rem 0;
           
-            -webkit-position: sticky;
+            position: -webkit-sticky;
             position: sticky;
             top: 0;
 
           }
 
-          .modem-list__header:before {
+          .modem-list__header ul:before {
             content: "";
             width: 6px;
             display: block;
             position: absolute;
             top: 0;
+            background-color: red;
           }
 
           .modem-list__header ul {
@@ -114,7 +161,8 @@ export class AstroModemList extends MutableData(PolymerElement) {
             flex-grow: 1;
             
             padding: 0;
-            margin: 0 0 0 8px;
+            margin: 0 0 0 6px;
+            background-color: var(--modemListItemBackgroundColor);
           }
   
           .modem-list__header li {
@@ -125,6 +173,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
             width: 14%;
             
           }
+          
   
           .modem-list__header .modem-list__reading {
             justify-content: flex-end;

@@ -29,7 +29,7 @@ export class AstroTelemetryPane extends PolymerElement {
     <style>
     :host {
       height: 100%;
-      padding: 0rem 3rem 3rem 3rem;
+      padding: 1.25rem;
       width: 100%;
       box-sizing: border-box;
       background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
@@ -44,7 +44,7 @@ export class AstroTelemetryPane extends PolymerElement {
     
     .astro-telemetry-pane__status {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: space-between;
       align-content: stretch;
       align-items: stretch;
@@ -55,14 +55,20 @@ export class AstroTelemetryPane extends PolymerElement {
     }
     
     .astro-telemetry-pane__status__group {
-      
-      background-color: var(--telemetryPaneBackgroundColor, rgb(255,255,255));
+      background-color: var(--modemDetailSectionBackgroundColor);
+      // background-color: var(--telemetryPaneBackgroundColor, rgb(255,255,255));
       display: flex;
       flex-wrap: wrap;
+      justify-content: stretch;
       align-content: stretch;
-      align-items: stretch;
-      
-      width: 48%;
+      align-items: stretch;      
+      flex-grow: 1;
+      width: 50%;
+
+    }
+
+    .astro-telemetry-pane__status__group:not(:last-child) {
+      margin-right: 1.25rem;
     }
     
     .astro-telemetry-pane__status__group header {

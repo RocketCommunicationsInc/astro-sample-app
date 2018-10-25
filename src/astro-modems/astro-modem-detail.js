@@ -126,7 +126,7 @@ export class AstroModemDetail extends PolymerElement {
         flex-wrap: wrap;
         flex-grow: 1;
         align-content: flex-start;
-        padding: 1.25rem 2rem;
+        padding: 1.25rem 1.25rem;
         background-color: var(--modemDetailBackgroundColor);
         
         z-index: 1;
@@ -159,7 +159,7 @@ export class AstroModemDetail extends PolymerElement {
       .modem-detail__detail__section {
         flex-grow: 1;
         max-width: 22.75rem;
-        margin-right: 0.75rem;
+        margin-right: 1.25rem;
       }
       
       .modem-detail__detail__section:last-child {

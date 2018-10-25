@@ -84,14 +84,14 @@ export class AstroApp extends PolymerElement {
       }
 
       rux-global-status-bar {
-        padding: 0 2.625rem;
+        padding: 0 1.875rem;
         height: 110px;
         margin-bottom: 1.3125rem
       }
 
       rux-tab-panels {
         height: calc(100vh - 200px);
-        margin: 0 2.625rem;
+        margin: 0 1.875rem;
         
       }
 
@@ -121,8 +121,9 @@ export class AstroApp extends PolymerElement {
       theme="dark">
       
       <rux-tabs main>
+      <rux-tab id="tab-satellites">Satellites</rux-tab>
       <rux-tab id="tab-modems">Modems</rux-tab>  
-      <rux-tab id="tab-satellites">Satellites</rux-tab>  
+      
         
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
       </rux-tabs>

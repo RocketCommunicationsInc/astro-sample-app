@@ -20,43 +20,38 @@ export class AstroTelemetry extends PolymerElement {
   }
   static get template() {
     return html`
-    <style>
-    :host {
-      box-sizing: border-box;
-      height: 100%;
-    }
-    
-    *,
-    *:after,
-    *:before {
-      box-sizing: inherit;
-    }
-    
-    .astro-telemetry-panes {
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;
-    }
-    
-    astro-telemetry-pane {
-      margin-right: 0.5rem;
-    }
-    
-    astro-telemetry-pane:last-child {
-      margin-right: 0;
-    }
-    
-    </style>    
-    <div class="astro-telemetry-panes">
-    <template is="dom-repeat" items="[[telemetryData]]">
-      <astro-telemetry-pane
-        title=[[item.satelliteName]]
-        chart=[[item.chart]]
-        power=[[item.power]]
-        thermal=[[item.temperature]]></astro-telemetry-pane>
-    </template>
-    
-    </div>
+      <style>
+        :host {
+          box-sizing: border-box;
+          height: 100%;
+        }
+        
+        *,
+        *:after,
+        *:before {
+          box-sizing: inherit;
+        }
+        
+        .astro-telemetry-panes {
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+        }
+        
+        astro-telemetry-pane {
+          margin-right: 1.25rem;
+        }
+      </style>
+
+      <div class="astro-telemetry-panes">
+        <template is="dom-repeat" items="[[telemetryData]]">
+          <astro-telemetry-pane
+            title=[[item.satelliteName]]
+            chart=[[item.chart]]
+            power=[[item.power]]
+            thermal=[[item.thermal]]></astro-telemetry-pane>
+        </template>
+      </div>
     `;
   }
   constructor() {
