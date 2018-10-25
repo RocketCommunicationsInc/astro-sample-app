@@ -10,7 +10,7 @@
 
   <!-- Global Styles //-->
   <link rel="stylesheet" href="/public/css/astro.css">
-  <link rel="stylesheet" href="/public/css/astro-sample-app.css">
+  <!-- <link rel="stylesheet" href="/public/css/astro-sample-app.css"> -->
 
   <!-- Load WebComponent Polyfill //-->
   <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
@@ -18,6 +18,90 @@
   <!-- Load Astro App //-->
   <script type="module" src="src/astro-app.js"></script>
   <!-- <script src="//d3js.org/d3.v4.min.js"></script> -->
+
+  <style>
+    .dark-theme {
+      --paneBackgroundColor: var(--colorTertiaryDarken1, rgb(19, 43, 64));
+
+      /* Modem List */
+      --modemListBackgroundColor: var(--colorTertiaryDarken3);
+
+      --modemListItemBackgroundColor: var(--colorTertiaryDarken4);
+      --modemListItemAccentColor: var(--colorTertiaryDarken1);
+
+      --modemListItemSelectedBackgroundColor: var(--colorSecondary);
+      --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
+
+      /* Modem Detail */
+      --verticalTabBackgroundColor: var(--colorTertiaryDarken3);
+
+      --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken3);
+      --modemDetailBackgroundColor: var(--colorTertiaryDarken1);
+      --modemDetailSectionBackgroundColor: var(--colorTertiaryDarken2);
+
+
+      /* Pass Plan */
+      --passPlanListBorderColor: var(--colorTertiaryLighten1);
+      --passPlanListBackgroundColor: transparent;
+
+      --telemetryPaneBackgroundColor: var(--colorTertiaryDarken3);
+      --telemetryPaneBorderColor: var(--colorTertiary);
+
+
+      /* Timeline */
+      --timelineHeaderBackgroundColor: var(--colorPrimaryDarken1);
+
+      --timelineTrackBackgroundColor: var(--colorPrimaryDarken2);
+      --timelineTrackLabelBackgroundColor: var(--colorTertiaryDarken2);
+
+      --timelineRegionSelectedBackgroundColor: var(--colorSecondary);
+      --timelineRegionSelectedBorderColor: var(--colorSecondaryDarken1);
+      --timelineRegionSelectedTextColor: var(--colorWhite);
+
+      --timelineRegionBackgroundColor: var(--colorPrimary);
+      --timelineRegionBorderColor: var(--colorPrimaryDarken1);
+      --timelineRegionTextColor: var(--colorWhite);
+    }
+
+    .light-theme {
+      --paneBackgroundColor: var(--colorQuaternaryLighten2, rgb(166, 214, 255));
+
+      /* Modem List */
+      --modemListBackgroundColor: var(--colorQuaternaryLighten3);
+
+      --modemListItemBackgroundColor: var(--colorQuaternaryLighten3);
+      --modemListItemAccentColor: var(--colorQuaternaryLighten1);
+
+      --modemListItemSelectedBackgroundColor: var(--colorSecondary);
+      --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
+
+      /* Modem Detail */
+      --verticalTabBackgroundColor: var(--colorQuaternary);
+
+      --modemDetailSettingsBackgroundColor: var(--colorQuaternary);
+      --modemDetailBackgroundColor: var(--colorQuaternaryLighten2);
+      --modemDetailSectionBackgroundColor: var(--colorQuaternaryLighten3);
+
+      --passPlanListBorderColor: var(--colorQuaternary, rgb(207, 214, 227));
+      --passPlanListBackgroundColor: var(--colorWhite, rgb(255, 255, 255));
+
+      --telemetryPaneBackgroundColor: var(--colorWhite);
+      --telemetryPaneBorderColor: var(--colorQuaternary);
+
+      --timelineHeaderBackgroundColor: var(--colorQuaternary);
+
+      --timelineTrackBackgroundColor: var(--colorQuaternaryLighten1);
+      --timelineTrackLabelBackgroundColor: var(--colorQuaternaryDarken2);
+
+      --timelineRegionSelectedBackgroundColor: var(--colorSecondary);
+      --timelineRegionSelectedBorderColor: var(--colorSecondaryDarken1);
+      --timelineRegionSelectedTextColor: var(--colorWhite);
+
+      --timelineRegionBackgroundColor: var(--colorPrimary);
+      --timelineRegionBorderColor: var(--colorPrimaryDarken1);
+      --timelineRegionTextColor: var(--colorWhite);
+    }
+  </style>
 
 </head>
 

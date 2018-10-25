@@ -28,14 +28,32 @@ export class AstroModems extends MutableData(PolymerElement) {
 
           box-sizing: border-box;
           height: 100%;
-          
-          // border: 1px solid var(--colorTertiaryLighten1);
         }
       
 
+        .rux-card {
+          display: flex;
+          width: 100%;
+          
+        }
+          
+        .master {
+          width: 450px;
+          
+          margin-right: 1.25rem;
+        }
+
+        .detail {
+          display: flex;
+          width: auto;
+          flex-grow: 1;
+        }
+
       </style>
-      <astro-modem-list modems={{modems}} selected-modem={{selectedModem}}></astro-modem-list>
-      <astro-modem-detail modems={{modems}} selected-modem={{selectedModem}}></astro-modem-detail>
+      <div class="rux-card">
+        <astro-modem-list class="master" modems={{modems}} selected-modem={{selectedModem}}></astro-modem-list>
+        <astro-modem-detail class="detail" modems={{modems}} selected-modem={{selectedModem}}></astro-modem-detail>
+      </div>
     `;
   }
 

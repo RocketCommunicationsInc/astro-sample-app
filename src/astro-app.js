@@ -95,14 +95,11 @@ export class AstroApp extends PolymerElement {
         
       }
 
-      .theme-switcher {
-        
+      .theme-switcher {        
         margin: 0 2.725rem 0.5rem;
-        
 
         display: flex;
         justify-content: flex-end;
-
       }
 
       .theme-switcher * {
@@ -124,9 +121,10 @@ export class AstroApp extends PolymerElement {
       theme="dark">
       
       <rux-tabs main>
-        <rux-tab id="tab-modems">Modems</rux-tab>
+      <rux-tab id="tab-modems">Modems</rux-tab>  
+      <rux-tab id="tab-satellites">Satellites</rux-tab>  
+        
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
       </rux-tabs>
 
       <rux-clock class="dark-theme"></rux-clock>
@@ -257,7 +255,7 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Power 2",
-          status: "emergency"
+          status: "critical"
         },
         {
           label: "Power 3",
@@ -428,7 +426,7 @@ export class AstroApp extends PolymerElement {
   _setTheme(e) {
     console.log("set theme", e.currentTarget.checked);
 
-    if (e.currentTarget.checked) {
+    if (!e.currentTarget.checked) {
       document.body.classList.remove("light-theme");
       document.body.classList.add("dark-theme");
     } else {

@@ -30,7 +30,6 @@ export class AstroModemDetail extends PolymerElement {
       :host {
         position: relative;
         display: flex;
-        flex-grow: 1;
         box-sizing: border-box;
         background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
       }
