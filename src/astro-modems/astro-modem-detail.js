@@ -258,7 +258,7 @@ export class AstroModemDetail extends PolymerElement {
 
           <div class="rux-button-group">
             <rux-button type="outline" on-click="_cancelChange">[[closeButtonLabel]]</rux-button>
-            <rux-button on-click="_updateModem" default disabled=[[applyButtonDisabled]]>Apply</rux-button>
+            <rux-button on-click="_updateModem" disabled=[[applyButtonDisabled]]>Apply</rux-button>
           </div>
         </form>
       </div>

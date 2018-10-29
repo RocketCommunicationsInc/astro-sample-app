@@ -61,7 +61,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       list-style: none;
     
       color: var(--fontColor, rgb(0,0,0));
-      margin: 0 1.5rem;
+      margin: 0;
       padding: 0;
 
       border: 1px solid var(--passPlanListBorderColor);
@@ -104,11 +104,17 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     
       padding: 0.5rem 1.5rem;
       margin: 2px;
+
+      
     }
     
+
+    
     .rux-timeline__controls h2 {
-      // font-weight: 500;
+      font-weight: 500;
     }
+
+    
     
     .rux-timeline__tasks-status {
       margin-left: auto;
@@ -126,14 +132,33 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     .rux-timeline__tasks-status {
       font-size: 1.25rem;
       font-weight: 300;
-      color: var(--fontColor, rgb(255,255,255);
+      color: var(--fontColor, rgb(255,255,255));
     }
     .rux-timeline__tasks-status__count {
       font-size: 1.75rem;
-      color: var(--fontColor, rgb(255,255,255);
+      color: var(--fontColor, rgb(255,255,255));
       margin-right: 0.2rem;
     }
     
+
+    
+    .no-pass {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      
+    }
+    
+    .no-pass h1 {
+      font-weight: 300;
+    }
+
+    
+    
+
     .tasks-container {
       padding: 1.3rem;
       /* background: rgba(0, 0, 0, 0.2); */
@@ -151,6 +176,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       opacity: 0.5;
     }
 
+
     .pass {
      /*  background-color: green; */
     }
@@ -165,20 +191,6 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
     .task {
       margin-right: auto;
-    }
-
-    .no-pass {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid red;
-    }
-    
-    .no-pass h1 {
-      font-weight: 300;
     }
 
     </style>

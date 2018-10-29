@@ -121,8 +121,8 @@ export class AstroApp extends PolymerElement {
       theme="dark">
       
       <rux-tabs main>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>  
 
       </rux-tabs>
