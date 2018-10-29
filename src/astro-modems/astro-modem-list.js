@@ -92,7 +92,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
           .modem-header {
             display: flex;
             flex-wrap: wrap;
-            padding: 1rem;
+            padding: 1rem 1rem 0 1rem;
             margin: 0;
             justify-content: space-between;
             align-items: baseline;            
@@ -103,7 +103,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
           .modem-header h2 {
             margin: 0;
             font-weight: 300;
-            font-size: 2rem;
+            font-size: 2.375rem;
             color: var(--fontColor, rgb(255,255,255));
           }
           

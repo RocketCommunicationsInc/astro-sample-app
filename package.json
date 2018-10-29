@@ -21,7 +21,7 @@
     "@astrouxds/rux-spectrum-analyzer": "^1.0.0",
     "@astrouxds/rux-status": "^2.0.1",
     "@astrouxds/rux-tabs": "^2.1.1",
-    "@astrouxds/rux-timeline": "^2.0.0",
+    "@astrouxds/rux-timeline": "^2.0.1",
     "@astrouxds/rux-toggle": "^2.0.0",
     "@astrouxds/rux-tree": "^2.0.0",
     "@polymer/polymer": "^3.0.2",

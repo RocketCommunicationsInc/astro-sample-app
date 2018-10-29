@@ -148,6 +148,7 @@ export class AstroModemDetail extends PolymerElement {
         margin: 0 0 0.5rem 0;
         width: 100%;
         font-weight: 300;
+        line-height: 1;
       }
       
       .modem-detail__modem-settings {
