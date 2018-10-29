@@ -73,14 +73,14 @@ export class AstroTelemetryPane extends PolymerElement {
     
     .astro-telemetry-pane__status__group header {
       display: block;
-      border: 2px solid red;
+      
     }
     
     .astro-telemetry-pane__status__header {
       width: 100%;
       flex-shrink: 0;
       margin: 0 0 0 0.5rem;
-      /* outline: 1px solid red; */
+      
     }
     
     .astro-telemetry-pane__status__group h3 {
@@ -126,25 +126,30 @@ export class AstroTelemetryPane extends PolymerElement {
     /* Start Spectrum Analyzer */
     
     svg {
-      background-color: #1b3044;
+      /* background-color: #1b3044; */
+      background-color: var(--modemDetailSectionBackgroundColor, rgb(24, 38, 53));
       
     }
     
     .rux-spectrum-analyzer__bar {
-      fill: #4586be;
+      /* fill: #4586be; */
+      fill: var(--spectrumAnalyzerBarFill, rgb(113, 189, 255));
     }
     
     .rux-spectrum-analyzer__bar-tip {
-      fill: #b2bac0;
+      /* fill: #b2bac0; */
+      // fill: rgba(255,255,255,0.5);
+      fill: none;
     }
     
     text,
     .rux-spectrum-analyzer__main-chart-label {
-      fill: #bdc3c9;
+      /* fill: #bdc3c9; */
+      fill: var(--fontColor, rgba(255,255,255));
     }
     
     .rux-spectrum-analyzer__main-chart-label {
-      font-family: "Open Sans";
+      font-family: var(--fontFamily, "Open Sans");
       font-weight: 300;
       font-size: 20px;
       text-transform: capitalize;
@@ -155,36 +160,42 @@ export class AstroTelemetryPane extends PolymerElement {
       text-transform: uppercase;
       font-size: 12px;
       font-weight: bold;
-      fill: #fff;
+      fill: var(--fontColor, rgb(255,255,255));
     }
     
     g.rux-spectrum-analyzer__axis-label line {
       stroke: none;
     }
     
-    .line {
+    /* .line {
       fill: none;
       stroke: steelblue;
       stroke-width: 2px;
-    }
+    } */
     
-    .grid line {
-      stroke: #455d6e;
+    .grid line,
+    .domain {
+      /* stroke: #455d6e;
       stroke-opacity: 0.3;
+      stroke: red; */
+
+      stroke: var(--spectrumAnalyzerGridStrokeColor, rgb(40, 63, 88));
       shape-rendering: crispEdges;
     }
+
+
     
     .tick text {
-      font-family: "Open Sans";
+      font-family: var(--fontFamily, "Open Sans");
       font-weight: 300;
       font-size: 12px;
-      color: #bdc3c9;
+      color: var(--fontColor, #fff);
       font-weight: 300;
     }
     </style>    
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <!-- <rux -spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="920" x-scale-min="920" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer> //-->
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="920" x-scale-min="920" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">

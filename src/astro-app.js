@@ -13,7 +13,7 @@ import { RuxPushButton } from "@astrouxds/rux-push-button/rux-push-button.js";
 import { RuxProgress } from "@astrouxds/rux-progress/rux-progress.js";
 import { RuxSegmentedButton } from "@astrouxds/rux-segmented-button/rux-segmented-button.js";
 import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
-// import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
 import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
 import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
 import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
@@ -121,8 +121,8 @@ export class AstroApp extends PolymerElement {
       theme="dark">
       
       <rux-tabs main>
-        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-satellites">Satellites</rux-tab>
+        <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-modems">Modems</rux-tab>  
 
       </rux-tabs>

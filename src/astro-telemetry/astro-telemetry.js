@@ -57,15 +57,15 @@ export class AstroTelemetry extends PolymerElement {
   constructor() {
     super();
 
-    // const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
-    // ws.addEventListener("message", event => {
-    //   const data = JSON.parse(event.data);
+    const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    ws.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
 
-    //   console.log(this.telemetryData[0].power);
+      console.log(this.telemetryData[0].power);
 
-    //   this.telemetryData[0].power = data.power;
-    //   this.notifyPath("telemetryData.0.power");
-    // });
+      this.telemetryData[0].power = data.power;
+      this.notifyPath("telemetryData.0.power");
+    });
   }
 
   _changed() {
