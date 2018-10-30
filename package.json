@@ -19,7 +19,7 @@
     "@astrouxds/rux-segmented-button": "^2.0.0",
     "@astrouxds/rux-slider": "^2.0.0",
     "@astrouxds/rux-spectrum-analyzer": "^1.0.0",
-    "@astrouxds/rux-status": "^2.0.1",
+    "@astrouxds/rux-status": "^2.0.2",
     "@astrouxds/rux-tabs": "^2.1.1",
     "@astrouxds/rux-timeline": "^2.0.1",
     "@astrouxds/rux-toggle": "^2.0.0",
