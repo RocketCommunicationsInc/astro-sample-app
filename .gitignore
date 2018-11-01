@@ -57,6 +57,7 @@ node_modules/
 
 # ignore jekyll build directory
 /_site
+/build
 
 # ignore OS generated files
 ehthumbs.db
