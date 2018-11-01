@@ -109,7 +109,6 @@ export class AstroModemList extends MutableData(PolymerElement) {
           
           .modem-header__modem-count {
             font-size: 1.25rem;
-            color: #bdc3c9;
           }
 
           .modem-header ul {
@@ -186,7 +185,7 @@ export class AstroModemList extends MutableData(PolymerElement) {
       
         <div class="modem-header">
           <h2 on-click="test">Modems</h2>
-          <div class="modem-header__modem-count">[[modems.length]]/[[modems.length]]</div>
+          <div class="modem-header__modem-count low-contrast">[[modems.length]]/[[modems.length]]</div>
         </div>
         
         <ul class="modem-list">

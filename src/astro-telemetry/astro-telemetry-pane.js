@@ -107,6 +107,7 @@ export class AstroTelemetryPane extends PolymerElement {
       margin-bottom: 1em;
       margin-left: 0.5rem;
       text-transform: capitalize;
+      display: flex;
     }
     
     .astro-telemetry-pane__status__group rux-status {

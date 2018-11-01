@@ -36,7 +36,7 @@ import { AstroElements } from "./astro-elements/astro-elements.js";
 export class AstroApp extends PolymerElement {
   static get template() {
     return html`
-    <link rel="stylesheet" href="/public/css/astro.css">
+    <link rel="stylesheet" href="/public/css/astro.core.css">
     <style>
       :host {
         
@@ -121,10 +121,9 @@ export class AstroApp extends PolymerElement {
       theme="dark">
       
       <rux-tabs main>
+        <rux-tab id="tab-modems">Modems</rux-tab>  
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
         <rux-tab id="tab-satellites">Satellites</rux-tab>
-        <rux-tab id="tab-modems">Modems</rux-tab>  
-
       </rux-tabs>
 
       <rux-clock class="dark-theme"></rux-clock>
@@ -426,7 +425,7 @@ export class AstroApp extends PolymerElement {
   _setTheme(e) {
     console.log("set theme", e.currentTarget.checked);
 
-    if (!e.currentTarget.checked) {
+    if (e.currentTarget.checked) {
       document.body.classList.remove("light-theme");
       document.body.classList.add("dark-theme");
     } else {
