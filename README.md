@@ -1,33 +1,27 @@
-# <astro\>
+This repository is not intended to demonstrate best coding practices, rather demonstrate how an Astro application looks and feels.
 
-Sample application using the Astro Design System
+The directions below assume basic knowledge of NodeJS and Gulp. Make sure you have installed both globally before continuing.
 
-## Install the Polymer-CLI
-
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
-
-## Viewing Your Application
+Clone this repository
 
 ```
-$ polymer serve
+git clone git@bitbucket.org:rocketcom/astro-components.git
 ```
 
-## Building Your Application
+Install the Polymer CLI
 
 ```
-$ polymer build
+npm i -g polymer-cli
 ```
 
-This will create builds of your application in the `build/` directory, optimized to be served in production. You can then serve the built versions by giving `polymer serve` a folder to serve from:
+Install NPM modules for this project
 
 ```
-$ polymer serve build/default
+npm i
 ```
 
-## Running Tests
+Build and hsot the site locally
 
 ```
-$ polymer test
+polymer serve
 ```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
