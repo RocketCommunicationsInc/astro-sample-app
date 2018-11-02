@@ -3,7 +3,7 @@ import "@polymer/polymer/lib/elements/dom-repeat.js";
 import "@polymer/polymer/lib/elements/dom-if.js";
 import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
 import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
-import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
+
 /**
  * @polymer
  * @extends HTMLElement
@@ -211,7 +211,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
         <div class="rux-timeline__controls">
           
           <rux-status
-            icon="advanced-status:satellite-transmit"
+            icon="monitoring:satellite-transmit"
             status=[[selectedSatellite.status]]></rux-status>
 
             <h2>[[selectedSatellite.label]]</h2>
@@ -240,7 +240,9 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
           <h1>No Pass Selected</h1>
         </div>
       </template>
-    </div>  
+    </div>
+
+    
     `;
   }
 
@@ -529,71 +531,6 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
       }
     ];
   }
-
-  /*{
-        label: "HEO",
-        regions: [{
-            label: "GPS-IIR-15",
-            status: "caution",
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              1,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              4,
-              30,
-              0
-            )
-          },
-          {
-            label: "GPS-IIR-16",
-            status: "ok",
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              8,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              12,
-              0,
-              0
-            )
-          },
-          {
-            label: "GPS-IIR-16",
-            status: "error",
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              17,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              20,
-              30,
-              0
-            )
-          }
-        ]
-      },*/
 
   connectedCallback() {
     super.connectedCallback();

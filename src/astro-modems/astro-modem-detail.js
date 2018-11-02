@@ -242,7 +242,17 @@ export class AstroModemDetail extends PolymerElement {
       <template is="dom-if" if=[[selectedModem]]>
       <!-- So these are effectively a vertical tabs //-->
       <ul class="rux-tabs--vertical">
-        <li><rux-icon color="rgb(77, 172, 255)" on-click="togglePane" icon="astro-demo:set-power"></rux-icon><span class="label">Set Power</span></li>
+        <li on-click="togglePane">
+          <!-- <rux-icon color="rgb(77, 172, 255)" on-click="togglePane" icon="astro-demo:set-power"></rux-icon> //-->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53 39" style="width: 48px; height: auto; margin: 0 auto;">
+            <g fill="rgb(77, 172, 255)" fill-rule="evenodd">
+              <path d="M10 20h5v3h-5zM17 15h5v8h-5zM24 10h5v13h-5zM31 5h5v18h-5zM38 0h5v23h-5zM0 31h16v2H0zM28 31h25v2H28z"/>
+              <path d="M22 39a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
+              <circle cx="22" cy="32" r="2"/>
+            </g>
+          </svg>
+          <span class="label">Set Power</span>
+        </li>
       </ul>
 
       <div class="modem-detail__settings">

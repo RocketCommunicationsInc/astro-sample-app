@@ -28,7 +28,7 @@ import { AstroModemList } from "./astro-modems/astro-modem-list.js";
 import { AstroModemListItem } from "./astro-modems/astro-modem-list-item.js";
 import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
 import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
-import { AstroElements } from "./astro-elements/astro-elements.js";
+
 /**
  * @polymer
  * @extends HTMLElement
@@ -146,14 +146,14 @@ export class AstroApp extends PolymerElement {
         <li>
           <rux-status
             label="Notifications"
-            icon="default:notifications"
+            icon="utility:notifications"
             notifications=5
             active></rux-status>
         </li>
         <li>
             <rux-status
               label="Settings"
-              icon="default:settings"></rux-status>
+              icon="utility:settings"></rux-status>
           </li>
         </li>
       </ul>
@@ -166,7 +166,7 @@ export class AstroApp extends PolymerElement {
 
       <rux-button
         type="large"
-        icon="default:caution"
+        icon="utility:caution"
         on-click="goFullScreen">Master Off</rux-button>
     </rux-global-status-bar>
     
@@ -362,13 +362,13 @@ export class AstroApp extends PolymerElement {
       {
         label: "Power",
         status: "caution",
-        icon: "advanced-status-egs:propulsion-power",
+        icon: "monitoring:propulsion-power",
         notifications: 1
       },
       {
         label: "Communications",
         status: "ok",
-        icon: "advanced-status-egs:netcom",
+        icon: "monitoring:netcom",
         notifications: 0
       }
     ];
@@ -390,27 +390,27 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    // const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
-    // ws1.addEventListener("message", event => {
-    //   // convert data to JSON
-    //   const data = JSON.parse(event.data);
+    /* const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
+    ws1.addEventListener("message", event => {
+      // convert data to JSON
+      const data = JSON.parse(event.data);
 
-    //   // assign power and temp data to the correct array index
-    //   this.telemetryDataObj[0].power = data.power;
-    //   this.telemetryDataObj[0].temperature = data.temperature;
+      // assign power and temp data to the correct array index
+      this.telemetryDataObj[0].power = data.power;
+      this.telemetryDataObj[0].temperature = data.temperature;
 
-    //   // notify the object it’s been updated and with what
-    //   this.set("telemetryDataObj.0", data);
-    // });
+      // notify the object it’s been updated and with what
+      this.set("telemetryDataObj.0", data);
+    });
 
-    // // Same as above, but with
-    // const ws2 = new WebSocket("wss://satellite-2.astrouxds.com");
-    // ws2.addEventListener("message", event => {
-    //   const data = JSON.parse(event.data);
-    //   this.telemetryDataObj[1].power = data.power;
-    //   this.telemetryDataObj[1].temperature = data.temperature;
-    //   this.set("telemetryDataObj.1", data);
-    // });
+    // Same as above, but with
+    const ws2 = new WebSocket("wss://satellite-2.astrouxds.com");
+    ws2.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
+      this.telemetryDataObj[1].power = data.power;
+      this.telemetryDataObj[1].temperature = data.temperature;
+      this.set("telemetryDataObj.1", data);
+    }); */
   }
   disconnectedCallback() {
     suer.disconnectedCallback();
