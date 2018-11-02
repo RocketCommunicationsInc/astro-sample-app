@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>processor</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="processor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M16,22.4395616 C16,18.8830899 18.9030173,16 22.4395616,16 L106.560438,16 C110.11691,16 113,18.9030173 113,22.4395616 L113,106.560438 C113,110.11691 110.096983,113 106.560438,113 L22.4395616,113 C18.8830899,113 16,110.096983 16,106.560438 L16,22.4395616 Z M28,34 C31.3137085,34 34,31.3137085 34,28 C34,24.6862915 31.3137085,22 28,22 C24.6862915,22 22,24.6862915 22,28 C22,31.3137085 24.6862915,34 28,34 Z M99,105 C102.313708,105 105,102.313708 105,99 C105,95.6862915 102.313708,93 99,93 C95.6862915,93 93,95.6862915 93,99 C93,102.313708 95.6862915,105 99,105 Z" id="Combined-Shape" fill="#000000"></path>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="33 0 40 0 40 10 33 10"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="52 0 59 0 59 10 52 10"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="71 0 78 0 78 10 71 10"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="90 0 97 0 97 10 90 10"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="33 118 40 118 40 128 33 128"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="0 33 10 33 10 40 0 40"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="0 52 10 52 10 59 0 59"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="0 71 10 71 10 78 0 78"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="0 90 10 90 10 97 0 97"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="118 33 128 33 128 40 118 40"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="118 52 128 52 128 59 118 59"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="118 71 128 71 128 78 118 78"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="118 90 128 90 128 97 118 97"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="52 118 59 118 59 128 52 128"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="71 118 78 118 78 128 71 128"></polygon>
+        <polygon id="processorStatusIcon-path" fill="#000000" points="90 118 97 118 97 128 90 128"></polygon>
+    </g>
+</svg>

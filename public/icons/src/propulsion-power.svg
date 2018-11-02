@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>propulsion-power</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="propulsion-power" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M28.5882353,0 L93.4117647,0 C96.4980618,1.89853685e-16 99,2.51348912 99,5.61403509 L99,122.385965 C99,125.486511 96.4980618,128 93.4117647,128 L28.5882353,128 C25.5019382,128 23,125.486511 23,122.385965 L23,5.61403509 C23,2.51348912 25.5019382,5.69561054e-16 28.5882353,0 Z M75.8458718,11 L34,62.0378932 L56.6664222,68.3061009 L38.7948624,118 L85,62.4851383 L63.2047709,55.3224404 L75.8458718,11 Z" id="icon" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>antenna-receive</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="antenna-receive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Path" fill="#000000" cx="84" cy="49" r="4"></circle>
+        <circle id="Path" fill="#000000" cx="99.5" cy="34.5" r="6.5"></circle>
+        <circle id="Path" fill="#000000" cx="115.5" cy="19.5" r="8.5"></circle>
+        <path d="M53,128 L0,128 L21.8931541,103 L28.4546082,109.125975 L42.9363873,107.732687 L53,128 Z M49.4185039,70.4054855 L70.7076902,58.2402362 L58.5424409,79.5294225 L79,99.9869817 L30.0260367,104 L22,95.9739633 L26.0130183,47 L49.4185039,70.4054855 Z" id="icon" fill="#000000"></path>
+    </g>
+</svg>

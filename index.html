@@ -1,41 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Astro Demo App</title>
-    <meta name="description" content="Sample application using the Astro Design System">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <!-- Global Styles //-->
-    <link rel="stylesheet" href="/public/css/astro.css">
+  <title>Astro Demo App</title>
+  <meta name="description" content="Sample application using the Astro Design System">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+  <!-- Global Styles //-->
+  <link rel="stylesheet" href="/public/css/astro.core.css">
+  <!-- <link rel="stylesheet" href="/public/css/astro-sample-app.css"> -->
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- Load WebComponent Polyfill //-->
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <link rel="import" href="/src/astro-app/astro-app.html">
+  <!-- Load Astro App //-->
+  <script type="module" src="src/astro-app.js"></script>
+  <script src="//d3js.org/d3.v4.min.js"></script>
 
-    <!-- Polymer Based Web Component //-->
-    <!-- <link rel="import" href="src/astro-components/polymer-rux-button.html"> -->
+  <style>
+    .dark-theme {
+      --paneBackgroundColor: var(--colorTertiaryDarken1, rgb(19, 43, 64));
 
-    <!-- Vanilla Based Web Component //-->
-    <!-- <script type="module" src="src/astro-components/rux-button.js"></script> -->
-    <script>
-      
-      addEventListener('clicked', function(payload) {
-	      console.log('Dispatched Event from Web Component',payload);
-      });
+      /* Modem List */
+      --modemListBackgroundColor: var(--colorTertiaryDarken3);
 
-    </script>
+      --modemListItemBackgroundColor: var(--colorTertiaryDarken4);
+      --modemListItemAccentColor: var(--colorTertiaryDarken1);
 
-  </head>
-  <body class="dark-theme">    
-    <astro-app>
+      --modemListItemSelectedBackgroundColor: var(--colorSecondary);
+      --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
 
-    </astro-app>
-    <!-- <rux-button>Component Button  in Index</rux-button> -->
+      /* Modem Detail */
+      --verticalTabBackgroundColor: var(--colorTertiaryDarken3);
 
-  </body>
+      --modemDetailSettingsBackgroundColor: var(--colorTertiaryDarken3);
+      --modemDetailBackgroundColor: var(--colorTertiaryDarken1);
+      --modemDetailSectionBackgroundColor: var(--colorTertiaryDarken2);
+
+
+      /* Pass Plan */
+      --passPlanListBorderColor: var(--colorTertiaryLighten1);
+      --passPlanListBackgroundColor: transparent;
+
+
+      /* Telemtry */
+      --telemetryPaneBackgroundColor: var(--colorTertiaryDarken3);
+      --telemetryPaneBorderColor: var(--colorTertiary);
+
+
+      --spectrumAnalyzerBarFill: var(--colorSecondaryLighten1);
+      --spectrumAnalyzerGridStrokeColor: var(--colorTertiary, rgb(40, 63, 88));
+    }
+
+    .light-theme {
+      --paneBackgroundColor: var(--colorQuaternaryLighten2, rgb(166, 214, 255));
+
+      /* Modem List */
+      --modemListBackgroundColor: var(--colorQuaternaryLighten3);
+
+      --modemListItemBackgroundColor: var(--colorQuaternaryLighten3);
+      --modemListItemAccentColor: var(--colorQuaternaryLighten1);
+
+      --modemListItemSelectedBackgroundColor: var(--colorSecondary);
+      --modemListItemSelectedAccentColor: var(--colorSecondaryDarken1);
+
+      /* Modem Detail */
+      --verticalTabBackgroundColor: var(--colorQuaternary);
+
+      --modemDetailSettingsBackgroundColor: var(--colorQuaternary);
+      --modemDetailBackgroundColor: var(--colorQuaternaryLighten2);
+      --modemDetailSectionBackgroundColor: var(--colorQuaternaryLighten3);
+
+      --passPlanListBorderColor: var(--colorQuaternary, rgb(207, 214, 227));
+      --passPlanListBackgroundColor: var(--colorWhite, rgb(255, 255, 255));
+
+
+      /* Telemtry */
+      --spectrumAnalyzerBarFill: var(--colorSecondaryLighten1);
+      --spectrumAnalyzerGridStrokeColor: var(--colorQauternaryDarken1, rgb(207, 214, 227));
+
+      --telemetryPaneBackgroundColor: var(--colorWhite);
+      --telemetryPaneBorderColor: var(--colorQuaternary);
+
+
+    }
+  </style>
+
+</head>
+
+<body class="dark-theme">
+  <astro-app></astro-app>
+</body>
+
 </html>
