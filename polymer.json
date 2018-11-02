@@ -3,7 +3,7 @@
   "shell": "src/astro-app.js",
   "sources": ["src/*/**.js", "package.json"],
   "extraDependencies": [
-    "public/*",
+    "public/**/*",
     "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js",
     "node_modules/@webcomponents/webcomponentsjs/bundles/*",
     "node_modules/@astrouxds/*",
