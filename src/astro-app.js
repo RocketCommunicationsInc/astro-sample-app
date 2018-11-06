@@ -117,7 +117,7 @@ export class AstroApp extends PolymerElement {
 
     <rux-global-status-bar
       appname="Astro App"
-      version="2.0a"
+      version="3.0"
       theme="dark">
       
       <rux-tabs main>

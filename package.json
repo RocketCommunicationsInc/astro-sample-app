@@ -17,7 +17,7 @@
     "@astrouxds/rux-progress": "^3.0.0",
     "@astrouxds/rux-push-button": "^3.0.0",
     "@astrouxds/rux-segmented-button": "^3.0.0",
-    "@astrouxds/rux-slider": "^3.0.0",
+    "@astrouxds/rux-slider": "^3.0.1",
     "@astrouxds/rux-spectrum-analyzer": "^1.0.0",
     "@astrouxds/rux-status": "^3.0.0",
     "@astrouxds/rux-tabs": "^3.0.0",
