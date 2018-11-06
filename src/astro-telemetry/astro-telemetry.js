@@ -57,7 +57,7 @@ export class AstroTelemetry extends PolymerElement {
   constructor() {
     super();
 
-    const ws = new WebSocket("ws://dev-wss.rocketcom.com:6001");
+    const ws = new WebSocket("wss://satellite-1.astrouxds.com");
     ws.addEventListener("message", event => {
       const data = JSON.parse(event.data);
 
