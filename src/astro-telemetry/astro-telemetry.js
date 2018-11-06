@@ -49,7 +49,7 @@ export class AstroTelemetry extends PolymerElement {
             title=[[item.satelliteName]]
             chart=[[item.chart]]
             power=[[item.power]]
-            thermal=[[item.thermal]]></astro-telemetry-pane>
+            thermal=[[item.temperature]]></astro-telemetry-pane>
         </template>
       </div>
     `;
@@ -57,15 +57,15 @@ export class AstroTelemetry extends PolymerElement {
   constructor() {
     super();
 
-    const ws = new WebSocket("wss://satellite-1.astrouxds.com");
+    /* const ws = new WebSocket("wss://satellite-1.astrouxds.com");
     ws.addEventListener("message", event => {
       const data = JSON.parse(event.data);
 
-      console.log(this.telemetryData[0].power);
+      console.log(this.telemetryData[0].thermal);
 
       this.telemetryData[0].power = data.power;
       this.notifyPath("telemetryData.0.power");
-    });
+    }); */
   }
 
   _changed() {

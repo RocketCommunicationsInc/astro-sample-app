@@ -204,7 +204,7 @@ export class AstroTelemetryPane extends PolymerElement {
           <ul>
             <dom-repeat items="[[power]]">
             <template>
-              <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
+              <li><rux-status status=[[_patchStatus(item.status)]]></rux-status>[[item.label]]</li>
             </template>
           </ul>
         </div>
@@ -214,7 +214,7 @@ export class AstroTelemetryPane extends PolymerElement {
           <ul>
             <dom-repeat items="[[thermal]]">
             <template>
-              <li><rux-status status=[[item.status]]></rux-status>[[item.label]]</li>
+              <li><rux-status status=[[_patchStatus(item.status)]]></rux-status>[[item.label]]</li>
             </template>
           </ul>
         </div>
@@ -233,6 +233,10 @@ export class AstroTelemetryPane extends PolymerElement {
   }
   ready() {
     super.ready();
+  }
+
+  _patchStatus(status) {
+    return status === "emergency" ? "critical" : status;
   }
 }
 customElements.define("astro-telemetry-pane", AstroTelemetryPane);

@@ -123,7 +123,7 @@ export class AstroApp extends PolymerElement {
       <rux-tabs main>
         <rux-tab id="tab-modems">Modems</rux-tab>  
         <rux-tab id="tab-pass-plans">Pass Plans</rux-tab>
-        <rux-tab id="tab-satellites">Satellites</rux-tab>
+        <rux-tab id="tab-satellites">Satellites</rux-tab>  
       </rux-tabs>
 
       <rux-clock class="dark-theme"></rux-clock>
@@ -250,19 +250,19 @@ export class AstroApp extends PolymerElement {
       power: [
         {
           label: "Power 1",
-          status: "ok"
+          status: "off"
         },
         {
           label: "Power 2",
-          status: "critical"
+          status: "off"
         },
         {
           label: "Power 3",
-          status: "error"
+          status: "off"
         },
         {
           label: "Power 4",
-          status: "caution"
+          status: "off"
         },
         {
           label: "Power 5",
@@ -270,25 +270,25 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Power 6",
-          status: "error"
+          status: "off"
         }
       ],
-      thermal: [
+      temperature: [
         {
           label: "Thermal 1",
-          status: "caution"
+          status: "off"
         },
         {
           label: "Thermal 2",
-          status: "error"
+          status: "off"
         },
         {
           label: "Thermal 3",
-          status: "standby"
+          status: "off"
         },
         {
           label: "Thermal 4",
-          status: "standby"
+          status: "off"
         },
         {
           label: "Thermal 5",
@@ -296,7 +296,7 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Thermal 6",
-          status: "error"
+          status: "off"
         }
       ]
     };
@@ -309,15 +309,15 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Power 2",
-          status: "caution"
+          status: "off"
         },
         {
           label: "Power 3",
-          status: "ok"
+          status: "off"
         },
         {
           label: "Power 4",
-          status: "ok"
+          status: "off"
         },
         {
           label: "Power 5",
@@ -325,25 +325,25 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Power 6",
-          status: "error"
+          status: "off"
         }
       ],
-      thermal: [
+      temperature: [
         {
           label: "Thermal 1",
-          status: "ok"
+          status: "off"
         },
         {
           label: "Thermal 2",
-          status: "ok"
+          status: "off"
         },
         {
           label: "Thermal 3",
-          status: "standby"
+          status: "off"
         },
         {
           label: "Thermal 4",
-          status: "error"
+          status: "off"
         },
         {
           label: "Thermal 5",
@@ -351,7 +351,7 @@ export class AstroApp extends PolymerElement {
         },
         {
           label: "Thermal 6",
-          status: "error"
+          status: "off"
         }
       ]
     };
@@ -390,7 +390,7 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    /* const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
+    const ws1 = new WebSocket("wss://satellite-1.astrouxds.com");
     ws1.addEventListener("message", event => {
       // convert data to JSON
       const data = JSON.parse(event.data);
@@ -410,7 +410,9 @@ export class AstroApp extends PolymerElement {
       this.telemetryDataObj[1].power = data.power;
       this.telemetryDataObj[1].temperature = data.temperature;
       this.set("telemetryDataObj.1", data);
-    }); */
+
+      console.log(data.temperature);
+    });
   }
   disconnectedCallback() {
     suer.disconnectedCallback();
