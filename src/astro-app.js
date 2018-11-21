@@ -174,7 +174,7 @@ export class AstroApp extends PolymerElement {
 
     <rux-pop-up-menu
     menu-items=[[_popMenuItems]]
-    target=[[_popMenuTarget]]></rux-pop-up-menu>
+    target={{_popMenuTarget}}></rux-pop-up-menu>
 
     <div class="theme-switcher">
     
