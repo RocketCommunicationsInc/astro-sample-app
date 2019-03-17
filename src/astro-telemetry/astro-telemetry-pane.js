@@ -196,7 +196,7 @@ export class AstroTelemetryPane extends PolymerElement {
     </style>    
     <section class="astro-telemetry-pane">
       <h1>[[title]]</h1>
-      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="920" x-scale-min="920" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://satellite-1.astrouxds.com" data-source-type="web-socket"></rux-spectrum-analyzer>
+      <rux-spectrum-analyzer chart-legend-x="freq" chart-legend-y="pwr" chart-title="signals" height="384" width="920" x-scale-min="920" x-scale-max="2301" x-scale-step="175" y-scale-min="-30" y-scale-max="0" data-source="wss://sockets.astrouxds.com/satellite1" data-source-type="web-socket"></rux-spectrum-analyzer>
 
       <div class="astro-telemetry-pane__status"> 
         <div class="astro-telemetry-pane__status__group">
