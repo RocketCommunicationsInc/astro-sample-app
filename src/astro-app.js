@@ -390,7 +390,7 @@ export class AstroApp extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
 
-    const ws1 = new WebSocket("wss://egs-data-services.astrouxds.com/satellite1");
+    const ws1 = new WebSocket("wss://sockets.astrouxds.com/satellite1");
     ws1.addEventListener("message", event => {
       // convert data to JSON
       const data = JSON.parse(event.data);
@@ -404,7 +404,7 @@ export class AstroApp extends PolymerElement {
     });
 
     // Same as above, but with
-    const ws2 = new WebSocket("wss://egs-data-services.astrouxds.com/satellite2");
+    const ws2 = new WebSocket("wss://sockets.astrouxds.com/satellite2");
     ws2.addEventListener("message", event => {
       const data = JSON.parse(event.data);
       this.telemetryDataObj[1].power = data.power;
