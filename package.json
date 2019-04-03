@@ -8,7 +8,7 @@
   "main": "index.html",
   "dependencies": {
     "@astrouxds/rux-button": "^3.0.0",
-    "@astrouxds/rux-clock": "^3.0.0",
+    "@astrouxds/rux-clock": "^3.0.1",
     "@astrouxds/rux-global-status-bar": "^3.0.1",
     "@astrouxds/rux-icon": "^3.0.0",
     "@astrouxds/rux-modal": "^3.0.0",
@@ -17,7 +17,7 @@
     "@astrouxds/rux-progress": "^3.0.0",
     "@astrouxds/rux-push-button": "^3.0.0",
     "@astrouxds/rux-segmented-button": "^3.0.0",
-    "@astrouxds/rux-slider": "^3.0.1",
+    "@astrouxds/rux-slider": "^3.0.4",
     "@astrouxds/rux-spectrum-analyzer": "^1.0.0",
     "@astrouxds/rux-status": "^3.0.0",
     "@astrouxds/rux-tabs": "^3.0.0",
