@@ -1,7 +1,7 @@
 {
   "name": "astro-app",
   "flat": true,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Rocket Communications",
   "private": false,
   "description": "Sample application using the Astro 3.0 Design System",
@@ -9,7 +9,7 @@
   "dependencies": {
     "@astrouxds/rux-button": "^3.0.0",
     "@astrouxds/rux-clock": "^3.0.0",
-    "@astrouxds/rux-global-status-bar": "^3.0.0",
+    "@astrouxds/rux-global-status-bar": "^3.0.1",
     "@astrouxds/rux-icon": "^3.0.0",
     "@astrouxds/rux-modal": "^3.0.0",
     "@astrouxds/rux-notification": "^3.0.0",
