@@ -1,8 +1,10 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
-import "@polymer/polymer/lib/elements/dom-repeat.js";
-import "@polymer/polymer/lib/elements/dom-if.js";
-import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
-import { AstroPassPlanTask } from "./astro-pass-plan-task.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
+import '@polymer/polymer/lib/elements/dom-if.js';
+import {MutableData} from '@polymer/polymer/lib/mixins/mutable-data.js';
+import {AstroPassPlanTask} from './astro-pass-plan-task.js';
+/* eslint-enable no-unused-vars */
 
 /**
  * @polymer
@@ -12,244 +14,218 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
   static get properties() {
     return {
       title: {
-        type: String
+        type: String,
       },
       timelineTracks: {
-        type: Array
+        type: Array,
       },
       selectedSatellite: {
         type: Object,
-        observer: "_selectedSatelliteChanged",
-        value: false
+        observer: '_selectedSatelliteChanged',
+        value: false,
       },
       completedTasks: {
-        type: Number
+        type: Number,
       },
       tasks: {
         type: Array,
-        value: false
-      }
+        value: false,
+      },
     };
   }
   static get template() {
     return html`
-    
-    <style>
+      <style>
+        :host {
+          display: flex;
+          box-sizing: border-box;
+          height: 100%;
+          background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
+        }
 
-    
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
 
-    :host {
-      display: flex;
-      box-sizing: border-box;
-      height: 100%;
-      background-color: var(--paneBackgroundColor, rgb(19, 43, 64));
-    }
-    
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
-    
-    .rux-timeline-component {
-      width: 100%;
-    }
-    
-    ol {
-      counter-reset: tasks;
-      list-style-position: inside;
-      list-style: none;
-    
-      color: var(--fontColor, rgb(0,0,0));
-      margin: 0;
-      padding: 0;
+        .rux-timeline-component {
+          width: 100%;
+        }
 
-      border: 1px solid var(--passPlanListBorderColor);
-    }
-    
-    ol li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      line-height: 1;
-      height: 2.45rem;
-      padding: 0 1.65rem;
-      border-bottom: 1px solid var(--passPlanListBorderColor);
-      // margin: 0 0 0.325rem 0;
-      margin: 0;
-      font-size: 1.125rem;
-      // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    
-      background-color: var(--passPlanListBackgroundColor, transparent);
-    }
+        ol {
+          counter-reset: tasks;
+          list-style-position: inside;
+          list-style: none;
 
-    ol li:last-child {
-      border-bottom: none;
-    }
-    
-    ol li::before {
-      counter-increment: tasks;
-      content: counter(tasks);
-      font-weight: bold;
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--fontColor, rgb(0,0,0));
-      margin-right: 3.125rem;
-    }
-    
-    .rux-timeline__controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    
-      padding: 0.5rem 1.5rem;
-      margin: 2px;
+          color: var(--fontColor, rgb(0, 0, 0));
+          margin: 0;
+          padding: 0;
 
-      
-    }
-    
+          border: 1px solid var(--passPlanListBorderColor);
+        }
 
-    
-    .rux-timeline__controls h2 {
-      font-weight: 500;
-    }
+        ol li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          line-height: 1;
+          height: 2.45rem;
+          padding: 0 1.65rem;
+          border-bottom: 1px solid var(--passPlanListBorderColor);
+          // margin: 0 0 0.325rem 0;
+          margin: 0;
+          font-size: 1.125rem;
+          // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
-    
-    
-    .rux-timeline__tasks-status {
-      margin-left: auto;
-      margin-right: 0;
-    }
-    
-    rux-status {
-      margin-right: 1em;
-    }
-    .rux-button-group {
-      margin-left: 1em;
-      margin-right: auto;
-    }
-    
-    .rux-timeline__tasks-status {
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--fontColor, rgb(255,255,255));
-    }
-    .rux-timeline__tasks-status__count {
-      font-size: 1.75rem;
-      color: var(--fontColor, rgb(255,255,255));
-      margin-right: 0.2rem;
-    }
-    
+          background-color: var(--passPlanListBackgroundColor, transparent);
+        }
 
-    
-    .no-pass {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        ol li:last-child {
+          border-bottom: none;
+        }
 
-      
-    }
-    
-    .no-pass h1 {
-      font-weight: 300;
-    }
+        ol li::before {
+          counter-increment: tasks;
+          content: counter(tasks);
+          font-weight: bold;
+          font-size: 1.65rem;
+          font-weight: 700;
+          color: var(--fontColor, rgb(0, 0, 0));
+          margin-right: 3.125rem;
+        }
 
-    
-    
+        .rux-timeline__controls {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
 
-    .tasks-container {
-      padding: 1.3rem;
-      /* background: rgba(0, 0, 0, 0.2); */
-    }
+          padding: 0.5rem 1.5rem;
+          margin: 2px;
+        }
 
-    *[hidden] {
-      display: none !important;
-    }
+        .rux-timeline__controls h2 {
+          font-weight: 500;
+        }
 
-    .complete {
-      /* border: 1px solid green; */
-    }
+        .rux-timeline__tasks-status {
+          margin-left: auto;
+          margin-right: 0;
+        }
 
-    .incomplete {
-      opacity: 0.5;
-    }
+        rux-status {
+          margin-right: 1em;
+        }
+        .rux-button-group {
+          margin-left: 1em;
+          margin-right: auto;
+        }
 
+        .rux-timeline__tasks-status {
+          font-size: 1.25rem;
+          font-weight: 300;
+          color: var(--fontColor, rgb(255, 255, 255));
+        }
+        .rux-timeline__tasks-status__count {
+          font-size: 1.75rem;
+          color: var(--fontColor, rgb(255, 255, 255));
+          margin-right: 0.2rem;
+        }
 
-    .pass {
-     /*  background-color: green; */
-    }
+        .no-pass {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-    .fail {
-      /* background-color: red; */
-    }
+        .no-pass h1 {
+          font-weight: 300;
+        }
 
-    rux-icon {
-      margin-left: auto;
-    }
+        .tasks-container {
+          padding: 1.3rem;
+          /* background: rgba(0, 0, 0, 0.2); */
+        }
 
-    .task {
-      margin-right: auto;
-    }
+        *[hidden] {
+          display: none !important;
+        }
 
-    </style>
+        .complete {
+          /* border: 1px solid green; */
+        }
 
+        .incomplete {
+          opacity: 0.5;
+        }
 
-    <div class="rux-timeline-component">
-      <rux-timeline
-        status="error"
-        label="Satellite Pass Plans"
-        initial-scale=100
-				tracks=[[tracks]]
-        zoom-control=true
-				selected-region={{selectedSatellite}}>
-			</rux-timeline>
+        .pass {
+          /*  background-color: green; */
+        }
 
+        .fail {
+          /* background-color: red; */
+        }
 
-      <template is="dom-if" if=[[selectedSatellite]]>
-        <div class="rux-timeline__controls">
-          
-          <rux-status
-            icon="monitoring:satellite-transmit"
-            status=[[selectedSatellite.status]]></rux-status>
+        rux-icon {
+          margin-left: auto;
+        }
+
+        .task {
+          margin-right: auto;
+        }
+      </style>
+
+      <div class="rux-timeline-component">
+        <rux-timeline
+          status="error"
+          label="Satellite Pass Plans"
+          initial-scale="100"
+          tracks="[[tracks]]"
+          zoom-control="true"
+          selected-region="{{selectedSatellite}}"
+        >
+        </rux-timeline>
+
+        <template is="dom-if" if="[[selectedSatellite]]">
+          <div class="rux-timeline__controls">
+            <rux-status icon="monitoring:satellite-transmit" status="[[selectedSatellite.status]]"></rux-status>
 
             <h2>[[selectedSatellite.label]]</h2>
-          
-          <div class="rux-timeline__tasks-status"><span class="rux-timeline__tasks-status__count">[[completedTasks]] of 7</span> Tasks Complete</div>
-        </div>
 
-        
-        <div class="tasks-container">
-          <ol class="tasks">
-            <template is="dom-repeat" id="pass-plan-tasks" items={{tasks}} mutable-data>
-              <li class$=[[_isComplete(item.complete)]]>
-                <astro-pass-plan-task
-                  title=[[item.title]]
-                  status=[[item.status]]
-                  pass=[[item.pass]]
-                  complete=[[item.complete]]></astro-pass-plan-task>
-              </li>
-            </template>
-          </ol>
-        </div>
-      </template>
+            <div class="rux-timeline__tasks-status">
+              <span class="rux-timeline__tasks-status__count">[[completedTasks]] of 7</span> Tasks Complete
+            </div>
+          </div>
 
-      <template is="dom-if" if=[[!selectedSatellite]]>
-        <div class="no-pass">
-          <h1>No Pass Selected</h1>
-        </div>
-      </template>
-    </div>
+          <div class="tasks-container">
+            <ol class="tasks">
+              <template is="dom-repeat" id="pass-plan-tasks" items="{{tasks}}" mutable-data>
+                <li class$="[[_isComplete(item.complete)]]">
+                  <astro-pass-plan-task
+                    title="[[item.title]]"
+                    status="[[item.status]]"
+                    pass="[[item.pass]]"
+                    complete="[[item.complete]]"
+                  ></astro-pass-plan-task>
+                </li>
+              </template>
+            </ol>
+          </div>
+        </template>
 
-    
+        <template is="dom-if" if="[[!selectedSatellite]]">
+          <div class="no-pass">
+            <h1>No Pass Selected</h1>
+          </div>
+        </template>
+      </div>
     `;
   }
 
   _selectedSatelliteChanged(e) {
-    console.log("selected satellite", this.selectedSatellite);
-    console.log("e", e);
-
     if (Object.keys(e).length === 0 && e.constructor === Object) {
       this.selectedSatellite = false;
       return;
@@ -261,7 +237,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
     try {
       // filter out incomplete tasks and update the task complete indicator
-      const _completedTasks = _taskCheckList.filter(task => {
+      const _completedTasks = _taskCheckList.filter((task) => {
         return task.complete;
       });
       this.completedTasks = _completedTasks.length;
@@ -275,7 +251,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
 
       this.tasks = this.tasks.slice();
     } catch (err) {
-      console.log("This was an error", err);
+      alert(err);
     }
   }
 
@@ -288,26 +264,26 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // a single task list. In this instance it’s the same tasks for all regions)
     this.tasks = [
       {
-        title: "Acquire and confirm signal"
+        title: 'Acquire and confirm signal',
       },
       {
-        title: "Confirm telemetry data reception"
+        title: 'Confirm telemetry data reception',
       },
       {
-        title: "Analyze thermal data"
+        title: 'Analyze thermal data',
       },
       {
-        title: "Analyze payload data"
+        title: 'Analyze payload data',
       },
       {
-        title: "Analyze battery levels"
+        title: 'Analyze battery levels',
       },
       {
-        title: "Upload commanding"
+        title: 'Upload commanding',
       },
       {
-        title: "Check ACOS"
-      }
+        title: 'Check ACOS',
+      },
     ];
 
     const today = new Date();
@@ -317,218 +293,162 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
     // a web service.
     this.tracks = [
       {
-        label: "LEO",
+        label: 'LEO',
         regions: [
           {
-            label: "DSP-1 F16",
-            status: "ok",
+            label: 'DSP-1 F16',
+            status: 'ok',
             detail: {
               tasks: [
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: false,
-                  status: "null"
+                  status: 'null',
                 },
                 {
                   complete: false,
-                  status: "null"
-                }
-              ]
+                  status: 'null',
+                },
+              ],
             },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              2,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              2,
-              45,
-              0
-            )
+            startTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 2, 0, 0),
+            endTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 2, 45, 0),
           },
           {
-            label: "DSP-1 F17",
-            status: "caution",
+            label: 'DSP-1 F17',
+            status: 'caution',
             detail: {
               tasks: [
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "caution"
+                  status: 'caution',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: false,
-                  status: "null"
+                  status: 'null',
                 },
                 {
                   complete: false,
-                  status: "null"
+                  status: 'null',
                 },
                 {
                   complete: false,
-                  status: "null"
-                }
-              ]
+                  status: 'null',
+                },
+              ],
             },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              7,
-              30,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              8,
-              30,
-              0
-            )
+            startTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 7, 30, 0),
+            endTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 8, 30, 0),
           },
           {
-            label: "NROL-20",
-            status: "ok",
+            label: 'NROL-20',
+            status: 'ok',
             detail: {
               tasks: [
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
-                }
-              ]
+                  status: 'ok',
+                },
+              ],
             },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              10,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              13,
-              0,
-              0
-            )
+            startTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 10, 0, 0),
+            endTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 13, 0, 0),
           },
           {
-            label: "SBSS-1",
-            status: "error",
+            label: 'SBSS-1',
+            status: 'error',
             detail: {
               tasks: [
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "ok"
+                  status: 'ok',
                 },
                 {
                   complete: true,
-                  status: "error"
+                  status: 'error',
                 },
                 {
                   complete: true,
-                  status: "error"
+                  status: 'error',
                 },
                 {
                   complete: true,
-                  status: "caution"
+                  status: 'caution',
                 },
                 {
                   complete: false,
-                  status: "null"
+                  status: 'null',
                 },
                 {
                   complete: false,
-                  status: "null"
-                }
-              ]
+                  status: 'null',
+                },
+              ],
             },
-            startTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              15,
-              0,
-              0
-            ),
-            endTime: new Date(
-              today.getUTCFullYear(),
-              today.getUTCMonth(),
-              today.getUTCDate(),
-              20,
-              30,
-              0
-            )
-          }
-        ]
-      }
+            startTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 15, 0, 0),
+            endTime: new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 20, 30, 0),
+          },
+        ],
+      },
     ];
   }
 
@@ -541,7 +461,7 @@ export class AstroPassPlans extends MutableData(PolymerElement) {
   }
 
   _isComplete(task) {
-    return task ? "complete" : "incomplete";
+    return task ? 'complete' : 'incomplete';
   }
 }
-customElements.define("astro-pass-plans", AstroPassPlans);
+customElements.define('astro-pass-plans', AstroPassPlans);

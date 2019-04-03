@@ -186,9 +186,9 @@
 }
 
 @font-face {
-  font-family: "webfont";
-  src: url("../fonts/webfont.woff2") format("woff2"),
-    url("../fonts/webfont.woff") format("woff");
+  font-family: "Roboto Mono";
+  src: url("../fonts/roboto-mono-regular.woff2") format("woff2"),
+    url("../fonts/roboto-mono-regular.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
@@ -1460,7 +1460,7 @@ dd {
 }
 
 .monospace {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
 }
 
 .invert,

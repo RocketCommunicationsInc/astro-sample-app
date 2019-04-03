@@ -1,5 +1,7 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
-import "@polymer/polymer/lib/elements/dom-if.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-if.js';
+/* eslint-enable no-unused-vars */
 
 /**
  * @polymer
@@ -12,16 +14,16 @@ export class AstroModemDetail extends PolymerElement {
         type: Object,
         notify: true,
         value: false,
-        observer: "_selectedModemChanged"
+        observer: '_selectedModemChanged',
       },
       modems: {
         type: Array,
-        notify: true
+        notify: true,
       },
       selectedModemPower: {
         type: Number,
-        observer: "_powerChanged"
-      }
+        observer: '_powerChanged',
+      },
     };
   }
   static get template() {
@@ -246,7 +248,7 @@ export class AstroModemDetail extends PolymerElement {
           <!-- <rux-icon color="rgb(77, 172, 255)" on-click="togglePane" icon="astro-demo:set-power"></rux-icon> //-->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53 39" style="width: 48px; height: auto; margin: 0 auto;">
             <g fill="rgb(77, 172, 255)" fill-rule="evenodd">
-              <path d="M10 20h5v3h-5zM17 15h5v8h-5zM24 10h5v13h-5zM31 5h5v18h-5zM38 0h5v23h-5zM0 31h16v2H0zM28 31h25v2H28z"/>
+        <path d="M10 20h5v3h-5zM17 15h5v8h-5zM24 10h5v13h-5zM31 5h5v18h-5zM38 0h5v23h-5zM0 31h16v2H0zM28 31h25v2H28z"/>
               <path d="M22 39a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
               <circle cx="22" cy="32" r="2"/>
             </g>
@@ -319,7 +321,7 @@ export class AstroModemDetail extends PolymerElement {
   constructor() {
     super();
 
-    this.closeButtonLabel = "Close";
+    this.closeButtonLabel = 'Close';
     this.applyButtonDisabled = true;
   }
   connectedCallback() {
@@ -331,49 +333,47 @@ export class AstroModemDetail extends PolymerElement {
   }
 
   getStatus(ofModem) {
-    return ofModem ? "ok" : "caution";
+    return ofModem ? 'ok' : 'caution';
   }
 
-  _cancelChange(e) {
+  _cancelChange() {
     this.togglePane();
   }
 
-  _selectedModemChanged(e) {
+  _selectedModemChanged() {
     this.selectedModemPower = this.selectedModem.txPower;
-    this.closeButtonLabel = "Close";
+    this.closeButtonLabel = 'Close';
     this.applyButtonDisabled = true;
   }
 
   _powerChanged(e) {
     if (e != this.selectedModem.txPower) {
-      this.closeButtonLabel = "Cancel";
+      this.closeButtonLabel = 'Cancel';
       this.applyButtonDisabled = false;
     }
   }
 
   _updateModem() {
-    this.set("selectedModem.txPower", this.selectedModemPower);
-    this.set("modems", this.modems.slice());
+    this.set('selectedModem.txPower', this.selectedModemPower);
+    this.set('modems', this.modems.slice());
 
-    this.modemUpdatedMessage = `Modem ${
-      this.selectedModem.modemId
-    }: Tx Power has been updated to ${this.selectedModem.txPower}dBm`;
+    this.modemUpdatedMessage = `Modem ${this.selectedModem.modemId}: Tx Power has been updated to ${
+      this.selectedModem.txPower
+    }dBm`;
 
     this.togglePane();
 
-    const _notification = this.shadowRoot.querySelectorAll(
-      "rux-notification"
-    )[0];
-    if (_notification.hasAttribute("opened")) {
-      _notification.removeAttribute("opened");
+    const _notification = this.shadowRoot.querySelectorAll('rux-notification')[0];
+    if (_notification.hasAttribute('opened')) {
+      _notification.removeAttribute('opened');
     } else {
-      _notification.setAttribute("opened", "");
+      _notification.setAttribute('opened', '');
     }
   }
 
   togglePane() {
-    const _pane = this.shadowRoot.querySelectorAll(".modem-detail__detail");
-    _pane[0].classList.toggle("open");
+    const _pane = this.shadowRoot.querySelectorAll('.modem-detail__detail');
+    _pane[0].classList.toggle('open');
   }
 }
-customElements.define("astro-modem-detail", AstroModemDetail);
+customElements.define('astro-modem-detail', AstroModemDetail);

@@ -1,8 +1,9 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
-import { MutableData } from "@polymer/polymer/lib/mixins/mutable-data.js";
-import "@polymer/polymer/lib/elements/dom-repeat.js";
-import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
-// import { RuxSpectrumAnalyzer } from "/src/astro-components/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {MutableData} from '@polymer/polymer/lib/mixins/mutable-data.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
+import {RuxStatus} from '@astrouxds/rux-status/rux-status.js';
+/* eslint-enable no-unused-vars */
 /**
  * @polymer
  * @extends HTMLElement
@@ -11,17 +12,17 @@ export class AstroTelemetryPane extends PolymerElement {
   static get properties() {
     return {
       title: {
-        type: String
+        type: String,
       },
       chart: {
-        type: Object
+        type: Object,
       },
       power: {
-        type: Object
+        type: Object,
       },
       thermal: {
-        type: Object
-      }
+        type: Object,
+      },
     };
   }
   static get template() {
@@ -236,7 +237,7 @@ export class AstroTelemetryPane extends PolymerElement {
   }
 
   _patchStatus(status) {
-    return status === "emergency" ? "critical" : status;
+    return status === 'emergency' ? 'critical' : status;
   }
 }
-customElements.define("astro-telemetry-pane", AstroTelemetryPane);
+customElements.define('astro-telemetry-pane', AstroTelemetryPane);

@@ -1,33 +1,35 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
-import "@polymer/polymer/lib/elements/dom-repeat.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
 /* Rux Components */
 
-import { RuxButton } from "@astrouxds/rux-button/rux-button.js";
-import { RuxClock } from "@astrouxds/rux-clock/rux-clock.js";
-import { RuxGlobalStatusBar } from "@astrouxds/rux-global-status-bar/rux-global-status-bar.js";
-import { RuxIcon } from "@astrouxds/rux-icon/rux-icon.js";
-import { RuxNotification } from "@astrouxds/rux-notification/rux-notification.js";
-import { RuxModal } from "@astrouxds/rux-modal/rux-modal.js";
-import { RuxPopUpMenu } from "@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js";
-import { RuxPushButton } from "@astrouxds/rux-push-button/rux-push-button.js";
-import { RuxProgress } from "@astrouxds/rux-progress/rux-progress.js";
-import { RuxSegmentedButton } from "@astrouxds/rux-segmented-button/rux-segmented-button.js";
-import { RuxSlider } from "@astrouxds/rux-slider/rux-slider.js";
-import { RuxSpectrumAnalyzer } from "@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js";
-import { RuxStatus } from "@astrouxds/rux-status/rux-status.js";
-import { RuxTabs } from "@astrouxds/rux-tabs/rux-tabs.js";
-import { RuxTimeline } from "@astrouxds/rux-timeline/rux-timeline.js";
-import { RuxToggle } from "@astrouxds/rux-toggle/rux-toggle.js";
-import { RuxTree } from "@astrouxds/rux-tree/rux-tree.js";
+import {RuxButton} from '@astrouxds/rux-button/rux-button.js';
+import {RuxClock} from '@astrouxds/rux-clock/rux-clock.js';
+import {RuxGlobalStatusBar} from '@astrouxds/rux-global-status-bar/rux-global-status-bar.js';
+import {RuxIcon} from '@astrouxds/rux-icon/rux-icon.js';
+import {RuxNotification} from '@astrouxds/rux-notification/rux-notification.js';
+import {RuxModal} from '@astrouxds/rux-modal/rux-modal.js';
+import {RuxPopUpMenu} from '@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js';
+import {RuxPushButton} from '@astrouxds/rux-push-button/rux-push-button.js';
+import {RuxProgress} from '@astrouxds/rux-progress/rux-progress.js';
+import {RuxSegmentedButton} from '@astrouxds/rux-segmented-button/rux-segmented-button.js';
+import {RuxSlider} from '@astrouxds/rux-slider/rux-slider.js';
+import {RuxSpectrumAnalyzer} from '@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js';
+import {RuxStatus} from '@astrouxds/rux-status/rux-status.js';
+import {RuxTabs} from '@astrouxds/rux-tabs/rux-tabs.js';
+import {RuxTimeline} from '@astrouxds/rux-timeline/rux-timeline.js';
+import {RuxToggle} from '@astrouxds/rux-toggle/rux-toggle.js';
+import {RuxTree} from '@astrouxds/rux-tree/rux-tree.js';
 
 /* Astro App */
-import { AstroTelemetry } from "./astro-telemetry/astro-telemetry.js";
-import { AstroTelemetryPane } from "./astro-telemetry/astro-telemetry-pane.js";
-import { AstroModems } from "./astro-modems/astro-modems.js";
-import { AstroModemList } from "./astro-modems/astro-modem-list.js";
-import { AstroModemListItem } from "./astro-modems/astro-modem-list-item.js";
-import { AstroModemDetail } from "./astro-modems/astro-modem-detail.js";
-import { AstroPassPlans } from "./astro-pass-plans/astro-pass-plans.js";
+import {AstroTelemetry} from './astro-telemetry/astro-telemetry.js';
+import {AstroTelemetryPane} from './astro-telemetry/astro-telemetry-pane.js';
+import {AstroModems} from './astro-modems/astro-modems.js';
+import {AstroModemList} from './astro-modems/astro-modem-list.js';
+import {AstroModemListItem} from './astro-modems/astro-modem-list-item.js';
+import {AstroModemDetail} from './astro-modems/astro-modem-detail.js';
+import {AstroPassPlans} from './astro-pass-plans/astro-pass-plans.js';
+/* eslint-enable no-unused-vars */
 
 /**
  * @polymer
@@ -231,146 +233,146 @@ export class AstroApp extends PolymerElement {
 
   constructor() {
     super();
-    this.name = "3.0 preview";
+    this.name = '3.0 preview';
 
     this._popMenuItems = [
       {
-        label: "Menu Item 1",
-        action: "doSomething"
+        label: 'Menu Item 1',
+        action: 'doSomething',
       },
       {
-        label: "Menu Item 2",
-        action: "doSomethingElse"
-      }
+        label: 'Menu Item 2',
+        action: 'doSomethingElse',
+      },
     ];
     // this._popMenuTarget = null;
 
     this.satellite1 = {
-      label: "Satellite 1",
+      label: 'Satellite 1',
       power: [
         {
-          label: "Power 1",
-          status: "off"
+          label: 'Power 1',
+          status: 'off',
         },
         {
-          label: "Power 2",
-          status: "off"
+          label: 'Power 2',
+          status: 'off',
         },
         {
-          label: "Power 3",
-          status: "off"
+          label: 'Power 3',
+          status: 'off',
         },
         {
-          label: "Power 4",
-          status: "off"
+          label: 'Power 4',
+          status: 'off',
         },
         {
-          label: "Power 5",
-          status: "off"
+          label: 'Power 5',
+          status: 'off',
         },
         {
-          label: "Power 6",
-          status: "off"
-        }
+          label: 'Power 6',
+          status: 'off',
+        },
       ],
       temperature: [
         {
-          label: "Thermal 1",
-          status: "off"
+          label: 'Thermal 1',
+          status: 'off',
         },
         {
-          label: "Thermal 2",
-          status: "off"
+          label: 'Thermal 2',
+          status: 'off',
         },
         {
-          label: "Thermal 3",
-          status: "off"
+          label: 'Thermal 3',
+          status: 'off',
         },
         {
-          label: "Thermal 4",
-          status: "off"
+          label: 'Thermal 4',
+          status: 'off',
         },
         {
-          label: "Thermal 5",
-          status: "off"
+          label: 'Thermal 5',
+          status: 'off',
         },
         {
-          label: "Thermal 6",
-          status: "off"
-        }
-      ]
+          label: 'Thermal 6',
+          status: 'off',
+        },
+      ],
     };
     this.satellite2 = {
-      label: "Satellite A",
+      label: 'Satellite A',
       power: [
         {
-          label: "Power 1",
-          status: "off"
+          label: 'Power 1',
+          status: 'off',
         },
         {
-          label: "Power 2",
-          status: "off"
+          label: 'Power 2',
+          status: 'off',
         },
         {
-          label: "Power 3",
-          status: "off"
+          label: 'Power 3',
+          status: 'off',
         },
         {
-          label: "Power 4",
-          status: "off"
+          label: 'Power 4',
+          status: 'off',
         },
         {
-          label: "Power 5",
-          status: "off"
+          label: 'Power 5',
+          status: 'off',
         },
         {
-          label: "Power 6",
-          status: "off"
-        }
+          label: 'Power 6',
+          status: 'off',
+        },
       ],
       temperature: [
         {
-          label: "Thermal 1",
-          status: "off"
+          label: 'Thermal 1',
+          status: 'off',
         },
         {
-          label: "Thermal 2",
-          status: "off"
+          label: 'Thermal 2',
+          status: 'off',
         },
         {
-          label: "Thermal 3",
-          status: "off"
+          label: 'Thermal 3',
+          status: 'off',
         },
         {
-          label: "Thermal 4",
-          status: "off"
+          label: 'Thermal 4',
+          status: 'off',
         },
         {
-          label: "Thermal 5",
-          status: "off"
+          label: 'Thermal 5',
+          status: 'off',
         },
         {
-          label: "Thermal 6",
-          status: "off"
-        }
-      ]
+          label: 'Thermal 6',
+          status: 'off',
+        },
+      ],
     };
     // emulate a JSON object for telemetry
     this.telemetryDataObj = [this.satellite1, this.satellite2];
     // emulate a JSON object for advanced status
     this.statusIndicators = [
       {
-        label: "Power",
-        status: "caution",
-        icon: "monitoring:propulsion-power",
-        notifications: 1
+        label: 'Power',
+        status: 'caution',
+        icon: 'monitoring:propulsion-power',
+        notifications: 1,
       },
       {
-        label: "Communications",
-        status: "ok",
-        icon: "monitoring:netcom",
-        notifications: 0
-      }
+        label: 'Communications',
+        status: 'ok',
+        icon: 'monitoring:netcom',
+        notifications: 0,
+      },
     ];
   }
 
@@ -378,20 +380,20 @@ export class AstroApp extends PolymerElement {
     return {
       prop1: {
         type: String,
-        value: "astro-app"
+        value: 'astro-app',
       },
       telemetryDataObj: {
         type: Object,
-        notify: true
-      }
+        notify: true,
+      },
     };
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    const ws1 = new WebSocket("wss://sockets.astrouxds.com/satellite1");
-    ws1.addEventListener("message", event => {
+    const ws1 = new WebSocket('wss://sockets.astrouxds.com/satellite1');
+    ws1.addEventListener('message', (event) => {
       // convert data to JSON
       const data = JSON.parse(event.data);
 
@@ -400,22 +402,20 @@ export class AstroApp extends PolymerElement {
       this.telemetryDataObj[0].temperature = data.temperature;
 
       // notify the object it’s been updated and with what
-      this.set("telemetryDataObj.0", data);
+      this.set('telemetryDataObj.0', data);
     });
 
     // Same as above, but with
-    const ws2 = new WebSocket("wss://sockets.astrouxds.com/satellite2");
-    ws2.addEventListener("message", event => {
+    const ws2 = new WebSocket('wss://sockets.astrouxds.com/satellite2');
+    ws2.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
       this.telemetryDataObj[1].power = data.power;
       this.telemetryDataObj[1].temperature = data.temperature;
-      this.set("telemetryDataObj.1", data);
-
-      console.log(data.temperature);
+      this.set('telemetryDataObj.1', data);
     });
   }
   disconnectedCallback() {
-    suer.disconnectedCallback();
+    super.disconnectedCallback();
   }
   _getSatelliteData(id) {
     return this.telemetryDataObj[id];
@@ -425,25 +425,21 @@ export class AstroApp extends PolymerElement {
   }
 
   _setTheme(e) {
-    console.log("set theme", e.currentTarget.checked);
-
     if (e.currentTarget.checked) {
-      document.body.classList.remove("light-theme");
-      document.body.classList.add("dark-theme");
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
     } else {
-      document.body.classList.remove("dark-theme");
-      document.body.classList.add("light-theme");
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
     }
-
-    console.log(document.body);
   }
 
   showNotification() {
-    this.telemetryDataObj[0].label = "Sat B";
-    this.notifyPath("telemetryDataObj");
-    this.notifyPath("telemetryData");
-    this.notifyPath("telemetry-data-obj");
-    this.notifyPath("telemetry-data");
+    this.telemetryDataObj[0].label = 'Sat B';
+    this.notifyPath('telemetryDataObj');
+    this.notifyPath('telemetryData');
+    this.notifyPath('telemetry-data-obj');
+    this.notifyPath('telemetry-data');
   }
 }
-customElements.define("astro-app", AstroApp);
+customElements.define('astro-app', AstroApp);

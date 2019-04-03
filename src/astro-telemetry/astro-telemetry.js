@@ -1,6 +1,8 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
-import "@polymer/polymer/lib/elements/dom-repeat.js";
-import { AstroTelemetryPane } from "./astro-telemetry-pane.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
+import {AstroTelemetryPane} from './astro-telemetry-pane.js';
+/* eslint-enable no-unused-vars */
 /**
  * @polymer
  * @extends HTMLElement
@@ -10,12 +12,12 @@ export class AstroTelemetry extends PolymerElement {
   static get properties() {
     return {
       title: {
-        type: String
+        type: String,
       },
       telemetryData: {
         type: Array,
-        observer: "_changed"
-      }
+        observer: '_changed',
+      },
     };
   }
   static get template() {
@@ -25,19 +27,19 @@ export class AstroTelemetry extends PolymerElement {
           box-sizing: border-box;
           height: 100%;
         }
-        
+
         *,
         *:after,
         *:before {
           box-sizing: inherit;
         }
-        
+
         .astro-telemetry-panes {
           display: flex;
           justify-content: space-between;
           align-items: stretch;
         }
-        
+
         astro-telemetry-pane {
           margin-right: 1.25rem;
         }
@@ -46,10 +48,11 @@ export class AstroTelemetry extends PolymerElement {
       <div class="astro-telemetry-panes">
         <template is="dom-repeat" items="[[telemetryData]]">
           <astro-telemetry-pane
-            title=[[item.satelliteName]]
-            chart=[[item.chart]]
-            power=[[item.power]]
-            thermal=[[item.temperature]]></astro-telemetry-pane>
+            title="[[item.satelliteName]]"
+            chart="[[item.chart]]"
+            power="[[item.power]]"
+            thermal="[[item.temperature]]"
+          ></astro-telemetry-pane>
         </template>
       </div>
     `;
@@ -80,4 +83,4 @@ export class AstroTelemetry extends PolymerElement {
     super.disconnectedCallback();
   }
 }
-customElements.define("astro-telemetry", AstroTelemetry);
+customElements.define('astro-telemetry', AstroTelemetry);

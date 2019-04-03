@@ -1,4 +1,6 @@
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
+/* eslint-disable no-unused-vars */
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+/* eslint-enable no-unused-vars */
 
 /**
  * @polymer
@@ -8,28 +10,26 @@ export class AstroPassPlanTask extends PolymerElement {
   static get properties() {
     return {
       title: {
-        type: String
+        type: String,
       },
       complete: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflectToAttribute: true,
       },
       status: {
         type: String,
-        value: "null"
-      }
+        value: 'null',
+      },
     };
   }
 
   static get template() {
     return html`
-
       <style>
-
-      *[hidden] {
-        display: none !important;
-      }
+        *[hidden] {
+          display: none !important;
+        }
 
         :host {
           display: flex;
@@ -52,13 +52,11 @@ export class AstroPassPlanTask extends PolymerElement {
         }
       </style>
 
-    
       <rux-status status="[[status]]"></rux-status>
       <span class="task">[[title]]</span>
       <span class="task-complete">
-        <rux-icon hidden=[[!complete]] icon="default:checkmark" size="16" color="#fff"></rux-icon>
+        <rux-icon hidden="[[!complete]]" icon="default:checkmark" size="16" color="#fff"></rux-icon>
       </span>
-    
     `;
   }
 
@@ -75,4 +73,4 @@ export class AstroPassPlanTask extends PolymerElement {
   }
 }
 
-customElements.define("astro-pass-plan-task", AstroPassPlanTask);
+customElements.define('astro-pass-plan-task', AstroPassPlanTask);
