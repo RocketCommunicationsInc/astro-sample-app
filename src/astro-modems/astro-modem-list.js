@@ -222,20 +222,13 @@ export class AstroModemList extends MutableData(PolymerElement) {
 
   _selectModem(e) {
     const modem = this.$.modemList.itemForElement(e.target);
-
-    // major short cut time. Getting the index of the selected modem
-    // in the modems array and assigning that to the selected modem
-    // object, so the modem list can update, because for the life of
-    // me I cannot figure out how to update dom-repeat of an array of
-    // objects
     modem.index = this.$.modemList.indexForElement(e.target);
 
     this.$.selector.select(modem);
-    this.selectedModem = modem;
-
-    this.notifyPath('selectedModem');
+    this.set('selectedModem', modem);
 
     this._reset();
+
     e.currentTarget.setAttribute('selected', '');
   }
 

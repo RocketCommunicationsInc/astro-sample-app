@@ -341,13 +341,12 @@ export class AstroModemDetail extends PolymerElement {
   }
 
   _selectedModemChanged() {
-    this.selectedModemPower = this.selectedModem.txPower;
     this.closeButtonLabel = 'Close';
     this.applyButtonDisabled = true;
   }
 
-  _powerChanged(e) {
-    if (e != this.selectedModem.txPower) {
+  _powerChanged(newVal, oldVal) {
+    if (newVal != oldVal) {
       this.closeButtonLabel = 'Cancel';
       this.applyButtonDisabled = false;
     }
