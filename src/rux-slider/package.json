@@ -1,0 +1,51 @@
+{
+  "_args": [
+    [
+      "@astrouxds/rux-slider@1.0.4",
+      "/private/var/www/astro/05-components.astrouxds.com"
+    ]
+  ],
+  "_from": "@astrouxds/rux-slider@^3.0.4",
+  "_id": "@astrouxds/rux-slider@3.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-GA0OuEB8kMdIxsYGPqhJRNRrzw+FitakxECgr2BsX2R1clj+qHiPUsUYDWa07n4Jo9XlZmI/hfu+Fctj+O3r8Q==",
+  "_location": "/@astrouxds/rux-slider",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@astrouxds/rux-slider@^3.0.4",
+    "name": "@astrouxds/rux-slider",
+    "escapedName": "@astrouxds%2frux-slider",
+    "scope": "@astrouxds",
+    "rawSpec": "^3.0.4",
+    "saveSpec": null,
+    "fetchSpec": "^3.0.4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@astrouxds/rux-slider/-/rux-slider-3.0.4.tgz",
+  "_shasum": "368ccee07e8e9dc780e1db0017a8644e9ab70af2",
+  "_spec": "@astrouxds/rux-slider@^3.0.4",
+  "_where": "/Users/rocket/Projects/Astro/app",
+  "author": {
+    "name": "Rocket Communications",
+    "email": "astro@rocketcom.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@polymer/polymer": "^3.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
+  },
+  "deprecated": false,
+  "description": "Astro Web Component for sliders",
+  "license": "GPL-3.0",
+  "main": "rux-slider.js",
+  "name": "@astrouxds/rux-slider",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.0.4"
+}

@@ -13,13 +13,14 @@ import {RuxPopUpMenu} from '@astrouxds/rux-pop-up-menu/rux-pop-up-menu.js';
 import {RuxPushButton} from '@astrouxds/rux-push-button/rux-push-button.js';
 import {RuxProgress} from '@astrouxds/rux-progress/rux-progress.js';
 import {RuxSegmentedButton} from '@astrouxds/rux-segmented-button/rux-segmented-button.js';
-import {RuxSlider} from '@astrouxds/rux-slider/rux-slider.js';
 import {RuxSpectrumAnalyzer} from '@astrouxds/rux-spectrum-analyzer/rux-spectrum-analyzer.js';
 import {RuxStatus} from '@astrouxds/rux-status/rux-status.js';
 import {RuxTabs} from '@astrouxds/rux-tabs/rux-tabs.js';
 import {RuxTimeline} from '@astrouxds/rux-timeline/rux-timeline.js';
 import {RuxToggle} from '@astrouxds/rux-toggle/rux-toggle.js';
 import {RuxTree} from '@astrouxds/rux-tree/rux-tree.js';
+
+import {RuxSlider} from './rux-slider/rux-slider.js';
 
 /* Astro App */
 import {AstroTelemetry} from './astro-telemetry/astro-telemetry.js';
