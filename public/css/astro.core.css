@@ -254,6 +254,9 @@ body {
     --scrollBarTrackCornerBackgroundColor,
     rgb(32, 50, 70)
   );
+
+  scrollbar-color: rgb(58, 129, 191)  rgb(32, 50, 70);
+  scrollbar-color: var(--scrollBarThumbBackgroundColor, rgb(58, 129, 191)) var(--scrollBarTrackCornerBackgroundColor, rgb(32, 50, 70));
 }
 
 ::-webkit-scrollbar {
