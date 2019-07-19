@@ -1,22 +1,20 @@
 {
   "entrypoint": "index.html",
   "shell": "src/astro-app.js",
-  "sources": ["src/*/**.js", "package.json"],
-  "extraDependencies": [
-    "public/**/*",
-    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js",
-    "node_modules/@webcomponents/webcomponentsjs/bundles/*",
-    "node_modules/@astrouxds/*",
-    "node_modules/@polymer/*",
-    "packages/**/*"
-  ],
+  "extraDependencies": [],
   "lint": {
-    "rules": ["polymer-3"]
+    "rules": [
+      "polymer-3"
+    ]
   },
   "builds": [
     {
-      "css": { "minify": false },
-      "html": { "minify": false }
+      "css": {
+        "minify": false
+      },
+      "html": {
+        "minify": false
+      }
     }
   ]
 }

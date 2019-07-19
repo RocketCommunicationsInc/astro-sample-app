@@ -25,18 +25,39 @@
     "@astrouxds/rux-toggle": "^3.0.0",
     "@astrouxds/rux-tree": "^3.0.0",
     "@polymer/polymer": "^3.0.2",
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "polymer-cli": "^1.7.2"
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "polymer-cli": "^1.9.11"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.6",
-    "eslint": "^5.16.0",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.1",
+    "eslint": "^5.12.1",
     "eslint-config-google": "^0.12.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-html": "^5.0.3",
+    "extract-loader": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-exec": "^3.0.1",
     "gulp-shell": "^0.6.5",
-    "polymer-analyzer": "^2.7.0"
+    "html-loader": "^0.5.5",
+    "lighthouse": "^3.2.1",
+    "polymer-analyzer": "^2.7.0",
+    "polymer-cli": "^1.8.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.23.1",
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "text-loader": "0.0.1",
+    "wct-browser-legacy": "^1.0.2",
+    "web-component-tester": "^6.9.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
   },
   "repository": "git@bitbucket.org:rocketcom/astro-app.git",
   "license": "MIT",
@@ -103,11 +124,17 @@
     "async": "2.6.0"
   },
   "eslintConfig": {
-    "esversion": 6,
-    "sourceType": "module",
-    "env": {
-      "browser": true,
-      "node": true
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "env": {
+        "browser": true,
+        "node": true
+      }
     }
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   }
 }
